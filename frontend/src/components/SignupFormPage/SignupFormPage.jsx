@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import './SignupFormPage.css'
 import Panels from '../panels';
 import Panel from '../panel/Panel';
 import Columns from '../columns/Columns';
@@ -43,11 +44,11 @@ function SignupFormPage() {
   };
 
   return (
-    <Panel>
+    <Panel id='SignupLargePanel'>
       <Panels>
           <span>Quick recap</span>
           <h2>Free for 1 month</h2>
-          <p>
+          <div>
             <span>
               <ul>
                 <li>Get 20 credits to book classes <strong>free for 1 month.</strong></li>
@@ -57,7 +58,7 @@ function SignupFormPage() {
               </ul>
 
             </span>
-          </p>
+          </div>
       </Panels>
       <Panels>
         <form onSubmit={handleSubmit}>

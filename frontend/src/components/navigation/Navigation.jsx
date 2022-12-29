@@ -19,22 +19,18 @@ function Navigation() {
   } else {
     sessionLinks = (
       <>
-        <NavLink to="/login">Log In</NavLink>
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink id="NavLink" to="/login">Log In</NavLink>
+        <NavLink id="NavLink" to="/signup">Sign Up</NavLink>
       </>
     );
   }
 
   return (
-    <Columns>
-      <ul>
-        
-        <li>
-          <Column><NavLink exact to="/">Home</NavLink></Column>
+    <Columns id="NavColumns">
+      
+          <Column><NavLink id="NavLink" exact to="/">Home</NavLink></Column>
           <Column>{sessionLinks}</Column>
-        </li>
-        
-      </ul>
+     
     </Columns>
   );
 }
