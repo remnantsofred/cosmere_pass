@@ -7,11 +7,11 @@ import './Panels.css';
 
 
 // Panels will take in Panel components as children
-const Panels = ({children}) => {
+const Panels = ({children, id="", className="panels"}) => {
 
   
   return (
-    <div className="panels">
+    <div className={className} id={id}>
      {children}
     </div>
   );

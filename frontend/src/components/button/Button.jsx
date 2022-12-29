@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Button.css';
 
-const Button = ({buttonText}) => {
+const Button = ({buttonText, className="button", id=""}) => {
 
   return (
-    <button className="button">
+    <button className={className} id={id}>
       {buttonText}
     </button>
   )

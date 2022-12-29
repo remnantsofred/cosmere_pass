@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './Row.css'
 // panel can only have rows. can add rows as props
-const Row = ({children}) => {
+const Row = ({children, id="", className="row"}) => {
 
   
   return (
-    <div className="row" >
+    <div className={className} id={id} >
      {children}
     </div>
   );
