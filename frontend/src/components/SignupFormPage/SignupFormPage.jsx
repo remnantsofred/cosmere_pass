@@ -48,7 +48,7 @@ function SignupFormPage() {
       <Panels>
           <span>Quick recap</span>
           <h2>Free for 1 month</h2>
-          <p>
+          <div>
             <span>
               <ul>
                 <li>Get 20 credits to book classes <strong>free for 1 month.</strong></li>
@@ -58,7 +58,7 @@ function SignupFormPage() {
               </ul>
 
             </span>
-          </p>
+          </div>
       </Panels>
       <Panels>
         <form onSubmit={handleSubmit}>
