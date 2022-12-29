@@ -5,6 +5,7 @@ class ApplicationController < ActionController::API
   rescue_from StandardError, with: :unhandled_error
   rescue_from ActionController::InvalidAuthenticityToken,
     with: :invalid_authenticity_token
+  
 
   # CRRLLL
 
@@ -76,4 +77,5 @@ class ApplicationController < ActionController::API
       logger.error "\n#{@message}:\n\t#{@stack.join("\n\t")}\n"
     end
   end
+  
 end

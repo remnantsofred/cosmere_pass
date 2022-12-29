@@ -1,0 +1,7 @@
+.column {
+  border: 1px solid #F2FFCD;
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  padding: 5px;
+}
