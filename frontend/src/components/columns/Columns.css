@@ -1,0 +1,6 @@
+.columns {
+  border: 1px solid #D9FFCD;
+  display: flex;
+  flex-direction: row;
+  
+}
