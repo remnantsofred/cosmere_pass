@@ -14,12 +14,12 @@ function App() {
             <Navigation />
             <LoginFormPage />
           </Route>
-          <Route path="/">
-            <Navigation />
-          </Route>
           <Route path="/signup">
             <Navigation />
             <SignupFormPage />
+          </Route>
+          <Route path="/">
+            <Navigation />
           </Route>
         </Switch>
     </>    
