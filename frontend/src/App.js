@@ -18,6 +18,7 @@ function App() {
             <Navigation />
             <SignupFormPage />
           </Route>
+          
           <Route path="/">
             <Navigation />
           </Route>

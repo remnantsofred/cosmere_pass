@@ -19,7 +19,6 @@ function Navigation() {
     <NavLink className="NavLink" id="loginNav" to="/login">Log In</NavLink>
     <NavLink className="NavLink" id="signupNav" to="/signup">Sign Up</NavLink>
   </>);
-  console.log('location', location)
 
   useEffect(()=>{
     

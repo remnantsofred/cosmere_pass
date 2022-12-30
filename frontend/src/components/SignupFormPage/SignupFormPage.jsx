@@ -12,7 +12,6 @@ import Rows from '../rows/Rows'
 import Row from '../row/Row'
 
 function SignupFormPage() {
-  console.log("hello")
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [email, setEmail] = useState("");
