@@ -51,6 +51,7 @@
 
 
 
-#loginButton {
-  border: 3px solid greenyellow;
+#loginButton, #demologinButton {
+  /* border: 3px solid greenyellow; */
+  width: 100%;
 }
