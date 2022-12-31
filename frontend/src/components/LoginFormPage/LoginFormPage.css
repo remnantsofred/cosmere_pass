@@ -37,7 +37,7 @@
 }
 
 
-.largePanel {
+.loginlargePanel {
   background: #f7f7f7;
   display: flex;
   flex-direction: row;
@@ -62,7 +62,7 @@
   box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
 }
 
-.narrow {
+.loginNarrow {
   width: 318px;
   height: 738px;
   display: flex;
@@ -70,7 +70,7 @@
   justify-content: center;
 }
 
-.rightBlurb {
+.loginrightBlurb {
   height: 732px;
   width: 384px;
   background-color: transparent;
@@ -82,7 +82,7 @@
   padding-right: 48px;;
 }
 
-h3 {
+.loginH3 {
   font-weight: 800;
   font-family: 'Ponjoung', sans-serif;
   font-size: 1.75rem;
@@ -121,7 +121,8 @@ input {
   width: 302px;
   margin-bottom: 8px;
   margin-top: 8px;
-
+  text-decoration: none;
+  font-family: 'TT Norms Pro', sans-serif;
 }
 
 label {
@@ -164,7 +165,7 @@ label {
   
 }
 
-p {
+.loginP {
   text-align: center;
   font-size: 1.125rem;
   line-height: 1.3333333333;
@@ -189,7 +190,7 @@ p {
   color: #000;
   border: 1px solid #d6d6d6;
   border-radius: 3px;
-   
+  text-decoration: none;
 }
 
 #cosmere {

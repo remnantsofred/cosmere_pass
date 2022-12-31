@@ -1,5 +1,5 @@
 
-.NavLink {
+.navNavLink {
   padding: 3px;
   text-decoration: none;
   display: flex;
@@ -17,7 +17,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* min-height: calc(var(--vh, 1vh)*100); */
 }
 
 #signupNav {

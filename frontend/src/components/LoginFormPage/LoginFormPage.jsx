@@ -60,9 +60,9 @@ const LoginFormPage = () => {
 
 
   return (
-    <Panels className='largePanel'>
+    <Panels className='loginlargePanel'>
       <Panel className="loginForm">
-        <Panel className="narrow">
+        <Panel className="loginNarrow">
           <form onSubmit={handleSubmit} >
             <Row className="loginRow">
               <h2 id="welcomeBack">Welcome back</h2>
@@ -112,10 +112,10 @@ const LoginFormPage = () => {
           </form>
         </Panel>
       </Panel>
-      <Panel className="rightBlurb">
+      <Panel className="loginrightBlurb">
         <img src={cosmere} id="cosmere" />
-        <h3>New to ClassPass?</h3>
-        <p>
+        <h3 className='loginH3'>New to ClassPass?</h3>
+        <p className='loginP'>
           Become a member for Cosmere-wide access to hundreds of top-rated institutions.
         </p> 
         <NavLink className="NavLink" id="getStarted" to="/signup">Get started for free</NavLink>          

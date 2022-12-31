@@ -10,7 +10,7 @@
 
 }
 
-.leftPanel {
+.signupleftPanel {
   height: 760px;
   width: 601px;
   background-color: transparent;
@@ -25,7 +25,7 @@
 
 }
 
-.rightPanel {
+.signuprightPanel {
   height: 760px;
   width: 327px;
   background-color: #fff;
@@ -37,7 +37,7 @@
   margin-top: 48px;
 }
 
-h3 {
+.signupH3 {
   font-weight: 800;
   font-family: 'Ponjoung', sans-serif;
   font-size: 1.75rem;

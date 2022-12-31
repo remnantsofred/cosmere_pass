@@ -32,7 +32,7 @@ time, mark, audio, video {
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
-
+	font-family: 'TT Norms Pro', sans-serif;
 }
 body {
 	line-height: 1;
@@ -56,6 +56,8 @@ table {
 
 button, link {
 	cursor: pointer;
+	font-family: 'TT Norms Pro', sans-serif;
+	text-decoration: none;
 }
 
 
