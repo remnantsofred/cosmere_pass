@@ -156,6 +156,7 @@
   padding: 0;
   margin-right: 20px;
   transition: transform .3s;
+  color: #05f
 }
 
 .signupIcon:hover {
