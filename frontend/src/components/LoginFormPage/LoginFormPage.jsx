@@ -58,8 +58,8 @@ const LoginFormPage = () => {
 
 
   return (
-    <Panel>
-      <Panels>
+    <Panels className='largePanel'>
+      <Panel>
         <form onSubmit={handleSubmit} >
           <Row>
             <h2>Welcome back</h2>
@@ -101,15 +101,15 @@ const LoginFormPage = () => {
               <button onClick={handleDemoLogin} id="demologinButton" className='level1'>Demo Log In</button >
           </Row>
         </form>
-      </Panels>
-      <Panels >
+      </Panel>
+      <Panel>
           <span></span>
           <h3>New to ClassPass?</h3>
           <p>
             <span>Become a member for worldwide access to hundreds of top-rated institutions</span>
           </p>
-      </Panels>
-    </Panel>
+      </Panel>
+    </Panels>
   );
 }
 

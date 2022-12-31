@@ -1,6 +1,15 @@
 
 .NavLink {
   padding: 3px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  white-space: nowrap;
+  font-weight: 500;
+  color: #000;
+  font-size: .875rem;
+  line-height: 1.4285714286;
 }
 
 #NavColumns {
@@ -9,4 +18,32 @@
   justify-content: space-between;
   align-items: center;
   /* min-height: calc(var(--vh, 1vh)*100); */
+}
+
+#signupNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;color: #fff;
+  border-color: #05f;
+  background-color: #05f;
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  min-width: 120px;
+  max-width: 100%;
+  margin-left: 8px;
+  padding-top: 12px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  border-radius: 999px;
+  font-weight: 500;
+  line-height: 1;
+  font-size: 1rem;
+ 
 }

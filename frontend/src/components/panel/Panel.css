@@ -1,10 +1,7 @@
 .panel {
-  border: 1px solid black;  
-  height: 800px;
+  height: 738px;
+  width: 480px;
   background-color: #fff;
-  padding: 50px;
-  border: 50px;
   display: flex;
-  flex-direction: row;
-
+  flex-direction: column;
 }
