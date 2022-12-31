@@ -12,6 +12,8 @@
   height: 16px;
   padding-top: 16px;
   padding-bottom: 32px;
+  padding-left: 0px;
+  padding-right: 0px;
   border: 1px solid #d6d6d6;
   border-radius: 3px;
   transition: color .3s,background-color .3s,border-color .3s;
@@ -24,14 +26,19 @@
   font-family: norms,sans-serif;
   font-weight: 500;
   line-height: 1;
+
+
 }
 
-#demologinButton {
-  width: 100%;
-  border: 1px solid #d6d6d6;
-  border-radius: 3px;
-  transition: color .3s,background-color .3s,border-color .3s;
+#loginButton:hover {
+  background-color: #004de6;
+  border-color: #004de6;
+  border-top-color: rgb(0, 77, 230);
+  border-right-color: rgb(0, 77, 230);
+  border-bottom-color: rgb(0, 77, 230);
+  border-left-color: rgb(0, 77, 230);
 }
+
 
 .largePanel {
   background: #f7f7f7;
@@ -58,7 +65,7 @@
 }
 
 .narrow {
-  width: 350px;
+  width: 318px;
   height: 738px;
   display: flex;
   align-items: center;
@@ -67,36 +74,32 @@
 
 .rightBlurb {
   height: 732px;
-  width: 480px;
+  width: 384px;
   background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: purple solid 1px;
   padding-left: 48px;
   padding-right: 48px;;
 }
 
 h3 {
-  font-weight: 400;
+  font-weight: 800;
   font-family: circuit,sans-serif;
   font-size: 1.75rem;
+  line-height: 1.1428571429;
+  max-width: 350px;
+  margin: 16px auto;
+  text-align: center;
+  padding: 8px 16px;
 }
 
 #welcomeBack {
   font-size: 1.5rem;
   line-height: 1.3333333333;
-  text-align: center;
   display: flex;
-}
-
-span {
-  font-size: 1.125rem;
-  line-height: 1.3333333333;
-  font-family: norms,sans-serif;
   font-weight: 500;
-  text-align: center;
 }
 
 .loginRow {
@@ -104,11 +107,10 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 350px;
+  width: 318px;
   height: 65px;
   margin-top: 24px;
   margin-bottom: 24px;
-  border: 1px solid red
 }
 
 input {
@@ -118,7 +120,7 @@ input {
   padding: 11px 8px 8px 8px;
   vertical-align: middle;
   box-shadow: none;
-  width: 332px;
+  width: 302px;
   margin-bottom: 8px;
   margin-top: 8px;
 
@@ -127,25 +129,80 @@ input {
 label {
   text-align: left;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   color: #555;
   font-size: 1em;
   line-height: 1.5;
   letter-spacing: 0;
 }
 
-#resetPassword {
+#resetPassword, #demologinButton {
   text-decoration: none;
   color: #05f;
+  justify-content: space-evenly;
   transition: background-color .3s,color .3s;
   font-size: 1em;
   line-height: 1.5;
   text-align: center;
   width: 100%;
+  margin-bottom: 32px; 
+}
+
+#demologinButton {
+  width: 100%;
+  border: 0px;
+  border-radius: 3px;
+  transition: none;
+  background-color: #fff
+}
+
+#lineBelow {
+  border-bottom: 1px solid #e7e7e7;
 }
 
 .level1 {
   margin-top: 10px;
   margin-bottom: 10px;
   
+}
+
+p {
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.3333333333;
+  font-family: norms,sans-serif;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+#getStarted {
+  font-size: .875rem;  
+  position: relative;
+  min-width: 120px;
+  max-width: 100%;
+  margin: 0;
+  padding: 11px 16px 11px;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  font-weight: 500;
+  line-height: 1;
+  color: #000;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+   
+}
+
+#cosmere {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+
+}
+
+#cosmere:hover {
+	transform: translateY(-2px);
+	z-index: 500;
 }

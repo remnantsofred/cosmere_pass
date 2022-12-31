@@ -7,8 +7,9 @@ import Panels from '../panels';
 import Panel from '../panel/Panel';
 import Columns from '../columns/Columns';
 import Column from '../column/Column';
-import Rows from '../rows/Rows'
-import Row from '../row/Row'
+import Row from '../row/Row';
+import cosmere from './Cosmere_symbol.png';
+
 
 
 const LoginFormPage = () => {
@@ -102,7 +103,7 @@ const LoginFormPage = () => {
                 <button type="submit" id="loginButton" className='button-square'>Log in</button >
             </Row>
             
-            <Row className="loginRow">
+            <Row className="loginRow" id="lineBelow">
               <NavLink className="NavLink" id="resetPassword" to="/reset-password">Forgot your password?</NavLink>
             </Row>
             <Row className="loginRow">
@@ -112,11 +113,12 @@ const LoginFormPage = () => {
         </Panel>
       </Panel>
       <Panel className="rightBlurb">
-          <span></span>
-          <h3>New to ClassPass?</h3>
-          <p>
-            <span>Become a member for worldwide access to hundreds of top-rated institutions</span>
-          </p>
+        <img src={cosmere} id="cosmere" />
+        <h3>New to ClassPass?</h3>
+        <p>
+          Become a member for Cosmere-wide access to hundreds of top-rated institutions.
+        </p> 
+        <NavLink className="NavLink" id="getStarted" to="/signup">Get started for free</NavLink>          
       </Panel>
     </Panels>
   );
