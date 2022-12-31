@@ -11,6 +11,7 @@ import Column from '../column/Column';
 import Rows from '../rows/Rows'
 import Row from '../row/Row'
 import hero from './signUphero.png'
+import { MagicSwirlIcon, MagicStarIcon, CalendarIcon, UnlockIcon, SpellBookIcon } from '../icon/Icon'
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -65,13 +66,28 @@ function SignupFormPage() {
           for 1 month
         </Row>
         <Row className="signupRow">
-          Get <strong>20 credits</strong> to book as many as <strong>7 reservations</strong>.
+          <Column className='iconCol'>
+            <SpellBookIcon className='signupIcon'/>
+          </Column>
+          <Column className='signupCol'>
+            Get <strong>20 credits</strong> to book as many as <strong>7 reservations</strong>.
+          </Column>
         </Row>
         <Row className="signupRow">
-          We’ll remind you <strong>2 days before</strong> your trial ends.
+          <Column className='iconCol'>
+            <CalendarIcon className='signupIcon'/>
+          </Column>
+          <Column className='signupCol'>
+            We’ll remind you <strong>2 days before</strong> your trial ends.
+          </Column>
         </Row>
         <Row className="signupRow">
-          You’re never locked in. <strong>Cancel anytime.</strong>
+          <Column className='iconCol'>
+            <UnlockIcon className='signupIcon'/>
+          </Column>
+          <Column className='signupCol'>
+            You’re never locked in. <strong>Cancel anytime.</strong>
+          </Column>
         </Row>
         <form onSubmit={handleSubmit}>
           <Row>
