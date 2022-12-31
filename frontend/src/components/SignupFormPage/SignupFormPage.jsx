@@ -10,6 +10,7 @@ import Columns from '../columns/Columns';
 import Column from '../column/Column';
 import Rows from '../rows/Rows'
 import Row from '../row/Row'
+import hero from './signUphero.png'
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -45,74 +46,84 @@ function SignupFormPage() {
 
   return (
     <Panel id='SignupLargePanel'>
-      <Panels>
-          <span>Quick recap</span>
-          <h2>Free for 1 month</h2>
-          <div>
-            <span>
-              <ul>
-                <li>Get 20 credits to book classes <strong>free for 1 month.</strong></li>
-                <li>We’ll send you a reminder <strong>2 days before your trial ends.</strong></li>
-                <li>You’re never locked in. <strong>Cancel anytime.</strong></li>
-                <li><strong>Roll over unused credits</strong> up to the number of credits in your next month’s plan.</li>
-              </ul>
-
-            </span>
-          </div>
+      <Panels className="leftPanel">
+          <h3>Start your free trial</h3>
+          <p id="signupP">
+            Search, book and try classes from top-rated studios with your free trial. When you 
+            create your ClassPass account, you’ll unlock unlimited access to over 4,000 on-demand workouts.
+          </p>
+          <img src={hero} id="heroSignUp" />
       </Panels>
-      <Panels>
+      <Panels className="rightPanel">
+        <div className='trialCard'>
+          YOUR TRIAL INCLUDES
+        </div>
+        <Row className="signupRow" id="dollars">
+          $0
+        </Row>
+        <Row className="signupRow" id="dollarsSubtitle">
+          for 1 month
+        </Row>
+        <Row className="signupRow">
+          Get <strong>20 credits</strong> to book as many as <strong>7 reservations</strong>.
+        </Row>
+        <Row className="signupRow">
+          We’ll remind you <strong>2 days before</strong> your trial ends.
+        </Row>
+        <Row className="signupRow">
+          You’re never locked in. <strong>Cancel anytime.</strong>
+        </Row>
         <form onSubmit={handleSubmit}>
           <Row>
-            <ul>
+            <ul className="signupErrors">
              {errors.map(error => <li key={error}>{error}</li>)}
             </ul>
           </Row>
           <Row>
-            <label>
-              Email
               <input
                 type="text"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="signupInput"
               />
-            </label>
           </Row>
           <Row>
-            <label>
-              Username
               <input
                 type="text"
+                placeholder="Choose a username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
+                className="signupInput"
               />
-            </label>
+   
           </Row>
           <Row>
-            <label>
-              Password
               <input
                 type="password"
+                placeholder="Choose a password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="signupInput"
               />
-            </label>
+
           </Row> 
           <Row>
-            <label>
-              Confirm Password
               <input
                 type="password"
+                placeholder="Confirm password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
+                className="signupInput"
               />
-            </label>
+           
           </Row>
           <Row>
-            <button type="submit">Sign Up</button>
+            <button type="submit" id="signUpSubmit">Try for free</button>
           </Row>
         </form>
       </Panels>
