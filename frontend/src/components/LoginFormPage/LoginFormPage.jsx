@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import './LoginFormPage.css';
 import Panels from '../panels';
 import Panel from '../panel/Panel';
@@ -9,6 +9,7 @@ import Columns from '../columns/Columns';
 import Column from '../column/Column';
 import Rows from '../rows/Rows'
 import Row from '../row/Row'
+
 
 const LoginFormPage = () => {
   const dispatch = useDispatch();
@@ -59,50 +60,58 @@ const LoginFormPage = () => {
 
   return (
     <Panels className='largePanel'>
-      <Panel>
-        <form onSubmit={handleSubmit} >
-          <Row>
-            <h2>Welcome back</h2>
-          </Row>
-          <Row>
-            <ul id="errorMessage" className='level1'>
-            {errors.map(error => <li key={error}>{error}</li>)}
-            </ul>
-          </Row>
-          
-          <Row>
-            <label className='level1'>
-              Username or Email 
-              <input 
-                type="text"
-                value={credential}
-                className='level1'
-                onChange={(e) => setCredential(e.target.value)}
-                required
-              />
-            </label>
-          </Row>
-          <Row>
-            <label className='level1'>
-              Password
-              <input
-                type="password"
-                value={password}
-                className='level1'
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </label>
-          </Row>
-          <Row>
-              <button type="submit" id="loginButton" className='level1'>Log In</button >
-          </Row>
-          <Row>
-              <button onClick={handleDemoLogin} id="demologinButton" className='level1'>Demo Log In</button >
-          </Row>
-        </form>
+      <Panel className="loginForm">
+        <Panel className="narrow">
+          <form onSubmit={handleSubmit} >
+            <Row className="loginRow">
+              <h2 id="welcomeBack">Welcome back</h2>
+            </Row>
+            <Row className="loginRow">
+              <ul id="errorMessage" className='level1'>
+              {errors.map(error => <li key={error}>{error}</li>)}
+              </ul>
+            </Row>
+            
+            <Row className="loginRow">
+              <label className='level1'>
+                Email address
+                <br />
+                <input 
+                  type="text"
+                  value={credential}
+                  className='level1'
+                  onChange={(e) => setCredential(e.target.value)}
+                  required
+                />
+              </label>
+            </Row>
+            <Row className="loginRow">
+              <label className='level1'>
+                Password
+                <br />
+                <input
+                  type="password"
+                  value={password}
+                  className='level1'
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </label>
+            </Row>
+            <Row className="loginRow">
+                <button type="submit" id="loginButton" className='button-square'>Log in</button >
+            </Row>
+            
+            <Row className="loginRow">
+              <NavLink className="NavLink" id="resetPassword" to="/reset-password">Forgot your password?</NavLink>
+            </Row>
+            <Row className="loginRow">
+                <button onClick={handleDemoLogin} id="demologinButton" className='level1'>Demo Log In</button >
+            </Row>
+          </form>
+        </Panel>
       </Panel>
-      <Panel>
+      <Panel className="rightBlurb">
           <span></span>
           <h3>New to ClassPass?</h3>
           <p>

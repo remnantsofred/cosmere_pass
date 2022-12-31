@@ -3,14 +3,6 @@
   height: 1200;
   width: 1300px;
   flex-direction: column;
-  margin: 50px;
-  padding: 50px; 
-  /* position: absolute; */
-
-  font-size: 1em;
-  line-height: 1.5;
-  letter-spacing: 0;
-  /* overflow-y: scroll; */
   background-color: #fff;
   color: #000;
   display: flex;

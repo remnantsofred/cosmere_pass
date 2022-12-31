@@ -1,5 +1,4 @@
 
-
 #infoBlurbContainer {
   max-width: none;
   padding: 0 48px;
@@ -8,14 +7,145 @@
   text-align: center;
 }
 
-
-
-#loginButton, #demologinButton {
+#loginButton {
   width: 100%;
+  height: 16px;
+  padding-top: 16px;
+  padding-bottom: 32px;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  transition: color .3s,background-color .3s,border-color .3s;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: #fff;
+  border-color: #05f;
+  background-color: #05f;
+  font-size: 1rem;
+  font-family: norms,sans-serif;
+  font-weight: 500;
+  line-height: 1;
 }
 
-#largePanel {
+#demologinButton {
+  width: 100%;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  transition: color .3s,background-color .3s,border-color .3s;
+}
+
+.largePanel {
   background: #f7f7f7;
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  margin-left: 112.5;
+  margin-right: 112.5;
+  width: 100%;
+  height: 816px;
+}
+
+.loginForm {
+  height: 738px;
+  width: 480px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+}
+
+.narrow {
+  width: 350px;
+  height: 738px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rightBlurb {
+  height: 732px;
+  width: 480px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: purple solid 1px;
+  padding-left: 48px;
+  padding-right: 48px;;
+}
+
+h3 {
+  font-weight: 400;
+  font-family: circuit,sans-serif;
+  font-size: 1.75rem;
+}
+
+#welcomeBack {
+  font-size: 1.5rem;
+  line-height: 1.3333333333;
+  text-align: center;
+  display: flex;
+}
+
+span {
+  font-size: 1.125rem;
+  line-height: 1.3333333333;
+  font-family: norms,sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.loginRow {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 65px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border: 1px solid red
+}
+
+input {
+  font-size: 16px;
+  border: 1px solid #e7e7e7;
+  border-radius: 3px;
+  padding: 11px 8px 8px 8px;
+  vertical-align: middle;
+  box-shadow: none;
+  width: 332px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+
+}
+
+label {
+  text-align: left;
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+#resetPassword {
+  text-decoration: none;
+  color: #05f;
+  transition: background-color .3s,color .3s;
+  font-size: 1em;
+  line-height: 1.5;
+  text-align: center;
+  width: 100%;
+}
+
+.level1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
 }

@@ -39,7 +39,6 @@
   padding-left: 16px;
   vertical-align: middle;
   text-align: center;
-  cursor: pointer;
   overflow: visible;
   border-radius: 999px;
   font-weight: 500;
@@ -47,3 +46,4 @@
   font-size: 1rem;
  
 }
+
