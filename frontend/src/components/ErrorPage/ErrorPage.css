@@ -1,10 +1,20 @@
 .imagePanel {
-
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
 }
 
-h1 {
+.errorMsg {
   margin-bottom: 0;
   font-size: 120px;
   font-weight: 700;
-  
+}
+
+#kettlebell, #arm {
+  background-color: transparent;
+}
+
+#arm { 
+  position: ;
 }
