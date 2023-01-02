@@ -3,12 +3,14 @@
   width: 100vw;
   background-color: #e8e5e5;
   color: #000;
+  position: absolute;
+  top: 68px;
 }
 
 .errorSection {
   position: absolute;
   left: 50%;
-  top: 35%;
+  top: 265px;
   transform: translate(-50%, -50%);
   color: #555
 }
