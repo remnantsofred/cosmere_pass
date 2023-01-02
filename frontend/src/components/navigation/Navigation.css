@@ -46,6 +46,15 @@
  
 }
 
+#signupNav:hover {
+  background-color: #004de6;
+  border-color: #004de6;
+  border-top-color: rgb(0, 77, 230);
+  border-right-color: rgb(0, 77, 230);
+  border-bottom-color: rgb(0, 77, 230);
+  border-left-color: rgb(0, 77, 230);
+}
+
 .profileButton{
   width: 60px;
   height: 40px;

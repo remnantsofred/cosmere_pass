@@ -4,6 +4,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Navigation from "./components/navigation/Navigation";
 import ErrorPage from "./components/ErrorPage";
+import SplashPage from "./components/SplashPage";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           </Route>
           <Route  exact path="/" >
             <Navigation />
+            <SplashPage />  
           </Route>
           <Redirect to='/error' />
         </Switch>
