@@ -12,7 +12,8 @@
 
 .splashPanels {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+
 }
 
 .splashMid {
@@ -23,14 +24,15 @@
   width: 464px;
   height: 485px;
   padding: 56px;
-  z-index: 2;
   border-radius: 20px;
   position: absolute;
-  top: 50%;
+  margin-top: 64px;
+  top:85px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
   background-color: #fff;
   line-height: 1.4;
+  z-index: 1;
 }
 
 .splashTitle {
@@ -39,6 +41,7 @@
   text-align: center;
   font-family: 'Ponjoung', sans-serif;
   margin-bottom: 30px;
+  
 }
 
 .splashSpan {
