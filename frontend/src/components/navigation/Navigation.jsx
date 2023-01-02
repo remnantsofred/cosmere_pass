@@ -15,21 +15,25 @@ function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
   let location = useLocation();
 
-  const [sessionLinks, setSessionLinks] = useState(<>
-    <NavLink className="NavLink" id="loginNav" to="/login">Log In</NavLink>
-    <NavLink className="NavLink" id="signupNav" to="/signup">Sign Up</NavLink>
-  </>);
-  console.log('location', location)
+  const startSessionLinks = (
+    <>
+        <NavLink className="navNavLink" id="findClasses" to="/search">Find lessons</NavLink>
+        <a href="https://www.linkedin.com/in/lamdaphne/" target="_blank" className="navNavLink" id="aboutMe" to="/search">About me</a>
+        <NavLink className="navNavLink" id="loginNav" to="/login">Log in</NavLink>
+        <NavLink className="navNavLink" id="signupNav" to="/signup">Get 1 month free</NavLink>
+    </>
+  )
+  
+  const [sessionLinks, setSessionLinks] = useState(startSessionLinks);
+   
 
+
+  
   useEffect(()=>{
     
     // if I'm not logged in and I'm not on the login page, show the login and signup links
     if((!location.pathname.includes('/login')  && !location.pathname.includes('/signup')) && !sessionUser){
-      setSessionLinks(
-      <>
-        <NavLink className="NavLink" id="loginNav" to="/login">Log In</NavLink>
-        <NavLink className="NavLink" id="signupNav" to="/signup">Sign Up</NavLink>
-      </>)
+      setSessionLinks(startSessionLinks)
       // if I'm logged in OR i'm on the login or signup page, do not show the login and signup links
       // if i'm logged in show the profile button
     } else if (sessionUser){
@@ -44,28 +48,12 @@ function Navigation() {
   }, [location.pathname, sessionUser])
 
 
-  // let sessionLinks;
-  // if (sessionUser) {
-  //   sessionLinks = (
-  //     <ProfileButton user={sessionUser} />
-  //   );
-  // } else {
-  //   if (href !== 'http://localhost:3000/login'){
-  //     sessionLinks = (
-  //     <>
-  //       <NavLink className="NavLink" id="loginNav" to="/login">Log In</NavLink>
-  //       <NavLink className="NavLink" id="signupNav" to="/signup">Sign Up</NavLink>
-  //     </>
-  //   );
-  //   }
-  // }
-
   return (
     <Columns id="NavColumns">
       
           {/* <Column><NavLink id="NavLink" exact to="/">Home</NavLink></Column> */}
           <Column>
-            <NavLink className="NavLink" exact to="/">
+            <NavLink className="navNavLink" exact to="/">
               <img className="img-responsive" src={logo} alt="logo"/>
             </NavLink>
           </Column>

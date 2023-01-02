@@ -2,6 +2,9 @@ import './Navigation.css'
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { PalmIcon, BicepIcon, PortalIcon, MagicSwirlIcon, MagicStarIcon, CalendarIcon, UnlockIcon, SpellCastBoltIcon, SpellCastFireIcon, SpellCastIceIcon, SpellBookIcon } from '../icon/Icon';
+
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -31,8 +34,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fa-solid fa-hand-sparkles"></i>
+      <button onClick={openMenu} className="profileButton">
+        <SpellCastBoltIcon />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
