@@ -125,6 +125,9 @@ input {
   font-family: 'TT Norms Pro', sans-serif;
 }
 
+
+
+
 label {
   text-align: left;
   display: block;
@@ -191,6 +194,13 @@ label {
   border: 1px solid #d6d6d6;
   border-radius: 3px;
   text-decoration: none;
+  
+}
+
+#getStarted:focus {
+  border-color: #05f;
+  border-width: 2px;
+  transition: background-color .3s,color .3s,border-color .3s;
 }
 
 #cosmere {

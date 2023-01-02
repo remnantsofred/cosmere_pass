@@ -19,6 +19,6 @@ export const ErrorPage = ({children, id='', className="errorPage"}) => {
       </div>
     </div>  
   );
-}
+} 
 
 export default ErrorPage;

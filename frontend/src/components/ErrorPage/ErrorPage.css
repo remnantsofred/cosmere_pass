@@ -16,5 +16,7 @@
 }
 
 #arm { 
-  position: ;
+  position: relative;
+  left: 0%;
+  top: 50%;
 }
