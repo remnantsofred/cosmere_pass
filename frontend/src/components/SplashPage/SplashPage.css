@@ -14,3 +14,72 @@
   width: 100vw;
   height: 100vh;
 }
+
+.splashMid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 464px;
+  height: 485px;
+  padding: 56px;
+  z-index: 2;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  line-height: 1.4;
+}
+
+.splashTitle {
+  font-size: 2.625rem;
+  line-height: 1.0476190476;
+  text-align: center;
+  font-family: 'Ponjoung', sans-serif;
+  margin-bottom: 30px;
+}
+
+.splashSpan {
+  width: 356px;
+  font-size: 1.125rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#splashSignUp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;color: #fff;
+  border-color: #05f;
+  background-color: #05f;
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  width: 322px;
+  height: 16px;
+  padding-top: 16px;
+  padding-right: 0px;
+  padding-bottom: 14px;
+  padding-left: 0px;
+  margin-bottom: 20px;
+  vertical-align: middle;
+  text-align: center;
+  overflow: visible;
+  border-radius: 999px;
+  font-weight: 500;
+  line-height: 1;
+  font-size: 1rem;
+}
+
+#splashSignUp:hover {
+  background-color: #004de6;
+  border-color: #004de6;
+  border-top-color: rgb(0, 77, 230);
+  border-right-color: rgb(0, 77, 230);
+  border-bottom-color: rgb(0, 77, 230);
+  border-left-color: rgb(0, 77, 230);
+}
