@@ -1,7 +1,7 @@
 import './SplashPage.css';
 import Panels from '../panels';
 import Panel from '../panel/Panel';
-import homeImage from './homepage-hero_desktop.jpeg'
+import homeImage from './homepage-hero_new_images.png'
 import { NavLink } from 'react-router-dom';
 
 export const SplashPage = ({children, id='', className="splashPage"}) => {

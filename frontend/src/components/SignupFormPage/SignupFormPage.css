@@ -26,7 +26,7 @@
 }
 
 .signuprightPanel {
-  height: 760px;
+  height: 825px;
   width: 327px;
   background-color: #fff;
   display: flex;
@@ -120,6 +120,11 @@
 
 .signupErrors {
   width: 261px;
+  color: #cb2323;
+  text-align: center;
+  font-size: .875rem;
+  line-height: 1.4285714286;
+  margin-top: 8px;
 }
 
 .signupRow {

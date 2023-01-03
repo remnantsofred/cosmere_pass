@@ -1,0 +1,46 @@
+.errorPage {
+  height: 100vh;
+  width: 100vw;
+  background-color: #e8e5e5;
+  color: #000;
+}
+
+.errorSection {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  color: #555
+}
+
+.errorMsg {
+  margin-bottom: 0;
+  font-size: 240px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.whoops {
+  font-size: 1.5rem;
+  line-height: 1.3333333333;
+  text-align: center;
+}
+
+
+#kettlebell, #arm {
+  background-color: transparent;
+  z-index: 2;
+}
+
+#arm { 
+  position: absolute;
+  left: 0;
+  bottom: -60px;
+}
+
+#kettlebell {
+  position: absolute;
+  top: 8%;
+  left: 55%;
+}
+
