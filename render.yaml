@@ -1,0 +1,22 @@
+databases:
+  - name: cosmere-pass
+    user: cosmere_pass
+    plan: free
+    region: oregon
+
+services:
+  - type: web
+    name: cosmere-pass
+    plan: free
+    region: oregon
+    branch: main
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "rails s"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: classpass_clone
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
