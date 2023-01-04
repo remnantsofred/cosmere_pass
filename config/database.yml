@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: classpass_clone_production
-  username: classpass_clone
-  password: <%= ENV["CLASSPASS_CLONE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
