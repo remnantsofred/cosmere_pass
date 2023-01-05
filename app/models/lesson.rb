@@ -13,7 +13,7 @@
 #
 class Lesson < ApplicationRecord
   validates :title, :type, :description, :max_capacity, :location_id, presence: true
-  # validates :lesson_type, inclusion: { in: %w( ) }
+  validates :lesson_type, inclusion: { in: %w(Allomancy Awakening Surgebinding Feruchemy Stormlight) }
 
   belongs_to :location,
     foreign_key: :location_id,
