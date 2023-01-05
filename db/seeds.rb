@@ -171,18 +171,19 @@ require "open-uri"
 
 
 
-  Location.each_with_index do |location|
+  Location.all.each do |location|
     location_name = location.location_name
 
     if location.location_name.include?(" ")
       location_name = location.location_name.split(" ").join("_") 
     end 
-
+    
+    
     location.photo.attach(
       # The string passed to URI.open should be the URL of the image in its bucket.
       # This sample assumes the bucket name is `benchbnb-seeds`.
-      io: URI.open("https://cosmere-pass-seeds.s3.us-west-1.amazonaws.com/#{location_name}.jpg"), 
-      filename: "#{location_name}.jpg"
+      io: URI.open("https://cosmere-pass-seeds.s3.us-west-1.amazonaws.com/#{location_name}.jpeg"), 
+      filename: "#{location_name}.jpeg"
     )
   end
 
