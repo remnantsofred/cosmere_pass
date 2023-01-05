@@ -1,0 +1,28 @@
+.LessonsIndexPage {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lessonsIdxleftPanel{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid blue;
+  width: 1000px;
+  height: 800px;
+}
+
+
+.lessonsIdxrightPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid red;
+  width: 400px;
+  height: 800px;
+}
+
+.lessonsIdxUL{
+  width: 670px;
+  display: flex;
+  flex-direction: column;
+}
