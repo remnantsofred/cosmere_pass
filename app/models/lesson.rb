@@ -12,15 +12,13 @@
 #  location_id  :bigint           not null
 #
 class Lesson < ApplicationRecord
-  validates :title, :type, :description, :max_capacity, :location_id, presence: true
+  validates :title, :lesson_type, :description, :max_capacity, :location_id, presence: true
   validates :lesson_type, inclusion: { in: %w(Allomancy Awakening Surgebinding Feruchemy Stormlight) }
 
   belongs_to :location,
     foreign_key: :location_id,
     class_name: :Location
 
-  belongs_to :instructor,
-    class_name: :User
 
 
   has_one_attached :photo

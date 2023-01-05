@@ -12,8 +12,8 @@ require "open-uri"
   # puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
   User.destroy_all
-  Location.destroy_all
   Lesson.destroy_all
+  Location.destroy_all
 
   # puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
@@ -169,6 +169,215 @@ require "open-uri"
     and the remaining Alethi soldiers and nobility."
   })
 
+  # lesson 1
+  Lesson.create!({
+    title: 'Brass Soothing',
+    lesson_type: 'Allomancy',
+    description: 'Give the gift of peace and tranquilty. Learn to selectively diminish desired emotions.',
+    location_id: 1,
+    max_capacity: 6
+  })
+  # lesson 2
+  Lesson.create!({
+    title: 'Ironpulling',
+    lesson_type: 'Allomancy',
+    description: 'Become a lurcher and learn to pull on nearby metals. Effective in deflecting coinshots and other projectiles.',
+    location_id: 1,
+    max_capacity: 6
+  })
+  # lesson 3
+  Lesson.create!({
+    title: 'Pewterarm Fundamentals',
+    lesson_type: 'Allomancy',
+    description: 'Cover the fundamentals of how and when to best utilize pewter, and how to reduce pewter drag.',
+    location_id: 1,
+    max_capacity: 10
+  })
+  # lesson 4
+  Lesson.create!({
+    title: 'Steelpushing',
+    lesson_type: 'Allomancy',
+    description: 'Become a coinshot and learn to push away nearby metals, and how to effecively use steelpushing to fly. 
+    Learn how to burn steel to identify and locate nearby sources of metal.',
+    location_id: 1,
+    max_capacity: 6
+  })
+  # lesson 5
+  Lesson.create!({
+    title: 'Tineye Foundations',
+    lesson_type: 'Allomancy',
+    description: "Practice utilizing burning tin to enhance senses. Learn how to filter out the noise you don't want and 
+    how to endure heightened sensory inputs.",
+    location_id: 1,
+    max_capacity: 6
+  })
+  # lesson 6
+  Lesson.create!({
+    title: 'Zinc Rioting',
+    lesson_type: 'Allomancy',
+    description: 'Learn to enflame the emotions of a group and understand and manipulate crowd psychology and dynamics.',
+    location_id: 1,
+    max_capacity: 6
+  })
+  # lesson 7
+  Lesson.create!({
+    title: 'Awakening with Breath',
+    lesson_type: 'Awakening',
+    description: 'Use biochromatic breath to awaken inanimate objects to do your bidding.',
+    location_id: 2,
+    max_capacity: 6
+  })
+  # lesson 8
+  Lesson.create!({
+    title: 'Feruchemy Fundamentals',
+    lesson_type: 'Feruchemy',
+    description: 'Master the use of metalminds and application of the feruchemical arts such as storing weight, speed, 
+    sense, strength, and health. Know when to store and when to tap into metalminds.',
+    location_id: 6,
+    max_capacity: 8
+  })
+  # lesson 9
+  Lesson.create!({
+    title: 'Elsecalling Advanced Transformation',
+    lesson_type: 'Surgebinding',
+    description: 'Learn to soulcast objects into new materials not of the ten essences. Prerequisite: Student must first master 
+    soulcasting into the ten essences.',
+    location_id: 3,
+    max_capacity: 4
+  })
+  # lesson 10
+  Lesson.create!({
+    title: 'Elsecalling Advanced Transportation',
+    lesson_type: 'Surgebinding',
+    description: 'Now that you can ceate a miniature perpendicularity in order to enter the Cognitive Realm, learn to leave the Cognitive 
+    Realm without seeking a perpendicularity. This will grant you the power to worldhop.',
+    location_id: 3,
+    max_capacity: 1
+  })
+  # lesson 11 
+  Lesson.create!({
+    title: 'Lightweaving Advanced Illumination',
+    lesson_type: 'Surgebinding',
+    description: 'Learn to apply illusions to moving targets and create illusions that have their own movements and sounds.',
+    location_id: 3,
+    max_capacity: 10
+  })
+  # lesson 12
+  Lesson.create!({
+    title: 'Lightweaving Illumination Disguises',
+    lesson_type: 'Surgebinding',
+    description: 'Apply illumination to create compelling and realistic disguises.',
+    location_id: 3,
+    max_capacity: 15
+  })
+  # lesson 13
+  Lesson.create!({
+    title: 'Stonewarding Tension',
+    lesson_type: 'Surgebinding',
+    description: 'Use tension to alter the hardness of an object. Create weapons from clothing and other innocent materials.',
+    location_id: 4,
+    max_capacity: 10
+  })
+  # lesson 14
+  Lesson.create!({
+    title: 'Willshaping Cohesion',
+    lesson_type: 'Surgebinding',
+    description: 'Manipulate stone at a molecular level such that you can make stone malleable like clay or liquid and reshape 
+    stone at will. Learn to create openings and tunnels within stone and reseal them.',
+    location_id: 4,
+    max_capacity: 10
+  })
+  # lesson 15
+  Lesson.create!({
+    title: 'Bronze Seeking',
+    lesson_type: 'Allomancy',
+    description: 'Finess your seeking abilities to identify which metal a nearby allomancer is burning, whether they are pushing 
+    or pulling, if they are flaring or if they are low on metals.',
+    location_id: 5,
+    max_capacity: 6
+  })
+  # lesson 16
+  Lesson.create!({
+    title: 'Copper Smoking',
+    lesson_type: 'Allomancy',
+    description: "Hide your friends' and allies' allomantic pulses from enemies. Learn how to best place yourself and how to discover the limits of your copper cloud.",
+    location_id: 5,
+    max_capacity: 6
+  })
+  # lesson 17 
+  Lesson.create!({
+    title: 'Skybreaking Gravitation',
+    lesson_type: 'Surgebinding',
+    description: 'Master the basic Lashing. Bind people, objects and yourself to different surfaces or in different directions, effectively changing the direction that 
+    gravity pulls them. Learn to fly.',
+    location_id: 8,
+    max_capacity: 15
+  })
+  # lesson 18 
+  Lesson.create!({
+    title: 'Truthwatching Future Sight',
+    lesson_type: 'Surgebinding',
+    description: 'Learn to harness the power of your future sight and correctly interpret visions of past and future events.',
+    location_id: 8,
+    max_capacity: 6
+  })
+  # lesson 19 
+  Lesson.create!({
+    title: 'Edgedancing Abrasion',
+    lesson_type: 'Surgebinding',
+    description: 'Hone your abrasion abilities such that you can ride the thinnest rope at speed, dance across rooftops, and move through a battlefield like a ribbon on the wind.',
+    location_id: 7,
+    max_capacity: 10
+  })
+  # lesson 20 
+  Lesson.create!({
+    title: 'Edgedancing Regrowth',
+    lesson_type: 'Surgebinding',
+    description: 'Use progression or regrowth to heal even wounds suffered from Shardblades.',
+    location_id: 7,
+    max_capacity: 8
+  })
+  # lesson 21
+  Lesson.create!({
+    title: 'Bondsmith Spiritual Adhesion',
+    lesson_type: 'Surgebinding',
+    description: 'Develop your Spiritual Adhesion abilities so that you may forge a connection to a target person in order to speak their native language.',
+    location_id: 9,
+    max_capacity: 1
+  })
+  # lesson 22
+  Lesson.create!({
+    title: 'Dustbringing Division',
+    lesson_type: 'Surgebinding',
+    description: 'Learn to bring total control and precision to your division such that you can reproduce a topigraphical map "carved" into a wooden table.',
+    location_id: 9,
+    max_capacity: 10
+  })
+  # lesson 23
+  Lesson.create!({
+    title: 'Fabrial Crafting',
+    lesson_type: 'Stormlight',
+    description: 'Learn modern fabrial crafting foundational techniques, such as luring spren, trapping spren in gemstones, gemstone selection, and the Arnist Method.',
+    location_id: 9,
+    max_capacity: 12
+  })
+  # lesson 24
+  Lesson.create!({
+    title: 'Windrunning Adhesion',
+    lesson_type: 'Surgebinding',
+    description: 'Practice the full lashing to pool Stormlight into objects and areas to strategically bond items and hinder movement.',
+    location_id: 9,
+    max_capacity: 12
+  })
+  # lesson 25
+  Lesson.create!({
+    title: 'Windrunning Advanced Aerial Tactics',
+    lesson_type: 'Surgebinding',
+    description: 'Advanced flight formations and battle tactics for aerial combat with shardspear.',
+    location_id: 9,
+    max_capacity: 20
+  })
+
 
 
   Location.all.each do |location|
@@ -184,6 +393,23 @@ require "open-uri"
       # This sample assumes the bucket name is `benchbnb-seeds`.
       io: URI.open("https://cosmere-pass-seeds.s3.us-west-1.amazonaws.com/#{location_name}.jpeg"), 
       filename: "#{location_name}.jpeg"
+    )
+  end
+
+
+  Lesson.all.each do |lesson|
+    title = lesson.title
+
+    if lesson.title.include?(" ")
+      title = lesson.title.split(" ").join("_") 
+    end 
+    
+    
+    lesson.photo.attach(
+      # The string passed to URI.open should be the URL of the image in its bucket.
+      # This sample assumes the bucket name is `benchbnb-seeds`.
+      io: URI.open("https://cosmere-pass-seeds.s3.us-west-1.amazonaws.com/#{title}.jpeg"), 
+      filename: "#{title}.jpeg"
     )
   end
 
