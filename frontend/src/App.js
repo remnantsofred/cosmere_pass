@@ -7,6 +7,7 @@ import ErrorPage from "./components/ErrorPage";
 import SplashPage from "./components/SplashPage";
 import LessonsIndexPage from "./components/LessonsIndexPage/LessonsIndexPage";
 import SearchNav from "./components/SearchNav";
+import LocationsIndexPage from "./components/LocationsIndexPage/LocationsIndexPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/locations">
             <Navigation />
             <SearchNav />
+            <LocationsIndexPage />
             {/* make search page - LocationsIndex*/}
           </Route>
           <Route path="/lessons/:lesson_id">

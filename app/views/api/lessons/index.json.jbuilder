@@ -1,8 +1,3 @@
-# @lessons.each do |lesson|
-#   json.set! lesson.id do
-#     json.partial! 'lesson', lesson: lesson
-#   end
-# end
 
 @lessons.each do |lesson|
   json.set! lesson.id do
@@ -10,3 +5,4 @@
     json.photoURL lesson.photo.url
   end
 end
+

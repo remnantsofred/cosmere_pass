@@ -1,6 +1,6 @@
 @locations.each do |location|
   json.set! location.id do
     json.extract! location, :id, :location_name, :description
-    json.imageUrls location.images.map {|file| file.url } 
+    json.imageURL location.photo.url
   end
 end

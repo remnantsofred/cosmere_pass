@@ -1,4 +1,4 @@
-export const RECEIVE_LOCATIONS = "location/RECEIVE_LOCATIONS";
+export const RECEIVE_LOCATIONS = "locations/RECEIVE_LOCATIONS";
 export const RECEIVE_LOCATION = "locations/RECEIVE_LOCATION";
 export const REMOVE_LOCATION = "locations/REMOVE_LOCATION";
 
@@ -70,35 +70,35 @@ export const updateLocation = (location) => async (dispatch) => {
     },
   });
   if (res.ok) {
-    const newLesson = await res.json();
-    dispatch(receiveLesson(newLocation));
+    const newLocation = await res.json();
+    dispatch(receiveLocation(newLocation));
   }
 };
 
-export const deleteLesson = (id) => async (dispatch) => {
+export const deleteLocation = (id) => async (dispatch) => {
   const res = await fetch(`/api/locations/${id}`, {
     method: "DELETE"
   });
   // USE ARGUMENT ID, SINCE RES DOESNT RETURN ANYTHING!
   if (res.ok) {
-    dispatch(removeLesson(id));
+    dispatch(removeLocation(id));
   }
 };
 
-const lessonsReducer = (state = {}, action) => {
+const locationsReducer = (state = {}, action) => {
   let newState = { ...state };
   switch (action.type) {
-    case RECEIVE_LESSONS:
+    case RECEIVE_LOCATIONS:
       return { ...newState, ...action.locations };
-    case RECEIVE_LESSON:
-      return { ...newState, [action.lesson.id]: action.lesson };
-    case REMOVE_LESSON:
-      delete newState[action.lessonId];
+    case RECEIVE_LOCATION:
+      return { ...newState, [action.location.id]: action.location };
+    case REMOVE_LOCATION:
+      delete newState[action.locationId];
       return newState;
     default:
       return state;
   }
 };
 
-export default lessonsReducer;
+export default locationsReducer;
 
