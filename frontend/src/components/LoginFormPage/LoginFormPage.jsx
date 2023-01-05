@@ -42,7 +42,7 @@ const LoginFormPage = () => {
 
   const handleDemoLogin = (e) => {
     e.preventDefault();
-    const credential = 'daphne';
+    const credential = 'worldhopper';
     const password = 'password';
     return dispatch(sessionActions.login({ credential, password }))
     .catch(async (res) => {
