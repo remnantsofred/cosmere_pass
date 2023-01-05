@@ -11,7 +11,7 @@ export const LessonIndexItem = ({ lesson }) => {
   return (
     <Row className="lessonIdxItmRow">
       <Column className='lessonIdxItmImgCol'>
-        <img src="" alt="" />
+        <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
         {/* <h3>{lesson.location.location_name}</h3> */}
       </Column>
       <Column className='lessonIdxItminfoCol'>

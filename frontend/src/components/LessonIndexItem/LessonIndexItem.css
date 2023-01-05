@@ -36,3 +36,9 @@
   text-transform: uppercase;
   color: #999;
 }
+
+.lessonIdxImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
