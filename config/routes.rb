@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  # resources :locations, only: [:show]
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:create] 
@@ -12,7 +13,8 @@ Rails.application.routes.draw do
     # end
     
     # resources :lesson_dates, only: [:index]
-    # resources :locations, only: [:index]
+    # resources :locations, only: [:index, :show]
+    resources :locations, only: [:show]
     # resources :locations, only: [:show] do
     #   resources :reviews, only: [:index, :create, :update, :destroy]
     # end

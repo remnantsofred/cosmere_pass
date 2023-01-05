@@ -10,11 +10,12 @@
 #
 class Location < ApplicationRecord
   validates :location_name, :description, presence: true
+  validates :location_name, inclusion: { in: %w(Elendel Hallandren Kharbranth Kholinar Luthadel Homeland Thaylen City Purelake Urithiru), message: "%{value} is not a valid location"}
 
   has_many :lessons,
     foreign_key: :location_id,
     class_name: :Lesson
 
   
-  has_many_attached :photos
+  has_one_attached :photo
 end
