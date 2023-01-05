@@ -10,7 +10,7 @@
 #
 class Location < ApplicationRecord
   validates :location_name, :description, presence: true
-  validates :location_name, inclusion: { in: %w(Elendel Hallandren Kharbranth Kholinar Luthadel Homeland Thaylen City Purelake Urithiru), message: "%{value} is not a valid location"}
+  # validates :location_name, inclusion: { in: ("Elendel" "Hallandren" "Kharbranth" "Kholinar" "Luthadel" "Homeland" "Thaylen City" "Purelake" "Urithiru"), message: "%{value} is not a valid location"}
 
   has_many :lessons,
     foreign_key: :location_id,
