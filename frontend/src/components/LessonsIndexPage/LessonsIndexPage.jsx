@@ -12,6 +12,8 @@ import LessonIndexItem from '../LessonIndexItem/LessonIndexItem';
 import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
 import Loading from '../loading/Loading';
+import Map from '../map';
+
 
 
 export const LessonsIndexPage = ({children, id='', className="LessonsIndexPage"}) => {
@@ -54,7 +56,7 @@ export const LessonsIndexPage = ({children, id='', className="LessonsIndexPage"}
           </ul>
         </Panel>
         <Panel className='lessonsIdxrightPanel'>
-          {/* map goes here */}
+          <Map />
         </Panel>
       </Panels> 
     )
