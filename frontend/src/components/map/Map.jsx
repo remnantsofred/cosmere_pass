@@ -2,7 +2,7 @@ import './Map.css';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
  
 export const MapContainer =({google})=> {
-    console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+    
     return (
       <Map google={google} zoom={13} center={{lat:37.7, lng: 122.4}} mapContainerClassName="map-container">
         <Marker name={'Current location'} />
