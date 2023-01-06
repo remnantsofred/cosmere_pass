@@ -10,33 +10,55 @@ import Column from '../column/Column';
 import Row from '../row/Row';
 import LessonIndexItem from '../LessonIndexItem/LessonIndexItem';
 import { getLessons, fetchLessons } from '../../store/lesson';
+import { getLocations, fetchLocations } from '../../store/location';
+import Loading from '../loading/Loading';
 
 
 export const LessonsIndexPage = ({children, id='', className="LessonsIndexPage"}) => {
   const lessons = useSelector(getLessons);
+  const locations = useSelector(getLocations);
   const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(fetchLessons())
-  }, [dispatch])
+    dispatch(fetchLocations())
+  }, [])
 
-  return (
-    <Panels id={id} className={className}>
-     
-      <Panel className='lessonsIdxleftPanel'>
-        <ul className='lessonsIdxUL'>
-          {lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} />)}
-          {children}
-        </ul>
-      </Panel>
-      <Panel className='lessonsIdxrightPanel'>
-        {/* map goes here */}
-      </Panel>
+  useEffect(() => {
+    if (locations && lessons) {
+      setLoaded(true)
+    }
+  },[dispatch, locations, lessons])
 
-    </Panels> 
+  const getLocation = (locationId) => {
+    for (const location of locations) {
+      if (location.id === locationId) {
+        return location;
+      }
+    }
+  }
+  
 
-  )
-
+  if (!loaded) {
+    return (
+      <Loading />
+    )
+  } else {
+    return (
+      <Panels id={id} className={className}>
+        <Panel className='lessonsIdxleftPanel'>
+          <ul className='lessonsIdxUL'>
+            {lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getLocation(lesson.locationId)}/>)}
+            {children}
+          </ul>
+        </Panel>
+        <Panel className='lessonsIdxrightPanel'>
+          {/* map goes here */}
+        </Panel>
+      </Panels> 
+    )
+  }
 }
 
 export default LessonsIndexPage;

@@ -6,9 +6,11 @@
 .lessonsIdxleftPanel{
   display: flex;
   flex-direction: column;
-  border: 1px solid blue;
-  width: 1000px;
-  height: 800px;
+  width: 822px;
+  height: 797px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 16px;
 }
 
 
@@ -16,13 +18,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: 1px solid red;
   width: 400px;
   height: 800px;
 }
 
 .lessonsIdxUL{
-  width: 670px;
+  width: 822px;
+  height: 7448px;
   display: flex;
   flex-direction: column;
 }
