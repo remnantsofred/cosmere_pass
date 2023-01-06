@@ -8,6 +8,8 @@ class Api::LocationsController < ApplicationController
     @location = Location.find(params[:id])
   end
 
+  
+
 
   private
   def location_params

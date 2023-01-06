@@ -16,6 +16,5 @@ class Location < ApplicationRecord
     foreign_key: :location_id,
     class_name: :Lesson
 
-  
   has_one_attached :photo
 end

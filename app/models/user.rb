@@ -18,6 +18,12 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :reservations,
+    foreign_key: :student_id,
+    class_name: :Reservation
+
+  
+
   before_validation :ensure_session_token
   # SPIRE
 

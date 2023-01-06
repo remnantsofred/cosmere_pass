@@ -19,7 +19,5 @@ class Lesson < ApplicationRecord
     foreign_key: :location_id,
     class_name: :Location
 
-
-
   has_one_attached :photo
 end

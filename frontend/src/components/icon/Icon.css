@@ -1,6 +1,6 @@
 .icon {
   color: #404dad;
-  background-color: #DB1F48;
+  background-color: #9c5060;
   color: #fff;
   transition: background-color 1s;
   width: 100%;
@@ -9,7 +9,7 @@
 
 
 .icon:hover {
-  background-color: #004369;
+  background-color: #004de6;
 }
 
 .icon:focus,

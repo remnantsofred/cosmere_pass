@@ -3,6 +3,7 @@ import { GiBoltSpellCast, GiFireSpellCast, GiIceSpellCast, GiSpellBook } from 'r
 import { BsCalendarCheck } from 'react-icons/bs';
 import { CgLockUnlock } from 'react-icons/cg';  
 import { SiCodemagic } from 'react-icons/si';
+import { FaHandSparkles } from 'react-icons/fa';
 
 
 import './Icon.css'
@@ -78,6 +79,12 @@ export const SpellCastIceIcon = ({children, id="", className="icon"}) => {
 export const SpellBookIcon = ({children, id="", className="icon"}) => {
   return (
     <GiSpellBook className={className} id={id}/>
+  );
+}
+
+export const HandSparklesIcon = ({children, id="", className="icon"}) => {
+  return (
+    <FaHandSparkles className={className} id={id}/>
   );
 }
 

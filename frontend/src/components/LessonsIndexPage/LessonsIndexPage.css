@@ -1,0 +1,35 @@
+.LessonsIndexPage {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: hidden; 
+  flex: auto;
+
+}
+
+.lessonsIdxleftPanel{
+  display: flex;
+  flex-direction: column;
+  width: 822px;
+  height: 797px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 16px;
+}
+
+
+.lessonsIdxrightPanel {
+  display: flex;
+  flex-direction: column;
+  width: 799px;
+  height: 601px;
+}
+
+.lessonsIdxUL{
+  width: 822px;
+  height: 7448px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+

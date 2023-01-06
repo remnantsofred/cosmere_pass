@@ -1,0 +1,44 @@
+.locationIdxItmRow {
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0;
+  width: 700px;
+  height: 119px;
+  display: flex;
+  flex-direction: row;
+}
+
+.locationIdxItmImgCol {
+  border: 1px solid #d6d6d6;
+  width: 168px;
+  height: 112px;
+  padding: 10px;
+}
+
+.locationIdxItminfoCol {
+  border: 1px solid #d6d6d6;
+  width: 202px;
+  height: 112px;
+  padding: 10px;
+}
+
+.locationIdxitmrightCol {
+  border: 1px solid #d6d6d6;
+  width: 202px;
+  height: 112px;
+  padding: 10px;
+}
+
+.locationIdxItmLessonType {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.333333;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.locationIdxImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

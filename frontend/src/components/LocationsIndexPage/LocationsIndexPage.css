@@ -1,0 +1,28 @@
+.LocationsIndexPage {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.locationsIdxleftPanel{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid blue;
+  width: 1000px;
+  height: 800px;
+}
+
+
+.locationsIdxrightPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid red;
+  width: 400px;
+  height: 800px;
+}
+
+.locationsIdxUL{
+  width: 670px;
+  display: flex;
+  flex-direction: column;
+}
