@@ -1,6 +1,6 @@
 import './LocationIndexItem.css';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Row from '../row/Row';
 import Column from '../column/Column';
 
@@ -14,11 +14,14 @@ export const LocationIndexItem = ({ location }) => {
         <img src={location.imageURL} alt="" className='locationIdxImg'/>
       </Column>
       <Column className='locationIdxItminfoCol'>
-        <Link to={`/locations/${location.id}`}><h2>{location.locationName}</h2></Link>
+        <h3 className="locationIdxItmLessonType">{location.lessonType}</h3>
+        <NavLink to={`/locations/${location.id}`} className="locationIdxItmLink">{location.locationName}</NavLink>
+        <h3 className="locationIdxItmLoc">{location.locationName}</h3>
+        <h3 className="locationIdxItmRating"></h3>
 
       </Column>
       <Column className='locationIdxitmrightCol'>
-        <p>{location.description}</p>
+        <p className='locationIdxItmDesc'>{location.description}</p>
       </Column>
     </Row>
   )

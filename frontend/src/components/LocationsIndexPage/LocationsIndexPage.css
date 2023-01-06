@@ -1,28 +1,39 @@
 .LocationsIndexPage {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
+  overflow: hidden; 
+  flex: auto;
+  width: 100vw;
 }
 
 .locationsIdxleftPanel{
   display: flex;
   flex-direction: column;
-  border: 1px solid blue;
-  width: 1000px;
-  height: 800px;
+  min-width: 249px;
+  max-width: 822px;
+  /* max-width:45%; */
+  /* width: 40%; */
+  height: 797px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 16px;
 }
 
 
 .locationsIdxrightPanel {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  border: 1px solid red;
-  width: 400px;
-  height: 800px;
+  min-width: 350px;
+  /* max-width: 799px; */
+  max-width: auto;
+  height: 601px;
 }
 
 .locationsIdxUL{
-  width: 670px;
+  width: 822px;
+  height: 7448px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
