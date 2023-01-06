@@ -2,8 +2,7 @@
   font-size: 1em;
   line-height: 1.5;
   letter-spacing: 0;
-  min-width: 217px;
-  max-width: 790px;
+  width: 790px;
   height: 112px;
   padding: 16px;
   display: flex;
@@ -23,8 +22,7 @@
 }
 
 .lessonIdxItminfoCol {
-  min-width: 161px;
-  max-width: 240px;
+  width: 240px;
   height: 112px;
   margin-right: 16px;
   padding: 10px 0px 6px;
@@ -41,8 +39,7 @@
 }
 
 .lessonIdxitmrightCol {
-  min-width: 161px;
-  max-width: 333px;
+  width: 333px;
   height: 100px;
   padding-top: 12px;
   padding-left: 16px;
@@ -57,8 +54,7 @@
 }
 
 .lessonIdxItmLessonType {
-  min-width: 161px;
-  max-width: 240px;
+  width: 240px;
   height: 16px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -72,8 +68,7 @@
   font-size: .875rem;
   line-height: 1;
   font-weight: 400;
-  min-width: 161px;
-  max-width: 240px;
+  width: 240px;
   height: 14px;
 }
 
@@ -85,15 +80,13 @@
   line-height: 1.5;
   --vh: 4.4px;
   font-weight: 500;
-  min-width: 161px;
-  max-width: 240px;
+  width: 240px;
   height: 16px;
   text-overflow: ellipsis;
 }
 
 .lessonIdxItmRating{
-  min-width: 161px;
-  max-width: 240px;
+  width: 240px;
   height: 24px;
 }
 
@@ -106,9 +99,11 @@
 
 .lessonIdxItmDesc {
   display: block;
-  text-overflow: ellipsis;
-  min-width: 161px;
-  max-width: 333px;
+  width: 333px;
   height: 80px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
