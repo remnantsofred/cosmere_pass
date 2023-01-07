@@ -16,11 +16,13 @@ export const LocationShowPage = () => {
   
   useEffect(()=>{
     dispatch(fetchLocation(locationId))
+    
   },[dispatch, locationId])
 
   useEffect(() => {
     if(location){
       setLoaded(true)
+      
     }
   })
 
@@ -33,7 +35,7 @@ export const LocationShowPage = () => {
       <Panels className="LocShowPage">
         <Panel className='LocShowPanelL'>
           <Row className='LocShowPanelLRow'>
-            <img src={location.imageUrl} alt={location.locationName} className='LocShowImg' />
+            <img src={location.imageURL} alt={location.locationName} className='LocShowImg' />
           </Row>
           <Row className='LocShowPanelLRow'>
             <h1>{location.locationName}</h1>
