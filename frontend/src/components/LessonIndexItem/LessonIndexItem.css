@@ -7,14 +7,12 @@
   padding: 16px;
   display: flex;
   flex-direction: row;
-  --vh: 8.87px;
-  
+  --vh: 8.87px; 
 }
 
 .lessonIdxItmRow:not(:first-child) {
   border-top: 1px solid #e7e7e7;
 }
-
 
 
 .lessonIdxItmImgCol {
@@ -32,7 +30,6 @@
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0%;
-  
   display: block;
   --vh: 8.4px;
   font-size: 1em;
@@ -66,13 +63,16 @@
   color: #999;
 }
 
-.lessonIdxItmLoc{
+.lessonIdxItmLocLink{
   --vh: 6.43px;
   font-size: .875rem;
   line-height: 1;
   font-weight: 400;
   width: 240px;
   height: 14px;
+  text-decoration: none;
+  color: #000;
+  transition: background-color .3s,color .3s;
 }
 
 .lessonIdxItmLink {
@@ -102,8 +102,11 @@
 
 .lessonIdxItmDesc {
   display: block;
-  text-overflow: ellipsis;
   width: 333px;
   height: 80px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 

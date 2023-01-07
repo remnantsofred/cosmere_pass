@@ -15,7 +15,7 @@ export const SplashPage = ({children, id='', className="splashPage"}) => {
           CosmerePass gives you galaxy-wide access to hundreds of top-rated gyms, fitness studios, salons and spas.
         </span>
         <NavLink className="splashNavLink" id="splashSignUp" to="/signup">Get 1 month free</NavLink>
-        <NavLink className="splashNavLink" to="/search">Browse lessons</NavLink>
+        <NavLink className="splashNavLink" to="/lessons">Browse lessons</NavLink>
 
       </Panel>
     </Panels>

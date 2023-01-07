@@ -17,8 +17,8 @@ export const LessonIndexItem = ({ lesson, location }) => {
       </Column>
       <Column className='lessonIdxItminfoCol'>
         <h3 className="lessonIdxItmLessonType">{lesson.lessonType}</h3>
-        <NavLink to={`/lessons/${lesson.id}`} className="lessonIdxItmLink">{lesson.title}</NavLink>
-        <h3 className="lessonIdxItmLoc">{location.locationName}</h3>
+        <NavLink to={`/lessons/${lesson.id}`} className="lessonIdxItmLink">{lesson.title}</NavLink><br />
+        <NavLink to={`/locations/${location.id}`} className="lessonIdxItmLocLink">{location.locationName}</NavLink>
         <h3 className="lessonIdxItmRating"></h3>
       </Column>
       <Column className='lessonIdxitmrightCol'>

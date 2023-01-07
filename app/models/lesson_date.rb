@@ -14,7 +14,8 @@ class LessonDate < ApplicationRecord
 
   has_many :reservations,
     foreign_key: :lesson_date_id,
-    class_name: :Reservation
+    class_name: :Reservation,
+    dependent: :destroy
 
 
 end

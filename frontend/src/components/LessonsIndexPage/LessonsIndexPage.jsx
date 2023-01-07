@@ -13,7 +13,7 @@ import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
 import Loading from '../loading/Loading';
 import Map from '../map';
-
+// import  GoogleApiWrapper  from '../map';
 
 
 export const LessonsIndexPage = ({children, id='', className="LessonsIndexPage"}) => {
@@ -28,7 +28,7 @@ export const LessonsIndexPage = ({children, id='', className="LessonsIndexPage"}
   }, [])
 
   useEffect(() => {
-    if (locations && lessons) {
+    if (locations && lessons && locations.length && lessons.length) {
       setLoaded(true)
     }
   },[dispatch, locations, lessons])

@@ -4,24 +4,30 @@
   flex-direction: row;
   overflow: hidden; 
   flex: auto;
-
+  width: 100vw;
 }
 
 .lessonsIdxleftPanel{
   display: flex;
   flex-direction: column;
-  width: 822px;
+  min-width: 249px;
+  max-width: 822px;
+  /* max-width:45%; */
+  /* width: 40%; */
   height: 797px;
   overflow-x: hidden;
   overflow-y: scroll;
   padding: 16px;
+  
 }
 
 
 .lessonsIdxrightPanel {
   display: flex;
   flex-direction: column;
-  width: 799px;
+  min-width: 350px;
+  /* max-width: 799px; */
+  max-width: auto;
   height: 601px;
 }
 

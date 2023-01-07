@@ -8,6 +8,7 @@ import SplashPage from "./components/SplashPage";
 import LessonsIndexPage from "./components/LessonsIndexPage/LessonsIndexPage";
 import SearchNav from "./components/SearchNav";
 import LocationsIndexPage from "./components/LocationsIndexPage/LocationsIndexPage";
+import LocationShowPage from "./LocationShowPage";
 
 function App() {
   return (
@@ -26,8 +27,9 @@ function App() {
             <Navigation />
             {/* make search page - LessonDatesIndex */}
           </Route>
-          <Route path="/locations/:location_id">
+          <Route path="/locations/:locationId">
             <Navigation />
+            <LocationShowPage />
             {/* make search page - LocationsShow page*/}
           </Route>
           <Route exact path="/locations">
@@ -36,7 +38,7 @@ function App() {
             <LocationsIndexPage />
             {/* make search page - LocationsIndex*/}
           </Route>
-          <Route path="/lessons/:lesson_id">
+          <Route path="/lessons/:lessonId">
             <Navigation />
             {/* make search page - lesson show*/}
           </Route>

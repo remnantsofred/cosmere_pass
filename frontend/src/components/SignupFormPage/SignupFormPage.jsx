@@ -1,7 +1,7 @@
 import './SignupFormPage.css';
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, NavLink } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupFormPage.css'
 import Panels from '../panels';
@@ -44,6 +44,23 @@ function SignupFormPage() {
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
+
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    const credential = 'worldhopper';
+    const password = 'password';
+    return dispatch(sessionActions.login({ credential, password }))
+    .catch(async (res) => {
+      let data;
+      try {
+        // .clone() essentially allows you to read the response body twice
+        data = await res.clone().json();
+      } catch {
+        data = await res.text(); // Will hit this case if the server is down
+      }
+      
+    });
+  }
 
   return (
     <Panel id='SignupLargePanel'>
@@ -89,7 +106,7 @@ function SignupFormPage() {
             You’re never locked in. <strong>Cancel anytime.</strong>
           </Column>
         </Row>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="signupForm">
           <Row>
             <ul className="signupErrors">
              {errors.map(error => <li key={error}>{error}</li>)}
@@ -140,6 +157,11 @@ function SignupFormPage() {
           </Row>
           <Row>
             <button type="submit" id="signUpSubmit">Try for free</button>
+          </Row>
+          <Row className="signupRow signUplineBelow" >
+          </Row>
+          <Row className="signupRow">
+              <button onClick={handleDemoLogin} id="demologinButton" className='level1'>Demo Log In</button >
           </Row>
         </form>
       </Panels>

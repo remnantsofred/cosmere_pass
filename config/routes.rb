@@ -13,13 +13,9 @@ Rails.application.routes.draw do
     end
     
     # resources :lesson_dates, only: [:index]
-    resources :locations, only: [:index]
+    resources :locations, only: [:index, :show]
 
-    resources :locations, only: [:show] do
-      resources :lessons, only: [:show]
-    #   resources :reviews, only: [:index, :create, :update, :destroy]
-    end
-    resources :lessons, only: [:index]
+    resources :lessons, only: [:index, :show]
     resource :session, only: [:show, :create, :destroy]
   end
   
