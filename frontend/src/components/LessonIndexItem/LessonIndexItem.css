@@ -63,13 +63,16 @@
   color: #999;
 }
 
-.lessonIdxItmLoc{
+.lessonIdxItmLocLink{
   --vh: 6.43px;
   font-size: .875rem;
   line-height: 1;
   font-weight: 400;
   width: 240px;
   height: 14px;
+  text-decoration: none;
+  color: #000;
+  transition: background-color .3s,color .3s;
 }
 
 .lessonIdxItmLink {
