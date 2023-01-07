@@ -9,15 +9,6 @@ import { useEffect } from 'react';
 export const LocationIndexItem = ({ location, lessonIds }) => {
   const dispatch = useDispatch();
 
-  // const getLessonTypes = (lessons) => {
-  //   let lessonValues = Object.values(lessons);
-  //   let lessonTypes = [];
-
-  //   console.log(Object.values(lessons), 'lessons')
-  //   console.log(lessonTypes, 'lessontypes')
-  //   return lessonTypes
-  // }
-
  
   
   return (

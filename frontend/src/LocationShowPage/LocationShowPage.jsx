@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocation, fetchLocation } from '../store/location';
 import Loading from '../components/loading/Loading';
+import Map from '../components/map';
 
 export const LocationShowPage = () => {
   const { locationId } = useParams();
@@ -54,11 +55,10 @@ export const LocationShowPage = () => {
           </Row>
         </Panel>
         <Panel className='LocShowPanelR'>
-          <ul>
-            {location.lessons?.map((lesson, idx)=> <img src={lesson.imageUrl} key={idx} />)}
+          <ul className='LocShowMap'>
+            <Map />
           </ul>
           <Row className='LocShowPanelRRow'>
-            <h1>Map</h1>
           </Row>
           <Row className='LocShowPanelRRow'>
           </Row>
