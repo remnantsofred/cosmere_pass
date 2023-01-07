@@ -30,12 +30,29 @@ export const LocationShowPage = () => {
     )
   } else {
     return(
-      <Panels>
-        <Panel>
-          <Row>
-            <h1>{location.locationName}</h1>
-            <textarea name="" id="" cols="30" rows="10">{location.description}</textarea>
+      <Panels className="LocShowPage">
+        <Panel className='LocShowPanelL'>
+          <Row className='LocShowPanelLRow'>
+            <img src={location.imageUrl} alt={location.locationName} className='LocShowImg' />
           </Row>
+          <Row className='LocShowPanelLRow'>
+            <h1>{location.locationName}</h1>
+          </Row>
+          <Row className='LocShowPanelLRow'>
+            <p>{location.description}</p>
+          </Row>
+          <Row className='LocShowPanelLRow'>
+
+          </Row>
+          <Row className='LocShowPanelLRow'>
+
+          </Row>
+          <Row className='LocShowPanelLRow'>
+
+          </Row>
+        </Panel>
+        <Panel className='LocShowPanelR'>
+
         </Panel>
 
 

@@ -1,0 +1,38 @@
+.LocShowPage {
+  width: 960px;
+  padding-bottom: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: norms,sans-serif;
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+
+}
+
+.LocShowPanelL {
+  width: 624px;
+  padding: 16px, 8px, 0px;
+
+}
+
+.LocShowPanelLRow{
+  width: 100%;
+
+}
+
+.LocShowImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.LocShowPanelR {
+  width: 320px;
+  height: 496px;
+  position: relative;
+  top: 64px;
+}

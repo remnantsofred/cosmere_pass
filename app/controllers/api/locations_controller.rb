@@ -5,12 +5,9 @@ class Api::LocationsController < ApplicationController
     @locations = @locations.map do |location|
       location.lesson_types = []
       location.lessons.each do |lesson|
-        # if !location.lesson_types.include?(lesson.lesson_type)
-          location.lesson_types.push(lesson.lesson_type)
-        # end
+        location.lesson_types.push(lesson.lesson_type)
       end
       location.lesson_types.uniq!
-     
       location
     end
     
@@ -18,7 +15,13 @@ class Api::LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
-
+    
+    @location.lesson_types = []
+    @location.lessons.each do |lesson|
+      @location.lesson_types.push(lesson.lesson_type)
+    end
+    @location.lesson_types.uniq!
+    
     # render :show
   end
 
