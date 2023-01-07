@@ -3,10 +3,22 @@ import { useDispatch } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import Row from '../row/Row';
 import Column from '../column/Column';
+import { useEffect } from 'react';
 
 
-export const LocationIndexItem = ({ location }) => {
+export const LocationIndexItem = ({ location, lessonIds }) => {
   const dispatch = useDispatch();
+
+  // const getLessonTypes = (lessons) => {
+  //   let lessonValues = Object.values(lessons);
+  //   let lessonTypes = [];
+
+  //   console.log(Object.values(lessons), 'lessons')
+  //   console.log(lessonTypes, 'lessontypes')
+  //   return lessonTypes
+  // }
+
+ 
   
   return (
     <Row className="locationIdxItmRow">
@@ -14,7 +26,7 @@ export const LocationIndexItem = ({ location }) => {
         <img src={location.imageURL} alt="" className='locationIdxImg'/>
       </Column>
       <Column className='locationIdxItminfoCol'>
-        <h3 className="locationIdxItmLessonType">{location.lessonType}</h3>
+        <h3 className="locationIdxItmLessonType">{location.lessonTypes.join(" | ")}</h3>
         <NavLink to={`/locations/${location.id}`} className="locationIdxItmLink">{location.locationName}</NavLink>
         <h3 className="locationIdxItmLoc">{location.locationName}</h3>
         <h3 className="locationIdxItmRating"></h3>

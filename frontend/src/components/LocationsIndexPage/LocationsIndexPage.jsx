@@ -17,6 +17,7 @@ import Map from '../map';
 export const LocationsIndexPage = ({children, id='', className="LocationsIndexPage"}) => {
   const lessons = useSelector(getLessons);
   const locations = useSelector(getLocations);
+  // locations have a field called "lessons" which is an array of lesson objects
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
 
@@ -31,13 +32,14 @@ export const LocationsIndexPage = ({children, id='', className="LocationsIndexPa
     }
   },[dispatch, locations, lessons])
 
-  const getLocation = (locationId) => {
-    for (const location of locations) {
-      if (location.id === locationId) {
-        return location;
-      }
-    }
-  }
+  // const getLocation = (locationId) => {
+  //   for (const location of locations) {
+  //     if (location.id === locationId) {
+  //       return location;
+  //     }
+  //   }
+  // }
+
 
 
   if (!loaded) {
@@ -50,7 +52,7 @@ export const LocationsIndexPage = ({children, id='', className="LocationsIndexPa
       
         <Panel className='locationsIdxleftPanel'>
           <ul className='locationsIdxUL'>
-            {locations?.map((location, idx) => <LocationIndexItem location={location} key={idx} />)}
+            {locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)}
             {children}
           </ul>
         </Panel>

@@ -20,7 +20,8 @@ class User < ApplicationRecord
 
   has_many :reservations,
     foreign_key: :student_id,
-    class_name: :Reservation
+    class_name: :Reservation,
+    dependent: :destroy
 
   
 
