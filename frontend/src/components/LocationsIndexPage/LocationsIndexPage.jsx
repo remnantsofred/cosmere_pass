@@ -56,7 +56,7 @@ export const LocationsIndexPage = ({children, id='', className="LocationsIndexPa
             {children}
           </ul>
         </Panel>
-        <Panel className='locationssIdxrightPanel'>
+        <Panel className='locationsIdxrightPanel'>
           <Map />
         </Panel>
       </Panels> 

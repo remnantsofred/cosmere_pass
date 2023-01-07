@@ -39,20 +39,31 @@ export const LocationShowPage = () => {
             <h1>{location.locationName}</h1>
           </Row>
           <Row className='LocShowPanelLRow'>
+            {/* reviews go here */}
+          </Row>
+          <Row className='LocShowPanelLRow'>
             <p>{location.description}</p>
           </Row>
-          <Row className='LocShowPanelLRow'>
+          <Row className='LocShowPanelLRow LocSchedule'>
 
           </Row>
-          <Row className='LocShowPanelLRow'>
-
-          </Row>
-          <Row className='LocShowPanelLRow'>
+          <Row className='LocShowPanelLRow LocReviews'>
 
           </Row>
         </Panel>
         <Panel className='LocShowPanelR'>
-
+          <ul>
+            {location.lessons?.map((lesson, idx)=> <img src={lesson.imageUrl} key={idx} />)}
+          </ul>
+          <Row className='LocShowPanelRRow'>
+            <h1>Map</h1>
+          </Row>
+          <Row className='LocShowPanelRRow'>
+          </Row>
+          <Row className='LocShowPanelRRow'>
+          </Row>
+          <Row className='LocShowPanelRRow'>
+          </Row>
         </Panel>
 
 
