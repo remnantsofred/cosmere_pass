@@ -10,7 +10,7 @@ import Columns from '../columns/Columns';
 import Column from '../column/Column';
 import Rows from '../rows/Rows'
 import Row from '../row/Row'
-import hero from './signUphero.png'
+import hero from './signUpheroCosmere.png'
 import { MagicSwirlIcon, MagicStarIcon, CalendarIcon, UnlockIcon, SpellBookIcon } from '../icon/Icon'
 
 function SignupFormPage() {

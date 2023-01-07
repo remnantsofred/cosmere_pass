@@ -20,6 +20,10 @@ class Lesson < ApplicationRecord
     foreign_key: :location_id,
     class_name: :Location
 
+  has_many :lesson_dates,
+    foreign_key: :lesson_id,
+    class_name: :LessonDate,
+
 
   has_one_attached :photo
 end
