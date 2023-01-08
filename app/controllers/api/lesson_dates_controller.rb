@@ -6,6 +6,11 @@ class Api::LessonDatesController < ApplicationController
       lesson_date.max_capacity = lesson_date.lesson.max_capacity
       lesson_date.reserved_slots = lesson_date.reservations.length
       lesson_date.remaining_slots = lesson_date.max_capacity - lesson_date.reserved_slots
+      # if lesson_date.remaining_slots == 0
+      #   lesson_date.full = true
+      # else 
+      #   lesson_date.full = false
+      # end
       lesson_date
     end
   end 
@@ -16,7 +21,11 @@ class Api::LessonDatesController < ApplicationController
     @lesson_date.max_capacity = @lesson_date.lesson.max_capacity
     @lesson_date.reserved_slots = @lesson_date.reservations.length
     @lesson_date.remaining_slots = @lesson_date.max_capacity - @lesson_date.reserved_slots
-
+    # if @lesson_date.remaining_slots == 0
+    #   @lesson_date.full = true
+    # else 
+    #   @lesson_date.full = false
+    # end
   end 
 
   def create

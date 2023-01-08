@@ -160,3 +160,6 @@
   transition: color .3s,background-color .3s,border-color .3s;
 }
 
+.lessonDateIdxItmReserveFull{
+  display: hidden;
+}

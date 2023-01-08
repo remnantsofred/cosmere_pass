@@ -29,5 +29,8 @@ class Location < ApplicationRecord
 
 
   attr_accessor :lesson_types
-  
+  attr_accessor :user_reviewed
+  attr_accessor :average_rating
+  attr_accessor :review_count
+
 end

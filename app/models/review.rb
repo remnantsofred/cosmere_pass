@@ -23,5 +23,5 @@ class Review < ApplicationRecord
     foreign_key: :reviewer_id,
     class_name: :User
 
-  
+
 end

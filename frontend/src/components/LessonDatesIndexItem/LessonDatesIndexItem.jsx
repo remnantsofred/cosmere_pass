@@ -10,10 +10,15 @@ import { formatDate, formatTime, timeBetween } from '../../utils/date_util';
 
 export const LessonDatesIndexItem = ({lessonDate, location, lesson}) => {
   const dispatch = useDispatch();
+  // const { fullStatus, setFullStatus} = useState(false)
   
   const handleReserve = ()=> {
     console.log('reserve')
   }
+
+  // if (lessonDate.remainingSlots === 0) {
+  //   setFullStatus(true)
+  // }
 
   return (
     <Row className="lessonDateIdxItmRow">
@@ -34,8 +39,8 @@ export const LessonDatesIndexItem = ({lessonDate, location, lesson}) => {
         <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
       </Column> */}
       <Column className='lessonDateIdxItmRCol'>
-        <button onClick={handleReserve} className='lessonDateIdxItmReserve'>Reserve</button>
-        <p className='remainingSlots'>Remaining slots</p>
+        {lessonDate.remainingSlots > 0 && <button onClick={handleReserve} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button>  }
+        <p className='remainingSlots'>{lessonDate.remainingSlots > 0 ? `Available slots: ${lessonDate.remainingSlots}` : "Lesson Full!"}</p>
       </Column>
     </Row>
   )
