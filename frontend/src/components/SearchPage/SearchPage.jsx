@@ -1,4 +1,4 @@
-import './LessonDatesIndexPage.css';
+import './SearchPage.css';
 import React, { useState, useEffect } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,22 +11,25 @@ import Row from '../row/Row';
 import { getLessonDates, fetchLessonDates } from '../../store/lessonDates';
 import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
+import LocationIndexItem from '../LocationIndexItem/LocationIndexItem';
 import Loading from '../loading/Loading';
 import Map from '../map';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
 
 
-export const LessonDatesIndexPage = ({children, id='', className="LessonDatesIndexPage"}) => {
+export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const lessonDates = useSelector(getLessonDates);
   const lessons = useSelector(getLessons);
   const locations = useSelector(getLocations);
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
+  const [indexType, setIndexType] = useState('lessons');
 
   useEffect(() => {
     dispatch(fetchLessonDates())
     dispatch(fetchLessons())
     dispatch(fetchLocations())
+    setIndexType('lessons')
   }, [])
 
   useEffect(() => {
@@ -61,9 +64,18 @@ export const LessonDatesIndexPage = ({children, id='', className="LessonDatesInd
     return (
       <Panels id={id} className={className}>
         <Panel className='lessonDatesIdxleftPanel'>
+          <Row className="IndexToggleBar">
+            <div onClick={() => setIndexType('lessons')} className={indexType === 'lessons' ? "searchTypeSelected" : "searchTypeunSelected"} >
+              Lessons
+            </div>
+            <div onClick={() => setIndexType('locations')} className={indexType === 'locations' ? "searchTypeSelected" : "searchTypeunSelected"} >
+              Locations
+            </div>
+          </Row>
+    
           <ul className='lessonDatesIdxUL'>
-            {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} key={idx} />)}
-            {children}
+            {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} key={idx} />) :
+            locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)}
           </ul>
         </Panel>
         <Panel className='lessonDatesIdxrightPanel'>
@@ -74,4 +86,4 @@ export const LessonDatesIndexPage = ({children, id='', className="LessonDatesInd
   }
 }
 
-export default LessonDatesIndexPage;
+export default SearchPage;

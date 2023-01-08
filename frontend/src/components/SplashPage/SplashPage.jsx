@@ -16,7 +16,7 @@ export const SplashPage = ({children, id='', className="splashPage"}) => {
           Learn all the ways to shape and utilize your investiture from masters of their craft.
         </span>
         <NavLink className="splashNavLink" id="splashSignUp" to="/signup">Get 1 month free</NavLink>
-        <NavLink className="splashNavLink" to="/lessons">Browse lessons</NavLink>
+        <NavLink className="splashNavLink" to="/search">Browse lessons</NavLink>
 
       </Panel>
     </Panels>
