@@ -14,6 +14,7 @@ import { getLocations, fetchLocations } from '../../store/location';
 import Loading from '../loading/Loading';
 import Map from '../map';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
+import IndexToggleBar from '../IndexToggleBar';
 
 export const LessonDatesIndexPage = ({children, id='', className="LessonDatesIndexPage"}) => {
   const lessonDates = useSelector(getLessonDates);
@@ -60,12 +61,13 @@ export const LessonDatesIndexPage = ({children, id='', className="LessonDatesInd
     return (
       <Panels id={id} className={className}>
         <Panel className='lessonDatesIdxleftPanel'>
+          <IndexToggleBar />
           <ul className='lessonDatesIdxUL'>
-            {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId))} key={idx} />)}
+            {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} key={idx} />)}
             {children}
           </ul>
         </Panel>
-        <Panel className='lessonsIdxrightPanel'>
+        <Panel className='lessonDatesIdxrightPanel'>
           <Map />
         </Panel>
       </Panels> 

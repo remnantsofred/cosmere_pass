@@ -5,23 +5,37 @@ import Row from '../row/Row';
 import Column from '../column/Column';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import { getLocation, fetchLocation } from '../../store/location';
+import { formatDate, formatTime, timeBetween } from '../../utils/date_util';
+
 
 export const LessonDatesIndexItem = ({lessonDate, location, lesson}) => {
   const dispatch = useDispatch();
   
+  const handleReserve = ()=> {
+    console.log('reserve')
+  }
+
   return (
     <Row className="lessonDateIdxItmRow">
-      <Column className='lessonDateIdxItmImgCol'>
-        {/* <img src={lesson.photoURL} alt="" className='lessonIdxImg'/> */}
+      <Column className='lessonDateIdxItmTimeCol'>
+        <p className="lessonDateIdxItmTime startTime">{formatTime(lessonDate.startTime)}</p>
+        <p className="lessonDateIdxItmTime duration">{timeBetween(lessonDate.startTime, lessonDate.endTime)} min</p>
       </Column>
-      <Column className='lessonDateIdxItminfoCol'>
+      <Column className="lessonDateIdxItmCol2">
+        <NavLink to={`/lessons/${lesson.id}`} className="lessonDateIdxItmLink">{lesson.title}</NavLink>
+        <h3 className="lessonDateIdxItmRating"></h3>
+      </Column>
+      <Column className='lessonDateIdxItmCol3'>
+        <NavLink to={`/locations/${location.id}`} className="lessonDateIdxItmLocLink">{location.locationName}</NavLink>
         <h3 className="lessonDateIdxItmLessonType">{lesson.lessonType}</h3>
-        <NavLink to={`/lessons/${lesson.id}`} className="lessonIdxItmLink">{lesson.title}</NavLink><br />
-        {/* <NavLink to={`/locations/${location.id}`} className="lessonIdxItmLocLink">{location.locationName}</NavLink> */}
-        <h3 className="lessonIdxItmRating"></h3>
+        
       </Column>
-      <Column className='lessonIdxitmrightCol'>
-        <p className='lessonIdxItmDesc'>{lesson.description}</p>
+      {/* <Column className='lessonDateIdxItmImgCol'>
+        <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
+      </Column> */}
+      <Column className='lessonDateIdxItmRCol'>
+        <button onClick={handleReserve} className='lessonDateIdxItmReserve'>Reserve</button>
+        <p className='remainingSlots'>Remaining slots</p>
       </Column>
     </Row>
   )
