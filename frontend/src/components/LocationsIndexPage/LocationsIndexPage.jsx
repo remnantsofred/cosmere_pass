@@ -13,6 +13,7 @@ import { getLocations, fetchLocations } from '../../store/location';
 import LocationIndexItem from '../LocationIndexItem/LocationIndexItem';
 import Loading from '../loading/Loading';
 import Map from '../map';
+import IndexToggleBar from '../IndexToggleBar/IndexToggleBar';
 
 export const LocationsIndexPage = ({children, id='', className="LocationsIndexPage"}) => {
   const lessons = useSelector(getLessons);
@@ -51,6 +52,7 @@ export const LocationsIndexPage = ({children, id='', className="LocationsIndexPa
       <Panels id={id} className={className}>
       
         <Panel className='locationsIdxleftPanel'>
+          <IndexToggleBar></IndexToggleBar>
           <ul className='locationsIdxUL'>
             {locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)}
             {children}

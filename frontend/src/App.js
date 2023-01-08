@@ -8,7 +8,8 @@ import SplashPage from "./components/SplashPage";
 import LessonsIndexPage from "./components/LessonsIndexPage/LessonsIndexPage";
 import SearchNav from "./components/SearchNav";
 import LocationsIndexPage from "./components/LocationsIndexPage/LocationsIndexPage";
-import LocationShowPage from "./LocationShowPage";
+import LocationShowPage from "./components/LocationShowPage";
+import LessonDatesIndex from "./components/LessonDatesIndexPage/LessonDatesIndexPage";
 
 function App() {
   return (
@@ -47,6 +48,11 @@ function App() {
             <SearchNav />
             <LessonsIndexPage /> 
             {/* make search page - Lesson index*/}
+          </Route>
+          <Route exact path="/lessonDates/">
+            <Navigation />
+            <SearchNav />
+            <LessonDatesIndex />
           </Route>
           <Route path="/error">
             <Navigation />

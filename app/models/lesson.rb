@@ -14,12 +14,15 @@
 class Lesson < ApplicationRecord
   validates :title, :lesson_type, :description, :max_capacity, :location_id, presence: true
   validates :lesson_type, inclusion: { in: %w(Allomancy Awakening Surgebinding Feruchemy Stormlight) }
-  attr_accessor :hello
 
   belongs_to :location,
     foreign_key: :location_id,
     class_name: :Location
 
+  has_many :lesson_dates,
+    foreign_key: :lesson_id,
+    class_name: :LessonDate,
+    dependent: :destroy
 
   has_one_attached :photo
 end

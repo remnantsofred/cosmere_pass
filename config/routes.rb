@@ -12,11 +12,12 @@ Rails.application.routes.draw do
       # resources :favorites, only: [:index, :create, :destroy]
     end
     
-    # resources :lesson_dates, only: [:index]
+    resources :lesson_dates, only: [:index, :show, :create, :update, :destroy]
     resources :locations, only: [:index, :show]
 
     resources :lessons, only: [:index, :show]
     resource :session, only: [:show, :create, :destroy]
+
   end
   
   get '*path', to: 'static_pages#frontend'

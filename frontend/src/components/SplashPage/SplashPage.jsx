@@ -12,7 +12,8 @@ export const SplashPage = ({children, id='', className="splashPage"}) => {
       <Panel className='splashMid'>
         <h1 className='splashTitle'>One app for all things magic, tactics, & investiture</h1>
         <span className='splashSpan'>
-          CosmerePass gives you galaxy-wide access to hundreds of top-rated gyms, fitness studios, salons and spas.
+          CosmerePass gives you unlimited access to the most comprehensive collection of magic lessons. 
+          Learn all the ways to shape and utilize your investiture from masters of their craft.
         </span>
         <NavLink className="splashNavLink" id="splashSignUp" to="/signup">Get 1 month free</NavLink>
         <NavLink className="splashNavLink" to="/lessons">Browse lessons</NavLink>
