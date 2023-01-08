@@ -71,5 +71,29 @@
   border: 0px;
   background-color: transparent;
   display: flex;
+  padding: 3px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  white-space: nowrap;
+  font-weight: 500;
+  color: #000;
+  font-size: .875rem;
+  line-height: 1.4285714286;
 }
 
+.AccountLink {
+  text-decoration: none;
+  padding: 3px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  white-space: nowrap;
+  font-weight: 500;
+  color: #000;
+  font-size: .875rem;
+  line-height: 1.4285714286;
+
+}

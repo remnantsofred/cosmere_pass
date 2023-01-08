@@ -10,6 +10,7 @@ import SearchNav from "./components/SearchNav";
 import LocationsIndexPage from "./components/LocationsIndexPage/LocationsIndexPage";
 import LocationShowPage from "./components/LocationShowPage";
 import LessonDatesIndex from "./components/LessonDatesIndexPage/LessonDatesIndexPage";
+import AccountPage from "./components/AccountPage";
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
             <Navigation />
             <SignupFormPage />
           </Route>
+          <Route path="/account">
+            <Navigation />
+            <AccountPage />
+          </Route>
+
           <Route path="/search">
             <Navigation />
             {/* make search page - LessonDatesIndex */}
@@ -43,13 +49,13 @@ function App() {
             <Navigation />
             {/* make search page - lesson show*/}
           </Route>
-          <Route exact path="/lessons/">
+          <Route exact path="/lessons">
             <Navigation />
             <SearchNav />
             <LessonsIndexPage /> 
             {/* make search page - Lesson index*/}
           </Route>
-          <Route exact path="/lessonDates/">
+          <Route exact path="/lessonDates">
             <Navigation />
             <SearchNav />
             <LessonDatesIndex />
