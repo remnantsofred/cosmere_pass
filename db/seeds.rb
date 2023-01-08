@@ -12,14 +12,16 @@ require "open-uri"
   # puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
   User.destroy_all
+  LessonDate.destroy_all
   Lesson.destroy_all
   Location.destroy_all
 
   # puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
   ApplicationRecord.connection.reset_pk_sequence!('users')
-  ApplicationRecord.connection.reset_pk_sequence!('locations')
+  ApplicationRecord.connection.reset_pk_sequence!('lesson_dates')
   ApplicationRecord.connection.reset_pk_sequence!('lessons')
+  ApplicationRecord.connection.reset_pk_sequence!('locations')
 
   # puts "Creating users..."
   # Create one user with an easy to remember username, email, and password:
@@ -378,6 +380,24 @@ require "open-uri"
     max_capacity: 20
   })
 
+  now = DateTime.now
+  Lesson.all.each do |lesson|
+    start_time = DateTime.new(now.year, now.month, now.day, lesson.id%24, 0, 0)
+    end_time = start_time + [1, 1.5, 2].sample.hour
+
+    10.times do
+      LessonDate.create!({
+        lesson_id: lesson.id,
+        start_time: start_time + 2.day,
+        end_time: end_time + 2.day
+      })
+      
+      start_time = start_time + 2.day
+      end_time = end_time + 2.day
+
+    end
+  end
+  
 
 
   Location.all.each do |location|
