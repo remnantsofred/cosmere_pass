@@ -1,13 +1,13 @@
 import './LocationShowPage.css';
-import Panel from '../components/panel/Panel';
-import Panels from '../components/panels';
-import Row from '../components/row/Row';
+import Panel from '../panel/Panel';
+import Panels from '../panels';
+import Row from '../row/Row';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getLocation, fetchLocation } from '../store/location';
-import Loading from '../components/loading/Loading';
-import Map from '../components/map';
+import { getLocation, fetchLocation } from '../../store/location';
+import Loading from '../loading/Loading';
+import Map from '../map';
 
 export const LocationShowPage = () => {
   const { locationId } = useParams();
