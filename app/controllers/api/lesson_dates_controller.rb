@@ -1,10 +1,22 @@
 class Api::LessonDatesController < ApplicationController
   def index 
     @lesson_dates = LessonDate.all
+
+    @lesson_dates = @lesson_dates.map do |lesson_date|
+      lesson_date.max_capacity = lesson_date.lesson.max_capacity
+      lesson_date.reserved_slots = lesson_date.reservations.length
+      lesson_date.remaining_slots = lesson_date.max_capacity - lesson_date.reserved_slots
+      lesson_date
+    end
   end 
 
   def show 
     @lesson_date = LessonDate.find(params[:id])
+
+    @lesson_date.max_capacity = @lesson_date.lesson.max_capacity
+    @lesson_date.reserved_slots = @lesson_date.reservations.length
+    @lesson_date.remaining_slots = @lesson_date.max_capacity - @lesson_date.reserved_slots
+
   end 
 
   def create

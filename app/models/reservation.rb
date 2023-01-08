@@ -18,4 +18,7 @@ class Reservation < ApplicationRecord
   belongs_to :lesson_date,
     foreign_key: :lesson_date_id,
     class_name: :LessonDate
+
+  attr_accessor :user_reserved 
+
 end

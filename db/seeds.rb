@@ -11,6 +11,8 @@ require "open-uri"
 # ApplicationRecord.transaction do 
   # puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
+  Reservation.destroy_all
+  Review.destroy_all
   User.destroy_all
   LessonDate.destroy_all
   Lesson.destroy_all
@@ -18,6 +20,8 @@ require "open-uri"
 
   # puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
+  ApplicationRecord.connection.reset_pk_sequence!('reservations')
+  ApplicationRecord.connection.reset_pk_sequence!('reviews')
   ApplicationRecord.connection.reset_pk_sequence!('users')
   ApplicationRecord.connection.reset_pk_sequence!('lesson_dates')
   ApplicationRecord.connection.reset_pk_sequence!('lessons')
@@ -48,7 +52,7 @@ require "open-uri"
     email: 'storms@roshar.io', 
     password: 'password'
   )
-
+  #user 5
   User.create!(
     username: 'leshwi', 
     email: 'flyinggoddess@roshar.io', 
@@ -78,7 +82,7 @@ require "open-uri"
     email: 'wax@scadrial.io', 
     password: 'password'
   )
-
+  #user 10
   User.create!(
     username: 'wayyyne', 
     email: 'wayne@scadrial.io', 
@@ -90,11 +94,89 @@ require "open-uri"
     email: 'terris_me@scadrial.io', 
     password: 'password'
   )
-
+  #user 12
   User.create!(
     username: 'iamstick', 
     email: 'iamstick@roshar.io', 
     password: 'stickforever'
+  )
+
+  User.create!(
+    username: 'hoid', 
+    email: 'hoid@everywhere.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'shadesmar_queen', 
+    email: 'shady@roshar.io', 
+    password: 'password'
+  )
+  #user 15
+  User.create!(
+    username: 'thunderclasts', 
+    email: 'thunderclasts@roshar.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'lonely_listener', 
+    email: 'lonely@roshar.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'amazing_venli', 
+    email: 'venli@roshar.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'the_old_magic', 
+    email: 'oldmagic@roshar.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'OG_knights_radiant', 
+    email: 'radiant@roshar.io', 
+    password: 'password'
+  )
+  #user 20
+  User.create!(
+    username: 'todium', 
+    email: 'todium@roshar.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'shard16', 
+    email: 'shard16@roshar.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'blackthorn', 
+    email: 'dalinar@roshar.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'thescarredone', 
+    email: 'scars@scadrial.io', 
+    password: 'password'
+  )
+
+  User.create!(
+    username: 'ascendantwarrior', 
+    email: 'vin@scadrial.io', 
+    password: 'password'
+  )
+  #user 25
+  User.create!(
+    username: 'the_diagram', 
+    email: 'diagram@roshar.io', 
+    password: 'password'
   )
 
 
@@ -398,7 +480,27 @@ require "open-uri"
     end
   end
   
+  sample_lesson_dates = LessonDate.all.sample(15)
+  student_id_range_max = User.all.length
+  sample_lesson_dates.each do |lesson_date|
+    Reservation.create!({
+      student_id: rand(1..student_id_range_max),
+      lesson_date_id: lesson_date.id,
+    })
+  end 
 
+  sample_review_body = ["Amazing lesson! I can't wait to take more!", "Wow, that was great, I learned so much.", "Learned so much!", "I enjoyed it :)", "Great! Will be back!"]
+
+  User.all.each do |user|
+    Review.create!({
+      lesson_id: rand(1..25),
+      reviewer_id: user.id,
+      rating: rand(3..5),
+      body: sample_review_body.sample
+    })
+
+  end
+  
 
   Location.all.each do |location|
     location_name = location.location_name

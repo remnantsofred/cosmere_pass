@@ -22,6 +22,7 @@ class LessonDate < ApplicationRecord
     dependent: :destroy
 
   attr_accessor :max_capacity
+  attr_accessor :reserved_slots
   attr_accessor :remaining_slots
 
 end
