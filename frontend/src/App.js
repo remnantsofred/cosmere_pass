@@ -11,6 +11,7 @@ import LocationsIndexPage from "./components/LocationsIndexPage/LocationsIndexPa
 import LocationShowPage from "./components/LocationShowPage";
 import LessonDatesIndex from "./components/LessonDatesIndexPage/LessonDatesIndexPage";
 import AccountPage from "./components/AccountPage";
+import SearchPage from "./components/SearchPage";
 
 function App() {
   return (
@@ -29,37 +30,33 @@ function App() {
             <Navigation />
             <AccountPage />
           </Route>
-
-          <Route path="/search">
+          <Route exact path="/search">
             <Navigation />
-            {/* make search page - LessonDatesIndex */}
+            <SearchNav />
+            <SearchPage />
           </Route>
           <Route path="/locations/:locationId">
             <Navigation />
             <LocationShowPage />
-            {/* make search page - LocationsShow page*/}
           </Route>
-          <Route exact path="/locations">
+          {/* <Route exact path="/locations">
             <Navigation />
             <SearchNav />
             <LocationsIndexPage />
-            {/* make search page - LocationsIndex*/}
-          </Route>
+          </Route> */}
           <Route path="/lessons/:lessonId">
             <Navigation />
-            {/* make search page - lesson show*/}
           </Route>
           <Route exact path="/lessons">
             <Navigation />
             <SearchNav />
             <LessonsIndexPage /> 
-            {/* make search page - Lesson index*/}
           </Route>
-          <Route exact path="/lessonDates">
+          {/* <Route exact path="/lessonDates">
             <Navigation />
             <SearchNav />
             <LessonDatesIndex />
-          </Route>
+          </Route> */}
           <Route path="/error">
             <Navigation />
             <ErrorPage />
