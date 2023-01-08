@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { PalmIcon, BicepIcon, PortalIcon, MagicSwirlIcon, MagicStarIcon, CalendarIcon, UnlockIcon, SpellCastBoltIcon, SpellCastFireIcon, SpellCastIceIcon, SpellBookIcon, HandSparklesIcon } from '../icon/Icon';
 import { FaHandSparkles } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 
 function ProfileButton({ user }) {
@@ -39,7 +40,7 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>Account</li>
+          <NavLink to={`/account`} className="AccountLink" >Account</NavLink>
           <li>
             <button onClick={logout} className="logoutButton">Log Out</button>
           </li>
