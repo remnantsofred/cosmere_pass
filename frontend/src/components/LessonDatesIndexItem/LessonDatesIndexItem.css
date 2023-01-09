@@ -136,7 +136,7 @@
 }
 
 .lessonDateIdxItmReserve {
-  width: 92.6px;
+  width: 110.6px;
   height: 32px;
   padding: 9px 8px 7px 8px;
   border: 1px solid #05f;
@@ -194,5 +194,5 @@
   color: red;
   font-size: .875rem;
   line-height: 1.4285714286;
-  margin-top: 8px;
+  margin-top: 2px;
 }

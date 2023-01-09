@@ -15,7 +15,8 @@ import LocationIndexItem from '../LocationIndexItem/LocationIndexItem';
 import Loading from '../loading/Loading';
 import Map from '../map';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
-
+import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfirmModal';
+import { FaLessThanEqual } from 'react-icons/fa';
 
 export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const lessonDates = useSelector(getLessonDates);
@@ -24,6 +25,10 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const [indexType, setIndexType] = useState('lessons');
+  const [ modalStatus, setModalStatus ] = useState(false);
+  const [ modalLessonDate, setModalLessonDate ] = useState();
+  const [ modalLesson, setModalLesson ] = useState();
+  const [ modalLocation, setModalLocation ] = useState();
 
   useEffect(() => {
     dispatch(fetchLessonDates())
@@ -55,6 +60,13 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     }
   }
 
+  const handleResClick = (lessonDate, lesson, location) => {
+    setModalStatus(true)
+    setModalLessonDate(lessonDate)
+    setModalLesson(lesson)
+    setModalLocation(location)
+  }
+
 
   if (!loaded) {
     return (
@@ -63,6 +75,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   } else {
     return (
       <Panels id={id} className={className}>
+        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} /> }
         <Panel className='lessonDatesIdxleftPanel'>
           <Row className="IndexToggleBar">
             <div onClick={() => setIndexType('lessons')} className={indexType === 'lessons' ? "searchTypeSelected" : "searchTypeunSelected"} >
@@ -74,7 +87,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
           </Row>
     
           <ul className='lessonDatesIdxUL'>
-            {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} key={idx} />) :
+            {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} key={idx} />) :
             locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)}
           </ul>
         </Panel>

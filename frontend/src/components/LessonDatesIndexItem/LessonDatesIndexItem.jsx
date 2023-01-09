@@ -7,19 +7,15 @@ import { Link, NavLink, useParams } from 'react-router-dom';
 import { getLocation, fetchLocation } from '../../store/location';
 import { formatDate, formatTime, timeBetween } from '../../utils/date_util';
 import { StarIcon } from '../icon/Icon';
+import { getReservations, getReservation, fetchReservations, fetchReservation } from '../../store/reservation';
 
 
-export const LessonDatesIndexItem = ({lessonDate, location, lesson}) => {
+export const LessonDatesIndexItem = ({lessonDate, location, lesson, handleResClick}) => {
   const dispatch = useDispatch();
-  // const { fullStatus, setFullStatus} = useState(false)
   
-  const handleReserve = ()=> {
-    console.log('reserve')
-  }
 
-  // if (lessonDate.remainingSlots === 0) {
-  //   setFullStatus(true)
-  // }
+
+
 
   return (
     <Row className="lessonDateIdxItmRow">
@@ -44,7 +40,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, lesson}) => {
         <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
       </Column> */}
       <Column className='lessonDateIdxItmRCol'>
-        {lessonDate.remainingSlots > 0 && <button onClick={handleReserve} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button>}  
+        {lessonDate.remainingSlots > 0 && <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button>}  
         <p className={lessonDate.remainingSlots > 0 ? 'remainingSlots' : 'lessonFull'}>{lessonDate.remainingSlots > 0 ? `Available slots: ${lessonDate.remainingSlots}` : "Lesson Full!"}</p>
       </Column>
     </Row>
