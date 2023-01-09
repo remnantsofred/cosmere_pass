@@ -18,6 +18,7 @@ import Map from '../map';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
 import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfirmModal';
 import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
+import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
 import { FaLessThanEqual } from 'react-icons/fa';
 import { getCurrentUser } from '../../store/session';
 import { SiTruenas } from 'react-icons/si';
@@ -32,6 +33,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const [indexType, setIndexType] = useState('lessons');
   const [ modalStatus, setModalStatus ] = useState(false);
   const [ modal2Status, setModal2Status ] = useState(false);
+  const [ modal3Status, setModal3Status ] = useState(false);
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
@@ -77,6 +79,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
 
   const handleModalClose = () => {
     setModalStatus(false)
+    setModal3Status(false)
     setModalLessonDate(null)
     setModalLesson(null)
     setModalLocation(null)
@@ -102,9 +105,16 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     setModal2Status("")
   }
 
-  const handleCancel = (lessonDate) => {
-    console.log(lessonDate.currentUserReservationId, "lessonDate.currentUserReservationId")
+  const handleCancel = (lessonDate, lesson, location) => {
+    setModal3Status(true)
+    setModalLessonDate(lessonDate)
+    setModalLesson(lesson)
+    setModalLocation(location)
+  }
+
+  const handleCancelModalConfirm = (lessonDate) => {
     dispatch(deleteReservation(lessonDate.currentUserReservationId))
+    setModal3Status(false)
     setLoaded(false)
     setLoaded(true)
   }
@@ -119,6 +129,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
       <Panels id={id} className={className}>
         { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit}/> }
         { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose}/> }
+        { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm}/> }
         <Panel className='lessonDatesIdxleftPanel'>
          
             <Row className="IndexToggleBar">
