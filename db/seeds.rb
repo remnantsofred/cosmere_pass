@@ -179,6 +179,13 @@ require "open-uri"
     password: 'password'
   )
 
+  20.times do 
+    User.create!(
+      username: Faker::Internet.username,
+      email: Faker::Internet.email,
+      password: 'password'
+    )
+  end
 
   #creating locations
   Location.create!({
@@ -464,14 +471,16 @@ require "open-uri"
 
   now = DateTime.now
   Lesson.all.each do |lesson|
-    start_time = DateTime.new(now.year, now.month, now.day, lesson.id%24, 0, 0)
-    end_time = start_time + [1, 1.5, 2].sample.hour
+    start_time = DateTime.new(now.year, now.month, now.day, rand(6..20), 0, 0)
+    length = [1, 1.5, 2].sample
+    end_time = start_time + length.hour
 
     10.times do
+      num = rand(1..3)
       LessonDate.create!({
         lesson_id: lesson.id,
-        start_time: start_time + 2.day,
-        end_time: end_time + 2.day
+        start_time: start_time + num.day,
+        end_time: end_time + num.day
       })
       
       start_time = start_time + 2.day
@@ -489,16 +498,17 @@ require "open-uri"
     })
   end 
 
-  sample_review_body = ["Amazing lesson! I can't wait to take more!", "Wow, that was great, I learned so much.", "Learned so much!", "I enjoyed it :)", "Great! Will be back!"]
+  sample_review_body = ["Amazing lesson! I can't wait to take more!", "Wow, that was great, I learned so much.", "Learned so much!", "I enjoyed it :)", "Great! Will be back!", "I love this!", "Quality instructors and material."]
 
   User.all.each do |user|
-    Review.create!({
-      lesson_id: rand(1..25),
-      reviewer_id: user.id,
-      rating: rand(3..5),
-      body: sample_review_body.sample
-    })
-
+    Lesson.all.each do |lesson|
+      Review.create!({
+        lesson_id: lesson.id,
+        reviewer_id: user.id,
+        rating: rand(3..5),
+        body: sample_review_body.sample
+      })
+    end
   end
   
 

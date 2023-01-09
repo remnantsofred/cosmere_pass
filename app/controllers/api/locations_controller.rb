@@ -33,8 +33,22 @@ class Api::LocationsController < ApplicationController
     location_ratings_arr = location.reviews.map do |review|
       review.rating
     end
-    location.average_rating = location_ratings_arr.sum / location_ratings_arr.length if location_ratings_arr.length > 0
+
+    numerator = location_ratings_arr.sum 
+    denominator = location_ratings_arr.length
+
+    location.average_rating = (numerator * 1.00) / (denominator * 1.00)
     location.review_count = location.reviews.length
+
+
+    if location.location_name == "Hallandren"
+      location.world = "Nalthis" 
+    elsif location.location_name == "Elendel" || location.location_name == "Luthadel" || location.location_name == "Homeland"
+      location.world = "Scadrial"
+    else
+      location.world = "Roshar"
+    end
+
     return location
   end
 

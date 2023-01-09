@@ -13,6 +13,7 @@
     json.lesson_types location.lesson_types
     json.average_rating location.average_rating
     json.review_count location.review_count
+    json.world location.world
   end
 end
 
