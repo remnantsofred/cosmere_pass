@@ -30,16 +30,13 @@
 }
 
 .resModalCloseBtn {
-  width: 18px;
-  height: 28px;
-  padding: 1px 6px;
-  margin: 16px;
-  z-index: 1;
+  width: 20px;
+  height: 20px;
+  margin: 14px;
+  z-index: 301;
   position: absolute;
   top: 5px;
   right: 5px;
-  width: 30px;
-  height: 30px;
   display: inline-block;
   text-indent: 200%;
   white-space: nowrap;
@@ -55,7 +52,7 @@
 
 .resModalImgDiv {
   width: 524px;
-  height: 129px;
+  height: 192px;
   border-radius: 3px;
 
 }
@@ -79,7 +76,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   
 }
 
@@ -103,6 +100,21 @@
   margin-bottom: 16px;
 
 }
+
+.resModalCredits {
+  padding-bottom: 32px;
+  width: 431px;
+  height: 52px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.resModalNumCredits{
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+
 .resModalButton {
   width: 268px;
   height: 48px;
@@ -127,24 +139,12 @@
 }
 
 .resModalButton:hover {
-  width: 268px;
-  height: 48px;
-  padding: 16px, 16px, 14px;
-  border: 1px solid #05f;
-  text-shadow: none;
-  border: 1px solid #d6d6d6;
-  border-radius: 3px;
-  transition: color .3s,background-color .3s,border-color .3s;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1;
-  vertical-align: middle;
-  text-align: center;
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  color: #fff;
-  margin-bottom: 16px;
+  background-color: #004de6;
+  border-color: #004de6;
+  border-top-color: rgb(0, 77, 230);
+  border-right-color: rgb(0, 77, 230);
+  border-bottom-color: rgb(0, 77, 230);
+  border-left-color: rgb(0, 77, 230);
 }
 
 .resModalCancelRow {

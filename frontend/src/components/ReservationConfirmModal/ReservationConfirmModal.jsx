@@ -3,15 +3,17 @@ import Panels from '../panels';
 import Panel from '../panel/Panel';
 import Row from '../row/Row';
 import { formatTime, formatDate, formatDateWithDay } from '../../utils/date_util';
+import modalCloseButton from './modalCloseButton.png';
 
-export const ReservationConfirmModal = ({children, id='', className="ReservationConfirmModal", lessonDate, lesson, location}) => {
+export const ReservationConfirmModal = ({children, id='', className="ReservationConfirmModal", lessonDate, lesson, location, handleModalClose}) => {
   return (
     <>
       <div className='resModalBackground'></div>
       <Panels id={id} className={className}>
-        <button className='resModalCloseBtn'>
+        {/* <button className='resModalCloseBtn' onClick={handleModalClose} backgroundImage={modalCloseButton} >
           X
-        </button>
+        </button> */}
+        <img src={modalCloseButton} className='resModalCloseBtn' onClick={handleModalClose} />
         <div className='resModalImgDiv'>
           <img src={lesson.photoURL} alt="" className='resModalImg'/>
         </div>
@@ -30,6 +32,10 @@ export const ReservationConfirmModal = ({children, id='', className="Reservation
             <p>
               {formatTime(lessonDate.startTime)} - {formatTime(lessonDate.endTime)}
             </p>
+          </Row>
+          <Row className='resModalCredits'>
+            <p className='resModalNumCredits'>3</p>
+            Credits
           </Row>
           <Row>
             <button className='resModalButton'>

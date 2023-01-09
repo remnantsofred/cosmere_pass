@@ -67,6 +67,13 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     setModalLocation(location)
   }
 
+  const handleModalClose = () => {
+    setModalStatus(false)
+    setModalLessonDate(null)
+    setModalLesson(null)
+    setModalLocation(null)
+  }
+
 
   if (!loaded) {
     return (
@@ -75,7 +82,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   } else {
     return (
       <Panels id={id} className={className}>
-        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} /> }
+        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} /> }
         <Panel className='lessonDatesIdxleftPanel'>
           <Row className="IndexToggleBar">
             <div onClick={() => setIndexType('lessons')} className={indexType === 'lessons' ? "searchTypeSelected" : "searchTypeunSelected"} >
