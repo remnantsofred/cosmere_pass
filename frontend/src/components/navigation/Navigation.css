@@ -18,7 +18,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 68px;
+  height: 64px;
 }
 
 #signupNav {
@@ -59,7 +59,7 @@
 
 .profileButton{
   width: 38px;
-  height: 38px;
+  height: 30px;
   border: 0px;
   background-color: transparent;
   display: flex;
