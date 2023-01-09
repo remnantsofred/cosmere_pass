@@ -12,8 +12,12 @@ import LocationShowPage from "./components/LocationShowPage";
 import LessonDatesIndex from "./components/LessonDatesIndexPage/LessonDatesIndexPage";
 import AccountPage from "./components/AccountPage";
 import SearchPage from "./components/SearchPage";
+import { useSelector } from "react-redux";
+ 
 
 function App() {
+  const currentUser = useSelector(state => state.session.user);
+
   return (
     <>
       

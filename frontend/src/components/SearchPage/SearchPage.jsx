@@ -13,6 +13,7 @@ import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
 import { getReservations, createReservation, fetchReservations, deleteReservation, removeReservation } from '../../store/reservation';
 import LocationIndexItem from '../LocationIndexItem/LocationIndexItem';
+import LessonIndexItem from '../LessonIndexItem/LessonIndexItem';
 import Loading from '../loading/Loading';
 import Map from '../map';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
@@ -142,8 +143,11 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
             </Row>
   
           <ul className='lessonDatesIdxUL'>
-            {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
-            locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)}
+            {/* {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
+            locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)} */}
+            {indexType === 'locations' ? locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />) : currentUser ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem 
+            handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) : 
+            lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getLocation(lesson.locationId)}/>) }
           </ul>
         </Panel>
         <Panel className='lessonDatesIdxrightPanel'>

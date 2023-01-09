@@ -17,7 +17,7 @@ function Navigation() {
 
   const startSessionLinks = (
     <>
-        <NavLink className="navNavLink" id="findClasses" to="/lessons">Find lessons</NavLink>
+        <NavLink className="navNavLink" id="findClasses" to="/search">Find lessons</NavLink>
         <a href="https://www.linkedin.com/in/lamdaphne/" target="_blank" className="navNavLink" id="aboutMe" to="/search">About me</a>
         <NavLink className="navNavLink" id="loginNav" to="/login">Log in</NavLink>
         <NavLink className="navNavLink" id="signupNav" to="/signup">Get 1 month free</NavLink>
