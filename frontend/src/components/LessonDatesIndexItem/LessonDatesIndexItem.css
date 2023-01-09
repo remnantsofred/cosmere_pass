@@ -69,7 +69,9 @@
   height: 77px;
   line-height: 1.4285714286;
   font-size: .875rem;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .lessonDateIdxItmLocLink{
@@ -134,7 +136,7 @@
 }
 
 .lessonDateIdxItmReserve {
-  width: 92.6px;
+  width: 110.6px;
   height: 32px;
   padding: 9px 8px 7px 8px;
   border: 1px solid #05f;
@@ -160,3 +162,37 @@
   transition: color .3s,background-color .3s,border-color .3s;
 }
 
+.lessonDateIdxItmReserveFull{
+  width: 92.6px;
+  height: 32px;
+  padding: 9px 8px 7px 8px;
+  border: 1px solid #555;
+  color: #05f;
+  border-radius: 3px;
+  background-color: transparent;
+  transition: color .3s,background-color .3s,border-color .3s;
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  text-decoration: none;
+  font-size: .875rem;
+  display: flex;
+  justify-content: center;
+}
+
+.remainingSlots {
+  color: #555;
+  font-size: .875rem;
+  line-height: 1.4285714286;
+  margin-top: 8px;
+}
+
+.lessonFull {
+  color: red;
+  font-size: .875rem;
+  line-height: 1.4285714286;
+  margin-top: 2px;
+}

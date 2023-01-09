@@ -17,8 +17,18 @@ class Location < ApplicationRecord
     class_name: :Lesson,
     dependent: :destroy
 
+  has_many :lesson_dates,
+    through: :lessons,
+    source: :lesson_dates
+
+  has_many :reviews,
+    through: :lessons,
+    source: :reviews
+
   has_one_attached :photo
 
-  attr_accessor :lesson_types
-  
+
+  attr_accessor :lesson_types, :world, :average_rating, :review_count
+  attr_accessor :user_reviewed, :user_favorited
+
 end

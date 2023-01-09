@@ -4,6 +4,8 @@ import sessionReducer from "./session";
 import lessonsReducer from "./lesson";
 import locationsReducer from "./location";
 import lessonDatesReducer from "./lessonDates";
+import reservationsReducer from "./reservation";
+import reviewsReducer from "./review";
 
 
 const rootReducer = combineReducers({
@@ -11,6 +13,8 @@ const rootReducer = combineReducers({
   lessons: lessonsReducer,
   locations: locationsReducer,
   lessonDates: lessonDatesReducer,
+  reservations: reservationsReducer,
+  reviews: reviewsReducer,
 });
 
 let enhancer;

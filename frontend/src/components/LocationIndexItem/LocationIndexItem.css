@@ -84,9 +84,33 @@
   text-overflow: ellipsis;
 }
 
-.locationIdxItmRating{
+.LocIdxItmratingsRow{
   width: 240px;
-  height: 24px;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  line-height: 1.4285714286;
+  margin-top: 1px;
+}
+
+.locationIdxItmRating{
+  width: 20px;
+  height: 14px;
+  font-size: .875rem;
+  line-height: 1.4285714286;
+  font-weight: 500;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.locRevCt{
+  display: inline-block;
+  width: 51px;
+  height: 20px;
+  color: #555;
+  font-size: .875rem;
+  line-height: 1.4285714286;
 }
 
 .locationIdxImg{
@@ -106,3 +130,12 @@
   overflow: hidden;
 }
 
+.starIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  color: #555;
+  display: inline-block;
+  line-height: 1.4285714286;
+  padding-top: 3px;
+}

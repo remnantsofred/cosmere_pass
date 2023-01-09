@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 export const RECEIVE_LESSONS = "lessons/RECEIVE_LESSONS";
 export const RECEIVE_LESSON = "lessons/RECEIVE_LESSON";
 export const REMOVE_LESSON = "lessons/REMOVE_LESSON";
@@ -46,7 +48,7 @@ export const fetchLesson = (lessonId) => async (dispatch) => {
 };
 
 export const createLesson = (data) => async (dispatch) => {
-  const res = await fetch(`/api/lessons`, {
+  const res = await csrfFetch(`/api/lessons`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -61,7 +63,7 @@ export const createLesson = (data) => async (dispatch) => {
 };
 
 export const updateLesson = (lesson) => async (dispatch) => {
-  const res = await fetch(`/api/lessons/${lesson.id}`, {
+  const res = await csrfFetch(`/api/lessons/${lesson.id}`, {
     method: "PATCH",
     body: JSON.stringify(lesson),
     headers: {
@@ -76,7 +78,7 @@ export const updateLesson = (lesson) => async (dispatch) => {
 };
 
 export const deleteLesson = (id) => async (dispatch) => {
-  const res = await fetch(`/api/lessons/${id}`, {
+  const res = await csrfFetch(`/api/lessons/${id}`, {
     method: "DELETE"
   });
   // USE ARGUMENT ID, SINCE RES DOESNT RETURN ANYTHING!

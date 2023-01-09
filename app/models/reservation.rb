@@ -10,6 +10,7 @@
 #
 class Reservation < ApplicationRecord
   validates :student_id, :lesson_date_id, presence: true
+  validates :student_id, uniqueness: { scope: :lesson_date_id }
 
   belongs_to :student,
     foreign_key: :student_id,
@@ -18,4 +19,7 @@ class Reservation < ApplicationRecord
   belongs_to :lesson_date,
     foreign_key: :lesson_date_id,
     class_name: :LessonDate
+
+  attr_accessor :user_reserved 
+
 end

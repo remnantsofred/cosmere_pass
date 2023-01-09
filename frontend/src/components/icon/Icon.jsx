@@ -4,7 +4,7 @@ import { BsCalendarCheck } from 'react-icons/bs';
 import { CgLockUnlock } from 'react-icons/cg';  
 import { SiCodemagic } from 'react-icons/si';
 import { FaHandSparkles } from 'react-icons/fa';
-
+import { AiFillStar } from 'react-icons/ai';
 
 import './Icon.css'
 
@@ -88,4 +88,8 @@ export const HandSparklesIcon = ({children, id="", className="icon"}) => {
   );
 }
 
-
+export const StarIcon = ({children, id="", className="icon"}) => {
+  return (
+    <AiFillStar className={className} id={id}/>
+  );
+}

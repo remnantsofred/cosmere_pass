@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 export const RECEIVE_LESSONDATES = "lessonDates/RECEIVE_LESSONDATES";
 export const RECEIVE_LESSONDATE = "lessonDates/RECEIVE_LESSONDATE";
 export const REMOVE_LESSONDATE = "lessonDates/REMOVE_LESSONDATE";
@@ -46,7 +48,7 @@ export const fetchLessonDate = (lessonDateId) => async (dispatch) => {
 };
 
 export const createLessonDate = (data) => async (dispatch) => {
-  const res = await fetch(`/api/lesson_dates`, {
+  const res = await csrfFetch(`/api/lesson_dates`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -61,7 +63,7 @@ export const createLessonDate = (data) => async (dispatch) => {
 };
 
 export const updateLessonDate = (lessonDate) => async (dispatch) => {
-  const res = await fetch(`/api/lesson_dates/${lessonDate.id}`, {
+  const res = await csrfFetch(`/api/lesson_dates/${lessonDate.id}`, {
     method: "PATCH",
     body: JSON.stringify(lessonDate),
     headers: {
@@ -76,7 +78,7 @@ export const updateLessonDate = (lessonDate) => async (dispatch) => {
 };
 
 export const deleteLessonDate = (id) => async (dispatch) => {
-  const res = await fetch(`/api/lesson_dates/${id}`, {
+  const res = await csrfFetch(`/api/lesson_dates/${id}`, {
     method: "DELETE"
   });
   // USE ARGUMENT ID, SINCE RES DOESNT RETURN ANYTHING!

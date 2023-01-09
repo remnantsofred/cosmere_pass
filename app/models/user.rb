@@ -23,6 +23,14 @@ class User < ApplicationRecord
     class_name: :Reservation,
     dependent: :destroy
 
+  has_many :reviews,
+    foreign_key: :reviewer_id,
+    class_name: :Review,
+    dependent: :destroy
+
+  has_many :lesson_dates,
+    through: :reservations,
+    source: :lesson_date
   
 
   before_validation :ensure_session_token

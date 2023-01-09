@@ -24,5 +24,14 @@ class Lesson < ApplicationRecord
     class_name: :LessonDate,
     dependent: :destroy
 
+  has_many :reviews,
+    foreign_key: :lesson_id,
+    class_name: :Review,
+    dependent: :destroy
+
+  has_many :reservations,
+    through: :lesson_dates,
+    source: :reservations
+
   has_one_attached :photo
 end
