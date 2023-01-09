@@ -15,8 +15,6 @@
   /* max-width:45%; */
   /* width: 40%; */
   height: 797px;
-  overflow-x: hidden;
-  overflow-y: scroll;
   padding: 16px;
   
 }
@@ -33,11 +31,4 @@
   height: 601px;
 }
 
-.lessonDatesIdxUL{
-  width: 822px;
-  height: 7448px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
 

@@ -28,6 +28,14 @@ const storeCurrentUser = user => {
   else sessionStorage.removeItem("currentUser");
 }
 
+export const getCurrentUser = (userId) => (store) => {
+  if (store.session && store.sesion[userId]) return store.session[userId];
+  return [];
+}
+
+
+
+
 // THUNK ACTION CREATOR
 export const login = ({ credential, password }) => async dispatch => {
   const response = await csrfFetch("/api/session", {

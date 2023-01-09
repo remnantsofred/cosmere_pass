@@ -1,5 +1,5 @@
 class Api::ReservationsController < ApplicationController
-  # before_action :require_logged_in, only: [:create, :destroy]
+  before_action :require_logged_in, only: [:create, :destroy]
 
   def index
     @reservations = Reservation.all
@@ -36,7 +36,10 @@ class Api::ReservationsController < ApplicationController
   end
 
   def destroy 
+    @reservation = Reservation.find(params[:id])
+    p @reservation
     @reservation.destroy
+    head :no_content
   end 
 
   private

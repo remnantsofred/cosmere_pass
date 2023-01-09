@@ -7,19 +7,36 @@
   width: 100vw;
 }
 
+
 .IndexToggleBar{
   width: 802px;
   height: 35px;
   padding-left: 8px;
   padding-right: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: .875rem;
   line-height: 1;
   font-weight: 500;
-  
+  position: absolute;
+  top: 132px;
+  background-color: #fff;
+  z-index: 5;
+}
+
+
+.lessonDatesIdxUL{
+  width: 822px;
+  height: 7448px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  top: 42px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .searchTypeunSelected {

@@ -14,6 +14,8 @@
     json.average_rating location.average_rating
     json.review_count location.review_count
     json.world location.world
+    json.lesson_date_ids location.lesson_date_ids
+    json.review_ids location.review_ids
   end
 end
 
