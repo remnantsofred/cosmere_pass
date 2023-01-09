@@ -41,7 +41,7 @@ export const ReservationMadeModal = ({children, id='', className="ReservationMad
             </p>
           </Row>
           <Row>
-            <button className='resModalButtonEmail' onClick={email} >
+            <button className='resModalButtonEmail' onClick={handleResConfModalClose} >
               Email invite
             </button>
           </Row>

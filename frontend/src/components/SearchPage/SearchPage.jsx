@@ -100,10 +100,10 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
 
   const handleResConfModalClose = () => {
     setModal2Status(false)
-    setModalLessonDate(null)
-    setModalLesson(null)
-    setModalLocation(null)
-    setModal2Status(true)
+    setModalLessonDate("")
+    setModalLesson("")
+    setModalLocation("")
+    setModal2Status("")
   }
 
   if (!loaded) {
