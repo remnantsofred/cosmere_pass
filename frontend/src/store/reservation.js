@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 export const RECEIVE_RESERVATIONS = "reservations/RECEIVE_RESERVATIONS";
 export const RECEIVE_RESERVATION = "reservations/RECEIVE_RESERVATION";
 export const REMOVE_RESERVATION = "reservations/REMOVE_RESERVATION";
@@ -29,7 +31,7 @@ export const getReservation = (reservationId) => (store) => {
 
 // THUNK ACTION CREATORS
 export const fetchReservations = () => async (dispatch) => {
-  const res = await fetch(`/api/reservations`);
+  const res = await csrfFetch(`/api/reservations`);
   if (res.ok) {
     const reservations = await res.json();
     dispatch(receiveReservations(reservations));
@@ -37,7 +39,7 @@ export const fetchReservations = () => async (dispatch) => {
 };
 
 export const fetchReservation = (reservationId) => async (dispatch) => {
-  const res = await fetch(`/api/reservations/${reservationId}`);
+  const res = await csrfFetch(`/api/reservations/${reservationId}`);
   if (res.ok) {
     const reservation = await res.json();
     dispatch(receiveReservation(reservation));
@@ -45,7 +47,7 @@ export const fetchReservation = (reservationId) => async (dispatch) => {
 };
 
 export const createReservation = (data) => async (dispatch) => {
-  const res = await fetch(`/api/reservations`, {
+  const res = await csrfFetch(`/api/reservations`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -60,7 +62,7 @@ export const createReservation = (data) => async (dispatch) => {
 };
 
 // export const updateReservation = (reservation) => async (dispatch) => {
-//   const res = await fetch(`/api/reservations/${reservation.id}`, {
+//   const res = await csrfFetch(`/api/reservations/${reservation.id}`, {
 //     method: "PATCH",
 //     body: JSON.stringify(reservation),
 //     headers: {
@@ -75,7 +77,7 @@ export const createReservation = (data) => async (dispatch) => {
 // };
 
 export const deleteReservation = (reservationId) => async (dispatch) => {
-  const res = await fetch(`/api/reservations/${reservationId}`, {
+  const res = await csrfFetch(`/api/reservations/${reservationId}`, {
     method: "DELETE",
   });
   if (res.ok) {

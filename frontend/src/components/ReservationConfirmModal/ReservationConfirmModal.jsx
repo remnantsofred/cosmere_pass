@@ -5,7 +5,7 @@ import Row from '../row/Row';
 import { formatTime, formatDate, formatDateWithDay } from '../../utils/date_util';
 import modalCloseButton from './modalCloseButton.png';
 
-export const ReservationConfirmModal = ({children, id='', className="ReservationConfirmModal", lessonDate, lesson, location, handleModalClose}) => {
+export const ReservationConfirmModal = ({children, id='', className="ReservationConfirmModal", lessonDate, lesson, location, handleModalClose, handleResSubmit}) => {
   return (
     <>
       <div className='resModalBackground'></div>
@@ -38,7 +38,7 @@ export const ReservationConfirmModal = ({children, id='', className="Reservation
             Credits
           </Row>
           <Row>
-            <button className='resModalButton'>
+            <button className='resModalButton' onClick={() => handleResSubmit(lessonDate)}>
               Reserve
             </button>
           </Row>

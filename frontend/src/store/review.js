@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 export const RECEIVE_REVIEWS = "reviews/RECEIVE_REVIEWS";
 export const RECEIVE_REVIEW = "reviews/RECEIVE_REVIEW";
 export const REMOVE_REVIEW = "reviews/REMOVE_REVIEW";
@@ -29,7 +31,7 @@ export const getReview = (reviewId) => (store) => {
 
 // THUNK ACTION CREATORS
 export const fetchReviews = () => async (dispatch) => {
-  const res = await fetch(`/api/reviews`);
+  const res = await csrfFetch(`/api/reviews`);
   if (res.ok) {
     const reviews = await res.json();
     dispatch(receiveReviews(reviews));
@@ -37,7 +39,7 @@ export const fetchReviews = () => async (dispatch) => {
 };
 
 export const fetchReview = (reviewId) => async (dispatch) => {
-  const res = await fetch(`/api/reviews/${reviewId}`);
+  const res = await csrfFetch(`/api/reviews/${reviewId}`);
   if (res.ok) {
     const review = await res.json();
     dispatch(receiveReview(review));
@@ -45,7 +47,7 @@ export const fetchReview = (reviewId) => async (dispatch) => {
 };
 
 export const createReview = (data) => async (dispatch) => {
-  const res = await fetch(`/api/reviews`, {
+  const res = await csrfFetch(`/api/reviews`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -60,7 +62,7 @@ export const createReview = (data) => async (dispatch) => {
 };
 
 export const updateReview = (review) => async (dispatch) => {
-  const res = await fetch(`/api/reviews/${review.id}`, {
+  const res = await csrfFetch(`/api/reviews/${review.id}`, {
     method: "PATCH",
     body: JSON.stringify(review),
     headers: {
@@ -75,7 +77,7 @@ export const updateReview = (review) => async (dispatch) => {
 };
 
 export const deleteReview = (reviewId) => async (dispatch) => {
-  const res = await fetch(`/api/reviews/${reviewId}`, {
+  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
   });
   if (res.ok) {

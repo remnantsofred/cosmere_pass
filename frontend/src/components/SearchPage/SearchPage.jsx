@@ -11,6 +11,7 @@ import Row from '../row/Row';
 import { getLessonDates, fetchLessonDates } from '../../store/lessonDates';
 import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
+import { getReservations, createReservation, fetchReservations } from '../../store/reservation';
 import LocationIndexItem from '../LocationIndexItem/LocationIndexItem';
 import Loading from '../loading/Loading';
 import Map from '../map';
@@ -22,6 +23,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const lessonDates = useSelector(getLessonDates);
   const lessons = useSelector(getLessons);
   const locations = useSelector(getLocations);
+  const reservations = useSelector(getReservations);
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const [indexType, setIndexType] = useState('lessons');
@@ -29,20 +31,21 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
+  const currentUser = useSelector(state => state.session.user);
 
   useEffect(() => {
     dispatch(fetchLessonDates())
     dispatch(fetchLessons())
     dispatch(fetchLocations())
+    dispatch(fetchReservations())
     setIndexType('lessons')
   }, [])
 
   useEffect(() => {
-    if (locations && lessons && lessonDates && locations.length && lessons.length && lessonDates.length) {
+    if (locations && lessons && lessonDates && reservations && locations.length && lessons.length && lessonDates.length && reservations.length) {
       setLoaded(true)
-      console.log(lessonDates)
     }
-  },[dispatch, locations, lessons, lessonDates])
+  },[dispatch, locations, lessons, lessonDates, reservations])
 
   const getLocation = (locationId) => {
     for (const location of locations) {
@@ -56,6 +59,14 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     for (const lesson of lessons) {
       if (lesson.id === lessonId) {
         return lesson;
+      }
+    }
+  }
+
+  const getReservation = (reservationId) => {
+    for (const reservation of reservations) {
+      if (reservation.id === reservationId) {
+        return reservation;
       }
     }
   }
@@ -74,6 +85,13 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     setModalLocation(null)
   }
 
+  const handleResSubmit = (lessonDate) => {
+    const data = {
+      student_id: currentUser.id,
+      lesson_date_id: lessonDate.id
+    }
+    dispatch(createReservation(data))
+  }
 
   if (!loaded) {
     return (
@@ -82,7 +100,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   } else {
     return (
       <Panels id={id} className={className}>
-        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} /> }
+        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit}/> }
         <Panel className='lessonDatesIdxleftPanel'>
           <Row className="IndexToggleBar">
             <div onClick={() => setIndexType('lessons')} className={indexType === 'lessons' ? "searchTypeSelected" : "searchTypeunSelected"} >

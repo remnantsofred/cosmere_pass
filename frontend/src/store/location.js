@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf";
+
 export const RECEIVE_LOCATIONS = "locations/RECEIVE_LOCATIONS";
 export const RECEIVE_LOCATION = "locations/RECEIVE_LOCATION";
 export const REMOVE_LOCATION = "locations/REMOVE_LOCATION";
@@ -30,7 +32,7 @@ export const getLocation = (locationId) => (store) => {
 
 // THUNK ACTION CREATORS
 export const fetchLocations = () => async (dispatch) => {
-  const res = await fetch(`/api/locations`);
+  const res = await csrfFetch(`/api/locations`);
   if (res.ok) {
     const locations = await res.json();
     dispatch(receiveLocations(locations));
@@ -38,7 +40,7 @@ export const fetchLocations = () => async (dispatch) => {
 };
 
 export const fetchLocation = (locationId) => async (dispatch) => {
-  const res = await fetch(`/api/locations/${locationId}`);
+  const res = await csrfFetch(`/api/locations/${locationId}`);
   if (res.ok) {
     const location = await res.json();
     dispatch(receiveLocation(location));
@@ -46,7 +48,7 @@ export const fetchLocation = (locationId) => async (dispatch) => {
 };
 
 export const createLocation = (data) => async (dispatch) => {
-  const res = await fetch(`/api/locations`, {
+  const res = await csrfFetch(`/api/locations`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -61,7 +63,7 @@ export const createLocation = (data) => async (dispatch) => {
 };
 
 export const updateLocation = (location) => async (dispatch) => {
-  const res = await fetch(`/api/locations/${location.id}`, {
+  const res = await csrfFetch(`/api/locations/${location.id}`, {
     method: "PATCH",
     body: JSON.stringify(location),
     headers: {
@@ -76,7 +78,7 @@ export const updateLocation = (location) => async (dispatch) => {
 };
 
 export const deleteLocation = (id) => async (dispatch) => {
-  const res = await fetch(`/api/locations/${id}`, {
+  const res = await csrfFetch(`/api/locations/${id}`, {
     method: "DELETE"
   });
   // USE ARGUMENT ID, SINCE RES DOESNT RETURN ANYTHING!

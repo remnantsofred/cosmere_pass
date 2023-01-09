@@ -1,5 +1,5 @@
 class Api::ReservationsController < ApplicationController
-  before_action :require_logged_in, only: [:create, :destroy]
+  # before_action :require_logged_in, only: [:create, :destroy]
 
   def index
     @reservations = Reservation.all
@@ -27,8 +27,7 @@ class Api::ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
-
-    if !user_reserved?(current_user, reservation_params[:lesson_date_id]) && @reservation.save 
+    if @reservation.save 
       @reservation.user_reserved = true
       render :show
     else 
@@ -54,5 +53,4 @@ class Api::ReservationsController < ApplicationController
     end
   end
 
-  end
 end
