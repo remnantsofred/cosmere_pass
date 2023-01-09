@@ -21,8 +21,6 @@ class LessonDate < ApplicationRecord
     class_name: :Reservation,
     dependent: :destroy
 
-  attr_accessor :max_capacity
-  attr_accessor :reserved_slots
-  attr_accessor :remaining_slots
+  attr_accessor :max_capacity, :reserved_slots, :remaining_slots, :credits, :user_has_reservation, :current_user_reservation_id
 
 end

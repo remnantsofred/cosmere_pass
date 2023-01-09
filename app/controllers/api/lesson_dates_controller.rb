@@ -3,29 +3,15 @@ class Api::LessonDatesController < ApplicationController
     @lesson_dates = LessonDate.all
 
     @lesson_dates = @lesson_dates.map do |lesson_date|
-      lesson_date.max_capacity = lesson_date.lesson.max_capacity
-      lesson_date.reserved_slots = lesson_date.reservations.length
-      lesson_date.remaining_slots = lesson_date.max_capacity - lesson_date.reserved_slots
-      # if lesson_date.remaining_slots == 0
-      #   lesson_date.full = true
-      # else 
-      #   lesson_date.full = false
-      # end
-      lesson_date
+      set_lesson_date_details(lesson_date)
     end
   end 
 
   def show 
     @lesson_date = LessonDate.find(params[:id])
 
-    @lesson_date.max_capacity = @lesson_date.lesson.max_capacity
-    @lesson_date.reserved_slots = @lesson_date.reservations.length
-    @lesson_date.remaining_slots = @lesson_date.max_capacity - @lesson_date.reserved_slots
-    # if @lesson_date.remaining_slots == 0
-    #   @lesson_date.full = true
-    # else 
-    #   @lesson_date.full = false
-    # end
+    @lesson_date = set_lesson_date_details(@lesson_date)
+
   end 
 
   def create
@@ -55,4 +41,22 @@ class Api::LessonDatesController < ApplicationController
     params.require(:lesson_date).permit(:lesson_id, :start_time, :end_time)
   end
 
+  def set_lesson_date_details(lesson_date)
+    lesson_date.max_capacity = lesson_date.lesson.max_capacity
+    lesson_date.reserved_slots = lesson_date.reservations.length
+    lesson_date.remaining_slots = lesson_date.max_capacity - lesson_date.reserved_slots
+    lesson_date.reservation_ids = lesson_date.reservations.map do |reservation|
+      reservation.id
+    end
+    if current_user 
+      lesson_date.reservations.each do |reservation|
+        if reservation.student_id == current_user.id
+          lesson_date.user_has_reservation = true
+          lesson_date.current_user_reservation_id = reservation.id
+        end
+      end
+    end
+
+    return lesson_date
+  end
 end

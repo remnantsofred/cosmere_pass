@@ -9,11 +9,9 @@ import { formatDate, formatTime, timeBetween } from '../../utils/date_util';
 import { StarIcon } from '../icon/Icon';
 import { getReservations, getReservation, fetchReservations, fetchReservation } from '../../store/reservation';
 
-
-export const LessonDatesIndexItem = ({lessonDate, location, lesson, handleResClick}) => {
+// reservations passed from SearchPage component are just reservations for this specific lessonDate
+export const LessonDatesIndexItem = ({lessonDate, location, lesson, handleResClick, handleCancel}) => {
   const dispatch = useDispatch();
-  
-
 
 
 
@@ -40,8 +38,10 @@ export const LessonDatesIndexItem = ({lessonDate, location, lesson, handleResCli
         <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
       </Column> */}
       <Column className='lessonDateIdxItmRCol'>
-        {lessonDate.remainingSlots > 0 && <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button>}  
-        <p className={lessonDate.remainingSlots > 0 ? 'remainingSlots' : 'lessonFull'}>{lessonDate.remainingSlots > 0 ? `Available slots: ${lessonDate.remainingSlots}` : "Lesson Full!"}</p>
+        {lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation ? <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button> : 
+        <button onClick={ () => handleCancel(lessonDate)} className="lessonDateIdxItmCancel">Cancel</button>}  
+        
+        {lessonDate.userHasReservation ? <p className="reserved">reserved</p> : <p className={lessonDate.remainingSlots > 0 ? 'remainingSlots' : 'lessonFull'}>{lessonDate.remainingSlots > 0 ? `Available slots: ${lessonDate.remainingSlots}` : "Lesson Full!"}</p>}
       </Column>
     </Row>
   )

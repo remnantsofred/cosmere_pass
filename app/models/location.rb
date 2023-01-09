@@ -28,7 +28,7 @@ class Location < ApplicationRecord
   has_one_attached :photo
 
 
-  attr_accessor :lesson_types, :world, :average_rating, :review_count
+  attr_accessor :lesson_types, :world, :average_rating, :review_count, :lesson_date_ids, :review_ids
   attr_accessor :user_reviewed, :user_favorited
 
 end
