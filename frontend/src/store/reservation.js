@@ -31,7 +31,7 @@ export const getReservation = (reservationId) => (store) => {
 
 // THUNK ACTION CREATORS
 export const fetchReservations = () => async (dispatch) => {
-  const res = await csrfFetch(`/api/reservations`);
+  const res = await fetch(`/api/reservations`);
   if (res.ok) {
     const reservations = await res.json();
     dispatch(receiveReservations(reservations));
@@ -39,7 +39,7 @@ export const fetchReservations = () => async (dispatch) => {
 };
 
 export const fetchReservation = (reservationId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/reservations/${reservationId}`);
+  const res = await fetch(`/api/reservations/${reservationId}`);
   if (res.ok) {
     const reservation = await res.json();
     dispatch(receiveReservation(reservation));

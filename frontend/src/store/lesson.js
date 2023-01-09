@@ -32,7 +32,7 @@ export const getLesson = (lessonId) => (store) => {
 
 // THUNK ACTION CREATORS
 export const fetchLessons = () => async (dispatch) => {
-  const res = await csrfFetch(`/api/lessons`);
+  const res = await fetch(`/api/lessons`);
   if (res.ok) {
     const lessons = await res.json();
     dispatch(receiveLessons(lessons));
@@ -40,7 +40,7 @@ export const fetchLessons = () => async (dispatch) => {
 };
 
 export const fetchLesson = (lessonId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/lessons/${lessonId}`);
+  const res = await fetch(`/api/lessons/${lessonId}`);
   if (res.ok) {
     const lesson = await res.json();
     dispatch(receiveLesson(lesson));

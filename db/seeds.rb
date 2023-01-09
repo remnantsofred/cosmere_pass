@@ -181,7 +181,7 @@ require "open-uri"
 
   20.times do 
     User.create!(
-      username: Faker::Internet.username,
+      username: Faker::Internet.username(specifier: 5..10),
       email: Faker::Internet.email,
       password: 'password'
     )

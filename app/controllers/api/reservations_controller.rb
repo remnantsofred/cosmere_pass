@@ -5,7 +5,7 @@ class Api::ReservationsController < ApplicationController
     @reservations = Reservation.all
 
     @reservations = @reservations.map do |reservation|
-      if reservation.student_id == current_user.id
+      if current_user && reservation.student_id == current_user.id
         reservation.user_reserved = true
       else 
         reservation.user_reserved = false
@@ -17,7 +17,7 @@ class Api::ReservationsController < ApplicationController
   def show
     @reservation = Reservation.find(params[:id])
 
-    if @reservation.student_id == current_user.id
+    if current_user && @reservation.student_id == current_user.id
       @reservation.user_reserved = true
     else 
       @reservation.user_reserved = false

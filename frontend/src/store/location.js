@@ -32,7 +32,7 @@ export const getLocation = (locationId) => (store) => {
 
 // THUNK ACTION CREATORS
 export const fetchLocations = () => async (dispatch) => {
-  const res = await csrfFetch(`/api/locations`);
+  const res = await fetch(`/api/locations`);
   if (res.ok) {
     const locations = await res.json();
     dispatch(receiveLocations(locations));
@@ -40,7 +40,7 @@ export const fetchLocations = () => async (dispatch) => {
 };
 
 export const fetchLocation = (locationId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/locations/${locationId}`);
+  const res = await fetch(`/api/locations/${locationId}`);
   if (res.ok) {
     const location = await res.json();
     dispatch(receiveLocation(location));

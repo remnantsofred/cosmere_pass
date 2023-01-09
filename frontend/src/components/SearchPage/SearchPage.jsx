@@ -17,6 +17,7 @@ import Loading from '../loading/Loading';
 import Map from '../map';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
 import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfirmModal';
+import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import { FaLessThanEqual } from 'react-icons/fa';
 
 export const SearchPage = ({children, id='', className="SearchPage"}) => {
@@ -28,6 +29,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const [loaded, setLoaded] = useState(false);
   const [indexType, setIndexType] = useState('lessons');
   const [ modalStatus, setModalStatus ] = useState(false);
+  const [ modal2Status, setModal2Status ] = useState(false);
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
@@ -85,12 +87,23 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     setModalLocation(null)
   }
 
+
   const handleResSubmit = (lessonDate) => {
     const data = {
       student_id: currentUser.id,
       lesson_date_id: lessonDate.id
     }
     dispatch(createReservation(data))
+    setModalStatus(false)
+    setModal2Status(true)
+  }
+
+  const handleResConfModalClose = () => {
+    setModal2Status(false)
+    setModalLessonDate(null)
+    setModalLesson(null)
+    setModalLocation(null)
+    setModal2Status(true)
   }
 
   if (!loaded) {
@@ -101,6 +114,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     return (
       <Panels id={id} className={className}>
         { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit}/> }
+        { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose}/> }
         <Panel className='lessonDatesIdxleftPanel'>
           <Row className="IndexToggleBar">
             <div onClick={() => setIndexType('lessons')} className={indexType === 'lessons' ? "searchTypeSelected" : "searchTypeunSelected"} >

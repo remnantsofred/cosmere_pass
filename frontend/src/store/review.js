@@ -31,7 +31,7 @@ export const getReview = (reviewId) => (store) => {
 
 // THUNK ACTION CREATORS
 export const fetchReviews = () => async (dispatch) => {
-  const res = await csrfFetch(`/api/reviews`);
+  const res = await fetch(`/api/reviews`);
   if (res.ok) {
     const reviews = await res.json();
     dispatch(receiveReviews(reviews));
@@ -39,7 +39,7 @@ export const fetchReviews = () => async (dispatch) => {
 };
 
 export const fetchReview = (reviewId) => async (dispatch) => {
-  const res = await csrfFetch(`/api/reviews/${reviewId}`);
+  const res = await fetch(`/api/reviews/${reviewId}`);
   if (res.ok) {
     const review = await res.json();
     dispatch(receiveReview(review));
