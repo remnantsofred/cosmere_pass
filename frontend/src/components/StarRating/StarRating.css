@@ -1,0 +1,30 @@
+.starRating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56.3px;
+  height: 15px;
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+.starUserRatingFilled {
+  color: #676767;;
+}
+.starUserRatingUnfilled {
+  color: #d6d6d6;
+}
+
+.starRatingLabel {
+  margin-bottom: 0px;
+  height: 15px;
+}

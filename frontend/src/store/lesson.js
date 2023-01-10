@@ -37,6 +37,7 @@ export const fetchLessons = () => async (dispatch) => {
     const lessons = await res.json();
     dispatch(receiveLessons(lessons));
   }
+  return Promise.resolve();
 };
 
 export const fetchLesson = (lessonId) => async (dispatch) => {

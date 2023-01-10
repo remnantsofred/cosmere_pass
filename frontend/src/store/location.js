@@ -45,6 +45,7 @@ export const fetchLocation = (locationId) => async (dispatch) => {
     const location = await res.json();
     dispatch(receiveLocation(location));
   }
+  return Promise.resolve();
 };
 
 export const createLocation = (data) => async (dispatch) => {

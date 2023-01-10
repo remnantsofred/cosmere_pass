@@ -25,6 +25,15 @@ export const getLessonDates = (store) => {
   return [];
 };
 
+export const getLessonDatesForLocation = (locationId) => (store) => {
+  if (store.lessonDates) {
+    const lessonDates = Object.values(store.lessonDates).filter(lessonDate => lessonDate.locationId.toString() === locationId);
+    return lessonDates;
+  }
+  return [];
+
+};
+
 export const getLessonDate = (lessonDateId) => (store) => {
   if (store.lessonDates && store.lessonDates[lessonDateId]) return store.lessonDates[lessonDateId];
   return null;
@@ -37,6 +46,7 @@ export const fetchLessonDates = () => async (dispatch) => {
     const lessonDates = await res.json();
     dispatch(receiveLessonDates(lessonDates));
   }
+  return Promise.resolve();
 };
 
 export const fetchLessonDate = (lessonDateId) => async (dispatch) => {

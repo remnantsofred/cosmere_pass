@@ -55,6 +55,11 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     }
   },[dispatch, locations, lessons, lessonDates])
 
+  useEffect(()=>{
+    setLoaded(false)
+    setLoaded(true)
+  }, [modalStatus, modal2Status, modal3Status])
+
   const getLocation = (locationId) => {
     for (const location of locations) {
       if (location.id === locationId) {
@@ -116,8 +121,8 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const handleCancelModalConfirm = (lessonDate) => {
     dispatch(deleteReservation(lessonDate.currentUserReservationId))
     setModal3Status(false)
-    setLoaded(false)
-    setLoaded(true)
+    // setLoaded(false)
+    // setLoaded(true)
   }
 
 
@@ -128,6 +133,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   } else {
     return (
       <Panels id={id} className={className}>
+        { children }
         { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit}/> }
         { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose}/> }
         { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm}/> }

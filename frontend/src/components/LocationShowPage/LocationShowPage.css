@@ -25,16 +25,60 @@
   /* border: 1px solid #e7e7e7; */
 }
 
+.LocShowratingRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 24px;
+  margin-bottom: 8px;
+}
+
+
 .LocShowPanelLRow{
   width: 100%;
   /* border: 1px solrgb(127, 103, 103)7e7; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
+
 
 .LocShowImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
   /* border: 1px solid #e7e7e7; */
+}
+
+.locNamRow{
+  padding-top: 24px;
+  height: 64px;
+  margin-top: 24px;
+}
+
+.locName {
+  font-size: 1.5rem;
+  line-height: 1.3333333333;
+  font-weight: 500;
+}
+
+.locShowSubtitle {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+
+.locationIdxItmRating {
+
+}
+
+.locShowRevCt {
+  height: 15px;
+  font-size: 0.875rem;
+  color: #555;
 }
 
 .LocShowPanelR {
@@ -50,3 +94,18 @@
   height: 200px;
   overflow: hidden;
 }
+
+.locShowIdxULLessonDates {
+  width: 624px;
+  height: 532px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  top: 42px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+

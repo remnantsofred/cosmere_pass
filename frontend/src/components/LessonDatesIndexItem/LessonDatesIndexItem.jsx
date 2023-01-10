@@ -8,11 +8,12 @@ import { getLocation, fetchLocation } from '../../store/location';
 import { formatDate, formatTime, timeBetween } from '../../utils/date_util';
 import { StarIcon } from '../icon/Icon';
 import { getReservations, getReservation, fetchReservations, fetchReservation } from '../../store/reservation';
+import { getLesson, fetchLesson } from '../../store/lesson';
 
 // reservations passed from SearchPage component are just reservations for this specific lessonDate
-export const LessonDatesIndexItem = ({lessonDate, location, lesson, handleResClick, handleCancel}) => {
+export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel}) => {
   const dispatch = useDispatch();
-
+  const lesson = useSelector(getLesson(lessonDate.lessonId));
 
 
   return (

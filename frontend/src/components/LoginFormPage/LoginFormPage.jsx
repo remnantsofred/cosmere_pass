@@ -19,7 +19,7 @@ const LoginFormPage = () => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  if (sessionUser) return <Redirect to="/search" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +44,7 @@ const LoginFormPage = () => {
     e.preventDefault();
     const credential = 'worldhopper';
     const password = 'password';
+    
     return dispatch(sessionActions.login({ credential, password }))
     .catch(async (res) => {
       let data;
@@ -55,6 +56,7 @@ const LoginFormPage = () => {
       }
       
     });
+    
   }
   
 
