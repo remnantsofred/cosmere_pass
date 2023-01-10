@@ -24,19 +24,33 @@ export const getReviews = (store) => {
   return [];
 };
 
+export const getReviewsForLocation = (locationId) => (store) => {
+  if (store.reviews) {
+    const reviews = Object.values(store.reviews).filter(review => review.locationId.toString() === locationId);
+    return reviews;
+  }
+  return [];
+};
+
+
 export const getReview = (reviewId) => (store) => {
   if (store.reviews && store.reviews[reviewId]) return store.reviews[reviewId];
   return null;
 };
 
 // THUNK ACTION CREATORS
-export const fetchReviews = () => async (dispatch) => {
-  const res = await fetch(`/api/reviews`);
+export const fetchReviews = (locationId) => async (dispatch) => {
+  const res = await fetch(`/api/locations/${locationId}/reviews`);
+
   if (res.ok) {
     const reviews = await res.json();
     dispatch(receiveReviews(reviews));
   }
+  return Promise.resolve();
 };
+
+
+
 
 export const fetchReview = (reviewId) => async (dispatch) => {
   const res = await fetch(`/api/reviews/${reviewId}`);
@@ -44,6 +58,7 @@ export const fetchReview = (reviewId) => async (dispatch) => {
     const review = await res.json();
     dispatch(receiveReview(review));
   }
+  return Promise.resolve();
 };
 
 export const createReview = (data) => async (dispatch) => {

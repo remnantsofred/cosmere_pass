@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_08_192847) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_10_052041) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,8 +85,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_192847) do
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "location_id", null: false
     t.index ["lesson_id", "reviewer_id"], name: "index_reviews_on_lesson_id_and_reviewer_id", unique: true
     t.index ["lesson_id"], name: "index_reviews_on_lesson_id"
+    t.index ["location_id"], name: "index_reviews_on_location_id"
     t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
   end
 
@@ -109,5 +111,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_08_192847) do
   add_foreign_key "reservations", "lesson_dates"
   add_foreign_key "reservations", "users", column: "student_id"
   add_foreign_key "reviews", "lessons"
+  add_foreign_key "reviews", "locations"
   add_foreign_key "reviews", "users", column: "reviewer_id"
 end

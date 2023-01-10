@@ -8,9 +8,12 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show, :update]
     # resources :favorites, only: [:index, :create, :destroy]
     resources :reservations, only: [:index, :show, :create, :destroy]
-    resources :reviews, only: [:index, :show, :create, :update, :destroy]
+    resources :reviews, only: [:show, :create, :update, :destroy]
     resources :lesson_dates, only: [:index, :show, :create, :update, :destroy]
-    resources :locations, only: [:index, :show]
+    resources :locations, only: [:index, :show] do
+      resources :reviews, only: [:index]
+    end
+
     resources :lessons, only: [:index, :show]
     resource :session, only: [:show, :create, :destroy]
 

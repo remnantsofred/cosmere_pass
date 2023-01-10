@@ -37,6 +37,7 @@ export const fetchLessons = () => async (dispatch) => {
     const lessons = await res.json();
     dispatch(receiveLessons(lessons));
   }
+  return Promise.resolve();
 };
 
 export const fetchLesson = (lessonId) => async (dispatch) => {
@@ -45,6 +46,7 @@ export const fetchLesson = (lessonId) => async (dispatch) => {
     const lesson = await res.json();
     dispatch(receiveLesson(lesson));
   }
+  return Promise.resolve();
 };
 
 export const createLesson = (data) => async (dispatch) => {

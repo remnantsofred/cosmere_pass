@@ -158,7 +158,8 @@
 }
 
 .lessonDateIdxItmReserve:hover {
-  background-color: #d6d6d6;
+  /* background-color: #d6d6d6; */
+  background-color: #e7e7e7;
   transition: color .3s,background-color .3s,border-color .3s;
 }
 
@@ -193,7 +194,9 @@
 }
 
 .lessonDateIdxItmCancel:hover {
-  background-color: #d6d6d6;
+  /* background-color: #d6d6d6; */
+  background-color: #e7e7e7;
+  border-color: #e7e7e7;
   transition: color .3s,background-color .3s,border-color .3s;
 }
 

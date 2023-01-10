@@ -18,7 +18,7 @@ export const LocationIndexItem = ({ location, lessonIds }) => {
         <img src={location.imageURL} alt="" className='locationIdxImg'/>
       </Column>
       <Column className='locationIdxItminfoCol'>
-        <h3 className="locationIdxItmLessonType">{location.lessonTypes.join(" | ")}</h3>
+        <h3 className="locationIdxItmLessonType">{location.lessonTypes.join(", ")}</h3>
         <NavLink to={`/locations/${location.id}`} className="locationIdxItmLink">{location.locationName}</NavLink>
         <h3 className="locationIdxItmLoc">{location.world}</h3>
         <Row className='LocIdxItmratingsRow'>
