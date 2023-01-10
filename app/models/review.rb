@@ -28,6 +28,6 @@ class Review < ApplicationRecord
     foreign_key: :location_id,
     class_name: :Location
 
-
+  attr_accessor :lesson_title
 
 end

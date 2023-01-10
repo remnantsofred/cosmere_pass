@@ -19,6 +19,7 @@ import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
 import { getLessons, fetchLessons } from '../../store/lesson';
 import { fetchReviews, getReviews, getReviewsForLocation } from '../../store/review';
+import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem';
 
 
 export const LocationShowPage = () => {
@@ -136,7 +137,10 @@ export const LocationShowPage = () => {
             </ul>
           </Row>
           <Row className='LocShowPanelLRow LocReviews'>
-          <h3 className="locShowSubtitle">Reviews</h3>
+            <h3 className="locShowSubtitle">Reviews</h3>
+            <ul className='locShowIdxULLessonDates'>
+              {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} className="ReviewIndexItem" />)}
+            </ul>
           </Row>
         </Panel>
         <Panel className='LocShowPanelR'>
