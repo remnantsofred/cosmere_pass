@@ -45,15 +45,16 @@ export const fetchLessonDates = (locationId) => async (dispatch) => {
     if (res.ok) {
       const lessonDates = await res.json();
       dispatch(receiveLessonDates(lessonDates));
+      return Promise.resolve();
     }
   } else {
     const res = await fetch(`/api/lesson_dates`);
     if (res.ok) {
       const lessonDates = await res.json();
       dispatch(receiveLessonDates(lessonDates));
+      return Promise.resolve();
     }
   }
-  return Promise.resolve();
 };
 
 export const fetchLessonDate = (lessonDateId) => async (dispatch) => {

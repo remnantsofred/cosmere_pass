@@ -88,6 +88,20 @@
   text-overflow: ellipsis;
 }
 
+.lessonIdxItmLessonTitle {
+  text-decoration: none;
+  color: #000;
+  transition: background-color .3s,color .3s;
+  font-size: 1rem;
+  line-height: 1.5;
+  --vh: 4.4px;
+  font-weight: 500;
+  width: 240px;
+  height: 16px;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
 .lessonIdxItmRating{
   width: 240px;
   height: 24px;

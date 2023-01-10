@@ -26,9 +26,9 @@ import { SiTruenas } from 'react-icons/si';
 
 export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const lessonDates = useSelector(getLessonDates);
-  const lessons = useSelector(getLessons);
   const locations = useSelector(getLocations);
   // const reservations = useSelector(getReservations);
+  const lessons = useSelector(getLessons);
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const [indexType, setIndexType] = useState('lessons');
@@ -39,28 +39,39 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
   const currentUser = useSelector(state => state.session.user);
-
-
+  
+  
   useEffect(() => {
-    dispatch(fetchLessonDates())
-    dispatch(fetchLessons())
-    dispatch(fetchLocations())
-
-    setIndexType('lessons')
-  }, [])
-
-  useEffect(() => {
-    if (locations && lessons && lessonDates && locations.length && lessons.length && lessonDates.length) {
+    Promise.all([
+      dispatch(fetchLocations()),
+      dispatch(fetchLessons()),
+      dispatch(fetchLessonDates()),
+    ]).then(()=> {
+      console.log('locations', locations)
       setLoaded(true)
-    }
-  },[dispatch, locations, lessons, lessonDates])
+    })
+    // setIndexType('lessons')
+  }, [])
+  
+  // useEffect(()=>{
+  //   dispatch(fetchLocations());
+  //   dispatch(fetchLessons());
+  //   dispatch(fetchLessonDates());
+  //   setIndexType('lessons')
+  // }, [])
 
-  useEffect(()=>{
-    setLoaded(false)
-    setLoaded(true)
-  }, [modalStatus, modal2Status, modal3Status])
+  // useEffect(() => {
+  //   if (locations && lessons && lessonDates && locations.length && lessons.length && lessonDates.length) {
+  //     setLoaded(true)
+  //   }
+  // },[dispatch, locations, lessons, lessonDates])
 
-  const getLocation = (locationId) => {
+  // useEffect(()=>{
+  //   setLoaded(false)
+  //   setLoaded(true)
+  // }, [modalStatus, modal2Status, modal3Status])
+
+  const getLocationForLesson = (locationId, locations) => {
     for (const location of locations) {
       if (location.id === locationId) {
         return location;
@@ -68,7 +79,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     }
   }
 
-  const getLesson = (lessonId) => {
+  const getSpecificLesson = (lessonId, lessons) => {
     for (const lesson of lessons) {
       if (lesson.id === lessonId) {
         return lesson;
@@ -152,8 +163,8 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
             {/* {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
             locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)} */}
             {indexType === 'locations' ? locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />) : currentUser ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem 
-            handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} source="search" />) : 
-            lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getLocation(lesson.locationId)}/>) }
+            handleResClick={handleResClick} lessonDate={lessonDate} lesson={getSpecificLesson(lessonDate.lessonId, lessons)} location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} source="search" />) : 
+            lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getLocationForLesson(lesson.locationId, locations)}/>) }
           </ul>
         </Panel>
         <Panel className='lessonDatesIdxrightPanel'>
