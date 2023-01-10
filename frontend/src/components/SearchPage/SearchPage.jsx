@@ -129,7 +129,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   }
 
   const handleCancelModalConfirm = (lessonDate) => {
-    dispatch(deleteReservation(lessonDate.currentUserReservationId))
+    dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
     setModal3Status(false)
     // setLoaded(false)
     // setLoaded(true)

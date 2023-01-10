@@ -10,6 +10,21 @@
   --vh: 8.87px; 
 }
 
+.locShowLessonDateIdxItmRow{
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0;
+  width: 624px;
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+  --vh: 8.87px; 
+  border-top: 1px solid #e7e7e7;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+
 .lessonDateIdxItmRow:not(:first-child) {
   border-top: 1px solid #e7e7e7;
 }
@@ -24,6 +39,19 @@
   
 } 
 
+.startTimeLoc {
+  font-weight: 500;
+}
+
+.locShowLessonDateIdxItmTimeCol {
+  width: 70px;
+  height: 50px;
+  margin-right: 12px;
+  font-size: .875rem;
+  line-height: 1.4285714286;
+  color: #555;
+}
+
 .lessonDateIdxItmCol2 {
   width: 289px;
   height: 69px;
@@ -34,6 +62,23 @@
     flex-shrink: 1;
     flex-basis: 0%;
   display: block;
+  --vh: 8.4px;
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+}
+
+.locShowIdxItmCol2{
+  width: 425px;
+  height: 50px;
+  margin-bottom: 8px;
+  padding-right: 8px;
+  /* flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%; */
+  /* display: block; */
   --vh: 8.4px;
   font-size: 1em;
   line-height: 1.5;
@@ -64,6 +109,7 @@
   margin-right: 16px;
 }
 
+
 .lessonDateIdxItmRCol {
   width: 110px;
   height: 77px;
@@ -72,6 +118,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.locShowIdxItmRCol {
+  width: 110px;
+  height: 65px;
+  line-height: 1.4285714286;
+  font-size: .875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 32px;
+  /* note: remove padding-right when I remove the scroll for the UL */
 }
 
 .lessonDateIdxItmLocLink{
@@ -247,4 +305,14 @@
   font-size: .875rem;
   line-height: 1.4285714286;
   margin-top: 2px;
+}
+
+.reservedLocShow {
+  font-size: .75rem;
+  line-height: 1.4285714286;
+  margin-top: 2px;
+  text-transform: uppercase;
+  color: #05f;
+  font-weight: 700;
+  padding-top: 4px;
 }
