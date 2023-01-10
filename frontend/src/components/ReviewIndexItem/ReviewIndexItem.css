@@ -1,33 +1,45 @@
-.ReviewIndexItemRows {
+.ReviewIndexItem {
   width: 624px;
   height: 84px;
-  padding-top: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  background-color: #fff;
-  /* border: 1px solid #E8B6DB;
-    background-color: #E8B6DB; */
-    display: flex;
-
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0;
+  display: block;
+  border-top: 1px solid #e7e7e7;
 }
+
+/* .ReviewIndexItem:not(:first-child){
+} */
 
 .reviewTitleRow {
   width: 624px;
   height: 24px;
   margin-bottom: 4px;
-  padding-top: 24px;
-  padding-bottom: 24px;
+  /* padding-top: 24px;
+  padding-bottom: 24px; */
   font-weight: 500;
   line-height: 1.5;
   font-size: 1rem;
-  border-top: 1px solid #e7e7e7;
+  display: inline-block
 }
 
 .reviewStarsRow {
+  width: 624px;
+  height: 24px;
 
 }
+
+.reviewRatingNum, .reviewTimeAgo {
+  display: inline-block; 
+  margin-right: 6px; 
+  font-size: .875rem;
+  line-height: 1.4285714286;
+  color: #555;
+}
+
+
 
 .reviewBodyRow {
   width: 624px;
@@ -35,6 +47,17 @@
   font-weight: 400;
   line-height: 1.5;
   font-size: 1rem;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  
+}
+
+
+
+.reviewBody {
+  width: 624px;
+  height: 72px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-size: 1rem;
+ 
+  
 }

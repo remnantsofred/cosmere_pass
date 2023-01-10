@@ -11,11 +11,10 @@ export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review}) =>
         { review.lessonTitle } 
       </Row>
       <Row className='reviewStarsRow'>
-        <div> { review.rating }</div>
-        <span> time ago</span>
+        <div className='reviewRatingNum'> { review.rating } stars </div><span className='reviewTimeAgo'> time ago</span>
       </Row>
       <Row className='reviewBodyRow'>
-        <p>{ review.body }</p>
+        <p className='reviewBody'>{ review.body }</p>
       </Row>
       
     </Rows>
