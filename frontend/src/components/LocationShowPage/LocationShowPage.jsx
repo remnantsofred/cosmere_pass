@@ -98,7 +98,7 @@ export const LocationShowPage = () => {
   }
 
   const handleCancelModalConfirm = (lessonDate) => {
-    dispatch(deleteReservation(lessonDate.currentUserReservationId))
+    dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
     setModal3Status(false)
     // setLoaded(false)
     // setLoaded(true)
@@ -112,6 +112,9 @@ export const LocationShowPage = () => {
   } else {
     return(
       <Panels className="LocShowPage">
+        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit}/> }
+        { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose}/> }
+        { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm}/> }
         <Panel className='LocShowPanelL'>
           <Row className='LocShowPanelLRow'>
             <img src={location.imageURL} alt={location.locationName} className='LocShowImg' />
@@ -133,7 +136,7 @@ export const LocationShowPage = () => {
           <Row className='LocShowPanelLRow LocSchedule'>
             <h3 className="locShowSubtitle">Schedule</h3>
             <ul className='locShowIdxULLessonDates'>
-              {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel} source="locationShow"/>)}
+              {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel} source="locationShow" />)}
             </ul>
           </Row>
           <Row className='LocShowPanelLRow LocReviews'>

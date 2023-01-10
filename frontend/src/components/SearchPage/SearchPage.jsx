@@ -50,7 +50,6 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
       console.log('locations', locations)
       setLoaded(true)
     })
-    // setIndexType('lessons')
   }, [])
   
   // useEffect(()=>{
@@ -163,7 +162,8 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
             {/* {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
             locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)} */}
             {indexType === 'locations' ? locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />) : currentUser ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem 
-            handleResClick={handleResClick} lessonDate={lessonDate} lesson={getSpecificLesson(lessonDate.lessonId, lessons)} location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} source="search" />) : 
+            handleResClick={handleResClick} lessonDate={lessonDate} lesson={getSpecificLesson(lessonDate.lessonId, lessons)} location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} currrentUser={currentUser} key={idx} 
+            handleCancel={handleCancel} source="search" modalStatus={modalStatus} modal3Status={modal3Status} />) : 
             lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getLocationForLesson(lesson.locationId, locations)}/>) }
           </ul>
         </Panel>
