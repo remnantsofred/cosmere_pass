@@ -22,9 +22,11 @@ class Location < ApplicationRecord
     source: :lesson_dates
 
   has_many :reviews,
-    through: :lessons,
-    source: :reviews
+    foreign_key: :location_id,
+    class_name: :Review,
+    dependent: :destroy
 
+  
   has_one_attached :photo
 
 

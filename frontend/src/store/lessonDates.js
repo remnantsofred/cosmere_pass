@@ -31,7 +31,6 @@ export const getLessonDatesForLocation = (locationId) => (store) => {
     return lessonDates;
   }
   return [];
-
 };
 
 export const getLessonDate = (lessonDateId) => (store) => {

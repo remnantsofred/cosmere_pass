@@ -498,18 +498,7 @@ require "open-uri"
     })
   end 
 
-  sample_review_body = ["Amazing lesson! I can't wait to take more!", "Wow, that was great, I learned so much.", "Learned so much!", "I enjoyed it :)", "Great! Will be back!", "I love this!", "Quality instructors and material."]
-
-  User.all.each do |user|
-    Lesson.all.each do |lesson|
-      Review.create!({
-        lesson_id: lesson.id,
-        reviewer_id: user.id,
-        rating: rand(3..5),
-        body: sample_review_body.sample
-      })
-    end
-  end
+  
   
 
   Location.all.each do |location|
@@ -543,6 +532,21 @@ require "open-uri"
       io: URI.open("https://cosmere-pass-seeds.s3.us-west-1.amazonaws.com/#{title}.jpeg"), 
       filename: "#{title}.jpeg"
     )
+  end
+
+  sample_review_body = ["Amazing lesson! I can't wait to take more!", "Wow, that was great, I learned so much.", "Learned so much!", "I enjoyed it :)", "Great! Will be back!", "I love this!", "Quality instructors and material."]
+
+
+  User.all.each do |user|
+    Lesson.all.each do |lesson|
+      Review.create!({
+        lesson_id: lesson.id,
+        reviewer_id: user.id,
+        rating: rand(3..5),
+        body: sample_review_body.sample,
+        location_id: lesson.location_id
+      })
+    end
   end
 
 

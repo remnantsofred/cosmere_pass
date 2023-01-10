@@ -9,9 +9,10 @@
 #  body        :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  location_id :bigint           not null
 #
 class Review < ApplicationRecord
-  validates :lesson_id, :reviewer_id, :rating, :body, presence: true
+  validates :lesson_id, :reviewer_id, :rating, :body, :location_id, presence: true
   validates :rating, inclusion: { in: (1..5) }
   validates :lesson_id, uniqueness: { scope: :reviewer_id }
 
@@ -23,6 +24,10 @@ class Review < ApplicationRecord
     foreign_key: :reviewer_id,
     class_name: :User
 
-  attr_accessor :location_id
+  belongs_to :location,
+    foreign_key: :location_id,
+    class_name: :Location
+
+
 
 end

@@ -18,13 +18,13 @@ import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfi
 import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
 import { getLessons, fetchLessons } from '../../store/lesson';
-import { fetchReviews, getReviews } from '../../store/review';
+import { fetchReviews, getReviews, getReviewsForLocation } from '../../store/review';
 
 
 export const LocationShowPage = () => {
   const { locationId } = useParams();
   const location = useSelector(getLocation(locationId));
-  const reviews = useSelector(getReviews);
+  const reviews = useSelector(getReviewsForLocation(locationId));
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   // const [lessonDates, setLessonDates] = useState();
@@ -43,7 +43,7 @@ export const LocationShowPage = () => {
       dispatch(fetchLocation(locationId)),
       dispatch(fetchLessons()),
       dispatch(fetchLessonDates()),  
-      dispatch(fetchReviews())  
+      dispatch(fetchReviews(locationId))  
     ]).then(() =>  setLoaded(true))
   },[locationId])
 
