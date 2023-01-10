@@ -39,11 +39,19 @@ export const getLessonDate = (lessonDateId) => (store) => {
 };
 
 // THUNK ACTION CREATORS
-export const fetchLessonDates = () => async (dispatch) => {
-  const res = await fetch(`/api/lesson_dates`);
-  if (res.ok) {
-    const lessonDates = await res.json();
-    dispatch(receiveLessonDates(lessonDates));
+export const fetchLessonDates = (locationId) => async (dispatch) => {
+  if (locationId) {
+    const res = await fetch(`/api/lesson_dates?location_id=${locationId}`);
+    if (res.ok) {
+      const lessonDates = await res.json();
+      dispatch(receiveLessonDates(lessonDates));
+    }
+  } else {
+    const res = await fetch(`/api/lesson_dates`);
+    if (res.ok) {
+      const lessonDates = await res.json();
+      dispatch(receiveLessonDates(lessonDates));
+    }
   }
   return Promise.resolve();
 };

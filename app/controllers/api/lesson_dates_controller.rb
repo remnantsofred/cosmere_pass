@@ -1,9 +1,19 @@
 class Api::LessonDatesController < ApplicationController
   def index 
-    @lesson_dates = LessonDate.all
+    if params[:location_id] 
+      @lessons = Lesson.where("location_id = ?", params[:location_id])
+      lesson_ids = @lessons.map { |lesson| lesson.id }
+      @lesson_dates = LessonDate.where("lesson_id in (?)", lesson_ids)
 
-    @lesson_dates = @lesson_dates.map do |lesson_date|
-      set_lesson_date_details(lesson_date)
+      @lesson_dates = @lesson_dates.map do |lesson_date|
+        set_lesson_date_details(lesson_date)
+      end
+    else
+      @lesson_dates = LessonDate.all
+
+      @lesson_dates = @lesson_dates.map do |lesson_date|
+        set_lesson_date_details(lesson_date)
+      end
     end
   end 
 

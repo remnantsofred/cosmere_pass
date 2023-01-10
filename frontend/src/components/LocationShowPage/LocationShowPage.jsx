@@ -42,7 +42,7 @@ export const LocationShowPage = () => {
     Promise.all([
       dispatch(fetchLocation(locationId)),
       dispatch(fetchLessons()),
-      dispatch(fetchLessonDates()),  
+      dispatch(fetchLessonDates(locationId)),  
       dispatch(fetchReviews(locationId))  
     ]).then(() =>  setLoaded(true))
   },[locationId])
