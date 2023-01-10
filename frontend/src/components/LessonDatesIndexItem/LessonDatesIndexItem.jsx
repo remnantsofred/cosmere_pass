@@ -11,30 +11,30 @@ import { getReservations, getReservation, fetchReservations, fetchReservation } 
 import { getLesson, fetchLesson } from '../../store/lesson';
 
 // reservations passed from SearchPage component are just reservations for this specific lessonDate
-export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel}) => {
+export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel, source}) => {
   const dispatch = useDispatch();
   const lesson = useSelector(getLesson(lessonDate.lessonId));
-
+  
 
   return (
-    <Row className="lessonDateIdxItmRow">
+    <Row className={source === "search" ? "lessonDateIdxItmRow" : "locShowLessonDateIdxItmRow"}>
       <Column className='lessonDateIdxItmTimeCol'>
         <p className="lessonDateIdxItmTime startTime">{formatTime(lessonDate.startTime)}</p>
         <p className="lessonDateIdxItmTime duration">{timeBetween(lessonDate.startTime, lessonDate.endTime)} min</p>
       </Column>
       <Column className="lessonDateIdxItmCol2">
         <NavLink to={`/lessons/${lesson.id}`} className="lessonDateIdxItmLink">{lesson.title}</NavLink>
-        <Row className='LocIdxItmratingsRow'>
+        {source === "search" ? <Row className='LocIdxItmratingsRow'>
           <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4>
           <StarIcon className='starIcon'/>
           <p className='locRevCt'>({location.reviewCount})</p>
-        </Row>
+        </Row> : <Row />}
       </Column>
-      <Column className='lessonDateIdxItmCol3'>
+      {source === "search" ? <Column className='lessonDateIdxItmCol3'>
         <NavLink to={`/locations/${location.id}`} className="lessonDateIdxItmLocLink">{location.locationName}</NavLink>
         <h3 className="lessonDateIdxItmLessonType">{lesson.lessonType}</h3>
         
-      </Column>
+      </Column> : <Column /> }
       {/* <Column className='lessonDateIdxItmImgCol'>
         <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
       </Column> */}

@@ -152,7 +152,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
             {/* {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
             locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)} */}
             {indexType === 'locations' ? locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />) : currentUser ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem 
-            handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) : 
+            handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} source="search" />) : 
             lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getLocation(lesson.locationId)}/>) }
           </ul>
         </Panel>

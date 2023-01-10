@@ -133,7 +133,7 @@ export const LocationShowPage = () => {
           <Row className='LocShowPanelLRow LocSchedule'>
             <h3 className="locShowSubtitle">Schedule</h3>
             <ul className='locShowIdxULLessonDates'>
-              {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel}/>)}
+              {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel} source="locationShow"/>)}
             </ul>
           </Row>
           <Row className='LocShowPanelLRow LocReviews'>
