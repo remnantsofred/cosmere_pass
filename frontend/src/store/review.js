@@ -24,6 +24,8 @@ export const getReviews = (store) => {
   return [];
 };
 
+
+
 export const getReview = (reviewId) => (store) => {
   if (store.reviews && store.reviews[reviewId]) return store.reviews[reviewId];
   return null;
@@ -36,6 +38,7 @@ export const fetchReviews = () => async (dispatch) => {
     const reviews = await res.json();
     dispatch(receiveReviews(reviews));
   }
+  return Promise.resolve();
 };
 
 export const fetchReview = (reviewId) => async (dispatch) => {
@@ -44,6 +47,7 @@ export const fetchReview = (reviewId) => async (dispatch) => {
     const review = await res.json();
     dispatch(receiveReview(review));
   }
+  return Promise.resolve();
 };
 
 export const createReview = (data) => async (dispatch) => {

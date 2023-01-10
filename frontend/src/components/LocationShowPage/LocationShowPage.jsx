@@ -18,10 +18,13 @@ import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfi
 import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
 import { getLessons, fetchLessons } from '../../store/lesson';
+import { fetchReviews, getReviews } from '../../store/review';
+
 
 export const LocationShowPage = () => {
   const { locationId } = useParams();
-  const location = useSelector(getLocation(locationId))
+  const location = useSelector(getLocation(locationId));
+  const reviews = useSelector(getReviews);
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   // const [lessonDates, setLessonDates] = useState();
@@ -39,7 +42,8 @@ export const LocationShowPage = () => {
     Promise.all([
       dispatch(fetchLocation(locationId)),
       dispatch(fetchLessons()),
-      dispatch(fetchLessonDates()),    
+      dispatch(fetchLessonDates()),  
+      dispatch(fetchReviews())  
     ]).then(() =>  setLoaded(true))
   },[locationId])
 
@@ -128,7 +132,7 @@ export const LocationShowPage = () => {
           <Row className='LocShowPanelLRow LocSchedule'>
             <h3 className="locShowSubtitle">Schedule</h3>
             <ul className='locShowIdxULLessonDates'>
-              {lessonDates?.map(lessonDate => <LessonDatesIndexItem lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel}/>)}
+              {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel}/>)}
             </ul>
           </Row>
           <Row className='LocShowPanelLRow LocReviews'>

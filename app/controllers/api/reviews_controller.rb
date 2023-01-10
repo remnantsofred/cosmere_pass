@@ -1,10 +1,16 @@
 class Api::ReviewsController < ApplicationController
   def index
     @reviews = Review.all
+
+    @reviews = @reviews.map do |review|
+      set_review_details(review)
+    end 
   end 
 
   def show
     @review = Review.find(params[:id])
+
+    @review = set_review_details(@review)
   end
 
   def create
@@ -34,4 +40,8 @@ class Api::ReviewsController < ApplicationController
     params.require(:review).permit(:lesson_id, :reviewer_id, :rating, :body)
   end
 
+  def set_review_details(review)
+    review.location_id = review.lesson.location_id
+    return review
+  end
 end

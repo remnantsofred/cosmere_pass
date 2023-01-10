@@ -55,6 +55,7 @@ export const fetchLessonDate = (lessonDateId) => async (dispatch) => {
     const lessonDate = await res.json();
     dispatch(receiveLessonDate(lessonDate));
   }
+  return Promise.resolve();
 };
 
 export const createLessonDate = (data) => async (dispatch) => {

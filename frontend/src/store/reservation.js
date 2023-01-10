@@ -36,6 +36,7 @@ export const fetchReservations = () => async (dispatch) => {
     const reservations = await res.json();
     dispatch(receiveReservations(reservations));
   }
+  return Promise.resolve();
 };
 
 export const fetchReservation = (reservationId) => async (dispatch) => {
@@ -44,6 +45,7 @@ export const fetchReservation = (reservationId) => async (dispatch) => {
     const reservation = await res.json();
     dispatch(receiveReservation(reservation));
   }
+  return Promise.resolve();
 };
 
 export const createReservation = (data) => async (dispatch) => {
