@@ -18,7 +18,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const [reviewBody, setReviewBody] = useState("");
 
   const reviewData = {
-    // lesson_id: lessonID,
+    lesson_id: 15,
     reviewer_id: currentUser.id,
     rating: rating,
     body: reviewBody,
@@ -35,12 +35,12 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
           <img src={ReviewFormModalImg} alt="" className='resModalImg'/>
         </div>
         {children}
-        <Panel className="resModalInfoPanel">
-          <Row className='resModalLessonName'>
+        <Panel className="reviewModalInfoPanel">
+          <Row className='resModalResConf'>
             <p>Rate your experience at</p>
+            <p>{location.locationName}</p>
           </Row>
           <Row className='resModalLessonLoc'>
-            <p>{location.locationName}</p>
           </Row>
           <Row className='reviewModalStarRow'>
             {/* <label className='reviewModalLabel'>Rating: */}
@@ -53,22 +53,14 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
           </Row>
           <Row className='reviewFormInputRow'>
             
-            <input type="text" />
+            <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the class? How was the instructor? What was the space like?" ></textarea>
           </Row>
           <Row>
             <button className='resModalButton' onClick={() => handleReviewSubmit(reviewData)}>
-              Reserve
+              Submit
             </button>
           </Row>
-          <Row className='resModalCancelRow'>
-            {/* <p className='resModalCancelText'>Cancel 12 hours in advance to avoid a 5 mark late cancellation fee.</p> */}
-          </Row>
-          <Row>
-
-          </Row>
-          <Row>
-
-          </Row>
+          
         </Panel>
       </Panels>
     </>
