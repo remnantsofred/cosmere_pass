@@ -139,14 +139,14 @@ export const LocationShowPage = () => {
               <h1 className='locName'>{location.locationName}</h1>
               <Row className='LocShowratingRow'>
                 <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4> <StarRating rating={location.averageRating.toFixed(0)}/>
-                <p className='locShowRevCt'>({location.reviewCount})</p>
+                <div className='locShowRevCt'>({location.reviewCount})</div>
               </Row>
             </Row>
             <Row className='LocShowPanelRRow'>
               This location offers {location.lessonTypes.join("and ")} lessons.
             </Row>
             <Row className='LocShowPanelLRow'>
-              <p>{location.description}</p>
+              <div>{location.description}</div>
             </Row>
             
             <Row className='LocShowPanelLRow LocSchedule'>

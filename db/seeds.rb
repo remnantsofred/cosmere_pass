@@ -537,7 +537,8 @@ require "open-uri"
   sample_review_body = ["Amazing lesson! I can't wait to take more!", "Wow, that was great, I learned so much.", "Learned so much!", "I enjoyed it :)", "Great! Will be back!", "I love this!", "Quality instructors and material."]
 
 
-  User.all.each do |user|
+  users = User.all.drop(2)
+  users.each do |user|
     Lesson.all.each do |lesson|
       Review.create!({
         lesson_id: lesson.id,

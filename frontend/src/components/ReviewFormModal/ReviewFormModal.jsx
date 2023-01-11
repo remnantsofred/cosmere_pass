@@ -20,7 +20,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const reviewData = {
     lesson_id: 15,
     reviewer_id: currentUser.id,
-    rating: rating,
+    rating: 5,
     body: reviewBody,
     location_id: location.id
   }
@@ -34,26 +34,23 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
         <div className='resModalImgDiv'>
           <img src={ReviewFormModalImg} alt="" className='resModalImg'/>
         </div>
-        {children}
         <Panel className="reviewModalInfoPanel">
           <Row className='resModalResConf'>
             <p>Rate your experience at</p>
             <p>{location.locationName}</p>
           </Row>
           <Row className='resModalLessonLoc'>
+            {/* put dropdown here */}
           </Row>
           <Row className='reviewModalStarRow'>
             {/* <label className='reviewModalLabel'>Rating: */}
               <StarRatingResponsive className='reviewModalStarRating'/>
 
             {/* </label> */}
-            <p>
-              {/* {formatTime(lessonDate.startTime)} - {formatTime(lessonDate.endTime)} */}
-            </p>
+
           </Row>
           <Row className='reviewFormInputRow'>
-            
-            <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the class? How was the instructor? What was the space like?" ></textarea>
+            <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea>
           </Row>
           <Row>
             <button className='resModalButton' onClick={() => handleReviewSubmit(reviewData)}>
