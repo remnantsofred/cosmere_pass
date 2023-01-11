@@ -142,6 +142,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     )
   } else {
     return (
+      
       <Panels id={id} className={className}>
         { children }
         { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="search"/> }

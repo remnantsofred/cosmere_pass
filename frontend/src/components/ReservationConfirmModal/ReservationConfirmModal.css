@@ -8,9 +8,9 @@
   text-align: center;
   right: auto;
   position: fixed;
-  /* transform: translateX(-50%); */
+  transform: translateX(-50%);
   top: 16px;
-  /* left: 50%; */
+  left: 50%;
   color: #000;
   z-index: 300;
 }
