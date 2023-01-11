@@ -11,10 +11,43 @@ import { getReservations, getReservation, fetchReservations, fetchReservation } 
 import { getLesson, fetchLesson } from '../../store/lesson';
 
 // reservations passed from SearchPage component are just reservations for this specific lessonDate
-export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel, source}) => {
+export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel, source, currentUser}) => {
   const dispatch = useDispatch();
   const lesson = useSelector(getLesson(lessonDate.lessonId));
   
+  // const renderLoggedIn = (lessonDate, location, handleResClick, handleCancel, source, currentUser) => {
+  //   if (lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation) {
+  //     // if logged in and resume
+  //     return (
+  //       <>
+  //         <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button> 
+  //         <p className='remainingSlots'>Available slots: `${lessonDate.remainingSlots}`</p>
+  //       </>
+  //     )
+  //   } else if (currentUser && lessonDate.userHasReservation) {
+  //     // if logged in and already reserved (show cancel)
+  //     return (
+  //       <>
+  //         <button onClick={ () => handleCancel(lessonDate, lesson, location)} className="lessonDateIdxItmCancel">Cancel</button>
+  //         <p className={source === "search" ? "reserved" : "reservedLocShow"}>reserved</p>
+  //       </>
+  //     )
+  //   } else if (!lessonDate.remainingSlots  && !lessonDate.userHasReservation) {
+  //     // if logged in and reservation full
+  //     return (
+  //       <>
+  //         <button onClick={ () => handleResClick(lessonDate, lesson, location)} className='lessonDateIdxItmReserveFull'>Reserve</button> 
+  //        <p className='lessonFull'>"Lesson Full!"</p>
+  //       </>
+  //     )
+  //   }
+  // }
+
+  // const renderLoggedOut = () => {
+  //   return (
+
+  //   )
+  // }
 
   return (
     <Row className={source === "search" ? "lessonDateIdxItmRow" : "locShowLessonDateIdxItmRow"}>
@@ -38,12 +71,34 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       {/* <Column className='lessonDateIdxItmImgCol'>
         <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
       </Column> */}
-      <Column className={source === "search" ? 'lessonDateIdxItmRCol' : 'locShowIdxItmRCol'}>
-        {lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation ? <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button> : 
+      {/* <Column className={source === "search" ? 'lessonDateIdxItmRCol' : 'locShowIdxItmRCol'}>
+        {currentUser && renderLoggedIn(lessonDate, location, handleResClick, handleCancel, source, currentUser)}
+      </Column> */}
+
+      {/* old column - works */}
+      {/* <Column className={source === "search" ? 'lessonDateIdxItmRCol' : 'locShowIdxItmRCol'}>
+        { lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation
+        ? 
+        <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button> 
+        : 
         <button onClick={ () => handleCancel(lessonDate, lesson, location)} className="lessonDateIdxItmCancel">Cancel</button>}  
         
         {lessonDate.userHasReservation ? <p className={source === "search" ? "reserved" : "reservedLocShow"}>reserved</p> : <p className={lessonDate.remainingSlots > 0 ? 'remainingSlots' : 'lessonFull'}>{lessonDate.remainingSlots > 0 ? `Available slots: ${lessonDate.remainingSlots}` : "Lesson Full!"}</p>}
-      </Column>
+      </Column>  */}
+
+
+      {currentUser ? <Column className={source === "search" ? 'lessonDateIdxItmRCol' : 'locShowIdxItmRCol'}>
+        { lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation
+        ? 
+        <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button> 
+        : 
+        <button onClick={ () => handleCancel(lessonDate, lesson, location)} className="lessonDateIdxItmCancel">Cancel</button>}  
+        
+        {lessonDate.userHasReservation ? <p className={source === "search" ? "reserved" : "reservedLocShow"}>reserved</p> : <p className={lessonDate.remainingSlots > 0 ? 'remainingSlots' : 'lessonFull'}>{lessonDate.remainingSlots > 0 ? `Available slots: ${lessonDate.remainingSlots}` : "Lesson Full!"}</p>}
+      </Column> :
+      <Column className={source === "search" ? 'lessonDateIdxItmRCol' : 'locShowIdxItmRCol'}>
+        <NavLink to='/signup' className='loggedOutSignUp'>Sign up</NavLink> 
+      </Column> }
     </Row>
   )
 
