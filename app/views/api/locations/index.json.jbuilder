@@ -16,6 +16,7 @@
     json.world location.world
     json.lesson_date_ids location.lesson_date_ids
     json.review_ids location.review_ids
+    json.lesson_titles location.lesson_titles
   end
 end
 

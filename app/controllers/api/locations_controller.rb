@@ -25,10 +25,12 @@ class Api::LocationsController < ApplicationController
 
   def set_location_details(location)
     location.lesson_types = []
+    location.lesson_titles = []
     location.lesson_date_ids = []
     location.review_ids = []
     location.lessons.each do |lesson|
       location.lesson_types.push(lesson.lesson_type)
+      location.lesson_titles.push(lesson.title)
       lesson.lesson_dates.each do |lesson_date|
         location.lesson_date_ids.push(lesson_date.id)
       end
@@ -36,6 +38,7 @@ class Api::LocationsController < ApplicationController
         location.review_ids.push(review.id)
       end
     end
+    location.lesson_titles.sort
     location.lesson_types.uniq!
 
     location_ratings_arr = location.reviews.map do |review|

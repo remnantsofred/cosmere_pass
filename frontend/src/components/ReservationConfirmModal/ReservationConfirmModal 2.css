@@ -1,22 +1,4 @@
-.ReviewFormModal{
-  width: 524px;
-  height: 664px;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 3px;
-  background-color: #fff;
-  text-align: center;
-  right: auto;
-  position: fixed;
-  transform: translateX(-50%);
-  top: 16px;
-  left: 50%;
-  color: #000;
-  z-index: 300;
-}
-
-
-.LocReservationConfirmModal{
+.ReservationConfirmModal{
   width: 524px;
   height: 664px;
   font-size: 1rem;
@@ -45,24 +27,6 @@
   top: 0;
   right: 0;
   left: 0; 
-}
-
-.LocResModalBackground {
-  /* width: 100vw;
-  height: 100vh; */
-  z-index: 200;
-  bottom: 0;
-  background-color: #000;
-  opacity: .7;
-  /* position: absolute; */
-  top: 0;
-  right: 0;
-  
-  position: fixed;
-    width: 100vw;
-    /* height: 100%; */
-    left: 0;
-    top: 0;
 }
 
 .resModalCloseBtn {
@@ -101,10 +65,10 @@
 
 }
 
-.reviewModalInfoPanel {
+.resModalInfoPanel {
   width: 524px;
   height: 392px;
-  padding-top: 18px;
+  padding-top: 32px;
   padding-bottom: 48px;
   font-size: 1rem;
   line-height: 1.5;
@@ -125,23 +89,16 @@
 .resModalLessonLoc {
   width: 524px;
   height: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
-.reviewModalStarRow {
+.resModalLessonTime {
   width: 524px;
   height: 64px;
   font-size: 1.5rem;
   line-height: 1.3333333333;
-  margin-top: 12px;
-  margin-bottom: 26px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 16px;
+
 }
 
 .resModalCredits {
@@ -152,13 +109,9 @@
   line-height: 1.5;
 }
 
-.reviewFormInputRow{
+.resModalNumCredits{
   font-size: 1.25rem;
   font-weight: 500;
-  width: 425px;
-  height: 425px;
-  margin-bottom: 40px;
-  display: flex;
 }
 
 
@@ -203,24 +156,7 @@
   width: 428px;
 }
 
-.reviewModalStarRating {
-  width:  100%;
-  height: 500px;
-  margin-bottom: 16px;
-}
 
-.reviewModalLabel {
-  font-size: 0.75rem;
-}
 
-.reviewFormTextBox {
-  width: 100%;
-  height: 100%;
-  border: 1px solid #d6d6d6;
-  border-radius: 3px;
-  padding: 16px;
-  font-size: 1rem;
-  line-height: 1.5;
-  resize: none;
-  font-family: 'TT Norms Pro', sans-serif;
-}
+
+

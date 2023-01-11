@@ -25,6 +25,19 @@ export const getLessons = (store) => {
   return [];
 };
 
+export const getLessonsForLocation = (locationId) => (store) => {
+  if (store.lessons) {
+    const lessons = Object.values(store.lessons).filter(lesson => {
+      if (lesson === undefined || lesson.locationId === undefined) {
+        console.log('lesson', lesson)
+      }
+      return lesson.locationId.toString() === locationId}
+      );
+    return lessons;
+  }
+  return [];
+};
+
 export const getLesson = (lessonId) => (store) => {
   if (store.lessons && store.lessons[lessonId]) return store.lessons[lessonId];
   return null;

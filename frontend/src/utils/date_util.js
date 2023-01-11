@@ -188,3 +188,11 @@ export const timeBetween = (date1, date2) => {
   let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
   return diffDays * 60;
 }
+
+export const timeBetweenShort = (date1, date2) => {
+  let d1 = new Date(date1);
+  let d2 = new Date(date2);
+  let timeDiff = Math.abs(d2.getTime() - d1.getTime());
+  let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  return diffDays * 60;
+}

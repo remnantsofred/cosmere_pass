@@ -4,9 +4,14 @@ import { StarIcon } from '../icon/Icon';
 import { AiFillStar } from 'react-icons/ai';
 import { FaStar } from 'react-icons/fa';
 
-export const StarRatingResponsive = ()=> {
-  const [rating, setRating] = useState(null);
+export const StarRatingResponsive = ({setStarReviewRating})=> {
+  const [rating, setRating] = useState(5);
   const [hover, setHover] = useState(null);
+
+  const handleStarSet = (ratingValue) => {
+    setRating(ratingValue)
+    setStarReviewRating(ratingValue);
+  }
 
   return (
     <div className='starRating'>
@@ -19,7 +24,7 @@ export const StarRatingResponsive = ()=> {
               type="radio" 
               name="rating" 
               value={ratingValue} 
-              onClick={()=> setRating(ratingValue)} 
+              onClick={()=> handleStarSet(ratingValue)} 
               />
               <AiFillStar 
                 className='star' 
