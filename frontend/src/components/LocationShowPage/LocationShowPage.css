@@ -1,13 +1,13 @@
 .LocShowPage {
-  position: relative;
-  left: 50%;
+  /* position: relative; */
+  /* left: 50%;
   top: 0;
-  transform: translateX(-50%);
-  width: 960px;
+  transform: translateX(-50%); */
+  width: 100%;
   padding-bottom: 32px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   
   font-family: norms,sans-serif;
   font-size: 1em;
@@ -41,9 +41,16 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  padding-bottom: 24px;
+  margin-right: 24px;
+  /* align-items: center; */
 }
 
+
+
+.LocShowPanelLRow:not(:nth-child(2n)) {
+  border-top: 1px solid #e7e7e7;
+}
 
 .LocShowImg {
   width: 100%;
@@ -68,12 +75,16 @@
   font-size: 1.25rem;
   line-height: 1.4;
   font-weight: 500;
+  justify-content: left;
+  margin: 16px 0px;
+
 }
 
 
 .locationIdxItmRating {
 
 }
+
 
 .locShowRevCt {
   height: 15px;
@@ -86,6 +97,7 @@
   height: 496px;
   position: sticky;
   top: 64px;
+  margin-left: 24px;
   /* border: 1px solid blue; */
 }
 
@@ -101,11 +113,22 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
+  /* position: relative; */
   top: 42px;
   overflow-x: hidden;
   overflow-y: scroll;
-  border-bottom: 1px solid #e7e7e7;
+
 }
 
+#locShowReviewSubtitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 32px;
+}
 
+#LocShowPageReviewButton {
+  width: 92.594px;
+  height: 14px;
+  padding: 9px 8px 8px;
+}

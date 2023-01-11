@@ -5,11 +5,13 @@ import Row from '../row/Row';
 import { formatTime, formatDate, formatDateWithDay } from '../../utils/date_util';
 import modalCloseButton from './modalCloseButton.png';
 
-export const ReservationConfirmModal = ({children, id='', className="ReservationConfirmModal", lessonDate, lesson, location, handleModalClose, handleResSubmit}) => {
+export const ReservationConfirmModal = ({children, id='', className="ReservationConfirmModal", lessonDate, lesson, location, handleModalClose, handleResSubmit, source}) => {
   return (
     <>
-      <div className='resModalBackground'></div>
-      <Panels id={id} className={className}>
+      <div className={source === "search" ? 'resModalBackground' : 'LocResModalBackground'}>
+      </div>
+      <Panels id={id} className={source === "search" ? "ReservationConfirmModal" : "LocReservationConfirmModal"} >
+        {/* this was not needed but keeping in case: style={{position: source === "location" ? "absolute" : "", top:source === "location" ? window.scrollY + 24 : ""}} */}
         {/* <button className='resModalCloseBtn' onClick={handleModalClose} backgroundImage={modalCloseButton} >
           X
         </button> */}

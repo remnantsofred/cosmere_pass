@@ -21,6 +21,7 @@ export const removeLocation = (locationId) => ({
 
 
 export const getLocations = (store) => {
+  console.log('getLocations', store.locations)
   if (store.locations) return Object.values(store.locations);
   return [];
 };
@@ -36,8 +37,8 @@ export const fetchLocations = () => async (dispatch) => {
   if (res.ok) {
     const locations = await res.json();
     dispatch(receiveLocations(locations));
+    return Promise.resolve();
   }
-  return Promise.resolve();
 };
 
 export const fetchLocation = (locationId) => async (dispatch) => {
@@ -45,8 +46,8 @@ export const fetchLocation = (locationId) => async (dispatch) => {
   if (res.ok) {
     const location = await res.json();
     dispatch(receiveLocation(location));
+    return Promise.resolve();
   }
-  return Promise.resolve();
 };
 
 export const createLocation = (data) => async (dispatch) => {

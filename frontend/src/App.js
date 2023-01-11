@@ -13,6 +13,7 @@ import LessonDatesIndex from "./components/LessonDatesIndexPage/LessonDatesIndex
 import AccountPage from "./components/AccountPage";
 import SearchPage from "./components/SearchPage";
 import { useSelector } from "react-redux";
+import ReviewForm from "./components/ReviewForm/ReviewForm";
  
 
 function App() {
@@ -39,10 +40,15 @@ function App() {
             <SearchNav />
             <SearchPage />
           </Route>
+          <Route exact path="/locations/:locationId/review">
+            <Navigation />
+            <ReviewForm />
+          </Route>
           <Route path="/locations/:locationId">
             <Navigation />
             <LocationShowPage />
           </Route>
+
           {/* <Route exact path="/locations">
             <Navigation />
             <SearchNav />

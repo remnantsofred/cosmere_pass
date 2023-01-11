@@ -9,7 +9,7 @@ import reservationMadeImg from './ReservationMade.jpeg';
 import { CalendarIcon } from '../icon/Icon'
 
 
-export const ReservationMadeModal = ({children, id='', className="ReservationMadeModal", lessonDate, lesson, location, handleResConfModalClose}) => {
+export const ReservationMadeModal = ({children, id='', className="ReservationMadeModal", lessonDate, lesson, location, handleModalClose, source}) => {
   return (
     <>
       <div className='resModalBackground'></div>
@@ -17,7 +17,7 @@ export const ReservationMadeModal = ({children, id='', className="ReservationMad
         {/* <button className='resModalCloseBtn' onClick={handleModalClose} backgroundImage={modalCloseButton} >
           X
         </button> */}
-        <img src={modalCloseButton} className='resModalCloseBtn' onClick={handleResConfModalClose} /> 
+        <img src={modalCloseButton} className='resModalCloseBtn' onClick={handleModalClose} /> 
         <div className='resModalImgDiv'>
           <img src={reservationMadeImg} alt="" className='resModalImg'/>
         </div>
@@ -41,7 +41,7 @@ export const ReservationMadeModal = ({children, id='', className="ReservationMad
             </p>
           </Row>
           <Row>
-            <button className='resModalButtonEmail' onClick={handleResConfModalClose} >
+            <button className='resModalButtonEmail' onClick={handleModalClose} >
               Email invite
             </button>
           </Row>

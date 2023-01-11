@@ -1,4 +1,4 @@
-.ReservationConfirmModal{
+.ReviewFormModal{
   width: 524px;
   height: 664px;
   font-size: 1rem;
@@ -14,25 +14,7 @@
   color: #000;
   z-index: 300;
 }
-/* 
-.LocReservationConfirmModal{
-  width: 524px;
-  height: 664px;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 3px;
-  background-color: #fff;
-  text-align: center;
-  right: auto;
-  position: sticky;
-  transform: translateX(-50%);
-  top: 16px;
-  left: 50%;
-  color: #000;
-  z-index: 900;
-  background-color: #fff;
-  opacity:1
-} */
+
 
 .LocReservationConfirmModal{
   width: 524px;
@@ -119,10 +101,10 @@
 
 }
 
-.resModalInfoPanel {
+.reviewModalInfoPanel {
   width: 524px;
   height: 392px;
-  padding-top: 32px;
+  padding-top: 18px;
   padding-bottom: 48px;
   font-size: 1rem;
   line-height: 1.5;
@@ -145,14 +127,17 @@
   height: 24px;
 }
 
-.resModalLessonTime {
+.reviewModalStarRow {
   width: 524px;
   height: 64px;
   font-size: 1.5rem;
   line-height: 1.3333333333;
-  margin-top: 32px;
-  margin-bottom: 16px;
-
+  margin-top: 12px;
+  margin-bottom: 26px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .resModalCredits {
@@ -163,9 +148,13 @@
   line-height: 1.5;
 }
 
-.resModalNumCredits{
+.reviewFormInputRow{
   font-size: 1.25rem;
   font-weight: 500;
+  width: 425px;
+  height: 425px;
+  margin-bottom: 40px;
+  display: flex;
 }
 
 
@@ -210,7 +199,24 @@
   width: 428px;
 }
 
+.reviewModalStarRating {
+  width:  100%;
+  height: 500px;
+  margin-bottom: 16px;
+}
 
+.reviewModalLabel {
+  font-size: 0.75rem;
+}
 
-
-
+.reviewFormTextBox {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  padding: 16px;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: none;
+  font-family: 'TT Norms Pro', sans-serif;
+}

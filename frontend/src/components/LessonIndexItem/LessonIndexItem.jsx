@@ -9,6 +9,7 @@ import { getLocation, fetchLocation } from '../../store/location';
 
 export const LessonIndexItem = ({ lesson, location }) => {
   const dispatch = useDispatch();
+
   
   return (
     <Row className="lessonIdxItmRow">
@@ -17,8 +18,9 @@ export const LessonIndexItem = ({ lesson, location }) => {
       </Column>
       <Column className='lessonIdxItminfoCol'>
         <h3 className="lessonIdxItmLessonType">{lesson.lessonType}</h3>
-        <NavLink to={`/lessons/${lesson.id}`} className="lessonIdxItmLink">{lesson.title}</NavLink><br />
-        <NavLink to={`/locations/${location.id}`} className="lessonIdxItmLocLink">{location.locationName}</NavLink>
+        {/* <NavLink to={`/lessons/${lesson.id}`} className="lessonIdxItmLink">{lesson.title}</NavLink><br /> */}
+        <p className="lessonIdxItmLessonTitle">{lesson.title}</p>
+        <NavLink to={`/locations/${lesson.locationId}`} className="lessonIdxItmLocLink">{location.locationName}</NavLink>
         <h3 className="lessonIdxItmRating"></h3>
       </Column>
       <Column className='lessonIdxitmrightCol'>

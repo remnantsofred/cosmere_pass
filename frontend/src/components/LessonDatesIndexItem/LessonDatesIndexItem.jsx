@@ -11,38 +11,38 @@ import { getReservations, getReservation, fetchReservations, fetchReservation } 
 import { getLesson, fetchLesson } from '../../store/lesson';
 
 // reservations passed from SearchPage component are just reservations for this specific lessonDate
-export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel}) => {
+export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel, source}) => {
   const dispatch = useDispatch();
   const lesson = useSelector(getLesson(lessonDate.lessonId));
-
+  
 
   return (
-    <Row className="lessonDateIdxItmRow">
-      <Column className='lessonDateIdxItmTimeCol'>
-        <p className="lessonDateIdxItmTime startTime">{formatTime(lessonDate.startTime)}</p>
+    <Row className={source === "search" ? "lessonDateIdxItmRow" : "locShowLessonDateIdxItmRow"}>
+      <Column className={source === "search" ? 'lessonDateIdxItmTimeCol' : 'locShowLessonDateIdxItmTimeCol'}>
+        <p className={source === "search" ? "lessonDateIdxItmTime startTime" : "lessonDateIdxItmTime startTimeLoc"}>{formatTime(lessonDate.startTime)}</p>
         <p className="lessonDateIdxItmTime duration">{timeBetween(lessonDate.startTime, lessonDate.endTime)} min</p>
       </Column>
-      <Column className="lessonDateIdxItmCol2">
+      <Column className={source === "search" ? "lessonDateIdxItmCol2": "locShowIdxItmCol2"}>
         <NavLink to={`/lessons/${lesson.id}`} className="lessonDateIdxItmLink">{lesson.title}</NavLink>
-        <Row className='LocIdxItmratingsRow'>
+        {source === "search" && <Row className='LocIdxItmratingsRow'>
           <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4>
           <StarIcon className='starIcon'/>
           <p className='locRevCt'>({location.reviewCount})</p>
-        </Row>
+        </Row>}
       </Column>
-      <Column className='lessonDateIdxItmCol3'>
+      {source === "search" && <Column className='lessonDateIdxItmCol3'>
         <NavLink to={`/locations/${location.id}`} className="lessonDateIdxItmLocLink">{location.locationName}</NavLink>
         <h3 className="lessonDateIdxItmLessonType">{lesson.lessonType}</h3>
         
-      </Column>
+      </Column> }
       {/* <Column className='lessonDateIdxItmImgCol'>
         <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
       </Column> */}
-      <Column className='lessonDateIdxItmRCol'>
+      <Column className={source === "search" ? 'lessonDateIdxItmRCol' : 'locShowIdxItmRCol'}>
         {lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation ? <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button> : 
         <button onClick={ () => handleCancel(lessonDate, lesson, location)} className="lessonDateIdxItmCancel">Cancel</button>}  
         
-        {lessonDate.userHasReservation ? <p className="reserved">reserved</p> : <p className={lessonDate.remainingSlots > 0 ? 'remainingSlots' : 'lessonFull'}>{lessonDate.remainingSlots > 0 ? `Available slots: ${lessonDate.remainingSlots}` : "Lesson Full!"}</p>}
+        {lessonDate.userHasReservation ? <p className={source === "search" ? "reserved" : "reservedLocShow"}>reserved</p> : <p className={lessonDate.remainingSlots > 0 ? 'remainingSlots' : 'lessonFull'}>{lessonDate.remainingSlots > 0 ? `Available slots: ${lessonDate.remainingSlots}` : "Lesson Full!"}</p>}
       </Column>
     </Row>
   )
