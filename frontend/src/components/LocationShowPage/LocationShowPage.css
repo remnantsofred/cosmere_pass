@@ -95,6 +95,7 @@
   height: 496px;
   position: sticky;
   top: 64px;
+  margin-left: 24px;
   /* border: 1px solid blue; */
 }
 
@@ -117,4 +118,15 @@
 
 }
 
+#locShowReviewSubtitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 32px;
+}
 
+#LocShowPageReviewButton {
+  width: 92.594px;
+  height: 14px;
+  padding: 9px 8px 8px;
+}

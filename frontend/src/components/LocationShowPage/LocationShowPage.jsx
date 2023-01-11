@@ -2,7 +2,7 @@ import './LocationShowPage.css';
 import Panel from '../panel/Panel';
 import Panels from '../panels';
 import Row from '../row/Row';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocation, fetchLocation } from '../../store/location';
@@ -104,6 +104,9 @@ export const LocationShowPage = () => {
     // setLoaded(true)
   }
 
+  const handleReview = () =>{
+
+  }
 
   if(!loaded){
     return (
@@ -142,7 +145,8 @@ export const LocationShowPage = () => {
               </ul>
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
-              <h3 className="locShowSubtitle">{location.locationName} Reviews</h3>
+              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <NavLink className="lessonDateIdxItmReserve" id="LocShowPageReviewButton"  to={`/locations/${location.id}/review`} >Leave Review</NavLink></h3>
+              
               <ul className='locShowIdxULLessonDates'>
                 {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} />)}
               </ul>
