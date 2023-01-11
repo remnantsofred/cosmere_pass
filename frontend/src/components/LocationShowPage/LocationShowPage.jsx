@@ -35,8 +35,8 @@ export const LocationShowPage = () => {
   const [ modalLocation, setModalLocation ] = useState();
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
-  const [ modal3Status, setModal3Status ] = useState(false);
-  const [ modal2Status, setModal2Status ] = useState(false);
+  // const [ modal3Status, setModal3Status ] = useState(false);
+  // const [ modal2Status, setModal2Status ] = useState(false);
   
 
   useEffect(()=>{
@@ -50,13 +50,13 @@ export const LocationShowPage = () => {
 
 
 
-  useEffect(()=>{
-    // setLoaded(false)
-    // setLoaded(true)
-  }, [modalStatus, modal2Status, modal3Status])
+  // useEffect(()=>{
+  //   // setLoaded(false)
+  //   // setLoaded(true)
+  // }, [modalStatus, modal2Status, modal3Status])
   
   const handleResClick = (lessonDate, lesson, location) => {
-    setModalStatus(true)
+    setModalStatus(1)
     setModalLessonDate(lessonDate)
     setModalLesson(lesson)
     setModalLocation(location)
@@ -64,7 +64,7 @@ export const LocationShowPage = () => {
 
   const handleModalClose = () => {
     setModalStatus(false)
-    setModal3Status(false)
+    // setModal3Status(false)
     setModalLessonDate(null)
     setModalLesson(null)
     setModalLocation(null)
@@ -78,20 +78,20 @@ export const LocationShowPage = () => {
     }
     dispatch(createReservation(data))
     // setLoaded(true)
-    setModalStatus(false)
-    setModal2Status(true)
+    setModalStatus(2)
+    // setModal2Status(true)
   }
 
-  const handleResConfModalClose = () => {
-    setModal2Status(false)
-    setModalLessonDate("")
-    setModalLesson("")
-    setModalLocation("")
-    setModal2Status("")
-  }
+  // const handleResConfModalClose = () => {
+  //   setModal2Status(false)
+  //   setModalLessonDate("")
+  //   setModalLesson("")
+  //   setModalLocation("")
+  //   setModal2Status("")
+  // }
 
   const handleCancel = (lessonDate, lesson, location) => {
-    setModal3Status(true)
+    setModalStatus(3)
     setModalLessonDate(lessonDate)
     setModalLesson(lesson)
     setModalLocation(location)
@@ -99,7 +99,7 @@ export const LocationShowPage = () => {
 
   const handleCancelModalConfirm = (lessonDate) => {
     dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
-    setModal3Status(false)
+    setModalStatus(false)
     // setLoaded(false)
     // setLoaded(true)
   }
@@ -115,9 +115,9 @@ export const LocationShowPage = () => {
   } else {
     return(
       <>
-        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="location"/> }
-        { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose} source="location"/> }
-        { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="location"/> }
+        { modalStatus === 1 && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="location"/> }
+        { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} source="location"/> }
+        { modalStatus === 3 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="location"/> }
       <Panels className="LocShowPage">
 
           <Panel className='LocShowPanelL'>

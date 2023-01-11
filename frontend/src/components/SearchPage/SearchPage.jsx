@@ -87,7 +87,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   }
 
   const handleResClick = (lessonDate, lesson, location) => {
-    setModalStatus(true)
+    setModalStatus(1)
     setModalLessonDate(lessonDate)
     setModalLesson(lesson)
     setModalLocation(location)
@@ -95,7 +95,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
 
   const handleModalClose = () => {
     setModalStatus(false)
-    setModal3Status(false)
+    // setModal3Status(false)
     setModalLessonDate(null)
     setModalLesson(null)
     setModalLocation(null)
@@ -108,21 +108,21 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
       lesson_date_id: lessonDate.id
     }
     dispatch(createReservation(data))
-    setLoaded(true)
-    setModalStatus(false)
-    setModal2Status(true)
+    // setLoaded(true)
+    setModalStatus(2)
+    // setModal2Status(true)
   }
 
-  const handleResConfModalClose = () => {
-    setModal2Status(false)
-    setModalLessonDate("")
-    setModalLesson("")
-    setModalLocation("")
-    setModal2Status("")
-  }
+  // const handleResConfModalClose = () => {
+  //   setModal2Status(false)
+  //   setModalLessonDate("")
+  //   setModalLesson("")
+  //   setModalLocation("")
+  //   setModal2Status("")
+  // }
 
   const handleCancel = (lessonDate, lesson, location) => {
-    setModal3Status(true)
+    setModalStatus(3)
     setModalLessonDate(lessonDate)
     setModalLesson(lesson)
     setModalLocation(location)
@@ -130,7 +130,7 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
 
   const handleCancelModalConfirm = (lessonDate) => {
     dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
-    setModal3Status(false)
+    setModalStatus(false)
     // setLoaded(false)
     // setLoaded(true)
   }
@@ -145,9 +145,9 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
       
       <Panels id={id} className={className}>
         { children }
-        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="search"/> }
-        { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose} source="search" /> }
-        { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="search"/> }
+        { modalStatus === 1 && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="search"/> }
+        { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} source="search" /> }
+        { modalStatus === 3 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="search"/> }
         <Panel className='lessonDatesIdxleftPanel'>
          
             <Row className="IndexToggleBar">
