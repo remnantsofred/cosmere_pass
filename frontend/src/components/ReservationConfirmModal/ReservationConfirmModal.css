@@ -14,7 +14,7 @@
   color: #000;
   z-index: 300;
 }
-
+/* 
 .LocReservationConfirmModal{
   width: 524px;
   height: 664px;
@@ -32,6 +32,24 @@
   z-index: 900;
   background-color: #fff;
   opacity:1
+} */
+
+.LocReservationConfirmModal{
+  width: 524px;
+  height: 664px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  position: relative;
+  background-color: #fff;
+  text-align: center;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  position: fixed;
+  top: 16px;
+  color: #000;
+  z-index: 300;
 }
 
 .resModalBackground {

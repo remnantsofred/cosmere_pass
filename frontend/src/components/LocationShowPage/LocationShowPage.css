@@ -42,6 +42,7 @@
   flex-direction: column;
   justify-content: flex-start;
   padding-bottom: 24px;
+  margin-right: 24px;
   /* align-items: center; */
 }
 

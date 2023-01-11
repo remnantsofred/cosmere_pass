@@ -116,7 +116,7 @@ export const LocationShowPage = () => {
         { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose} source="location"/> }
         { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="location"/> }
       <Panels className="LocShowPage">
-        {/* <Panels className="LocShowPageLargePanel"> */}
+
           <Panel className='LocShowPanelL'>
             <Row className='LocShowPanelLRow'>
               <img src={location.imageURL} alt={location.locationName} className='LocShowImg' />
@@ -163,7 +163,7 @@ export const LocationShowPage = () => {
           </Panel>
 
 
-        {/* </Panels> */}
+
       </Panels>
       </>
     )
