@@ -1,0 +1,206 @@
+.ReviewFormModal{
+  width: 524px;
+  height: 664px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  background-color: #fff;
+  text-align: center;
+  right: auto;
+  position: fixed;
+  transform: translateX(-50%);
+  top: 16px;
+  left: 50%;
+  color: #000;
+  z-index: 300;
+}
+
+
+.LocReservationConfirmModal{
+  width: 524px;
+  height: 664px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  position: relative;
+  background-color: #fff;
+  text-align: center;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  position: fixed;
+  top: 16px;
+  color: #000;
+  z-index: 300;
+}
+
+.resModalBackground {
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+  bottom: 0;
+  background-color: #000;
+  opacity: .7;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0; 
+}
+
+.LocResModalBackground {
+  /* width: 100vw;
+  height: 100vh; */
+  z-index: 200;
+  bottom: 0;
+  background-color: #000;
+  opacity: .7;
+  /* position: absolute; */
+  top: 0;
+  right: 0;
+  
+  position: fixed;
+    width: 100vw;
+    /* height: 100%; */
+    left: 0;
+    top: 0;
+}
+
+.resModalCloseBtn {
+  width: 20px;
+  height: 20px;
+  margin: 14px;
+  z-index: 301;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: inline-block;
+  text-indent: 200%;
+  white-space: nowrap;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-size: 20px auto;
+  background-position: 50%;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.resModalImgDiv {
+  width: 524px;
+  height: 192px;
+  border-radius: 3px;
+
+}
+
+.resModalImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+
+}
+
+.resModalInfoPanel {
+  width: 524px;
+  height: 392px;
+  padding-top: 32px;
+  padding-bottom: 48px;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  
+}
+
+.resModalLessonName {
+  margin-bottom: 16px;
+  width: 524px;
+  height: 24px;
+}
+
+.resModalLessonLoc {
+  width: 524px;
+  height: 24px;
+}
+
+.reviewModalStarRow {
+  width: 524px;
+  height: 64px;
+  font-size: 1.5rem;
+  line-height: 1.3333333333;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.resModalCredits {
+  padding-bottom: 32px;
+  width: 431px;
+  height: 52px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.reviewFormInputRow{
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+
+.resModalButton {
+  width: 268px;
+  height: 48px;
+  padding: 16px, 16px, 14px;
+  border: 1px solid #05f;
+  text-shadow: none;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  transition: color .3s,background-color .3s,border-color .3s;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  border-color: #05f;
+  background-color: #05f;
+  margin-bottom: 16px;
+}
+
+.resModalButton:hover {
+  background-color: #004de6;
+  border-color: #004de6;
+  border-top-color: rgb(0, 77, 230);
+  border-right-color: rgb(0, 77, 230);
+  border-bottom-color: rgb(0, 77, 230);
+  border-left-color: rgb(0, 77, 230);
+}
+
+.resModalCancelRow {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.resModalCancelText {
+  width: 428px;
+}
+
+.reviewModalStarRating {
+  width:  100%;
+  height: 500px;
+  margin-bottom: 16px;
+}
+
+.reviewModalLabel {
+  font-size: 0.75rem;
+}

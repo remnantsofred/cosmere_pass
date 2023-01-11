@@ -1,40 +1,41 @@
 import './LocationShowPage.css';
-import Panel from '../panel/Panel';
-import Panels from '../panels';
+import StarRating from '../StarRating/StarRating';
 import Row from '../row/Row';
-import { useParams, NavLink } from 'react-router-dom';
+import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem';
+import ReviewFormModal from '../ReviewFormModal/ReviewFormModal';
+import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
+import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfirmModal';
+import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
+import Panels from '../panels';
+import Panel from '../panel/Panel';
+import Map from '../map';
+import Loading from '../loading/Loading';
+import LessonDatesIndexItem from '../LessonDatesIndexItem'; 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getLocation, fetchLocation } from '../../store/location';
-import Loading from '../loading/Loading';
-import Map from '../map';
+import { useParams, NavLink } from 'react-router-dom';
 import { StarIcon } from '../icon/Icon';
-import StarRating from '../StarRating/StarRating';
-import LessonDatesIndexItem from '../LessonDatesIndexItem'; 
-import { getLessonDate, getLessonDates, fetchLessonDates, getLessonDatesForLocation } from '../../store/lessonDates';
 import { getReservations, createReservation, fetchReservations, deleteReservation, removeReservation } from '../../store/reservation';
-
-import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfirmModal';
-import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
-import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
+import { getLocation, fetchLocation } from '../../store/location';
 import { getLessons, fetchLessons } from '../../store/lesson';
-import { fetchReviews, getReviews, getReviewsForLocation } from '../../store/review';
-import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem';
+import { getLessonDate, getLessonDates, fetchLessonDates, getLessonDatesForLocation } from '../../store/lessonDates';
+import { fetchReviews, getReviews, getReviewsForLocation, createReview } from '../../store/review';
+
 
 
 export const LocationShowPage = () => {
   const { locationId } = useParams();
   const location = useSelector(getLocation(locationId));
   const reviews = useSelector(getReviewsForLocation(locationId));
-  const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
-  // const [lessonDates, setLessonDates] = useState();
   const lessonDates = useSelector(getLessonDatesForLocation(locationId))
+  const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
+  const [loaded, setLoaded] = useState(false);
   const [ modalStatus, setModalStatus ] = useState(false);
   const [ modalLocation, setModalLocation ] = useState();
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
+  // const [lessonDates, setLessonDates] = useState();
   // const [ modal3Status, setModal3Status ] = useState(false);
   // const [ modal2Status, setModal2Status ] = useState(false);
   
@@ -104,8 +105,17 @@ export const LocationShowPage = () => {
     // setLoaded(true)
   }
 
-  const handleReview = () =>{
-
+  // from modal: 
+  // const reviewData = {
+  //   lesson_id: lessonID,
+  //   reviewer_id: currentUser.id,
+  //   rating: rating,
+  //   body: reviewBody,
+  //   location_id: location.id
+  // }
+  const handleReviewSubmit = (reviewData) =>{
+    dispatch(createReview(reviewData))
+    setModalStatus(false)
   }
 
   if(!loaded){
@@ -118,6 +128,7 @@ export const LocationShowPage = () => {
         { modalStatus === 1 && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="location"/> }
         { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} source="location"/> }
         { modalStatus === 3 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="location"/> }
+        { modalStatus === 4 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location"/> }
       <Panels className="LocShowPage">
 
           <Panel className='LocShowPanelL'>
@@ -145,7 +156,8 @@ export const LocationShowPage = () => {
               </ul>
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
-              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <NavLink className="lessonDateIdxItmReserve" id="LocShowPageReviewButton"  to={`/locations/${location.id}/review`} >Leave Review</NavLink></h3>
+              {/* <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <NavLink className="lessonDateIdxItmReserve" id="LocShowPageReviewButton"  to={`/locations/${location.id}/review`} >Leave Review</NavLink></h3> */}
+              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <button onClick={() => setModalStatus(4)} className='lessonDateIdxItmReserve'>Leave Review</button></h3>
               
               <ul className='locShowIdxULLessonDates'>
                 {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} />)}

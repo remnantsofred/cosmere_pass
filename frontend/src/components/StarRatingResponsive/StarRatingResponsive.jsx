@@ -1,13 +1,12 @@
-import './StarRating.css';
+import './StarRatingResponsive.css';
 import React, { useState } from 'react';
 import { StarIcon } from '../icon/Icon';
 import { AiFillStar } from 'react-icons/ai';
 import { FaStar } from 'react-icons/fa';
 
-export const StarRating = ()=> {
+export const StarRatingResponsive = ()=> {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
-  // need to add logic to get the rating from outside and to show the fill based on rating
 
   return (
     <div className='starRating'>
@@ -20,14 +19,14 @@ export const StarRating = ()=> {
               type="radio" 
               name="rating" 
               value={ratingValue} 
-              // onClick={()=> setRating(ratingValue)} 
+              onClick={()=> setRating(ratingValue)} 
               />
               <AiFillStar 
                 className='star' 
                 color={ratingValue <= (hover || rating) ? "#05f" : "#e7e7e7" } 
-                size={15} 
-                // onMouseEnter={() => setHover(ratingValue)}
-                // onMouseLeave={() => setHover(null)}
+                size={30} 
+                onMouseEnter={() => setHover(ratingValue)}
+                onMouseLeave={() => setHover(null)}
               />
           </label>
         );
@@ -38,4 +37,4 @@ export const StarRating = ()=> {
   )
 }
 
-export default StarRating;
+export default StarRatingResponsive;

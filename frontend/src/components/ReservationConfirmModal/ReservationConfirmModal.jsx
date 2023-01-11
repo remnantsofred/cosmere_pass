@@ -7,9 +7,8 @@ import modalCloseButton from './modalCloseButton.png';
 
 export const ReservationConfirmModal = ({children, id='', className="ReservationConfirmModal", lessonDate, lesson, location, handleModalClose, handleResSubmit, source}) => {
   return (
-    < >
+    <>
       <div className={source === "search" ? 'resModalBackground' : 'LocResModalBackground'}>
-        
       </div>
       <Panels id={id} className={source === "search" ? "ReservationConfirmModal" : "LocReservationConfirmModal"} >
         {/* this was not needed but keeping in case: style={{position: source === "location" ? "absolute" : "", top:source === "location" ? window.scrollY + 24 : ""}} */}
@@ -56,7 +55,6 @@ export const ReservationConfirmModal = ({children, id='', className="Reservation
           </Row>
         </Panel>
       </Panels>
-      {/* </div> */}
     </>
   )
 }
