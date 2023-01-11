@@ -1,13 +1,13 @@
 .LocShowPage {
-  position: relative;
-  left: 50%;
+  /* position: relative; */
+  /* left: 50%;
   top: 0;
-  transform: translateX(-50%);
-  width: 960px;
+  transform: translateX(-50%); */
+  width: 100%;
   padding-bottom: 32px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   
   font-family: norms,sans-serif;
   font-size: 1em;

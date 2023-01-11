@@ -6,13 +6,32 @@
   border-radius: 3px;
   background-color: #fff;
   text-align: center;
-  left: 50%;
   right: auto;
-  transform: translateX(-50%);
   position: fixed;
+  /* transform: translateX(-50%); */
   top: 16px;
+  /* left: 50%; */
   color: #000;
   z-index: 300;
+}
+
+.LocReservationConfirmModal{
+  width: 524px;
+  height: 664px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  background-color: #fff;
+  text-align: center;
+  right: auto;
+  position: sticky;
+  transform: translateX(-50%);
+  top: 16px;
+  left: 50%;
+  color: #000;
+  z-index: 900;
+  background-color: #fff;
+  opacity:1
 }
 
 .resModalBackground {
@@ -26,6 +45,24 @@
   top: 0;
   right: 0;
   left: 0; 
+}
+
+.LocResModalBackground {
+  /* width: 100vw;
+  height: 100vh; */
+  z-index: 200;
+  bottom: 0;
+  background-color: #000;
+  opacity: .7;
+  /* position: absolute; */
+  top: 0;
+  right: 0;
+  
+  position: fixed;
+    width: 100vw;
+    /* height: 100%; */
+    left: 0;
+    top: 0;
 }
 
 .resModalCloseBtn {

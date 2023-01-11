@@ -111,57 +111,61 @@ export const LocationShowPage = () => {
     )
   } else {
     return(
+      <>
+        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="location"/> }
+        { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose} source="location"/> }
+        { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="location"/> }
       <Panels className="LocShowPage">
-        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit}/> }
-        { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose}/> }
-        { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm}/> }
-        <Panel className='LocShowPanelL'>
-          <Row className='LocShowPanelLRow'>
-            <img src={location.imageURL} alt={location.locationName} className='LocShowImg' />
-          </Row>
-          <Row className='locNameRow'>
-            <h1 className='locName'>{location.locationName}</h1>
-            <Row className='LocShowratingRow'>
-              <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4> <StarRating rating={location.averageRating.toFixed(0)}/>
-              <p className='locShowRevCt'>({location.reviewCount})</p>
+        {/* <Panels className="LocShowPageLargePanel"> */}
+          <Panel className='LocShowPanelL'>
+            <Row className='LocShowPanelLRow'>
+              <img src={location.imageURL} alt={location.locationName} className='LocShowImg' />
             </Row>
-          </Row>
-          <Row className='LocShowPanelRRow'>
-            This location offers {location.lessonTypes.join("and ")} lessons.
-          </Row>
-          <Row className='LocShowPanelLRow'>
-            <p>{location.description}</p>
-          </Row>
-          
-          <Row className='LocShowPanelLRow LocSchedule'>
-            <h3 className="locShowSubtitle">Schedule</h3>
-            <ul className='locShowIdxULLessonDates'>
-              {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel} source="locationShow" />)}
+            <Row className='locNameRow'>
+              <h1 className='locName'>{location.locationName}</h1>
+              <Row className='LocShowratingRow'>
+                <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4> <StarRating rating={location.averageRating.toFixed(0)}/>
+                <p className='locShowRevCt'>({location.reviewCount})</p>
+              </Row>
+            </Row>
+            <Row className='LocShowPanelRRow'>
+              This location offers {location.lessonTypes.join("and ")} lessons.
+            </Row>
+            <Row className='LocShowPanelLRow'>
+              <p>{location.description}</p>
+            </Row>
+            
+            <Row className='LocShowPanelLRow LocSchedule'>
+              <h3 className="locShowSubtitle">Schedule</h3>
+              <ul className='locShowIdxULLessonDates'>
+                {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel} source="locationShow" />)}
+              </ul>
+            </Row>
+            <Row className='LocShowPanelLRow LocReviews'>
+              <h3 className="locShowSubtitle">{location.locationName} Reviews</h3>
+              <ul className='locShowIdxULLessonDates'>
+                {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} />)}
+              </ul>
+            </Row>
+          </Panel>
+          <Panel className='LocShowPanelR'>
+            <ul className='LocShowMap'>
+              <Map />
             </ul>
-          </Row>
-          <Row className='LocShowPanelLRow LocReviews'>
-            <h3 className="locShowSubtitle">{location.locationName} Reviews</h3>
-            <ul className='locShowIdxULLessonDates'>
-              {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} />)}
-            </ul>
-          </Row>
-        </Panel>
-        <Panel className='LocShowPanelR'>
-          <ul className='LocShowMap'>
-            <Map />
-          </ul>
-          <Row className='LocShowPanelRRow'>
-          </Row>
-          <Row className='LocShowPanelRRow'>
-          </Row>
-          <Row className='LocShowPanelRRow'>
-          </Row>
-          <Row className='LocShowPanelRRow'>
-          </Row>
-        </Panel>
+            <Row className='LocShowPanelRRow'>
+            </Row>
+            <Row className='LocShowPanelRRow'>
+            </Row>
+            <Row className='LocShowPanelRRow'>
+            </Row>
+            <Row className='LocShowPanelRRow'>
+            </Row>
+          </Panel>
 
 
+        {/* </Panels> */}
       </Panels>
+      </>
     )
   }
 }

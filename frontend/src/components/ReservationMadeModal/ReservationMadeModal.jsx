@@ -9,7 +9,7 @@ import reservationMadeImg from './ReservationMade.jpeg';
 import { CalendarIcon } from '../icon/Icon'
 
 
-export const ReservationMadeModal = ({children, id='', className="ReservationMadeModal", lessonDate, lesson, location, handleResConfModalClose}) => {
+export const ReservationMadeModal = ({children, id='', className="ReservationMadeModal", lessonDate, lesson, location, handleResConfModalClose, source}) => {
   return (
     <>
       <div className='resModalBackground'></div>

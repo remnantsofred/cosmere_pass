@@ -144,9 +144,9 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
     return (
       <Panels id={id} className={className}>
         { children }
-        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit}/> }
-        { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose}/> }
-        { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm}/> }
+        { modalStatus && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="search"/> }
+        { modal2Status && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleResConfModalClose={handleResConfModalClose} source="search" /> }
+        { modal3Status && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="search"/> }
         <Panel className='lessonDatesIdxleftPanel'>
          
             <Row className="IndexToggleBar">
