@@ -79,7 +79,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
           </Row>
           <Row className='reviewModalStarRow'>
             {/* <label className='reviewModalLabel'>Rating: */}
-            <StarRatingResponsive setStarReviewRating={setStarReviewRating} id='reviewModalStarRating' />
+            <StarRatingResponsive setStarReviewRating={setStarReviewRating} id='reviewModalStarRating' assignedRating={review.rating} />
 
             {/* </label> */}
 
