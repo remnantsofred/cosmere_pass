@@ -185,7 +185,7 @@ export const LocationShowPage = () => {
               </h3>
               
               <ul className='locShowIdxULLessonDates'>
-                {reviews?.map((review, idx) => 
+                {reviews?.reverse().map((review, idx) => 
                   <ReviewIndexItem 
                     key={idx} 
                     review={review} 
