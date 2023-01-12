@@ -4,7 +4,7 @@ import { StarIcon } from '../icon/Icon';
 import { AiFillStar } from 'react-icons/ai';
 import { FaStar } from 'react-icons/fa';
 
-export const StarRatingResponsive = ({setStarReviewRating})=> {
+export const StarRatingResponsive = ({className="responsiveStarRating", id="", setStarReviewRating})=> {
   const [rating, setRating] = useState(5);
   const [hover, setHover] = useState(null);
 
@@ -14,7 +14,7 @@ export const StarRatingResponsive = ({setStarReviewRating})=> {
   }
 
   return (
-    <div className='starRating'>
+    <div className={className} id={id}>
       {[ ...Array(5)].map((star, i) => {
         const ratingValue = i + 1;
 

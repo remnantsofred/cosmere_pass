@@ -52,7 +52,7 @@ export const DropdownMenu = ({children, id='', className="DropdownMenu", locatio
   return (
     <div onClick={handleInputClick} className="dropdown-container">
       <div className="dropdown-tools"> 
-        <div className="dropdown-selected-value">{getDisplay()}</div>
+        <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
           <div className="dropdown-tool">
             <Icon />
           </div>

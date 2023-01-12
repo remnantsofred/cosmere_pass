@@ -148,13 +148,24 @@
   justify-content: center;
 }
 
+.reviewModalLessonLoc {
+  width: 524px;
+  /* height: 24px; */
+  height: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .reviewModalStarRow {
   width: 524px;
-  height: 64px;
+  height: 80px;
   font-size: 1.5rem;
   line-height: 1.3333333333;
   margin-top: 12px;
-  margin-bottom: 26px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -174,8 +185,18 @@
   font-weight: 500;
   width: 425px;
   height: 425px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: flex;
+}
+
+.reviewFormInputRowEdit{
+  font-size: 1.25rem;
+  font-weight: 500;
+  width: 425px;
+  height: 425px;
+  margin-bottom: 40px;
+  margin-top: 16px;
+  /* display: flex; */
 }
 
 
@@ -219,12 +240,14 @@
 .resModalCancelText {
   width: 428px;
 }
-
+/* 
 .reviewModalStarRating {
   width:  100%;
   height: 500px;
   margin-bottom: 16px;
-}
+  
+} */
+
 
 .reviewModalLabel {
   font-size: 0.75rem;
@@ -232,7 +255,7 @@
 
 .reviewFormTextBox {
   width: 100%;
-  height: 100%;
+  height: auto;
   border: 1px solid #d6d6d6;
   border-radius: 3px;
   padding: 16px;

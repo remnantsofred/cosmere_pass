@@ -73,13 +73,13 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
             <p>Rate your experience at</p>
             <p>{location.locationName}</p>
           </Row>
-          <Row className='resModalLessonLoc'>
+          <Row className='reviewModalLessonLoc'>
             {/* <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown}/> */}
             {reviewLessonTitle()}
           </Row>
           <Row className='reviewModalStarRow'>
             {/* <label className='reviewModalLabel'>Rating: */}
-            <StarRatingResponsive className='reviewModalStarRating' setStarReviewRating={setStarReviewRating} />
+            <StarRatingResponsive setStarReviewRating={setStarReviewRating} id='reviewModalStarRating' />
 
             {/* </label> */}
 

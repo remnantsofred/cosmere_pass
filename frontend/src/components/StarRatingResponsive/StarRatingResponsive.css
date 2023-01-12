@@ -1,11 +1,13 @@
-.starRating {
+.responsiveStarRating {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 56.3px;
-  height: 15px;
+  width: 160px;
+  height: 26px;
   margin-left: 14px;
   margin-right: 14px;
+  position: relative;
+  top: -10px;
 }
 
 input[type="radio"] {
