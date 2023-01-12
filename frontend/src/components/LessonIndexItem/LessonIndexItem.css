@@ -97,9 +97,8 @@
   --vh: 4.4px;
   font-weight: 500;
   width: 240px;
-  height: 16px;
+  height: auto;
   text-overflow: ellipsis;
-  margin-bottom: 4px;
 }
 
 .lessonIdxItmRating{

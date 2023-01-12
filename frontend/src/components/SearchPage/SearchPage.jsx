@@ -163,7 +163,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
               ? 
             locations?.map((location, idx) => 
               <LocationIndexItem 
-                location={location} 
+                myLocation={location} 
                 lessonIds={location.lessonIds} 
                 key={idx} />) 
               : 
