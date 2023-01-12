@@ -200,13 +200,21 @@ export const LocationShowPage = () => {
             <ul className='LocShowMap'>
               <Map />
             </ul>
+            {/* website */}
             <Row className='LocShowPanelRRow'>
+              {location.locationName.toLowerCase()}.com
             </Row>
+            {/* IG */}
             <Row className='LocShowPanelRRow'>
+              @{location.locationName.toLowerCase()}
             </Row>
+            {/* facebook */}
             <Row className='LocShowPanelRRow'>
+              {location.locationName.toLowerCase()}-{location.world.toLowerCase()}
             </Row>
-            <Row className='LocShowPanelRRow'>
+            {/* twitter */}
+            <Row className='LocShowPanelRRow'> 
+              @{location.locationName.toLowerCase()}
             </Row>
           </Panel>
 
