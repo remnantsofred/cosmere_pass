@@ -5,26 +5,27 @@ import Panel from '../panel/Panel';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-export default function Map(){
+export default function Map({className="map-container"}){
   const defaultProps = {
     center: {
-      lat: 10.99835602,
-      lng: 77.01502627
+      lat: 37.78511512985764,
+      lng: -122.40753194602581
     },
-    zoom: 11
+    zoom: 14
   };
 
   return (
     // Important! Always set the container height explicitly
-    <div style={{ height: '100vh', width: '100%' }}>
+    // <div style={{ height: '100vh', width: '100%' }} >
+    <div className={className} >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >
         <AnyReactComponent
-          lat={37.78511512985764}
-          lng={-122.40753194602581}
+          lat={59.955413}
+          lng={30.337844}
           text="My Marker"
         />
       </GoogleMapReact>

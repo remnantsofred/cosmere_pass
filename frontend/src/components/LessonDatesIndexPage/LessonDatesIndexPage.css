@@ -26,8 +26,10 @@
   flex-direction: column;
   min-width: 350px;
   /* max-width: 799px; */
-  max-width: auto;
-  height: 601px;
+  /* max-width: auto; */
+  width: 575px;
+  height: 100vh;
+  overflow: hidden;
 }
 
 
