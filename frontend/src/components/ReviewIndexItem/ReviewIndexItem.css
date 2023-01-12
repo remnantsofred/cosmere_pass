@@ -14,7 +14,7 @@
 } */
 
 .reviewTitleRow {
-  width: 624px;
+  width: 595px;
   height: 24px;
   margin-bottom: 4px;
   /* padding-top: 24px;
@@ -22,7 +22,11 @@
   font-weight: 500;
   line-height: 1.5;
   font-size: 1rem;
-  display: inline-block
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 24px;
 }
 
 .reviewStarsRow {
@@ -60,4 +64,27 @@
   font-size: 1rem;
  
   
+}
+
+.editDeleteReview {
+
+}
+
+.reviewEditIcon, .reviewDeleteIcon {
+  padding-left: 4px;
+  padding-right: 4px;
+  color: #555;
+}
+
+.reviewEditIcon:hover, .reviewDeleteIcon:hover {
+  /* background-color: #d6d6d6; */
+  fill: #e7e7e7;;
+  color: #05f;
+  transition: color .3s,background-color .3s,border-color .3s;
+}
+
+.reviewEditIcon:focus, .reviewDeleteIcon:focus {
+  border-color: #05f;
+  border-width: 4px;
+  transition: background-color .3s,color .3s,border-color .3s;
 }

@@ -19,7 +19,7 @@ import { getReservations, createReservation, fetchReservations, deleteReservatio
 import { getLocation, fetchLocation } from '../../store/location';
 import { getLessons, fetchLessons, getLessonsForLocation } from '../../store/lesson';
 import { getLessonDate, getLessonDates, fetchLessonDates, getLessonDatesForLocation } from '../../store/lessonDates';
-import { fetchReviews, getReviews, getReviewsForLocation, createReview } from '../../store/review';
+import { fetchReviews, getReviews, getReviewsForLocation, createReview, deleteReview, updateReview } from '../../store/review';
 
 
 
@@ -61,7 +61,6 @@ export const LocationShowPage = () => {
     setModalLocation(null)
   }
 
-
   const handleResSubmit = (lessonDate) => {
     const data = {
       student_id: currentUser.id,
@@ -81,7 +80,6 @@ export const LocationShowPage = () => {
   const handleCancelModalConfirm = (lessonDate) => {
     dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
     setModalStatus(false)
-
   }
 
   // from modal: 
@@ -97,6 +95,10 @@ export const LocationShowPage = () => {
     setModalStatus(false)
   }
 
+  const handleDeleteReview = (reviewId) => {
+    dispatch(deleteReview(reviewId))
+  }
+
   if(!loaded){
     return (
       <Loading />
@@ -108,6 +110,7 @@ export const LocationShowPage = () => {
         { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} source="location"/> }
         { modalStatus === 3 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="location"/> }
         { modalStatus === 4 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location" lessons={lessons} /> }
+        { modalStatus === 5 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location" lessons={lessons} className="ReviewEditModal"/> }
       <Panels className="LocShowPage">
 
           <Panel className='LocShowPanelL'>
@@ -139,7 +142,7 @@ export const LocationShowPage = () => {
               <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <button onClick={() => setModalStatus(4)} className='lessonDateIdxItmReserve'>Leave Review</button></h3>
               
               <ul className='locShowIdxULLessonDates'>
-                {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} />)}
+                {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} currentUser={currentUser} setModalStatus={setModalStatus} handleDeleteReview={handleDeleteReview}/>)}
               </ul>
             </Row>
           </Panel>

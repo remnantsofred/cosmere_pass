@@ -35,7 +35,10 @@ class Api::ReviewsController < ApplicationController
   end
 
   def destroy
+    @review = Review.find(params[:id])
+    p @review
     @review.destroy
+    head :no_content
   end 
 
   private
