@@ -116,9 +116,9 @@ const LoginFormPage = () => {
       </Panel>
       <Panel className="loginrightBlurb">
         <img src={cosmere} id="cosmere" />
-        <h3 className='loginH3'>New to ClassPass?</h3>
+        <h3 className='loginH3'>New to CosmerePass?</h3>
         <p className='loginP'>
-          Become a member for Cosmere-wide access to hundreds of top-rated institutions.
+          Become a member for Cosmere-wide access to the greatest investiture masters.
         </p> 
         <NavLink className="NavLink" id="getStarted" to="/signup">Get started for free</NavLink>          
       </Panel>
