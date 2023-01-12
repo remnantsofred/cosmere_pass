@@ -132,7 +132,7 @@ export const LocationShowPage = () => {
             <Row className='locNameRow'>
               <h1 className='locName'>{location.locationName}</h1>
               <Row className='LocShowratingRow'>
-                <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4> <StarRating rating={location.averageRating.toFixed(0)}/>
+                <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4> <StarRating assignedRating={location.averageRating.toFixed(0)}/>
                 <div className='locShowRevCt'>({location.reviewCount})</div>
               </Row>
             </Row>

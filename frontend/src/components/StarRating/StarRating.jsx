@@ -4,18 +4,18 @@ import { StarIcon } from '../icon/Icon';
 import { AiFillStar } from 'react-icons/ai';
 import { FaStar } from 'react-icons/fa';
 
-export const StarRating = ()=> {
-  const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null);
+export const StarRating = ({assignedRating, className="starRating", id=""})=> {
+  // const [rating, setRating] = useState(null);
+  // const [hover, setHover] = useState(null);
   // need to add logic to get the rating from outside and to show the fill based on rating
 
   return (
-    <div className='starRating'>
+    <div className={className} id={id} >
       {[ ...Array(5)].map((star, i) => {
         const ratingValue = i + 1;
 
         return (
-          <label className='starRatingLabel' key={`starRating${i}`}>
+          <label className='starRatingLabel' key={`starRating${i}` }>
             <input 
               type="radio" 
               name="rating" 
@@ -24,7 +24,7 @@ export const StarRating = ()=> {
               />
               <AiFillStar 
                 className='star' 
-                color={ratingValue <= (hover || rating) ? "#05f" : "#e7e7e7" } 
+                color={ratingValue <= assignedRating ? "#05f" : "#e7e7e7" } 
                 size={15} 
                 // onMouseEnter={() => setHover(ratingValue)}
                 // onMouseLeave={() => setHover(null)}
