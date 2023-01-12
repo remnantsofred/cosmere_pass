@@ -34,7 +34,6 @@ const ProfileButton = withRouter(({ user, history }) => {
     history.push('/')
   };
 
-  console.log(history)
   return (
     <>
       <button onClick={openMenu} className="profileButton">

@@ -47,6 +47,25 @@ export const LocationShowPage = () => {
     ]).then(() =>  setLoaded(true))
   },[locationId])
 
+  useEffect(()=>{
+    let sortedReviews = sortReviews(reviews)
+    console.log(sortedReviews)
+  }, [reviews])
+
+  const sortReviews = (reviews)=>{
+    let sortedReviews = reviews.sort((review1, review2) => {
+      if (review1.updated_at < review2.updated_at) {
+        return 1
+      } else if (review1.updated_at > review2.updated_at) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+    return sortedReviews;
+  }
+
+
 
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)

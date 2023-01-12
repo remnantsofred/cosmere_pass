@@ -40,8 +40,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
   const currentUser = useSelector(state => state.session.user);
-  // const params = useParams();
-  console.log(history)
+
   
   useEffect(() => {
     const paramsMap = getParams(history.location.search)
