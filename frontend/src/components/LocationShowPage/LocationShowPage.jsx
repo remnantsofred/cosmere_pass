@@ -146,14 +146,34 @@ export const LocationShowPage = () => {
             <Row className='LocShowPanelLRow LocSchedule'>
               <h3 className="locShowSubtitle">Schedule</h3>
               <ul className='locShowIdxULLessonDates'>
-                {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel} source="locationShow" />)}
+                {lessonDates?.map((lessonDate, idx) => 
+                  <LessonDatesIndexItem 
+                    key={idx} 
+                    lessonDate={lessonDate} 
+                    location={location} 
+                    handleResClick={handleResClick} 
+                    handleCancel={handleCancel} 
+                    source="locationShow" />)}
               </ul>
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
-              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews { currentUser && <button onClick={() => setModalStatus(4)} className='lessonDateIdxItmReserve'>Leave Review</button>}</h3>
+              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews 
+              { currentUser && 
+                <button 
+                  onClick={() => setModalStatus(4)} 
+                  className='lessonDateIdxItmReserve'>Leave Review
+                </button>}
+              </h3>
               
               <ul className='locShowIdxULLessonDates'>
-                {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} currentUser={currentUser} setModalStatus={setModalStatus} handleDeleteReview={handleDeleteReview} handleEditReviewClick={handleEditReviewClick}/>)}
+                {reviews?.map((review, idx) => 
+                  <ReviewIndexItem 
+                    key={idx} 
+                    review={review} 
+                    currentUser={currentUser} 
+                    setModalStatus={setModalStatus} 
+                    handleDeleteReview={handleDeleteReview} 
+                    handleEditReviewClick={handleEditReviewClick}/>)}
               </ul>
             </Row>
           </Panel>

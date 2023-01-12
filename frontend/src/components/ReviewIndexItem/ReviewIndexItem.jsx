@@ -4,6 +4,7 @@ import Rows from '../rows/Rows';
 import { FiEdit, FiTrash } from 'react-icons/fi'
 import { getCurrentUser } from '../../store/session';
 import { NavLink } from 'react-router-dom';
+import StarRating from '../StarRating/StarRating';
 
 
 export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, currentUser, setModalStatus, handleDeleteReview, handleEditReviewClick}) => {
@@ -21,7 +22,8 @@ export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, cur
 
       </Row>
       <Row className='reviewStarsRow'>
-        <div className='reviewRatingNum'> { review.rating } stars </div><span className='reviewTimeAgo'> time ago</span>
+        <div className='reviewRatingNum'> <StarRating assignedRating={review.rating} givenFillColor="#676767" unfillColor="#e7e7e7" /> </div>
+        <span className='reviewTimeAgo'> time ago</span>
       </Row>
       <Row className='reviewBodyRow'>
         <p className='reviewBody'>{ review.body }</p>
