@@ -34,7 +34,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const reviewLessonTitle = () => {
     if (!review) {
       return (
-        <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown}/>
+        <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown} source="reviewForm" />
       )
     }
     else {
