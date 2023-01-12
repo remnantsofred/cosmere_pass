@@ -40,10 +40,6 @@ function App() {
             <SearchNav />
             <SearchPage />
           </Route>
-          <Route exact path="/locations/:locationId/review">
-            <Navigation />
-            <ReviewForm />
-          </Route>
           <Route path="/locations/:locationId">
             <Navigation />
             <LocationShowPage />
@@ -54,9 +50,9 @@ function App() {
             <SearchNav />
             <LocationsIndexPage />
           </Route> */}
-          <Route path="/lessons/:lessonId">
+          {/* <Route path="/lessons/:lessonId">
             <Navigation />
-          </Route>
+          </Route> */}
           <Route exact path="/lessons">
             <Navigation />
             <SearchNav />

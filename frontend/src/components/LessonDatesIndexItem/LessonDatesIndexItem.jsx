@@ -15,7 +15,6 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
   const dispatch = useDispatch();
   const lesson = useSelector(getLesson(lessonDate.lessonId));
   const currentUser = useSelector(state => state.session.user);
-  console.log(currentUser)
   
   const renderLoggedIn = (lessonDate, location, handleResClick, handleCancel, source, currentUser) => {
     if (lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation) {
@@ -39,17 +38,18 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       return (
         <>
           <button onClick={ () => handleResClick(lessonDate, lesson, location)} className='lessonDateIdxItmReserveFull'>Reserve</button> 
-         <p className='lessonFull'>"Lesson Full!"</p>
         </>
       )
     }
   }
-
-  // const renderLoggedOut = () => {
-  //   return (
-
-  //   )
-  // }
+  
+  const renderLoggedOut = () => {
+    return (
+      <>
+        <NavLink to='/signup' className='lessonDateIdxItmReserve loggedOutSignUp'>Sign up</NavLink> 
+      </>
+    )
+  }
 
   return (
     <Row className={source === "search" ? "lessonDateIdxItmRow" : "locShowLessonDateIdxItmRow"}>
@@ -74,7 +74,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
         <img src={lesson.photoURL} alt="" className='lessonIdxImg'/>
       </Column> */}
       <Column className={source === "search" ? 'lessonDateIdxItmRCol' : 'locShowIdxItmRCol'}>
-        {currentUser && renderLoggedIn(lessonDate, location, handleResClick, handleCancel, source, currentUser)}
+        {currentUser ? renderLoggedIn(lessonDate, location, handleResClick, handleCancel, source, currentUser) : renderLoggedOut()}
       </Column>
 
       {/* old column - works */}

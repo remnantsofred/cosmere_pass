@@ -47,7 +47,6 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
       dispatch(fetchLessons()),
       dispatch(fetchLessonDates()),
     ]).then(()=> {
-      console.log('locations', locations)
       setLoaded(true)
     })
   }, [])

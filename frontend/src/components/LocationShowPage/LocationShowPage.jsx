@@ -150,8 +150,7 @@ export const LocationShowPage = () => {
               </ul>
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
-              {/* <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <NavLink className="lessonDateIdxItmReserve" id="LocShowPageReviewButton"  to={`/locations/${location.id}/review`} >Leave Review</NavLink></h3> */}
-              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <button onClick={() => setModalStatus(4)} className='lessonDateIdxItmReserve'>Leave Review</button></h3>
+              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews { currentUser && <button onClick={() => setModalStatus(4)} className='lessonDateIdxItmReserve'>Leave Review</button>}</h3>
               
               <ul className='locShowIdxULLessonDates'>
                 {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} currentUser={currentUser} setModalStatus={setModalStatus} handleDeleteReview={handleDeleteReview} handleEditReviewClick={handleEditReviewClick}/>)}
