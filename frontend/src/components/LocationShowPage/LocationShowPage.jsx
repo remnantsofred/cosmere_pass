@@ -20,7 +20,10 @@ import { getLocation, fetchLocation } from '../../store/location';
 import { getLessons, fetchLessons, getLessonsForLocation } from '../../store/lesson';
 import { getLessonDate, getLessonDates, fetchLessonDates, getLessonDatesForLocation } from '../../store/lessonDates';
 import { fetchReviews, getReviews, getReviewsForLocation, createReview, deleteReview, updateReview } from '../../store/review';
-
+import { CgBrowser } from 'react-icons/cg';
+import { AiFillFacebook } from 'react-icons/ai';
+import { ImTwitter } from 'react-icons/im';
+import { BsInstagram } from 'react-icons/bs'
 
 
 export const LocationShowPage = () => {
@@ -155,7 +158,7 @@ export const LocationShowPage = () => {
                 <div className='locShowRevCt'>({location.reviewCount})</div>
               </Row>
             </Row>
-            <Row className='LocShowPanelRRow'>
+            <Row className='LocShowPanelLRow' id='noTopBorder'>
               This location offers {location.lessonTypes.join("and ")} lessons.
             </Row>
             <Row className='LocShowPanelLRow'>
@@ -201,19 +204,31 @@ export const LocationShowPage = () => {
               <Map />
             </ul>
             {/* website */}
-            <Row className='LocShowPanelRRow'>
+            <Row className='LocShowPanelRRow LocShowFirstRowR'>
+              <div className="LocShowRInfoIconDiv">
+                < CgBrowser className='LocShowRInfoIcon'/>
+              </div>
               {location.locationName.toLowerCase()}.com
             </Row>
             {/* IG */}
             <Row className='LocShowPanelRRow'>
+              <div className="LocShowRInfoIconDiv">
+                < BsInstagram className='LocShowRInfoIcon'/>
+              </div>
               @{location.locationName.toLowerCase()}
             </Row>
             {/* facebook */}
             <Row className='LocShowPanelRRow'>
+              <div className="LocShowRInfoIconDiv">
+                < AiFillFacebook className='LocShowRInfoIcon'/>
+              </div>
               {location.locationName.toLowerCase()}-{location.world.toLowerCase()}
             </Row>
             {/* twitter */}
             <Row className='LocShowPanelRRow'> 
+              <div className="LocShowRInfoIconDiv">
+                < ImTwitter className='LocShowRInfoIcon'/> 
+              </div>
               @{location.locationName.toLowerCase()}
             </Row>
           </Panel>
