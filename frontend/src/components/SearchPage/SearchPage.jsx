@@ -2,7 +2,7 @@ import './SearchPage.css';
 import React, { useState, useEffect } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, NavLink, useParams, withRouter } from 'react-router-dom';
 import Panels from '../panels';
 import Panel from '../panel/Panel';
 import Columns from '../columns/Columns';
@@ -24,7 +24,8 @@ import { FaLessThanEqual } from 'react-icons/fa';
 import { getCurrentUser } from '../../store/session';
 import { SiTruenas } from 'react-icons/si';
 
-export const SearchPage = ({children, id='', className="SearchPage"}) => {
+
+export const SearchPage = withRouter(({children, id='', className="SearchPage", history}) => {
   const lessonDates = useSelector(getLessonDates);
   const locations = useSelector(getLocations);
   // const reservations = useSelector(getReservations);
@@ -39,35 +40,35 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
   const currentUser = useSelector(state => state.session.user);
-  
+  // const params = useParams();
+  console.log(history)
   
   useEffect(() => {
+    const paramsMap = getParams(history.location.search)
     Promise.all([
       dispatch(fetchLocations()),
       dispatch(fetchLessons()),
-      dispatch(fetchLessonDates()),
+      dispatch(fetchLessonDates(paramsMap.location_id)),
     ]).then(()=> {
       setLoaded(true)
     })
   }, [])
   
-  // useEffect(()=>{
-  //   dispatch(fetchLocations());
-  //   dispatch(fetchLessons());
-  //   dispatch(fetchLessonDates());
-  //   setIndexType('lessons')
-  // }, [])
+  useEffect(() => {
+    const paramsMap = getParams(history.location.search)
+    dispatch(fetchLessonDates(paramsMap.location_id))
+  },[history.location.search])
 
-  // useEffect(() => {
-  //   if (locations && lessons && lessonDates && locations.length && lessons.length && lessonDates.length) {
-  //     setLoaded(true)
-  //   }
-  // },[dispatch, locations, lessons, lessonDates])
-
-  // useEffect(()=>{
-  //   setLoaded(false)
-  //   setLoaded(true)
-  // }, [modalStatus, modal2Status, modal3Status])
+  const getParams = (params) => {
+    const paramsString = params.slice(1)
+    const paramsArray = paramsString.split('&')
+    const paramsMap = {};
+    for (const param of paramsArray){
+      const [key, value] = param.split('=')
+      paramsMap[key] = value
+    }
+    return paramsMap;
+  }
 
   const getLocationForLesson = (locationId, locations) => {
     for (const location of locations) {
@@ -107,18 +108,9 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
       lesson_date_id: lessonDate.id
     }
     dispatch(createReservation(data))
-    // setLoaded(true)
     setModalStatus(2)
-    // setModal2Status(true)
   }
 
-  // const handleResConfModalClose = () => {
-  //   setModal2Status(false)
-  //   setModalLessonDate("")
-  //   setModalLesson("")
-  //   setModalLocation("")
-  //   setModal2Status("")
-  // }
 
   const handleCancel = (lessonDate, lesson, location) => {
     setModalStatus(3)
@@ -130,9 +122,8 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
   const handleCancelModalConfirm = (lessonDate) => {
     dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
     setModalStatus(false)
-    // setLoaded(false)
-    // setLoaded(true)
   }
+
 
 
   if (!loaded) {
@@ -140,6 +131,13 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
       <Loading />
     )
   } else {
+    const filteredLessonDates = lessonDates.filter((lessonDate)=>{
+      const paramsMap = getParams(history.location.search)
+      if (paramsMap.location_id){
+        return lessonDate.locationId === parseInt(paramsMap.location_id)
+      }
+      return true;
+    })
     return (
       
       <Panels id={id} className={className}>
@@ -161,10 +159,34 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
           <ul className='lessonDatesIdxUL'>
             {/* {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
             locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)} */}
-            {indexType === 'locations' ? locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />) : currentUser ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem 
-            handleResClick={handleResClick} lessonDate={lessonDate} lesson={getSpecificLesson(lessonDate.lessonId, lessons)} location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} currrentUser={currentUser} key={idx} 
-            handleCancel={handleCancel} source="search" modalStatus={modalStatus} modal3Status={modal3Status} />) : 
-            lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getLocationForLesson(lesson.locationId, locations)}/>) }
+            {indexType === 'locations' 
+              ? 
+            locations?.map((location, idx) => 
+              <LocationIndexItem 
+                location={location} 
+                lessonIds={location.lessonIds} 
+                key={idx} />) 
+              : 
+            currentUser 
+              ? 
+            filteredLessonDates?.map((lessonDate, idx) => 
+              <LessonDatesIndexItem 
+                handleResClick={handleResClick} 
+                lessonDate={lessonDate} 
+                lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
+                location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
+                currrentUser={currentUser} 
+                key={idx} 
+                handleCancel={handleCancel} 
+                source="search" 
+                modalStatus={modalStatus} 
+                modal3Status={modal3Status} />) 
+              : 
+            lessons?.map((lesson, idx) => 
+              <LessonIndexItem 
+                lesson={lesson} 
+                key={idx} 
+                location={getLocationForLesson(lesson.locationId, locations)}/>) }
           </ul>
         </Panel>
         <Panel className='lessonDatesIdxrightPanel'>
@@ -173,6 +195,6 @@ export const SearchPage = ({children, id='', className="SearchPage"}) => {
       </Panels> 
     )
   }
-}
+})
 
 export default SearchPage;
