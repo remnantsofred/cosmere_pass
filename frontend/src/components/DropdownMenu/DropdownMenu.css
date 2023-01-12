@@ -49,8 +49,8 @@
   max-height: 150px;
   background-color: #fff;
   width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
     /* clip-path: inset(0 -24px -24px -24px); */
     /* position: static; */
     /* transform: translate(0); */

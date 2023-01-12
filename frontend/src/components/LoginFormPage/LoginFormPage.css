@@ -38,7 +38,7 @@
 
 
 .loginlargePanel {
-  background: #f7f7f7;
+  /* background: #f7f7f7;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -48,7 +48,19 @@
   margin-left: 112.5;
   margin-right: 112.5;
   width: 100vw;
-  height: 816px;
+  height: 816px; */
+  background: #f7f7f7;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-left: 112.5;
+    margin-right: 112.5;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
 }
 
 .loginForm {
@@ -60,6 +72,8 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  position: relative;
+  top: 45px;
 }
 
 .loginNarrow {

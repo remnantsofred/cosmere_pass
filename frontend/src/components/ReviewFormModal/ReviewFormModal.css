@@ -265,11 +265,13 @@
   font-family: 'TT Norms Pro', sans-serif;
 }
 
+
+
+/* v1 - rounded same height as create modal 
 .editReviewLessonTitle{
   text-align: center;
   border: 1px solid #ccc;
   position: relative;
-  border-radius: 5px;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -289,4 +291,52 @@
   -webkit-tap-highlight-color: transparent;
   margin: 16px;
 
+} */
+
+ /* v2 - banner but same height 
+.editReviewLessonTitle{
+  width: 100%;
+  text-align: center;
+  margin: 16px;
+  justify-content: center;
+  height: 32px;
+  font-weight: 500;
+  font-size: 14px;
+  font-size: .875rem;
+  flex-direction: column;
+  display: flex;
+  color: #000;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  background-color: #fff;
+  align-items: space-between;
+  -webkit-tap-highlight-color: transparent;
+} */
+
+/* v3 - banner but wider 
+.editReviewLessonTitle{
+  width: 100%;
+  text-align: center;
+  margin: 16px;
+  justify-content: center;
+  height: 32px;
+  font-weight: 500;
+  font-size: 14px;
+  font-size: .875rem;
+  flex-direction: column;
+  display: flex;
+  color: #000;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  background-color: #fff;
+  align-items: space-between;
+  -webkit-tap-highlight-color: transparent;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  justify-content: center;
+  height: 40px
+} */
+
+/* v4 - no banner */
+.editReviewLessonTitle{
+  margin-top: 16px;
+  height: 36px;
 }
