@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 // lessons being passed in are already lessons just for that location
-export const ReviewFormModal = ({children, id='', className="ReviewFormModal", currentUser, location, handleModalClose, handleReviewSubmit, source, lessons}) => {
+export const ReviewFormModal = ({children, id='', className="ReviewFormModal", currentUser, location, handleModalClose, handleReviewSubmit, source, lessons, handleReviewEditSubmit, review}) => {
   const [lessonID, setLessonID] = useState("");
   const [rating, setRating] = useState(5);
   const [reviewBody, setReviewBody] = useState("");
@@ -31,6 +31,32 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
 
   const dropdownOptions = lessons.map( lesson => ({value: lesson.id, label: lesson.title}))
     
+  const reviewLessonTitle = () => {
+    if (!review) {
+      return (
+        <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown}/>
+      )
+    }
+    else {
+      return (
+        <div className='editReviewLessonTitle'>{review.lessonTitle}</div>
+      )
+    }
+  }
+
+  const editReviewBodyTextArea = () => {
+    if (!review) {
+      return (
+        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea>
+      )
+    }
+    else {
+      return (
+        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder={review.body} ></textarea>
+      )
+    }
+  }
+  
   
 
   return (
@@ -48,7 +74,8 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
             <p>{location.locationName}</p>
           </Row>
           <Row className='resModalLessonLoc'>
-            <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown}/>
+            {/* <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown}/> */}
+            {reviewLessonTitle()}
           </Row>
           <Row className='reviewModalStarRow'>
             {/* <label className='reviewModalLabel'>Rating: */}
@@ -58,10 +85,11 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
 
           </Row>
           <Row className='reviewFormInputRow'>
-            <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea>
+            {/* <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea> */}
+            {editReviewBodyTextArea()}
           </Row>
           <Row>
-            <button className='resModalButton' onClick={() => {
+            {className === "ReviewFormModal" ? <button className='resModalButton' onClick={() => {
                 const reviewData = {
                   lesson_id: lessonID,
                  
@@ -73,7 +101,20 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
                 handleReviewSubmit(reviewData)
               }}>
               Submit
-            </button>
+            </button> :
+            <button className='resModalButton' onClick={() => {
+              const reviewData = {
+                lesson_id: review.lessonId,
+                review_id: review.id,
+                reviewer_id: currentUser.id,
+                rating,
+                body: reviewBody,
+                location_id: location.id
+              }
+              handleReviewEditSubmit(reviewData)
+            }}>
+            Update Review
+          </button>}
           </Row>
           
         </Panel>

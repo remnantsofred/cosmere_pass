@@ -15,6 +15,23 @@
   z-index: 300;
 }
 
+.ReviewEditModal{
+  width: 524px;
+  height: 664px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  background-color: #fff;
+  text-align: center;
+  right: auto;
+  position: fixed;
+  transform: translateX(-50%);
+  top: 16px;
+  left: 50%;
+  color: #000;
+  z-index: 300;
+}
+
 
 .LocReservationConfirmModal{
   width: 524px;
@@ -223,4 +240,33 @@
   line-height: 1.5;
   resize: none;
   font-family: 'TT Norms Pro', sans-serif;
+}
+
+.editReviewLessonTitle{
+  text-align: left;
+  border: 1px solid #ccc;
+  position: relative;
+  border-radius: 5px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* display: inline-flex; */
+    justify-content: space-between;
+    align-items: space-between;
+    width: 400px;
+    height: 32px;
+    padding: 0 16px;
+    font-size: 14px;
+    font-size: .875rem;
+    white-space: nowrap;
+    font-weight: 500;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #d6d6d6;
+    border-radius: 16px;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  margin: 16px;
+
 }

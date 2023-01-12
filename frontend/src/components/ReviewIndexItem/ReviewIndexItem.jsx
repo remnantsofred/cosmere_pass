@@ -6,15 +6,16 @@ import { getCurrentUser } from '../../store/session';
 import { NavLink } from 'react-router-dom';
 
 
-export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, currentUser, setModalStatus, handleDeleteReview}) => {
+export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, currentUser, setModalStatus, handleDeleteReview, handleEditReviewClick}) => {
   
+
 
   return (
     <Rows id={id} className={className} >
       <Row className='reviewTitleRow'>
         { review.lessonTitle } 
         <div className='editDeleteReview'>
-          {(currentUser && review.reviewerId === currentUser.id) && <FiEdit onClick={() => setModalStatus(5)} className='reviewEditIcon'/>}
+          {(currentUser && review.reviewerId === currentUser.id) && <FiEdit onClick={() => handleEditReviewClick(review)} className='reviewEditIcon'/>}
           {(currentUser && review.reviewerId === currentUser.id) && <FiTrash onClick={()=>handleDeleteReview(review.id)} className='reviewDeleteIcon'/>  }
         </div>
 

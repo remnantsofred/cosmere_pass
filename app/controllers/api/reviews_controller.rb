@@ -27,6 +27,8 @@ class Api::ReviewsController < ApplicationController
   end
 
   def update
+    @review = Review.find(params[:id])
+    @review = set_review_details(@review)
     if @review.update(review_params)
       render :show
     else
@@ -36,7 +38,6 @@ class Api::ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
-    p @review
     @review.destroy
     head :no_content
   end 

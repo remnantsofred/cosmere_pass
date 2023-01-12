@@ -36,6 +36,7 @@ export const LocationShowPage = () => {
   const [ modalLocation, setModalLocation ] = useState();
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
+  const [ modalReview, setModalReview ] = useState();
 
   useEffect(()=>{
     Promise.all([
@@ -95,8 +96,19 @@ export const LocationShowPage = () => {
     setModalStatus(false)
   }
 
+  const handleReviewEditSubmit = (reviewData) =>{
+    dispatch(updateReview(reviewData))
+    setModalStatus(false)
+  }
+
   const handleDeleteReview = (reviewId) => {
     dispatch(deleteReview(reviewId))
+  }
+
+  const handleEditReviewClick = (review) => {
+    setModalStatus(5)
+    setModalLocation(location)
+    setModalReview(review)
   }
 
   if(!loaded){
@@ -110,7 +122,7 @@ export const LocationShowPage = () => {
         { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} source="location"/> }
         { modalStatus === 3 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="location"/> }
         { modalStatus === 4 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location" lessons={lessons} /> }
-        { modalStatus === 5 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location" lessons={lessons} className="ReviewEditModal"/> }
+        { modalStatus === 5 && <ReviewFormModal currentUser={currentUser} location={location} review={modalReview} handleModalClose={handleModalClose} handleReviewEditSubmit={handleReviewEditSubmit} source="location" lessons={lessons} className="ReviewEditModal"/> }
       <Panels className="LocShowPage">
 
           <Panel className='LocShowPanelL'>
@@ -142,7 +154,7 @@ export const LocationShowPage = () => {
               <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <button onClick={() => setModalStatus(4)} className='lessonDateIdxItmReserve'>Leave Review</button></h3>
               
               <ul className='locShowIdxULLessonDates'>
-                {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} currentUser={currentUser} setModalStatus={setModalStatus} handleDeleteReview={handleDeleteReview}/>)}
+                {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} currentUser={currentUser} setModalStatus={setModalStatus} handleDeleteReview={handleDeleteReview} handleEditReviewClick={handleEditReviewClick}/>)}
               </ul>
             </Row>
           </Panel>
