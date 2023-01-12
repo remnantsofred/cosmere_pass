@@ -164,8 +164,10 @@
   height: 80px;
   font-size: 1.5rem;
   line-height: 1.3333333333;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  /* margin-top: 12px;
+  margin-bottom: 12px; */
+  margin-top: 28px;
+  margin-bottom: -3px;
   display: flex;
   flex-direction: row;
   align-items: center;

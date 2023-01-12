@@ -3,27 +3,23 @@
 }
 
 .dropdown-container {
+  width: 420px;
+  white-space: nowrap;
   text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-    /* justify-content: space-between; */
-    /* align-items: space-between; */
-  width: 400px;
+  margin: 16px;
   height: 32px;
+  font-weight: 500;
   font-size: 14px;
   font-size: .875rem;
-  white-space: nowrap;
-  font-weight: 500;
-  background-color: #fff;
+  flex-direction: column;
+  display: flex;
+  cursor: pointer;
   color: #000;
   border: 1px solid #d6d6d6;
+  border-radius: 5px;
   border-radius: 16px;
+  background-color: #fff;
   -webkit-tap-highlight-color: transparent;
-  cursor: pointer;
-  margin: 16px;
 }
 
 .reviewFormDropCont {

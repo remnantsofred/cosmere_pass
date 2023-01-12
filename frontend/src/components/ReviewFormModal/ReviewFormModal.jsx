@@ -73,15 +73,15 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
             <p>Rate your experience at</p>
             <p>{location.locationName}</p>
           </Row>
-          <Row className='reviewModalLessonLoc'>
-            {/* <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown}/> */}
-            {reviewLessonTitle()}
-          </Row>
           <Row className='reviewModalStarRow'>
             {/* <label className='reviewModalLabel'>Rating: */}
             <StarRatingResponsive setStarReviewRating={setStarReviewRating} id='reviewModalStarRating' assignedRating={review ? review.rating : 5} />
             {/* </label> */}
 
+          </Row>
+          <Row className='reviewModalLessonLoc'>
+            {/* <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown}/> */}
+            {reviewLessonTitle()}
           </Row>
           <Row className='reviewFormInputRow'>
             {/* <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea> */}
