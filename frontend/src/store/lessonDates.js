@@ -29,7 +29,7 @@ export const getLessonDatesForLocation = (locationId) => (store) => {
   if (store.lessonDates) {
     const lessonDates = Object.values(store.lessonDates).filter(lessonDate => {
       if (lessonDate === undefined || lessonDate.locationId === undefined) {
-        console.log('lessonDate', lessonDate)
+       
       }
       return lessonDate.locationId.toString() === locationId}
       );
@@ -118,7 +118,6 @@ const lessonDatesReducer = (state = {}, action) => {
       return { ...newState, ...action.lessonDates };
     case RECEIVE_LESSONDATE:
       // {238: lessondateob} 
-      console.log('action', action)
       // [Object.keys(action.lessonDate)[0]: Object.Values
       return { ...newState, [action.lessonDate.id]: action.lessonDate };
     case REMOVE_LESSONDATE:

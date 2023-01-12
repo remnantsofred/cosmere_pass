@@ -25,24 +25,30 @@ class Api::LocationsController < ApplicationController
 
   def set_location_details(location)
     location.lesson_types = []
+    location.lesson_titles = []
     location.lesson_date_ids = []
     location.review_ids = []
     location.lessons.each do |lesson|
       location.lesson_types.push(lesson.lesson_type)
+      location.lesson_titles.push(lesson.title)
       lesson.lesson_dates.each do |lesson_date|
         location.lesson_date_ids.push(lesson_date.id)
       end
+      # sorted_reviews = lesson.reviews.sort_by { |review| [review.updated_at, review.created_at] }
+      # sorted_reviews.reverse!
+      # sorted_reviews.sort_by{ |a, b| return -1 if a.reviewer_id == 2 }
+      # sorted_reviews.each do |review|
       lesson.reviews.each do |review|
         location.review_ids.push(review.id)
       end
     end
+    location.lesson_titles.sort
     location.lesson_types.uniq!
 
     location_ratings_arr = location.reviews.map do |review|
       review.rating
     end
 
-    
 
     numerator = location_ratings_arr.sum 
     denominator = location_ratings_arr.length

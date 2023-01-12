@@ -32,7 +32,6 @@ export const LessonDatesIndexPage = ({children, id='', className="LessonDatesInd
   useEffect(() => {
     if (locations && lessons && lessonDates && locations.length && lessons.length && lessonDates.length) {
       setLoaded(true)
-      console.log(lessonDates)
     }
   },[dispatch, locations, lessons, lessonDates])
 

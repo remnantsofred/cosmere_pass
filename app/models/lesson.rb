@@ -34,4 +34,7 @@ class Lesson < ApplicationRecord
     source: :reservations
 
   has_one_attached :photo
+
+  attr_accessor :user_taken
+  
 end

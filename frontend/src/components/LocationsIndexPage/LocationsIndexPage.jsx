@@ -54,7 +54,7 @@ export const LocationsIndexPage = ({children, id='', className="LocationsIndexPa
         <Panel className='locationsIdxleftPanel'>
 
           <ul className='locationsIdxUL'>
-            {locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)}
+            {locations?.map((location, idx) => <LocationIndexItem myLocation={location} lessonIds={location.lessonIds} key={idx} />)}
             {children}
           </ul>
         </Panel>

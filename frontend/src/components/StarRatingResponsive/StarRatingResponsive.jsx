@@ -1,15 +1,26 @@
 import './StarRatingResponsive.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StarIcon } from '../icon/Icon';
 import { AiFillStar } from 'react-icons/ai';
 import { FaStar } from 'react-icons/fa';
 
-export const StarRatingResponsive = ()=> {
-  const [rating, setRating] = useState(null);
+export const StarRatingResponsive = ({className="responsiveStarRating", id="", setStarReviewRating, assignedRating})=> {
+  const [rating, setRating] = useState(5);
   const [hover, setHover] = useState(null);
 
+  useEffect(()=>{
+    if (assignedRating){
+      setRating(assignedRating)
+    }
+  }, [])
+
+  const handleStarSet = (ratingValue) => {
+    setRating(ratingValue)
+    setStarReviewRating(ratingValue);
+  }
+
   return (
-    <div className='starRating'>
+    <div className={className} id={id}>
       {[ ...Array(5)].map((star, i) => {
         const ratingValue = i + 1;
 
@@ -19,7 +30,7 @@ export const StarRatingResponsive = ()=> {
               type="radio" 
               name="rating" 
               value={ratingValue} 
-              onClick={()=> setRating(ratingValue)} 
+              onClick={()=> handleStarSet(ratingValue)} 
               />
               <AiFillStar 
                 className='star' 

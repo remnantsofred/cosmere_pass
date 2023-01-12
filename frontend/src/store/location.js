@@ -21,7 +21,6 @@ export const removeLocation = (locationId) => ({
 
 
 export const getLocations = (store) => {
-  console.log('getLocations', store.locations)
   if (store.locations) return Object.values(store.locations);
   return [];
 };

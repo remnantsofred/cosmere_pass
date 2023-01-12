@@ -17,9 +17,9 @@ import { useParams, NavLink } from 'react-router-dom';
 import { StarIcon } from '../icon/Icon';
 import { getReservations, createReservation, fetchReservations, deleteReservation, removeReservation } from '../../store/reservation';
 import { getLocation, fetchLocation } from '../../store/location';
-import { getLessons, fetchLessons } from '../../store/lesson';
+import { getLessons, fetchLessons, getLessonsForLocation } from '../../store/lesson';
 import { getLessonDate, getLessonDates, fetchLessonDates, getLessonDatesForLocation } from '../../store/lessonDates';
-import { fetchReviews, getReviews, getReviewsForLocation, createReview } from '../../store/review';
+import { fetchReviews, getReviews, getReviewsForLocation, createReview, deleteReview, updateReview } from '../../store/review';
 
 
 
@@ -28,6 +28,7 @@ export const LocationShowPage = () => {
   const location = useSelector(getLocation(locationId));
   const reviews = useSelector(getReviewsForLocation(locationId));
   const lessonDates = useSelector(getLessonDatesForLocation(locationId))
+  const lessons = useSelector(getLessonsForLocation(locationId));
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const [loaded, setLoaded] = useState(false);
@@ -35,10 +36,7 @@ export const LocationShowPage = () => {
   const [ modalLocation, setModalLocation ] = useState();
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
-  // const [lessonDates, setLessonDates] = useState();
-  // const [ modal3Status, setModal3Status ] = useState(false);
-  // const [ modal2Status, setModal2Status ] = useState(false);
-  
+  const [ modalReview, setModalReview ] = useState();
 
   useEffect(()=>{
     Promise.all([
@@ -49,13 +47,26 @@ export const LocationShowPage = () => {
     ]).then(() =>  setLoaded(true))
   },[locationId])
 
+  useEffect(()=>{
+    let sortedReviews = sortReviews(reviews)
+    console.log(sortedReviews)
+  }, [reviews])
+
+  const sortReviews = (reviews)=>{
+    let sortedReviews = reviews.sort((review1, review2) => {
+      if (review1.updated_at < review2.updated_at) {
+        return 1
+      } else if (review1.updated_at > review2.updated_at) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+    return sortedReviews;
+  }
 
 
-  // useEffect(()=>{
-  //   // setLoaded(false)
-  //   // setLoaded(true)
-  // }, [modalStatus, modal2Status, modal3Status])
-  
+
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)
     setModalLessonDate(lessonDate)
@@ -65,12 +76,10 @@ export const LocationShowPage = () => {
 
   const handleModalClose = () => {
     setModalStatus(false)
-    // setModal3Status(false)
     setModalLessonDate(null)
     setModalLesson(null)
     setModalLocation(null)
   }
-
 
   const handleResSubmit = (lessonDate) => {
     const data = {
@@ -78,18 +87,8 @@ export const LocationShowPage = () => {
       lesson_date_id: lessonDate.id
     }
     dispatch(createReservation(data))
-    // setLoaded(true)
     setModalStatus(2)
-    // setModal2Status(true)
   }
-
-  // const handleResConfModalClose = () => {
-  //   setModal2Status(false)
-  //   setModalLessonDate("")
-  //   setModalLesson("")
-  //   setModalLocation("")
-  //   setModal2Status("")
-  // }
 
   const handleCancel = (lessonDate, lesson, location) => {
     setModalStatus(3)
@@ -101,8 +100,6 @@ export const LocationShowPage = () => {
   const handleCancelModalConfirm = (lessonDate) => {
     dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
     setModalStatus(false)
-    // setLoaded(false)
-    // setLoaded(true)
   }
 
   // from modal: 
@@ -118,6 +115,21 @@ export const LocationShowPage = () => {
     setModalStatus(false)
   }
 
+  const handleReviewEditSubmit = (reviewData) =>{
+    dispatch(updateReview(reviewData))
+    setModalStatus(false)
+  }
+
+  const handleDeleteReview = (reviewId) => {
+    dispatch(deleteReview(reviewId))
+  }
+
+  const handleEditReviewClick = (review) => {
+    setModalStatus(5)
+    setModalLocation(location)
+    setModalReview(review)
+  }
+
   if(!loaded){
     return (
       <Loading />
@@ -128,7 +140,8 @@ export const LocationShowPage = () => {
         { modalStatus === 1 && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="location"/> }
         { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} source="location"/> }
         { modalStatus === 3 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="location"/> }
-        { modalStatus === 4 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location"/> }
+        { modalStatus === 4 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location" lessons={lessons} /> }
+        { modalStatus === 5 && <ReviewFormModal currentUser={currentUser} location={location} review={modalReview} handleModalClose={handleModalClose} handleReviewEditSubmit={handleReviewEditSubmit} source="location" lessons={lessons} className="ReviewEditModal"/> }
       <Panels className="LocShowPage">
 
           <Panel className='LocShowPanelL'>
@@ -138,7 +151,7 @@ export const LocationShowPage = () => {
             <Row className='locNameRow'>
               <h1 className='locName'>{location.locationName}</h1>
               <Row className='LocShowratingRow'>
-                <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4> <StarRating rating={location.averageRating.toFixed(0)}/>
+                <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4> <StarRating assignedRating={location.averageRating.toFixed(0)}/>
                 <div className='locShowRevCt'>({location.reviewCount})</div>
               </Row>
             </Row>
@@ -152,15 +165,34 @@ export const LocationShowPage = () => {
             <Row className='LocShowPanelLRow LocSchedule'>
               <h3 className="locShowSubtitle">Schedule</h3>
               <ul className='locShowIdxULLessonDates'>
-                {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem key={idx} lessonDate={lessonDate} location={location} handleResClick={handleResClick} handleCancel={handleCancel} source="locationShow" />)}
+                {lessonDates?.map((lessonDate, idx) => 
+                  <LessonDatesIndexItem 
+                    key={idx} 
+                    lessonDate={lessonDate} 
+                    location={location} 
+                    handleResClick={handleResClick} 
+                    handleCancel={handleCancel} 
+                    source="locationShow" />)}
               </ul>
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
-              {/* <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <NavLink className="lessonDateIdxItmReserve" id="LocShowPageReviewButton"  to={`/locations/${location.id}/review`} >Leave Review</NavLink></h3> */}
-              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews <button onClick={() => setModalStatus(4)} className='lessonDateIdxItmReserve'>Leave Review</button></h3>
+              <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews 
+              { currentUser && 
+                <button 
+                  onClick={() => setModalStatus(4)} 
+                  className='lessonDateIdxItmReserve'>Leave Review
+                </button>}
+              </h3>
               
               <ul className='locShowIdxULLessonDates'>
-                {reviews?.map((review, idx) => <ReviewIndexItem key={idx} review={review} />)}
+                {reviews?.map((review, idx) => 
+                  <ReviewIndexItem 
+                    key={idx} 
+                    review={review} 
+                    currentUser={currentUser} 
+                    setModalStatus={setModalStatus} 
+                    handleDeleteReview={handleDeleteReview} 
+                    handleEditReviewClick={handleEditReviewClick}/>)}
               </ul>
             </Row>
           </Panel>

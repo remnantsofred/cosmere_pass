@@ -37,7 +37,6 @@ class Api::ReservationsController < ApplicationController
 
   def destroy 
     @reservation = Reservation.find(params[:id])
-    p @reservation
     @reservation.destroy
     head :no_content
   end 

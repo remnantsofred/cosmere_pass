@@ -4,11 +4,17 @@ class Api::LessonsController < ApplicationController
   
   def index
     @lessons = Lesson.all
-
+   if params[:location_id]
+    @lessons = @lessons.where(location_id: params[:location_id])
+   elsif params[:lesson_type]
+    @lessons = @lessons.where(lesson_type: params[:lesson_type])
+   end
   end 
 
   def show
     @lesson = Lesson.find(params[:id])
+
+    
   end
 
   def create

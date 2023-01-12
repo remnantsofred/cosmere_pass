@@ -24,33 +24,19 @@ export const getReviews = (store) => {
   return [];
 };
 
-export const getReviewsForLocation = (locationId) => (store) => {
-  if (store.reviews) {
-    const reviews = Object.values(store.reviews).filter(review => review.locationId.toString() === locationId);
-    return reviews;
-  }
-  return [];
-};
-
-
 export const getReview = (reviewId) => (store) => {
   if (store.reviews && store.reviews[reviewId]) return store.reviews[reviewId];
   return null;
 };
 
 // THUNK ACTION CREATORS
-export const fetchReviews = (locationId) => async (dispatch) => {
-  const res = await fetch(`/api/locations/${locationId}/reviews`);
-
+export const fetchReviews = () => async (dispatch) => {
+  const res = await fetch(`/api/reviews`);
   if (res.ok) {
     const reviews = await res.json();
     dispatch(receiveReviews(reviews));
   }
-  return Promise.resolve();
 };
-
-
-
 
 export const fetchReview = (reviewId) => async (dispatch) => {
   const res = await fetch(`/api/reviews/${reviewId}`);
@@ -58,7 +44,6 @@ export const fetchReview = (reviewId) => async (dispatch) => {
     const review = await res.json();
     dispatch(receiveReview(review));
   }
-  return Promise.resolve();
 };
 
 export const createReview = (data) => async (dispatch) => {
@@ -77,7 +62,7 @@ export const createReview = (data) => async (dispatch) => {
 };
 
 export const updateReview = (review) => async (dispatch) => {
-  const res = await csrfFetch(`/api/reviews/${review.review_id}`, {
+  const res = await csrfFetch(`/api/reviews/${review.id}`, {
     method: "PATCH",
     body: JSON.stringify(review),
     headers: {
@@ -87,7 +72,6 @@ export const updateReview = (review) => async (dispatch) => {
   });
   if (res.ok) {
     const newReview = await res.json();
-    
     dispatch(receiveReview(newReview));
   }
 };
@@ -108,7 +92,7 @@ const reviewsReducer = (state = {}, action) => {
     case RECEIVE_REVIEWS:
       return { ...newState, ...action.reviews };
     case RECEIVE_REVIEW:
-      return { ...newState, [action.review.id]: action.review };
+      return { ...newState, [action.reviews.id]: action.review };
     case REMOVE_REVIEW:
       delete newState[action.reviewId];
       return newState;

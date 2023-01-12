@@ -15,6 +15,23 @@
   z-index: 300;
 }
 
+.ReviewEditModal{
+  width: 524px;
+  height: 664px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 3px;
+  background-color: #fff;
+  text-align: center;
+  right: auto;
+  position: fixed;
+  transform: translateX(-50%);
+  top: 16px;
+  left: 50%;
+  color: #000;
+  z-index: 300;
+}
+
 
 .LocReservationConfirmModal{
   width: 524px;
@@ -125,15 +142,30 @@
 .resModalLessonLoc {
   width: 524px;
   height: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviewModalLessonLoc {
+  width: 524px;
+  /* height: 24px; */
+  height: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .reviewModalStarRow {
   width: 524px;
-  height: 64px;
+  height: 80px;
   font-size: 1.5rem;
   line-height: 1.3333333333;
   margin-top: 12px;
-  margin-bottom: 26px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -153,8 +185,18 @@
   font-weight: 500;
   width: 425px;
   height: 425px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: flex;
+}
+
+.reviewFormInputRowEdit{
+  font-size: 1.25rem;
+  font-weight: 500;
+  width: 425px;
+  height: 425px;
+  margin-bottom: 40px;
+  margin-top: 16px;
+  /* display: flex; */
 }
 
 
@@ -198,12 +240,14 @@
 .resModalCancelText {
   width: 428px;
 }
-
+/* 
 .reviewModalStarRating {
   width:  100%;
   height: 500px;
   margin-bottom: 16px;
-}
+  
+} */
+
 
 .reviewModalLabel {
   font-size: 0.75rem;
@@ -211,7 +255,7 @@
 
 .reviewFormTextBox {
   width: 100%;
-  height: 100%;
+  height: auto;
   border: 1px solid #d6d6d6;
   border-radius: 3px;
   padding: 16px;
@@ -219,4 +263,80 @@
   line-height: 1.5;
   resize: none;
   font-family: 'TT Norms Pro', sans-serif;
+}
+
+
+
+/* v1 - rounded same height as create modal 
+.editReviewLessonTitle{
+  text-align: center;
+  border: 1px solid #ccc;
+  position: relative;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  width: 400px;
+  height: 32px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-size: .875rem;
+  white-space: nowrap;
+  font-weight: 500;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #d6d6d6;
+  border-radius: 16px;
+  -webkit-tap-highlight-color: transparent;
+  margin: 16px;
+
+} */
+
+ /* v2 - banner but same height 
+.editReviewLessonTitle{
+  width: 100%;
+  text-align: center;
+  margin: 16px;
+  justify-content: center;
+  height: 32px;
+  font-weight: 500;
+  font-size: 14px;
+  font-size: .875rem;
+  flex-direction: column;
+  display: flex;
+  color: #000;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  background-color: #fff;
+  align-items: space-between;
+  -webkit-tap-highlight-color: transparent;
+} */
+
+/* v3 - banner but wider 
+.editReviewLessonTitle{
+  width: 100%;
+  text-align: center;
+  margin: 16px;
+  justify-content: center;
+  height: 32px;
+  font-weight: 500;
+  font-size: 14px;
+  font-size: .875rem;
+  flex-direction: column;
+  display: flex;
+  color: #000;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  background-color: #fff;
+  align-items: space-between;
+  -webkit-tap-highlight-color: transparent;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  justify-content: center;
+  height: 40px
+} */
+
+/* v4 - no banner */
+.editReviewLessonTitle{
+  margin-top: 16px;
+  height: 36px;
 }
