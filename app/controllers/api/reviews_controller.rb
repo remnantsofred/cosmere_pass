@@ -50,6 +50,30 @@ class Api::ReviewsController < ApplicationController
   def set_review_details(review)
     review.lesson_title = review.lesson.title
 
+    if review.created_at == nil 
+      review.minutes_ago = 1
+      return review
+    end
+
+    now = Time.zone.now
+    date_to_check = review.created_at
+    if review.updated_at != nil
+      date_to_check = review.updated_at
+    end
+     
+    
+    if now.year - date_to_check.year > 0
+      review.years_ago = now.year - date_to_check.year
+    elsif now.month - date_to_check.month > 0
+      review.months_ago = now.month - date_to_check.month
+    elsif now.day - date_to_check.day > 0
+      review.days_ago = now.day - date_to_check.day 
+    elsif now.hour - date_to_check.hour > 0
+      review.hours_ago = now.hour - date_to_check.hour 
+    else
+      review.minutes_ago = now.min - date_to_check.min   
+    end
+
     return review
   end
 

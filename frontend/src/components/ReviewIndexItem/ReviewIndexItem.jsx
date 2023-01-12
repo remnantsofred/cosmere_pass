@@ -9,6 +9,19 @@ import StarRating from '../StarRating/StarRating';
 
 export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, currentUser, setModalStatus, handleDeleteReview, handleEditReviewClick}) => {
   
+  const getTimeAgo = (review) => {
+    if (review.minutesAgo > 0){
+      return `${review.minutesAgo} minutes ago`
+    } else if (review.hoursAgo > 0){
+      return `${review.hoursAgo} hours ago`
+    } else if (review.daysAgo > 0){
+      return `${review.daysAgo} days ago`
+    } else if (review.monthsAgo > 0) {
+      return `${review.monthsAgo} months ago`
+    } else if (review.yearsAgo > 0) {
+      return `${review.yearsAgo} years ago`
+    }
+  }
 
 
   return (
@@ -23,7 +36,7 @@ export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, cur
       </Row>
       <Row className='reviewStarsRow'>
         <div className='reviewRatingNum'> <StarRating assignedRating={review.rating} givenFillColor="#676767" unfillColor="#e7e7e7" /> </div>
-        <span className='reviewTimeAgo'> time ago</span>
+        <span className='reviewTimeAgo'>{getTimeAgo(review)}</span>
       </Row>
       <Row className='reviewBodyRow'>
         <p className='reviewBody'>{ review.body }</p>
