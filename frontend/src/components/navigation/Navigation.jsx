@@ -53,7 +53,7 @@ function Navigation() {
       
           {/* <Column><NavLink id="NavLink" exact to="/">Home</NavLink></Column> */}
           <Column>
-            <NavLink className="navNavLink" exact to="/">
+            <NavLink className="navNavLinkLogoName" exact to="/">
               {/* <img className="img-responsive" src={logo} alt="logo"/> */}
               cosmerepass
             </NavLink>
