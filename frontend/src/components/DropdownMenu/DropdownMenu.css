@@ -65,11 +65,13 @@
 
 .reviewFormDropMenu {
   border-radius: 3px;
+
 }
 
 .searchNavDropMenu {
   width: 120px;
   border-radius: 3px;
+  max-height: 400px;
 }
 
 .dropdown-selected-value {
@@ -86,10 +88,10 @@
   flex-direction: column;
   align-items: center;
 }
-
+/* 
 #search-nav-dropdown-selected-value {
   
-}
+} */
 
 .dropdown-item {
   padding: 5px;
@@ -113,7 +115,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3px;
+  padding: 3.5px;
+}
+
+.review-dropdown-tools {
+  padding: 0px;
 }
 
 .dropdown-tool {

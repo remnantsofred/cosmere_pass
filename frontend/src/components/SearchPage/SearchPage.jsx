@@ -48,7 +48,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     Promise.all([
       dispatch(fetchLocations()),
       dispatch(fetchLessons()),
-      dispatch(fetchLessonDates(paramsMap.location_id)),
+      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type)),
     ]).then(()=> {
       setLoaded(true)
     })
@@ -127,6 +127,33 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     setModalStatus(false)
   }
 
+  const resultsToDisplay = (filteredLessonDates) => {
+    if (filteredLessonDates.length){
+      return (
+        <>
+        {filteredLessonDates?.map((lessonDate, idx) => 
+                <LessonDatesIndexItem 
+                  handleResClick={handleResClick} 
+                  lessonDate={lessonDate} 
+                  lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
+                  location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
+                  currrentUser={currentUser} 
+                  key={idx} 
+                  handleCancel={handleCancel} 
+                  source="search" 
+                  modalStatus={modalStatus} 
+                  modal3Status={modal3Status} />) }
+        </>
+      )
+    } else {
+      return (
+        <div className="no-results">
+          <h1>No results found</h1>
+
+        </div>
+      )
+    }
+  }
 
 
   if (!loaded) {
@@ -136,6 +163,12 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   } else {
     const filteredLessonDates = lessonDates.filter((lessonDate)=>{
       const paramsMap = getParams(history.location.search)
+      if (paramsMap.location_id && paramsMap.lesson_type){
+        return lessonDate.locationId === parseInt(paramsMap.location_id) && lessonDate.lessonType.includes(paramsMap.lesson_type) 
+      }
+      if (paramsMap.lesson_type){
+        return lessonDate.lessonType.includes(paramsMap.lesson_type)
+      }
       if (paramsMap.location_id){
         return lessonDate.locationId === parseInt(paramsMap.location_id)
       }
@@ -147,6 +180,8 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
           locations={locations} 
           lessons={lessons} 
           lessonDates={lessonDates}
+          currentUser={currentUser}
+          indexType={indexType}
            />
         <Panels id={id} className={className}>
           { children }
@@ -177,24 +212,26 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
                 : 
               currentUser 
                 ? 
-              filteredLessonDates?.map((lessonDate, idx) => 
-                <LessonDatesIndexItem 
-                  handleResClick={handleResClick} 
-                  lessonDate={lessonDate} 
-                  lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
-                  location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
-                  currrentUser={currentUser} 
-                  key={idx} 
-                  handleCancel={handleCancel} 
-                  source="search" 
-                  modalStatus={modalStatus} 
-                  modal3Status={modal3Status} />) 
+              // filteredLessonDates?.map((lessonDate, idx) => 
+              //   <LessonDatesIndexItem 
+              //     handleResClick={handleResClick} 
+              //     lessonDate={lessonDate} 
+              //     lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
+              //     location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
+              //     currrentUser={currentUser} 
+              //     key={idx} 
+              //     handleCancel={handleCancel} 
+              //     source="search" 
+              //     modalStatus={modalStatus} 
+              //     modal3Status={modal3Status} />) 
+                resultsToDisplay(filteredLessonDates)
                 : 
               lessons?.map((lesson, idx) => 
                 <LessonIndexItem 
                   lesson={lesson} 
                   key={idx} 
-                  location={getLocationForLesson(lesson.locationId, locations)}/>) }
+                  location={getLocationForLesson(lesson.locationId, locations)}/>) 
+              }
             </ul>
           </Panel>
           <Panel className='lessonDatesIdxrightPanel'>

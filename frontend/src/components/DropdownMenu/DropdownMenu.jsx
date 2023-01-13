@@ -12,11 +12,10 @@ const Icon = () => {
 };
 
 
-export const DropdownMenu = withRouter(({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown, setSearchParams, source="", history, LocPlaceholder, TypePlaceholder})=> {
+export const DropdownMenu = withRouter(({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown, setSearchParams, source="", history, value, setValue})=> {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
-  const [selectedValueLoc, setSelectedValueLoc] = useState(null);
-  const [selectedValueType, setSelectedValueType] = useState(null);
+  
 
   useEffect(()=>{
     const handler = () => setShowMenu(false);
@@ -27,17 +26,6 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
     };
   }, []);
 
-  useEffect(()=>{
-    if (selectedValueLoc){
-      history.push(`/search/?location_id=${selectedValueLoc}`)
-    }
-  }, [selectedValueLoc])
-
-  useEffect(()=>{
-    if (selectedValueType){
-      history.push(`/search/?lesson_type=${selectedValueType}`)
-    }
-  }, [selectedValueType])
 
   const handleInputClick = e => {
     e.stopPropagation();
@@ -51,19 +39,14 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
     return placeholder;
   };
 
-  const getLocDisplay = () => {
-    if (selectedValueLoc) {
-      return selectedValueLoc.label;
-    };
-    return LocPlaceholder;
-  };
 
-  const getTypeDisplay = () => {
-    if (selectedValueType) {
-      return selectedValueType.label;
-    };
-    return TypePlaceholder;
-  };
+
+  // const getTypeDisplay = () => {
+  //   if (value) {
+  //     return selectedValueType.label;
+  //   };
+  //   return TypePlaceholder;
+  // };
 
   const onItemClick = option => {
     setSelectedValue(option);
@@ -71,16 +54,10 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
   };
 
   const onNavItemClick = option => {
-    setSelectedValueLoc(option.value);
-    // setSearchParams(option.value)
-    // history.push(`/search/?location_id=${option.id}`)
+    setValue(option);
   };
 
-  const onNavTypeItemClick = option => {
-    setSelectedValueType(option.value);
-    // setSearchParams(option.value)
-    // history.push(`/search/?location_id=${option.id}`)
-  };
+  
 
   const isSelected = option => {
     if (!selectedValue) {
@@ -94,16 +71,16 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
       <div onClick={handleInputClick} className={source === "reviewForm" ? "dropdown-container reviewFormDropCont" : "dropdown-container"}>
         <div className="dropdown-tools"> 
       <div className="dropdown-tools"> 
-        <div className="dropdown-tools"> 
+        <div className="dropdown-tools review-dropdown-tools"> 
           <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
-            <div className="dropdown-tool">
+            <div className="dropdown-tool reviewFormDropMenu">
               <Icon />
             </div>
         </div> 
       </div> 
         </div> 
         <div className="dropdown-input">
-          {showMenu && <div className={source === "reviewForm" ? "dropdown-menu reviewFormDropMenu" : "dropdown-menu"}>
+          {showMenu && <div className="dropdown-menu reviewFormDropMenu">
             {options.map( option => (
               <div onClick={() => onItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
                 {option.label}
@@ -114,11 +91,12 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
       </div>
     );
   } else if (source === "searchNav") {
+    console.log(value)
     return (
       <div onClick={handleInputClick} className="dropdown-container searchNavDropCont">
         <div className="dropdown-tools"> 
-          {LocPlaceholder && <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{getLocDisplay()}</div>}
-          {TypePlaceholder && <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{getTypeDisplay()}</div>}
+          <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{ value ? value.label : placeholder}</div>
+          {/* {TypePlaceholder && <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{getTypeDisplay()}</div>} */}
             <div className="dropdown-tool">
               <Icon />
             </div>
@@ -126,7 +104,7 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
         <div className="dropdown-input">
           {showMenu && <div className="dropdown-menu searchNavDropMenu" >
             {options.map( option => (
-              <div onClick={LocPlaceholder ? () => onNavItemClick(option) : () => onNavTypeItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
+              <div onClick={() => onNavItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
                 {option.label}
               </div>
             ))}
