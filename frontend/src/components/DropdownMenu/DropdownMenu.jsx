@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import './DropdownMenu.css';
 import { useState } from 'react';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 
 const Icon = () => {
   return (
@@ -11,9 +12,11 @@ const Icon = () => {
 };
 
 
-export const DropdownMenu = ({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown, source})=> {
+export const DropdownMenu = withRouter(({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown, setSearchParams, source="", history, LocPlaceholder, TypePlaceholder})=> {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValueLoc, setSelectedValueLoc] = useState(null);
+  const [selectedValueType, setSelectedValueType] = useState(null);
 
   useEffect(()=>{
     const handler = () => setShowMenu(false);
@@ -23,6 +26,18 @@ export const DropdownMenu = ({children, id='', className="DropdownMenu", locatio
       window.removeEventListener("click", handler);
     };
   }, []);
+
+  useEffect(()=>{
+    if (selectedValueLoc){
+      history.push(`/search/?location_id=${selectedValueLoc}`)
+    }
+  }, [selectedValueLoc])
+
+  useEffect(()=>{
+    if (selectedValueType){
+      history.push(`/search/?lesson_type=${selectedValueType}`)
+    }
+  }, [selectedValueType])
 
   const handleInputClick = e => {
     e.stopPropagation();
@@ -36,9 +51,35 @@ export const DropdownMenu = ({children, id='', className="DropdownMenu", locatio
     return placeholder;
   };
 
+  const getLocDisplay = () => {
+    if (selectedValueLoc) {
+      return selectedValueLoc.label;
+    };
+    return LocPlaceholder;
+  };
+
+  const getTypeDisplay = () => {
+    if (selectedValueType) {
+      return selectedValueType.label;
+    };
+    return TypePlaceholder;
+  };
+
   const onItemClick = option => {
     setSelectedValue(option);
     setReviewLessonFromDropdown(option.value)
+  };
+
+  const onNavItemClick = option => {
+    setSelectedValueLoc(option.value);
+    // setSearchParams(option.value)
+    // history.push(`/search/?location_id=${option.id}`)
+  };
+
+  const onNavTypeItemClick = option => {
+    setSelectedValueType(option.value);
+    // setSearchParams(option.value)
+    // history.push(`/search/?location_id=${option.id}`)
   };
 
   const isSelected = option => {
@@ -48,27 +89,53 @@ export const DropdownMenu = ({children, id='', className="DropdownMenu", locatio
     return selectedValue.value === option.value;
   }
 
-
-  return (
-    <div onClick={handleInputClick} className={source === "reviewForm" ? "dropdown-container reviewFormDropCont" : "dropdown-container"}>
+  if (source === "reviewForm" || source === "" ) {
+    return (
+      <div onClick={handleInputClick} className={source === "reviewForm" ? "dropdown-container reviewFormDropCont" : "dropdown-container"}>
+        <div className="dropdown-tools"> 
       <div className="dropdown-tools"> 
-        <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
-          <div className="dropdown-tool">
-            <Icon />
-          </div>
-      </div> 
-      <div className="dropdown-input">
-        {showMenu && <div className={source === "reviewForm" ? "dropdown-menu reviewFormDropMenu" : "dropdown-menu"}>
-          {options.map( option => (
-            <div onClick={() => onItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
-              {option.label}
+        <div className="dropdown-tools"> 
+          <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
+            <div className="dropdown-tool">
+              <Icon />
             </div>
-          ))}
-        </div>}
+        </div> 
+      </div> 
+        </div> 
+        <div className="dropdown-input">
+          {showMenu && <div className={source === "reviewForm" ? "dropdown-menu reviewFormDropMenu" : "dropdown-menu"}>
+            {options.map( option => (
+              <div onClick={() => onItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
+                {option.label}
+              </div>
+            ))}
+          </div>}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else if (source === "searchNav") {
+    return (
+      <div onClick={handleInputClick} className="dropdown-container searchNavDropCont">
+        <div className="dropdown-tools"> 
+          {LocPlaceholder && <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{getLocDisplay()}</div>}
+          {TypePlaceholder && <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{getTypeDisplay()}</div>}
+            <div className="dropdown-tool">
+              <Icon />
+            </div>
+        </div> 
+        <div className="dropdown-input">
+          {showMenu && <div className="dropdown-menu searchNavDropMenu" >
+            {options.map( option => (
+              <div onClick={LocPlaceholder ? () => onNavItemClick(option) : () => onNavTypeItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
+                {option.label}
+              </div>
+            ))}
+          </div>}
+        </div>
+      </div>
+    );
+  }
 
-}
+})
 
 export default DropdownMenu;

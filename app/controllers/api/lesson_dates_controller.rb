@@ -67,6 +67,7 @@ class Api::LessonDatesController < ApplicationController
       end
     end
     lesson_date.location_id = lesson_date.lesson.location_id
+    lesson_date.lesson_type = lesson_date.lesson.lesson_type
 
     return lesson_date
   end

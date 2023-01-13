@@ -22,8 +22,14 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+
 .reviewFormDropCont {
   border-radius: 3px;;
+}
+
+.searchNavDropCont {
+  width: auto;
+  
 }
 
 .dropdown-input {
@@ -56,12 +62,19 @@
     /* transform: translate(0); */
 }
 
+
 .reviewFormDropMenu {
+  border-radius: 3px;
+}
+
+.searchNavDropMenu {
+  width: 120px;
   border-radius: 3px;
 }
 
 .dropdown-selected-value {
   padding-left: 16px;
+  padding-right: 8px;
   width: 100%;
   /* display: flex; */
   align-items: left;
@@ -72,6 +85,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#search-nav-dropdown-selected-value {
+  
 }
 
 .dropdown-item {
