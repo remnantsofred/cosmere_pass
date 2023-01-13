@@ -22,12 +22,17 @@
 
 
 .lessonDatesIdxrightPanel {
-  display: flex;
-  flex-direction: column;
-  min-width: 350px;
+  /* display: flex;
+  flex-direction: column; */
+  min-width: 575px;
   /* max-width: 799px; */
-  max-width: auto;
-  height: 601px;
+  /* max-width: auto; */
+  /* width: 575px; */
+  /* max-width: auto; */
+  /* box-sizing: border-box; */
+  height: 100vh;
+  /* overflow: hidden; */
+  max-width: 100%;
 }
 
 

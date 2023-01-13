@@ -1,20 +1,35 @@
 class Api::LessonDatesController < ApplicationController
   def index 
+    # @lessons_dates = LessonDate.all
+    # p @lessons_dates
+    # @lesson_dates = @lesson_dates.map do |lesson_date|
+    #   set_lesson_date_details(lesson_date)
+    # end
+    p "----------------------AAAAAAAAAAAAAAAAAAAA------------------------"
+    p params[:lesson_type]
+    @lesson_dates = []
     if params[:location_id] 
       @lessons = Lesson.where("location_id = ?", params[:location_id]).limit(30)
       lesson_ids = @lessons.map { |lesson| lesson.id }
       @lesson_dates = LessonDate.where("lesson_id in (?)", lesson_ids)
-
-      @lesson_dates = @lesson_dates.map do |lesson_date|
-        set_lesson_date_details(lesson_date)
-      end
-    else
-      @lesson_dates = LessonDate.all.limit(30)
-
-      @lesson_dates = @lesson_dates.map do |lesson_date|
-        set_lesson_date_details(lesson_date)
-      end
     end
+
+    if params[:lesson_type]
+      if @lesson_dates.length == 0
+        @lesson_dates = LessonDate.all
+      end
+      @lesson_dates = @lesson_dates.select { |lesson_date|  lesson_date.lesson.lesson_type.include?(params[:lesson_type]) } 
+      
+    end   
+      
+    if @lesson_dates.length == 0
+      @lesson_dates = LessonDate.all.limit(30)
+    end
+    
+    @lesson_dates = @lesson_dates.map do |lesson_date|
+      set_lesson_date_details(lesson_date)
+    end
+    return @lesson_dates
   end 
 
   def show 
@@ -26,7 +41,7 @@ class Api::LessonDatesController < ApplicationController
 
   def create
     @lesson_date = LessonDate.new(lesson_date_params)
-
+    @lesson_date = set_lesson_date_details(@lesson_date)
     if @lesson_date.save
       render :show
     else
@@ -35,7 +50,9 @@ class Api::LessonDatesController < ApplicationController
   end
 
   def update
+   #set lesson date details for update?
     if @lesson_date.update(lesson_date_params)
+      @lesson_date = set_lesson_date_details(@lesson_date)
       render :show
     else
       render json: @lesson_date.errors.full_messages, status: 422
@@ -43,6 +60,7 @@ class Api::LessonDatesController < ApplicationController
   end
 
   def destroy
+    @lesson_date = LessonDate.find(params[:id])
     @lesson_date.destroy
   end
 
@@ -67,6 +85,7 @@ class Api::LessonDatesController < ApplicationController
       end
     end
     lesson_date.location_id = lesson_date.lesson.location_id
+    lesson_date.lesson_type = lesson_date.lesson.lesson_type
 
     return lesson_date
   end

@@ -37,7 +37,6 @@ function App() {
           </Route>
           <Route exact path="/search">
             <Navigation />
-            <SearchNav />
             <SearchPage />
           </Route>
           <Route path="/locations/:locationId">
@@ -55,7 +54,6 @@ function App() {
           </Route> */}
           <Route exact path="/lessons">
             <Navigation />
-            <SearchNav />
             <LessonsIndexPage /> 
           </Route>
           {/* <Route exact path="/lessonDates">

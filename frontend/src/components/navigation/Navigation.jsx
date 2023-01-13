@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import Row from '../row/Row';
 import Rows from '../rows/Rows';
-import Column from '../column/Column';
-import Columns from '../columns/Columns';
-import Icon from '../icon/Icon';
+import Row from '../row/Row';
+import React, { useEffect, useState } from 'react';
+import ProfileButton from './ProfileButton';
 import logo from './classpass.svg';
+import Icon from '../icon/Icon';
+import Columns from '../columns/Columns';
+import Column from '../column/Column';
+import { useSelector } from 'react-redux';
+import { NavLink, useLocation } from 'react-router-dom';
 
 
 function Navigation() {
@@ -53,8 +53,9 @@ function Navigation() {
       
           {/* <Column><NavLink id="NavLink" exact to="/">Home</NavLink></Column> */}
           <Column>
-            <NavLink className="navNavLink" exact to="/">
-              <img className="img-responsive" src={logo} alt="logo"/>
+            <NavLink className="navNavLinkLogoName" exact to="/">
+              {/* <img className="img-responsive" src={logo} alt="logo"/> */}
+              cosmerepass
             </NavLink>
           </Column>
           <Column>

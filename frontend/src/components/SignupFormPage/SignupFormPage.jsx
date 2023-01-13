@@ -67,8 +67,8 @@ function SignupFormPage() {
       <Panels className="signupleftPanel">
           <h3 className="signupH3">Start your free trial</h3>
           <p id="signupP">
-            Search, book and try classes from top-rated studios with your free trial. When you 
-            create your ClassPass account, you’ll unlock unlimited access to over 4,000 on-demand workouts.
+            Search, book and try lessons from top-rated areas with your free trial. When you 
+            create your CosmerePass account, you’ll unlock unlimited access to all types of investiture lessons.
           </p>
           <img src={hero} id="heroSignUp" />
       </Panels>

@@ -23,6 +23,7 @@ import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelM
 import { FaLessThanEqual } from 'react-icons/fa';
 import { getCurrentUser } from '../../store/session';
 import { SiTruenas } from 'react-icons/si';
+import SearchNav from '../SearchNav';
 
 
 export const SearchPage = withRouter(({children, id='', className="SearchPage", history}) => {
@@ -47,16 +48,20 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     Promise.all([
       dispatch(fetchLocations()),
       dispatch(fetchLessons()),
-      dispatch(fetchLessonDates(paramsMap.location_id)),
+      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type)),
     ]).then(()=> {
       setLoaded(true)
     })
   }, [])
   
   useEffect(() => {
-    const paramsMap = getParams(history.location.search)
-    dispatch(fetchLessonDates(paramsMap.location_id))
+    if (loaded) {
+      setLoaded(false)
+      const paramsMap = getParams(history.location.search)
+      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type)).then(()=>setLoaded(true))
+    }
   },[history.location.search])
+
 
   const getParams = (params) => {
     const paramsString = params.slice(1)
@@ -68,6 +73,8 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     }
     return paramsMap;
   }
+
+
 
   const getLocationForLesson = (locationId, locations) => {
     for (const location of locations) {
@@ -123,75 +130,133 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     setModalStatus(false)
   }
 
+  const resultsToDisplay = (filteredLessonDates) => {
+    if (filteredLessonDates.length){
+      return (
+        <>
+        {filteredLessonDates?.map((lessonDate, idx) => 
+                <LessonDatesIndexItem 
+                  handleResClick={handleResClick} 
+                  lessonDate={lessonDate} 
+                  lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
+                  location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
+                  currrentUser={currentUser} 
+                  key={idx} 
+                  handleCancel={handleCancel} 
+                  source="search" 
+                  modalStatus={modalStatus} 
+                  modal3Status={modal3Status} />) }
+        </>
+      )
+    } else {
+      return (
+        <div className="no-results">
+          <div className="noResHeader">No results found</div>
+          <div className="noResText">Adjust your location or edit your filters.</div>
+          <button 
+            onClick={()=>{history.push('/search')}} 
+            className="clearFilterButton">
+              Clear filters
+          </button>
+        </div>
+      )
+    }
+  }
 
 
   if (!loaded) {
     return (
-      <Loading />
+      <>
+       {/* <SearchNav 
+          locations={[]} 
+          lessons={[]} 
+          lessonDates={[]}
+          currentUser={undefined}
+          indexType={"search"}
+           /> */}
+                 <Loading />
+      </>
+
     )
   } else {
     const filteredLessonDates = lessonDates.filter((lessonDate)=>{
       const paramsMap = getParams(history.location.search)
+      if (paramsMap.location_id && paramsMap.lesson_type){
+        return lessonDate.locationId === parseInt(paramsMap.location_id) && lessonDate.lessonType.includes(paramsMap.lesson_type) 
+      }
+      if (paramsMap.lesson_type){
+        return lessonDate.lessonType.includes(paramsMap.lesson_type)
+      }
       if (paramsMap.location_id){
         return lessonDate.locationId === parseInt(paramsMap.location_id)
       }
       return true;
     })
     return (
-      
-      <Panels id={id} className={className}>
-        { children }
-        { modalStatus === 1 && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="search"/> }
-        { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} source="search" /> }
-        { modalStatus === 3 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="search"/> }
-        <Panel className='lessonDatesIdxleftPanel'>
-         
-            <Row className="IndexToggleBar">
-              <div onClick={() => setIndexType('lessons')} className={indexType === 'lessons' ? "searchTypeSelected" : "searchTypeunSelected"} >
-                Lessons
-              </div>
-              <div onClick={() => setIndexType('locations')} className={indexType === 'locations' ? "searchTypeSelected" : "searchTypeunSelected"} >
-                Locations
-              </div>
-            </Row>
-  
-          <ul className='lessonDatesIdxUL'>
-            {/* {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
-            locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)} */}
-            {indexType === 'locations' 
-              ? 
-            locations?.map((location, idx) => 
-              <LocationIndexItem 
-                myLocation={location} 
-                lessonIds={location.lessonIds} 
-                key={idx} />) 
-              : 
-            currentUser 
-              ? 
-            filteredLessonDates?.map((lessonDate, idx) => 
-              <LessonDatesIndexItem 
-                handleResClick={handleResClick} 
-                lessonDate={lessonDate} 
-                lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
-                location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
-                currrentUser={currentUser} 
-                key={idx} 
-                handleCancel={handleCancel} 
-                source="search" 
-                modalStatus={modalStatus} 
-                modal3Status={modal3Status} />) 
-              : 
-            lessons?.map((lesson, idx) => 
-              <LessonIndexItem 
-                lesson={lesson} 
-                key={idx} 
-                location={getLocationForLesson(lesson.locationId, locations)}/>) }
-          </ul>
-        </Panel>
-        <Panel className='lessonDatesIdxrightPanel'>
-          <Map />
-        </Panel>
-      </Panels> 
+      <>
+        <SearchNav 
+          locations={locations} 
+          lessons={lessons} 
+          lessonDates={lessonDates}
+          currentUser={currentUser}
+          indexType={indexType}
+           />
+        <Panels id={id} className={className}>
+          { children }
+          { modalStatus === 1 && <ReservationConfirmModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleResSubmit={handleResSubmit} source="search"/> }
+          { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} source="search" /> }
+          { modalStatus === 3 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} source="search"/> }
+          <Panel className='lessonDatesIdxleftPanel'>
+          
+              <Row className="IndexToggleBar">
+                <div onClick={() => setIndexType('lessons')} className={indexType === 'lessons' ? "searchTypeSelected" : "searchTypeunSelected"} >
+                  Lessons
+                </div>
+                <div onClick={() => setIndexType('locations')} className={indexType === 'locations' ? "searchTypeSelected" : "searchTypeunSelected"} >
+                  Locations
+                </div>
+              </Row>
+    
+            <ul className='lessonDatesIdxUL'>
+              {/* {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
+              locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)} */}
+              {indexType === 'locations' 
+                ? 
+              locations?.map((location, idx) => 
+                <LocationIndexItem 
+                  myLocation={location} 
+                  lessonIds={location.lessonIds} 
+                  key={idx} />) 
+                : 
+              currentUser 
+                ? 
+              // filteredLessonDates?.map((lessonDate, idx) => 
+              //   <LessonDatesIndexItem 
+              //     handleResClick={handleResClick} 
+              //     lessonDate={lessonDate} 
+              //     lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
+              //     location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
+              //     currrentUser={currentUser} 
+              //     key={idx} 
+              //     handleCancel={handleCancel} 
+              //     source="search" 
+              //     modalStatus={modalStatus} 
+              //     modal3Status={modal3Status} />) 
+                resultsToDisplay(filteredLessonDates)
+                : 
+              lessons?.map((lesson, idx) => 
+                <LessonIndexItem 
+                  lesson={lesson} 
+                  key={idx} 
+                  location={getLocationForLesson(lesson.locationId, locations)}/>) 
+              }
+            </ul>
+          </Panel>
+          <Panel className='lessonDatesIdxrightPanel'>
+            <Map />
+          </Panel>
+        </Panels> 
+      </>
     )
   }
 })

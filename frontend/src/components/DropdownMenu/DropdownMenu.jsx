@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import './DropdownMenu.css';
 import { useState } from 'react';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 
 const Icon = () => {
   return (
@@ -11,9 +12,10 @@ const Icon = () => {
 };
 
 
-export const DropdownMenu = ({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown})=> {
+export const DropdownMenu = withRouter(({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown, setSearchParams, source="", history, value, setValue})=> {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
+  
 
   useEffect(()=>{
     const handler = () => setShowMenu(false);
@@ -23,6 +25,7 @@ export const DropdownMenu = ({children, id='', className="DropdownMenu", locatio
       window.removeEventListener("click", handler);
     };
   }, []);
+
 
   const handleInputClick = e => {
     e.stopPropagation();
@@ -36,10 +39,25 @@ export const DropdownMenu = ({children, id='', className="DropdownMenu", locatio
     return placeholder;
   };
 
+
+
+  // const getTypeDisplay = () => {
+  //   if (value) {
+  //     return selectedValueType.label;
+  //   };
+  //   return TypePlaceholder;
+  // };
+
   const onItemClick = option => {
     setSelectedValue(option);
     setReviewLessonFromDropdown(option.value)
   };
+
+  const onNavItemClick = option => {
+    setValue(option);
+  };
+
+  
 
   const isSelected = option => {
     if (!selectedValue) {
@@ -48,27 +66,54 @@ export const DropdownMenu = ({children, id='', className="DropdownMenu", locatio
     return selectedValue.value === option.value;
   }
 
-
-  return (
-    <div onClick={handleInputClick} className="dropdown-container">
+  if (source === "reviewForm" || source === "" ) {
+    return (
+      <div onClick={handleInputClick} className={source === "reviewForm" ? "dropdown-container reviewFormDropCont" : "dropdown-container"}>
+        <div className="dropdown-tools"> 
       <div className="dropdown-tools"> 
-        <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
-          <div className="dropdown-tool">
-            <Icon />
-          </div>
-      </div> 
-      <div className="dropdown-input">
-        {showMenu && <div className="dropdown-menu">
-          {options.map( option => (
-            <div onClick={() => onItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
-              {option.label}
+        <div className="dropdown-tools review-dropdown-tools"> 
+          <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
+            <div className="dropdown-tool reviewFormDropMenu">
+              <Icon />
             </div>
-          ))}
-        </div>}
+        </div> 
+      </div> 
+        </div> 
+        <div className="dropdown-input">
+          {showMenu && <div className="dropdown-menu reviewFormDropMenu">
+            {options.map( option => (
+              <div onClick={() => onItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
+                {option.label}
+              </div>
+            ))}
+          </div>}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else if (source === "searchNav") {
 
-}
+    return (
+      <div onClick={handleInputClick} className="dropdown-container searchNavDropCont">
+        <div className="dropdown-tools"> 
+          <div className="dropdown-selected-value" style={{color : value ? "#05f" : ""}} id="search-nav-dropdown-selected-value">{ value ? value.label : placeholder}</div>
+          {/* {TypePlaceholder && <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{getTypeDisplay()}</div>} */}
+            <div className="dropdown-tool">
+              <Icon />
+            </div>
+        </div> 
+        <div className="dropdown-input">
+          {showMenu && <div className="dropdown-menu searchNavDropMenu" >
+            {options.map( option => (
+              <div onClick={() => onNavItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
+                {option.label}
+              </div>
+            ))}
+          </div>}
+        </div>
+      </div>
+    );
+  }
+
+})
 
 export default DropdownMenu;

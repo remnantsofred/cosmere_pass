@@ -58,7 +58,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
         <p className="lessonDateIdxItmTime duration">{timeBetween(lessonDate.startTime, lessonDate.endTime)} min</p>
       </Column>
       <Column className={source === "search" ? "lessonDateIdxItmCol2": "locShowIdxItmCol2"}>
-        <NavLink to={`/lessons/${lesson.id}`} className="lessonDateIdxItmLink">{lesson.title}</NavLink>
+        <NavLink to={`/locations/${location.id}`} className="lessonDateIdxItmLink">{lesson.title}</NavLink>
         {source === "search" && <Row className='LocIdxItmratingsRow'>
           <h4 className="locationIdxItmRating">{location.averageRating.toFixed(1)}</h4>
           <StarIcon className='starIcon'/>
