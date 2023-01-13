@@ -148,8 +148,13 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     } else {
       return (
         <div className="no-results">
-          <h1>No results found</h1>
-
+          <div className="noResHeader">No results found</div>
+          <div className="noResText">Adjust your location or edit your filters.</div>
+          <button 
+            onClick={()=>{history.push('/search')}} 
+            className="clearFilterButton">
+              Clear filters
+          </button>
         </div>
       )
     }

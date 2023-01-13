@@ -91,11 +91,11 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
       </div>
     );
   } else if (source === "searchNav") {
-    console.log(value)
+
     return (
       <div onClick={handleInputClick} className="dropdown-container searchNavDropCont">
         <div className="dropdown-tools"> 
-          <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{ value ? value.label : placeholder}</div>
+          <div className="dropdown-selected-value" style={{color : value ? "#05f" : ""}} id="search-nav-dropdown-selected-value">{ value ? value.label : placeholder}</div>
           {/* {TypePlaceholder && <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{getTypeDisplay()}</div>} */}
             <div className="dropdown-tool">
               <Icon />

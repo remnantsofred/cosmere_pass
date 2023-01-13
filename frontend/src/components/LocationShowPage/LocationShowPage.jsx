@@ -52,7 +52,6 @@ export const LocationShowPage = () => {
 
   useEffect(()=>{
     let sortedReviews = sortReviews(reviews)
-    console.log(sortedReviews)
   }, [reviews])
 
   const sortReviews = (reviews)=>{

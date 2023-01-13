@@ -18,11 +18,11 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   const [selectedValueType, setSelectedValueType] = useState(null);
 
   const dropdownLocationOptions = locations.map( location => ({value: location.id, label: location.locationName}))
-  console.log(dropdownLocationOptions)
+
   let today = new Date();
 
   useEffect(()=>{
-    console.log(selectedValueLoc, selectedValueType)
+   console.log("useEffect 1")
     if (selectedValueLoc && !selectedValueType){
       history.push(`/search/?location_id=${selectedValueLoc.value}`)
     } else if (selectedValueLoc && selectedValueType){
@@ -32,6 +32,30 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
     } 
 
   }, [selectedValueLoc, selectedValueType])
+
+  useEffect(()=>{
+    console.log("useEffect 2")
+    if (history.location.search === ''){
+      setSelectedValueLoc(null);
+      setSelectedValueType(null);
+    } else if (history.location.search.includes("location_id") && !history.location.search.includes("lesson_type")){
+      setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[1])))
+      setSelectedValueType(null);
+    } else if (history.location.search.includes("lesson_type") && !history.location.search.includes("location_id")){
+      setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[1]))
+      setSelectedValueLoc(null);
+    } else if (history.location.search.includes("lesson_type") && history.location.search.includes("location_id")){ 
+      const locationIndex = history.location.search.indexOf("location_id")
+      const typeIndex = history.location.search.indexOf("lesson_type")
+      if (locationIndex < typeIndex){
+        setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[2]))
+        setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[1])))
+      } else {
+        setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[1]))
+        setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[2])))
+      }
+    }
+  }, [history.location.search])
   
   return (
     <Row className={className} id={id}>

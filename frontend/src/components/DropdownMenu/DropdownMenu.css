@@ -28,7 +28,8 @@
 }
 
 .searchNavDropCont {
-  width: auto;
+  width: 125px;
+  align-items: space-between;
   
 }
 

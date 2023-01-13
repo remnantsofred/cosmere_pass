@@ -55,9 +55,7 @@ export const fetchLessonDates = (locationId, lessonType) => async (dispatch) => 
   }
   if (queryParams.length){
     url = url + "?" + queryParams.join("&")
-  } 
-  console.log(queryParams, "queryParams");
-  console.log(url, "url");
+  }
 
   const res = await fetch(url);
     if (res.ok) {
