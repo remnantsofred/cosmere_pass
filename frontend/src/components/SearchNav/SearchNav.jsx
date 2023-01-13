@@ -34,7 +34,6 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   }, [selectedValueLoc, selectedValueType])
 
   useEffect(()=>{
-    console.log("history.location.search", history.location.search)
     if (history.location.search === ''){
       setSelectedValueLoc(null);
       setSelectedValueType(null);

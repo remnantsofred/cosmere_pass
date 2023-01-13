@@ -1,12 +1,6 @@
 class Api::LessonDatesController < ApplicationController
   def index 
-    # @lessons_dates = LessonDate.all
-    # p @lessons_dates
-    # @lesson_dates = @lesson_dates.map do |lesson_date|
-    #   set_lesson_date_details(lesson_date)
-    # end
-    p "----------------------AAAAAAAAAAAAAAAAAAAA------------------------"
-    p params[:lesson_type]
+
     @lesson_dates = []
     if params[:location_id] 
       @lessons = Lesson.where("location_id = ?", params[:location_id]).limit(30)
