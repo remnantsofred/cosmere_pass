@@ -22,7 +22,7 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   let today = new Date();
 
   useEffect(()=>{
-   console.log("useEffect 1")
+
     if (selectedValueLoc && !selectedValueType){
       history.push(`/search/?location_id=${selectedValueLoc.value}`)
     } else if (selectedValueLoc && selectedValueType){
@@ -34,7 +34,7 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   }, [selectedValueLoc, selectedValueType])
 
   useEffect(()=>{
-    console.log("useEffect 2")
+    console.log("history.location.search", history.location.search)
     if (history.location.search === ''){
       setSelectedValueLoc(null);
       setSelectedValueType(null);

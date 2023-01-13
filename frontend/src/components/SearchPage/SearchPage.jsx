@@ -55,8 +55,11 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   }, [])
   
   useEffect(() => {
-    const paramsMap = getParams(history.location.search)
-      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type))
+    if (loaded) {
+      setLoaded(false)
+      const paramsMap = getParams(history.location.search)
+      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type)).then(()=>setLoaded(true))
+    }
   },[history.location.search])
 
 
@@ -163,7 +166,17 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
 
   if (!loaded) {
     return (
-      <Loading />
+      <>
+       {/* <SearchNav 
+          locations={[]} 
+          lessons={[]} 
+          lessonDates={[]}
+          currentUser={undefined}
+          indexType={"search"}
+           /> */}
+                 <Loading />
+      </>
+
     )
   } else {
     const filteredLessonDates = lessonDates.filter((lessonDate)=>{
