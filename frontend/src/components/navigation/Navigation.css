@@ -8,8 +8,9 @@
   white-space: nowrap;
   font-weight: 500;
   color: #000;
-  font-size: .875rem;
+  font-size: 1.7rem;
   line-height: 1.4285714286;
+  letter-spacing: 1.5px;
 }
 
 #NavColumns {
