@@ -19,4 +19,18 @@ Users will be able to browse lessons, check out locations, and filter by investi
 
 ### Technologies Used
 
+Cosmerepass was developed using:
+* Backend: Ruby on Rails
+* Database: PostgreSQLL
+* Frontend: React/Redux, CSS3 and HTML5
+
+### Featured Features
+
+#### First feature
+
+#### Second feature
+
+#### Code snippet:
+
+
 
