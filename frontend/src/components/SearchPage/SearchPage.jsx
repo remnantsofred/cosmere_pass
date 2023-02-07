@@ -26,6 +26,7 @@ import { SiTruenas } from 'react-icons/si';
 import SearchNav from '../SearchNav';
 
 
+
 export const SearchPage = withRouter(({children, id='', className="SearchPage", history}) => {
   const lessonDates = useSelector(getLessonDates);
   const locations = useSelector(getLocations);

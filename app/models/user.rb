@@ -32,10 +32,12 @@ class User < ApplicationRecord
     through: :reservations,
     source: :lesson_date
   
+  # attr_accessor :user_resesrvations_datetimes
 
   before_validation :ensure_session_token
   # SPIRE
 
+  
   def self.find_by_credentials(credential, password)
     if credential.match(URI::MailTo::EMAIL_REGEXP)
       user = User.find_by(email: credential)

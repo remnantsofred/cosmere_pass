@@ -5,6 +5,7 @@ import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import { formatDateWithDay } from '../../utils/date_util';
 import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import { DateMenu } from '../DateMenu/DateMenu';
 
 export const SearchNav = withRouter(({children, id='', className="SearchNav", locations, lessons, lessonDates, currentUser, indexType, history }) => {
   const dropdownTypeOptions = [{
@@ -76,13 +77,11 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
           value={selectedValueLoc}
           setValue={setSelectedValueLoc}
           />
-       
-        {/* <DropdownMenu 
-          className="dropdown navDropdown" 
-          options='' 
-          placeholder={formatDateWithDay(today)} 
-          source='searchNav' /> */}
         
+        <DateMenu 
+          className="dateMenu" 
+          id="navBarDateMenu"
+          />
       </Column>}
       <Column>
         Magic Lessons in Your Area
