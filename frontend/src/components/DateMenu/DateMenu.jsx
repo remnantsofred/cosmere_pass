@@ -31,14 +31,25 @@ const BackArrow = () => {
   )
 }
 
-export const DateMenu = ({className="dateMenu", id="", options, placeholder, setReviewLessonFromDropdown, setSearchParams, source="", value, setValue})=> {
+const handleBackDate = () => {
+  let today = new Date();
+  let newDate = today - 1;
+}
+
+const handleForwardDate = () => {
+  let today = new Date();
+  let newDate = today + 1;
+return 
+}
+
+export const DateMenu = ({className="dateMenu", id="", options, placeholder, source="", value, setValue})=> {
   let today = new Date();
   
   return (
     <div className={className} id={id}>
-        <div className="dateMenuLabel">{formatDateWithDayShort(today)}</div>
-        <BackArrow />
-        <ForwardArrow />
+        <div className="dateMenuLabel">{placeholder}</div>
+        <BackArrow onClick={handleBackDate}/>
+        <ForwardArrow onClick={handleForwardDate}/>
     </div>
     
   )
