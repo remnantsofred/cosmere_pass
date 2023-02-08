@@ -88,3 +88,10 @@
   border-width: 4px;
   transition: background-color .3s,color .3s,border-color .3s;
 }
+
+.reviewReviewerUsername{
+  font-weight: 500;
+  line-height: 1.5;
+  font-size: .875rem;
+  color: rgb(255, 214, 1);
+}

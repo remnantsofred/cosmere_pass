@@ -32,7 +32,7 @@ class User < ApplicationRecord
     through: :reservations,
     source: :lesson_date
   
-  # attr_accessor :user_resesrvations_datetimes
+  attr_accessor :reservation_datetimes
 
   before_validation :ensure_session_token
   # SPIRE

@@ -71,15 +71,17 @@ class Api::LessonDatesController < ApplicationController
       reservation.id
     end
     if current_user 
-      # user_lessondatetimes = []
+      current_user_lessondatetimes = []
       lesson_date.reservations.each do |reservation|
         if reservation.student_id == current_user.id
           lesson_date.user_has_reservation = true
-          # user_lessondatetimes << reservation.lesson_datetime
+          current_user_lessondatetimes << [lesson_date.start_time, lesson_date.end_time]
           lesson_date.current_user_reservation_id = reservation.id
         end
       end
     end
+    lesson_date.current_user_lessondatetimes = current_user_lessondatetimes
+    # ^^ not sure this works above since it would only hold it for a single lessondate
     lesson_date.location_id = lesson_date.lesson.location_id
     lesson_date.lesson_type = lesson_date.lesson.lesson_type
 

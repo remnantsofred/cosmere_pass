@@ -37,6 +37,7 @@ export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, cur
       <Row className='reviewStarsRow'>
         <div className='reviewRatingNum'> <StarRating assignedRating={review.rating} givenFillColor="#676767" unfillColor="#e7e7e7" /> </div>
         <span className='reviewTimeAgo'>{getTimeAgo(review)}</span>
+        <span className='reviewReviewerUsername'>{review.reviewerUsername}</span>
       </Row>
       <Row className='reviewBodyRow'>
         <p className='reviewBody'>{ review.body }</p>
