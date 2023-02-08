@@ -80,15 +80,15 @@ class User < ApplicationRecord
       all_reservation_datetimes << [reservation.lesson_date.start_time, reservation.lesson_date.end_time]
       if reservation.lesson_date.end_time.past? 
         past_reservations << reservation
-        locations_visited << reservation.lesson_date.lesson.location.location_name
+        locations_visited << reservation.lesson_date.lesson.location_id
       elsif reservation.lesson_date.end_time.future? 
         upcoming_reservations << reservation
       end 
-      all_lessons_taken << reservation.lesson_date.lesson.title
+      all_lessons_taken << reservation.lesson_date.lesson_id
     end
 
     self.reviews.each do |review|
-      lessons_reviewed << review.lesson.title
+      lessons_reviewed << review.lesson_id
     end
     
     self.reservation_datetimes = all_reservation_datetimes

@@ -163,3 +163,36 @@
   width: 1.25em;
   height: 1.25em;
 }
+
+.review-button-no-lessons-taken {
+  width: 110.6px;
+  height: 32px;
+  padding: 9px 8px 7px 8px;
+  border: 1px solid #05f;
+  color: #000;
+  border-radius: 3px;
+  background-color: transparent;
+  transition: color .3s,background-color .3s,border-color .3s;
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+  cursor: default;
+  overflow: visible;
+  text-decoration: none;
+  font-size: .875rem;
+  display: flex;
+  justify-content: center;
+  border-color: #d6d6d6;
+  background-color: #fff;
+  background-color: #e7e7e7;
+  border-color: #e7e7e7;
+  transition: color .3s,background-color .3s,border-color .3s;
+}
+
+.review-button-no-lessons-taken:hover {
+  /* background-color: #d6d6d6; */
+  background-color: #e7e7e7;
+  border-color: #e7e7e7;
+  transition: color .3s,background-color .3s,border-color .3s;
+}
