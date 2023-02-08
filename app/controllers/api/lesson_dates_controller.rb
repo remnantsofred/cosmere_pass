@@ -71,17 +71,25 @@ class Api::LessonDatesController < ApplicationController
       reservation.id
     end
     if current_user 
-      current_user_lessondatetimes = []
+      current_user.set_user_details
+
       lesson_date.reservations.each do |reservation|
         if reservation.student_id == current_user.id
           lesson_date.user_has_reservation = true
-          current_user_lessondatetimes << [lesson_date.start_time, lesson_date.end_time]
           lesson_date.current_user_reservation_id = reservation.id
         end
       end
+
+      # each reservation_datetime is an array of a start and end time
+      current_user.reservation_datetimes.each do |reservation_datetime| 
+        if lesson_date.start_time.between?(reservation_datetime[0], reservation_datetime[1]) || lesson_date.end_time.between?(reservation_datetime[0], reservation_datetime[1])
+          lesson_date.current_user_would_be_doublebooked = true
+        end
+      end
+      lesson_date.current_user_would_be_doublebooked = false if lesson_date.current_user_would_be_doublebooked != true
+
     end
-    lesson_date.current_user_lessondatetimes = current_user_lessondatetimes
-    # ^^ not sure this works above since it would only hold it for a single lessondate
+
     lesson_date.location_id = lesson_date.lesson.location_id
     lesson_date.lesson_type = lesson_date.lesson.lesson_type
 

@@ -2,7 +2,7 @@ class Api::SessionsController < ApplicationController
   def show
     if current_user
       @user = current_user
-      @user = set_user_details(@user)
+      @user.set_user_details
       render 'api/users/show'
     else  
       render json: { user: nil }
@@ -14,7 +14,7 @@ class Api::SessionsController < ApplicationController
 
     if @user 
       login!(@user)
-      @user = set_user_details(@user)
+      @user.set_user_details
       render 'api/users/show'
     else   
       render json: { errors: ['The provided credentials were invalid.'] }, status: :unauthorized
@@ -27,19 +27,5 @@ class Api::SessionsController < ApplicationController
     render json: { message: 'success' }
   end
 
-  private
 
-  def set_user_details(user)
-    all_reservation_datetimes = []
-    user.reservations.each do |reservation|
-      all_reservation_datetimes << [reservation.lesson_date.start_time, reservation.lesson_date.end_time]
-    end
-    user.reservation_datetimes = all_reservation_datetimes
-    p '---------------------------RESERVATIONS BELOW!!!!!! -------------------------------------'
-    p user.reservation_datetimes
-    p all_reservation_datetimes
-    p '---------------------------RESERVATIONS ABOVE!!!!!! -------------------------------------'
-    # debugger 
-    return user
-  end
 end

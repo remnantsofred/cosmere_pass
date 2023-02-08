@@ -10,15 +10,27 @@ import StarRating from '../StarRating/StarRating';
 export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, currentUser, setModalStatus, handleDeleteReview, handleEditReviewClick}) => {
   
   const getTimeAgo = (review) => {
-    if (review.minutesAgo > 0){
+    if (review.minutesAgo < 0){
+      return `just now` 
+    } else if (review.minutesAgo > 0 && review.minutesAgo < 2){
+      return `${review.minutesAgo} minute ago`
+    } else if (review.minutesAgo > 2) {
       return `${review.minutesAgo} minutes ago`
-    } else if (review.hoursAgo > 0){
+    } else if (review.hoursAgo > 0 && review.hoursAgo < 2){
+      return `${review.hoursAgo} hour ago`
+    } else if (review.hoursAgo > 2){
       return `${review.hoursAgo} hours ago`
-    } else if (review.daysAgo > 0){
+    } else if (review.daysAgo > 0 && review.daysAgo < 2){
+      return `${review.daysAgo} day ago`
+    } else if (review.daysAgo > 2){
       return `${review.daysAgo} days ago`
-    } else if (review.monthsAgo > 0) {
+    } else if (review.monthsAgo > 0 && review.monthsAgo < 2) {
+      return `${review.monthsAgo} month ago`
+    } else if (review.monthsAgo > 2) {
       return `${review.monthsAgo} months ago`
-    } else if (review.yearsAgo > 0) {
+    } else if (review.yearsAgo > 0 && review.yearsAgo < 2) {
+      return `${review.yearsAgo} year ago`
+    } else if (review.yearsAgo > 2) {
       return `${review.yearsAgo} years ago`
     }
   }

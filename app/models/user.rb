@@ -69,6 +69,14 @@ class User < ApplicationRecord
     self.session_token
   end 
 
+  def set_user_details
+    all_reservation_datetimes = []
+    self.reservations.each do |reservation|
+      all_reservation_datetimes << [reservation.lesson_date.start_time, reservation.lesson_date.end_time]
+    end
+    self.reservation_datetimes = all_reservation_datetimes
+  end
+
   private
   def generate_unique_session_token
     token = SecureRandom::urlsafe_base64 
