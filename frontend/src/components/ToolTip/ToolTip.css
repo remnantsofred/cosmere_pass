@@ -1,0 +1,28 @@
+.toolTip {
+  width: 240px;
+  height: min-content;
+  background: #fff;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  z-index: 5;
+  padding: 8px 14px;
+  text-align: center;
+  position: relative;
+}
+
+.toolTipText {
+  font-size: .875rem;
+  line-height: 1.4285714286;
+  font-weight: 400;
+  width: 240px;
+  height: 14px;
+  text-decoration: none;
+  color: #000;
+  transition: background-color .3s,color .3s;
+}
+
+.double-booked-tool-tip {
+  top: -75px;
+  left: 15px;
+}

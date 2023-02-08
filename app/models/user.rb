@@ -32,10 +32,12 @@ class User < ApplicationRecord
     through: :reservations,
     source: :lesson_date
   
+  attr_accessor :reservation_datetimes
 
   before_validation :ensure_session_token
   # SPIRE
 
+  
   def self.find_by_credentials(credential, password)
     if credential.match(URI::MailTo::EMAIL_REGEXP)
       user = User.find_by(email: credential)
@@ -66,6 +68,14 @@ class User < ApplicationRecord
     # self.save!
     self.session_token
   end 
+
+  def set_user_details
+    all_reservation_datetimes = []
+    self.reservations.each do |reservation|
+      all_reservation_datetimes << [reservation.lesson_date.start_time, reservation.lesson_date.end_time]
+    end
+    self.reservation_datetimes = all_reservation_datetimes
+  end
 
   private
   def generate_unique_session_token
