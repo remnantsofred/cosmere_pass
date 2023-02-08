@@ -9,19 +9,37 @@ import { formatDate, formatTime, timeBetween } from '../../utils/date_util';
 import { StarIcon } from '../icon/Icon';
 import { getReservations, getReservation, fetchReservations, fetchReservation } from '../../store/reservation';
 import { getLesson, fetchLesson } from '../../store/lesson';
+import ToolTip from '../ToolTip/ToolTip';
 
 // reservations passed from SearchPage component are just reservations for this specific lessonDate
 export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel, source}) => {
   const dispatch = useDispatch();
   const lesson = useSelector(getLesson(lessonDate.lessonId));
   const currentUser = useSelector(state => state.session.user);
+  const [toolTipIsShown, setToolTipIsShown] = useState(true);
   
   const renderLoggedIn = (lessonDate, location, handleResClick, handleCancel, source, currentUser) => {
-    if (lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation) {
-      // if logged in and resume
+    if (lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation && !lessonDate.currentUserWouldBeDoublebooked) {
+      // if logged in and reservation available and user has not reserved it and it wouldn't be double booked
       return (
         <>
-          <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={lessonDate.remainingSlots > 0 ? 'lessonDateIdxItmReserve' : 'lessonDateIdxItmReserveFull'}>Reserve</button> 
+          <button onClick={ () => handleResClick(lessonDate, lesson, location)} className={'lessonDateIdxItmReserve'}>Reserve</button> 
+          <p className='remainingSlots'>Available slots: {lessonDate.remainingSlots}</p>
+        </>
+      )
+    } else if (lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation && lessonDate.currentUserWouldBeDoublebooked) {
+      // if logged in and reservation available and user has not reserved it BUT WOULD BE double booked
+      return (
+        <>
+          <button 
+            onClick={ () => handleResClick(lessonDate, lesson, location)} 
+            className={'lessonDateIdxItmReserve double-booked'}
+            onMouseEnter={()=>setToolTipIsShown(true)}
+            // onMouseLeave={()=>setToolTipIsShown(false)}
+            >
+              Reserve
+          </button> 
+          {toolTipIsShown && <ToolTip text='Are you sure? You already have a lesson reserved at a time. You will be charged a fee for any missing lesson. Make sure to cancel your other lesson if you are sure!' className='toolTip double-booked-tool-tip'/> }
           <p className='remainingSlots'>Available slots: {lessonDate.remainingSlots}</p>
         </>
       )

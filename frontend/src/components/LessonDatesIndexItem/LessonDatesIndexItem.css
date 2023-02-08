@@ -303,6 +303,7 @@
   margin-top: 2px;
 }
 
+
 .reserved {
   color: #555;
   font-size: .875rem;
@@ -318,4 +319,9 @@
   color: #05f;
   font-weight: 700;
   padding-top: 4px;
+}
+
+.double-booked {
+  height: min-content;
+  width: inherit;
 }
