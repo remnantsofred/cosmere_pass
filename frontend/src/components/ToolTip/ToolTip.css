@@ -6,12 +6,9 @@
   border-radius: 3px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
   z-index: 5;
-  position: absolute;
-  top: 50vh;
-  left: 50%vw;
-  padding: 8px;
+  padding: 8px 14px;
   text-align: center;
-
+  position: relative;
 }
 
 .toolTipText {
@@ -26,7 +23,6 @@
 }
 
 .double-booked-tool-tip {
-  /* position: relative; */
-  left: 0px;
-
+  top: -75px;
+  left: 15px;
 }
