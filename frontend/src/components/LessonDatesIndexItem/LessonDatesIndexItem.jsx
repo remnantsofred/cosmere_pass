@@ -86,7 +86,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       {source === "search" && <Column className='lessonDateIdxItmCol3'>
         <NavLink to={`/locations/${location.id}`} className="lessonDateIdxItmLocLink">{location.locationName}</NavLink>
         <h3 className="lessonDateIdxItmLessonType">{lesson.lessonType}</h3>
-        {toolTipIsShown && <ToolTip text='Are you sure? You already have a lesson reserved at this time. You will be charged a fee for any missing lesson. Make sure to cancel your other lesson if you are sure!' className='toolTip double-booked-tool-tip'/> }
+        {toolTipIsShown && <ToolTip text='Are you sure? You already have a lesson reserved at this time. You will be charged a no-show fee for missing any lesson. Make sure to cancel your other lesson if you are sure!' className='toolTip double-booked-tool-tip'/> }
         
       </Column> }
       
