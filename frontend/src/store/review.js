@@ -1,4 +1,5 @@
 import csrfFetch from "./csrf";
+import { restoreSession } from "./session";
 
 export const RECEIVE_REVIEWS = "reviews/RECEIVE_REVIEWS";
 export const RECEIVE_REVIEW = "reviews/RECEIVE_REVIEW";
@@ -73,6 +74,7 @@ export const createReview = (data) => async (dispatch) => {
   if (res.ok) {
     const review = await res.json();
     dispatch(receiveReview(review));
+    dispatch(restoreSession());
   }
 };
 
@@ -89,6 +91,7 @@ export const updateReview = (review) => async (dispatch) => {
     const newReview = await res.json();
     
     dispatch(receiveReview(newReview));
+    dispatch(restoreSession());
   }
 };
 
@@ -98,6 +101,7 @@ export const deleteReview = (reviewId) => async (dispatch) => {
   });
   if (res.ok) {
     dispatch(removeReview(reviewId));
+    dispatch(restoreSession());
   }
 };
 

@@ -25,6 +25,7 @@ import { AiFillFacebook } from 'react-icons/ai';
 import { ImTwitter } from 'react-icons/im';
 import { BsInstagram } from 'react-icons/bs'
 import ToolTip from '../ToolTip/ToolTip';
+import { restoreSession } from '../../store/session';
 
 
 export const LocationShowPage = () => {
@@ -43,12 +44,15 @@ export const LocationShowPage = () => {
   const [ modalReview, setModalReview ] = useState();
   const [toolTipIsShown, setToolTipIsShown] = useState(false);
 
+
+
   useEffect(()=>{
     Promise.all([
       dispatch(fetchLocation(locationId)),
       dispatch(fetchLessons()),
       dispatch(fetchLessonDates(locationId)),  
-      dispatch(fetchReviews(locationId))  
+      dispatch(fetchReviews(locationId)),  
+      dispatch(restoreSession())
     ]).then(() =>  setLoaded(true))
   },[locationId])
 

@@ -24,6 +24,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     if (review) {
       setReviewBody(review.body);
     }
+    
   }, [])
 
   const setStarReviewRating = (rating) => {
