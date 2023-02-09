@@ -24,6 +24,7 @@ import { FaLessThanEqual } from 'react-icons/fa';
 import { getCurrentUser } from '../../store/session';
 import { SiTruenas } from 'react-icons/si';
 import SearchNav from '../SearchNav';
+import { formatDateWithDayShort } from '../../utils/date_util';
 
 
 
@@ -190,6 +191,9 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
       }
       if (paramsMap.location_id){
         return lessonDate.locationId === parseInt(paramsMap.location_id)
+      }
+      if (paramsMap.start_time){
+        return formatDateWithDayShort(lessonDate.startTime) === (paramsMap.start_time)
       }
       return true;
     })

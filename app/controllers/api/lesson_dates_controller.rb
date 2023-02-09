@@ -15,7 +15,17 @@ class Api::LessonDatesController < ApplicationController
       @lesson_dates = @lesson_dates.select { |lesson_date|  lesson_date.lesson.lesson_type.include?(params[:lesson_type]) } 
       
     end   
+
+    if params[:start_time]
+      if @lesson_dates.length == 0
+        @lesson_dates = LessonDate.all
+      end
+      @lesson_dates = @lesson_dates.select { |lesson_date| lesson_date.start_time.include?(params[:start_time]) } 
       
+    end   
+      
+    
+
     if @lesson_dates.length == 0
       @lesson_dates = LessonDate.all.limit(30)
     end

@@ -5,7 +5,7 @@ import Row from '../row/Row';
 import Column from '../column/Column';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import { getLocation, fetchLocation } from '../../store/location';
-import { formatDate, formatTime, timeBetween } from '../../utils/date_util';
+import { formatDate, formatTime, timeBetween, formatDateWithDayShort } from '../../utils/date_util';
 import { StarIcon } from '../icon/Icon';
 import { getReservations, getReservation, fetchReservations, fetchReservation } from '../../store/reservation';
 import { getLesson, fetchLesson } from '../../store/lesson';
@@ -74,6 +74,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       <Column className={source === "search" ? 'lessonDateIdxItmTimeCol' : 'locShowLessonDateIdxItmTimeCol'}>
         <p className={source === "search" ? "lessonDateIdxItmTime startTime" : "lessonDateIdxItmTime startTimeLoc"}>{formatTime(lessonDate.startTime)}</p>
         <p className="lessonDateIdxItmTime duration">{timeBetween(lessonDate.startTime, lessonDate.endTime)} min</p>
+        <p className="lessonDateIdxItmTime duration">{formatDateWithDayShort(lessonDate.startTime)}</p>
       </Column>
       <Column className={source === "search" ? "lessonDateIdxItmCol2": "locShowIdxItmCol2"}>
         <NavLink to={`/locations/${location.id}`} className="lessonDateIdxItmLink">{lesson.title}</NavLink>
