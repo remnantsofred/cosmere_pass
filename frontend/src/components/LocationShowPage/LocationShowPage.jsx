@@ -142,6 +142,25 @@ export const LocationShowPage = () => {
     setModalReview(review)
   }
 
+
+  // const availableReviews = (lessons) => {
+  //   let lessonsTakenCanReview = [];
+  //   let lessonsTakenAlreadyReviewed = [];
+  //   let lessonsNotTaken = [];
+
+  //   for (let lesson of lessons) {
+  //     if (currentUser.lessonsTaken.includes(lesson.id) && !currentUser.lessonsReviewed.includes(lesson.id)) {
+  //       lessonsTakenCanReview.push(lesson)
+  //     } else if (currentUser.lessonsTaken.includes(lesson.id) && currentUser.lessonsReviewed.includes(lesson.id)) {
+  //       lessonsTakenAlreadyReviewed.push(lesson)
+  //     } else if(!currentUser.lessonsTaken.includes(lesson.id)) {
+  //       lessonsNotTaken.push(lesson)
+  //     } 
+  //   }
+
+  // }
+  
+
   const reviewButtonType = () => {
     if (currentUser && !currentUser.locationsVisited.includes(parseInt(locationId))) {
       return (

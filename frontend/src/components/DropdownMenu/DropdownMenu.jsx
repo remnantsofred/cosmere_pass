@@ -71,6 +71,39 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
     return selectedValue.value === option.value;
   }
 
+  const dropDownOptions = options.map( option => {
+    if (option.isDisabled === false) {
+      return (
+        <div 
+          onClick={() => onItemClick(option)} 
+          key={option.value} 
+          className={`dropdown-item ${isSelected(option) && "selected"} ${option.isDisabled}`} 
+          >
+          {option.label}
+
+       
+        </div>
+      )
+    } else {
+      return (
+        <div 
+          
+          key={option.value} 
+          className={`dropdown-item ${isSelected(option) && "selected"} ${option.isDisabled}`} 
+          disabled='true'
+          onMouseEnter={()=>setToolTipIsShown(`${option.value}-${option.isDisabled}`)}
+          onMouseLeave={()=>setToolTipIsShown(false)}
+          >
+          {option.label}
+
+          {toolTipIsShown === `${option.value}-alreadyReviewed` && <ToolTip className="review-already-reviewed" text="You have already reviewed this lesson." />}
+          {toolTipIsShown === `${option.value}-notYetTaken` && <ToolTip className="review-already-reviewed" text="You have not yet taken this lesson." />}
+        </div>
+      )
+    }
+    
+  })
+
 
   if (source === "reviewForm" || source === "" ) {
     return (
@@ -81,8 +114,6 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
               <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
                 <div className="dropdown-tool reviewFormDropMenu">
                   <Icon />
-                  {/* {toolTipIsShown === "alreadyReviewed" && <ToolTip className="review-already-reviewed" text="You have already reviewed this lesson." />}
-            {toolTipIsShown === "notYetTaken" && <ToolTip className="review-already-reviewed" text="You have not taken this lesson." />} */}
                 </div>
             </div> 
           </div> 
@@ -90,23 +121,8 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
         <div className="dropdown-input">
             
           {showMenu && <div className="dropdown-menu reviewFormDropMenu">
-            {options.map( option => (
-              <div 
-                onClick={() => onItemClick(option)} 
-                key={option.value} 
-                className={`dropdown-item ${isSelected(option) && "selected"} ${option.isDisabled}`} 
-                // disabled={option.isDisabled}
-                onMouseEnter={()=>setToolTipIsShown(`${option.value}-${option.isDisabled}`)}
-                // onMouseLeave={()=>setToolTipIsShown(false)}
-                >
-                {option.label}
-
-                {toolTipIsShown === `${option.value}-alreadyReviewed` && <ToolTip className="review-already-reviewed" text="You have already reviewed this lesson." />}
-                {toolTipIsShown === `${option.value}-notYetTaken` && <ToolTip className="review-already-reviewed" text="You have not yet taken this lesson." />}
-              </div>
-            ))}
-            {/* {toolTipIsShown === "alreadyReviewed" && <ToolTip className="review-already-reviewed" text="You have already reviewed this lesson." />}
-            {toolTipIsShown === "notYetTaken" && <ToolTip className="review-already-reviewed" text="You have not taken this lesson." />} */}
+            {dropDownOptions}
+            
           </div>}
         </div>
       </div>
