@@ -20,6 +20,11 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const [reviewBody, setReviewBody] = useState("");
   const [errors, setErrors] = useState("");
 
+  useEffect(() => {
+    if (review) {
+      setReviewBody(review.body);
+    }
+  }, [])
 
   const setStarReviewRating = (rating) => {
     setRating(rating);
@@ -90,7 +95,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     }
     else {
       return (
-        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => update(e, 'reviewBody')} placeholder={review.body} ></textarea>
+        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => update(e, 'reviewBody')}  ></textarea>
       )
     }
   }
@@ -120,19 +125,12 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     }
   }
 
-  const reviewEditSubmitClick = () => {
+  const reviewEditSubmitClick = (reviewBody) => {
     const newErrors = {...errors};
-    if (!lessonID && !reviewBody) {
-      newErrors["lessonID"] = 'You must select a lesson to review';
+    if (!reviewBody) {
       newErrors["reviewBody"] = 'Review body is required';
       setErrors(newErrors)
-    } else if (!lessonID && reviewBody) {
-      newErrors["lessonID"] = 'You must select a lesson to review';
-      setErrors(newErrors)
-    } else if (lessonID && !reviewBody) {
-      newErrors["reviewBody"] = 'Review body is required';
-      setErrors(newErrors)
-    } else if (reviewBody && lessonID) {
+    } else {
       const reviewData = {
         lesson_id: review.lessonId,
         review_id: review.id,
@@ -177,7 +175,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
             {className === "ReviewFormModal" ? <button className='resModalButton' onClick={reviewSubmitClick} >
               Submit
             </button> :
-            <button className='resModalButton' onClick={reviewEditSubmitClick}>
+            <button className='resModalButton' onClick={() => reviewEditSubmitClick(reviewBody)}>
             Update Review
           </button>}
           </Row>
