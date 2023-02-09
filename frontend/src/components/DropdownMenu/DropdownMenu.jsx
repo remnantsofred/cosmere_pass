@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import './DropdownMenu.css';
 import { useState } from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
+import ToolTip from '../ToolTip/ToolTip';
 
 const Icon = () => {
   return (
@@ -15,6 +16,8 @@ const Icon = () => {
 export const DropdownMenu = withRouter(({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown, setSearchParams, source="", history, value, setValue})=> {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
+  const [toolTipIsShown, setToolTipIsShown] = useState(false);
+
   
 
   useEffect(()=>{
@@ -66,26 +69,41 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
     return selectedValue.value === option.value;
   }
 
+
   if (source === "reviewForm" || source === "" ) {
     return (
       <div onClick={handleInputClick} className={source === "reviewForm" ? "dropdown-container reviewFormDropCont" : "dropdown-container"}>
         <div className="dropdown-tools"> 
-      <div className="dropdown-tools"> 
-        <div className="dropdown-tools review-dropdown-tools"> 
-          <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
-            <div className="dropdown-tool reviewFormDropMenu">
-              <Icon />
-            </div>
-        </div> 
-      </div> 
+          <div className="dropdown-tools"> 
+            <div className="dropdown-tools review-dropdown-tools"> 
+              <div className="dropdown-selected-value" id="dropdown-selected-value">{getDisplay()}</div>
+                <div className="dropdown-tool reviewFormDropMenu">
+                  <Icon />
+                  {/* {toolTipIsShown === "alreadyReviewed" && <ToolTip className="review-already-reviewed" text="You have already reviewed this lesson." />}
+            {toolTipIsShown === "notYetTaken" && <ToolTip className="review-already-reviewed" text="You have not taken this lesson." />} */}
+                </div>
+            </div> 
+          </div> 
         </div> 
         <div className="dropdown-input">
+            
           {showMenu && <div className="dropdown-menu reviewFormDropMenu">
             {options.map( option => (
-              <div onClick={() => onItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>
+              <div 
+                onClick={() => onItemClick(option)} 
+                key={option.value} 
+                className={`dropdown-item ${isSelected(option) && "selected"} ${option.isDisabled}`} 
+                onMouseEnter={()=>setToolTipIsShown(`${option.value}-${option.isDisabled}`)}
+                // onMouseLeave={()=>setToolTipIsShown(false)}
+                >
                 {option.label}
+
+                {toolTipIsShown === `${option.value}-alreadyReviewed` && <ToolTip className="review-already-reviewed" text="You have already reviewed this lesson." />}
+                {toolTipIsShown === `${option.value}-notYetTaken` && <ToolTip className="review-already-reviewed" text="You have not yet taken this lesson." />}
               </div>
             ))}
+            {/* {toolTipIsShown === "alreadyReviewed" && <ToolTip className="review-already-reviewed" text="You have already reviewed this lesson." />}
+            {toolTipIsShown === "notYetTaken" && <ToolTip className="review-already-reviewed" text="You have not taken this lesson." />} */}
           </div>}
         </div>
       </div>

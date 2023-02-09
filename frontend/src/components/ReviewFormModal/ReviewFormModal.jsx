@@ -29,12 +29,26 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     setLessonID(lessonId); 
   }
 
-  const dropdownOptions = lessons.map( lesson => ({value: lesson.id, label: lesson.title}))
+  // const dropdownOptions = lessons.map( lesson => ({value: lesson.id, label: lesson.title}))
+
+  const newDropdownOptions = lessons.map( lesson => {
+    if (currentUser.lessonsTaken.includes(lesson.id) && !currentUser.lessonsReviewed.includes(lesson.id)) {
+      return {value: lesson.id, label: lesson.title, isDisabled: false}
+    }
+    else if(currentUser.lessonsTaken.includes(lesson.id) && currentUser.lessonsReviewed.includes(lesson.id)) {
+      return {value: lesson.id, label: lesson.title, isDisabled: "alreadyReviewed"}
+    }
+    else if (!currentUser.lessonsTaken.includes(lesson.id)) {
+      return {value: lesson.id, label: lesson.title, isDisabled: "notYetTaken"}
+    }
+  })
+    
+    
     
   const reviewLessonTitle = () => {
     if (!review) {
       return (
-        <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown} source="reviewForm" />
+        <DropdownMenu location={location} placeholder="Select..." options={newDropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown} source="reviewForm" />
       )
     }
     else {
