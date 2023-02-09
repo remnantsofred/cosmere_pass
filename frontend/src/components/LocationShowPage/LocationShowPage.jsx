@@ -238,7 +238,7 @@ export const LocationShowPage = () => {
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
               <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews 
-              {toolTipIsShown && <ToolTip text='You must take a lesson at this location to leave a review'/>  }
+              {toolTipIsShown && <ToolTip text='You must take a lesson at this location to leave a review' className='cannot-review'/>  }
               {reviewButtonType()}
               </h3>
               

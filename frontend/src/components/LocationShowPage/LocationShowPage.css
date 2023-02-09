@@ -146,6 +146,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding-right: 32px;
+  height: 30px;
 }
 
 #LocShowPageReviewButton {

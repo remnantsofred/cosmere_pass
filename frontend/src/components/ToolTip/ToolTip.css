@@ -11,7 +11,7 @@
   position: relative;
 }
 
-.toolTip-toolTipText {
+.toolTipText {
   font-size: .875rem;
   line-height: 1.4285714286;
   font-weight: 400;
@@ -22,18 +22,48 @@
   transition: background-color .3s,color .3s;
 }
 
-.double-booked-tool-tip {
+.double-booked {
   top: -75px;
-  left: 15px;
+  left: 20px;
+  width: 236px;
+}
+
+.double-booked-text {
+  font-size: 0.8rem;
+  line-height: -8.571429;
+  font-weight: 400;
 }
 
 .review-already-reviewed {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
   position: relative;
-  top: -2px;
-
+  top: -12px;
+  height: 0px;
 }
-.review-already-reviewed-toolTipText {
+
+.review-already-reviewed-text {
   font-size: 0.65rem;
   font-style: italic;
-  
+}
+
+
+.cannot-review {
+  position: relative;
+  top: -12px;
+  left: 28px;
+  width: fit-content;
+  height: fit-content;
+
+}
+
+.cannot-review-text {
+  font-size: 0.8rem;
+  line-height: -8.571429;
+  font-weight: 400;
+  display: flex;
+  width: 182px;
+  height: 36px;
+  color: #000;
 }

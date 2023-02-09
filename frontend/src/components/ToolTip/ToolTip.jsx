@@ -1,10 +1,10 @@
 import './ToolTip.css';
 
-export const ToolTip = ({className="toolTip", id="", text, children}) => {
+export const ToolTip = ({className="", id="", text, children}) => {
   
   return (
-    <div className={className} id={id}>
-      <span className={`${className}-toolTipText`}>{text}</span>
+    <div className={`${className} toolTip`} id={id}>
+      <span className={`${className}-text toolTipText`}>{text}</span>
       {children}
     </div>
   )
