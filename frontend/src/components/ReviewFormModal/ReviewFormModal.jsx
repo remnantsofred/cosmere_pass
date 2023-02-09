@@ -21,16 +21,16 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const [errors, setErrors] = useState("");
 
 
-
   const setStarReviewRating = (rating) => {
     setRating(rating);
   }
 
   const setReviewLessonFromDropdown = (lessonId) => {
     setLessonID(lessonId); 
+    if (errors["lessonID"]){
+      delete errors["lessonID"];
+    }
   }
-
-  
 
   // const dropdownOptions = lessons.map( lesson => ({value: lesson.id, label: lesson.title}))
 
@@ -46,70 +46,33 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     }
   })
     
-  // const update = (e, field) => {
-  //   let setState;
-  //   const value = e.currentTarget.value;
-  //   const newErrors = {...errors};
-  //   switch (field) {
-  //     case 'title':
-  //       setState = setTitle;
-  //       if (value.length > 100) {
-  //         newErrors[field] = 'Skeleton title is required and must be between 1 and 100 characters';
-  //       } else if (value.length < 1){
-  //         newErrors[field] = 'Skeleton title is required and must be between 1 and 100 characters';
-  //       } else {
-  //         delete newErrors[field];
-  //       }
-  //       setErrors(newErrors);
-  //       break;
-  //     case 'prompt':
-  //       setState = setPrompt;
-  //       if (value.length > 150) {
-  //         newErrors[field] = 'Prompt must be less than 150 characters';
-  //       } else {
-  //         delete newErrors[field];
-  //       }
-  //       setErrors(newErrors);
-  //       break;
-  //     case 'maxBones':
-  //       setState = setMaxBones;
-  //       let num = parseInt(value);
-  //       if (num < 5) {
-  //         newErrors[field] = 'Skeleton should have at least 5 bones and no more than 50 bones';
-  //       } else if (num > 50) {
-  //         newErrors[field] = 'Skeleton should have at least 5 bones and no more than 50 bones';
-  //       } else {
-  //         delete newErrors[field];
-  //       }
-  //       setErrors(newErrors);
-  //       break;
-  //     case 'maxCollaborators':
-  //       setState = setMaxCollaborators;
-  //       let numCollab = parseInt(value);
-  //       if (numCollab < 1) {
-  //         newErrors[field] = 'Skeleton should have at least 1 collaborator and no more than 50 collaborators';
-  //       } else if (numCollab > 50) {
-  //         newErrors[field] = 'Skeleton should have at least 1 collaborator and no more than 50 collaborators';
-  //       } else {
-  //         delete newErrors[field];
-  //       }
-  //       setErrors(newErrors);
-  //       break;
-  //     case 'tags':
-  //       setState = setTags;
-  //       break;
-  //     default:
-  //       throw Error('Unknown field in Signup Form');
-  //   }
+  const update = (e, field) => {
+    let setState;
+    const value = e.currentTarget.value;
+    const newErrors = {...errors};
+    switch (field) {
+      case 'reviewBody':
+        setState = setReviewBody;
+        if (value.length < 1){
+          newErrors[field] = 'Review body is required';
+        } else {
+          delete newErrors[field];
+        }
+        setErrors(newErrors);
+        break;
 
-  //   setState(value);
-  // }
+      default:
+        throw Error('Unknown field in Signup Form');
+    }
+
+    setState(value);
+  }
     
     
   const reviewLessonTitle = () => {
     if (!review) {
       return (
-        <DropdownMenu location={location} placeholder="Select..." options={newDropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown} source="reviewForm" />
+        <DropdownMenu location={location} placeholder="Select..." options={newDropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown} update={update} source="reviewForm" />
       )
     }
     else {
@@ -122,18 +85,29 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const editReviewBodyTextArea = () => {
     if (!review) {
       return (
-        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea>
+        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => update(e, 'reviewBody')} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea>
       )
     }
     else {
       return (
-        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder={review.body} ></textarea>
+        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => update(e, 'reviewBody')} placeholder={review.body} ></textarea>
       )
     }
   }
   
   const reviewSubmitClick = () => {
-    if (reviewBody) {
+    const newErrors = {...errors};
+    if (!lessonID && !reviewBody) {
+      newErrors["lessonID"] = 'You must select a lesson to review';
+      newErrors["reviewBody"] = 'Review body is required';
+      setErrors(newErrors)
+    } else if (!lessonID && reviewBody) {
+      newErrors["lessonID"] = 'You must select a lesson to review';
+      setErrors(newErrors)
+    } else if (lessonID && !reviewBody) {
+      newErrors["reviewBody"] = 'Review body is required';
+      setErrors(newErrors)
+    } else if (reviewBody && lessonID) {
       const reviewData = {
         lesson_id: lessonID,
        
@@ -143,14 +117,22 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
         location_id: location.id
       }
       handleReviewSubmit(reviewData)
-    } else {
-      setErrors("Review body cannot be empty")
     }
   }
 
   const reviewEditSubmitClick = () => {
     const newErrors = {...errors};
-    if (reviewBody) {
+    if (!lessonID && !reviewBody) {
+      newErrors["lessonID"] = 'You must select a lesson to review';
+      newErrors["reviewBody"] = 'Review body is required';
+      setErrors(newErrors)
+    } else if (!lessonID && reviewBody) {
+      newErrors["lessonID"] = 'You must select a lesson to review';
+      setErrors(newErrors)
+    } else if (lessonID && !reviewBody) {
+      newErrors["reviewBody"] = 'Review body is required';
+      setErrors(newErrors)
+    } else if (reviewBody && lessonID) {
       const reviewData = {
         lesson_id: review.lessonId,
         review_id: review.id,
@@ -160,9 +142,6 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
         location_id: location.id
       }
       handleReviewEditSubmit(reviewData)
-
-    } else {
-      setErrors("Review body cannot be empty")
     }
   }
 
@@ -202,7 +181,11 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
             Update Review
           </button>}
           </Row>
-          {errors && <Row className='reviewFormErrorRow'>{errors}</Row>}
+          {/* {errors && errors.map(error=> <Row className='reviewFormErrorRow'>{error}</Row>)} */}
+          <div className='review-form-errors'>{errors?.reviewBody}</div>
+          <div className='review-form-errors'>{errors?.lessonID}</div>
+          
+
         </Panel>
       </Panels>
     </>

@@ -3,6 +3,7 @@ import './DropdownMenu.css';
 import { useState } from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import ToolTip from '../ToolTip/ToolTip';
+import { updateLesson } from '../../store/lesson';
 
 const Icon = () => {
   return (
@@ -13,7 +14,7 @@ const Icon = () => {
 };
 
 
-export const DropdownMenu = withRouter(({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown, setSearchParams, source="", history, value, setValue})=> {
+export const DropdownMenu = withRouter(({children, id='', className="DropdownMenu", location, options, placeholder, setReviewLessonFromDropdown, setSearchParams, source="", history, value, setValue, update})=> {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState(null);
   const [toolTipIsShown, setToolTipIsShown] = useState(false);
@@ -54,6 +55,7 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
   const onItemClick = option => {
     setSelectedValue(option);
     setReviewLessonFromDropdown(option.value)
+    // update(option.value)
   };
 
   const onNavItemClick = option => {
