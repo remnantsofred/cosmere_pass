@@ -342,3 +342,9 @@
   margin-top: 16px;
   height: 36px;
 }
+
+.reviewFormErrorRow {
+  color: red;
+  font-size: 0.75rem;
+  font-style: italic;
+}

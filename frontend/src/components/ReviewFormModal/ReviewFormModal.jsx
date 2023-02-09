@@ -18,7 +18,8 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const [lessonID, setLessonID] = useState("");
   const [rating, setRating] = useState(5);
   const [reviewBody, setReviewBody] = useState("");
- 
+  const [errors, setErrors] = useState("");
+
 
 
   const setStarReviewRating = (rating) => {
@@ -28,6 +29,8 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const setReviewLessonFromDropdown = (lessonId) => {
     setLessonID(lessonId); 
   }
+
+  
 
   // const dropdownOptions = lessons.map( lesson => ({value: lesson.id, label: lesson.title}))
 
@@ -43,6 +46,64 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     }
   })
     
+  // const update = (e, field) => {
+  //   let setState;
+  //   const value = e.currentTarget.value;
+  //   const newErrors = {...errors};
+  //   switch (field) {
+  //     case 'title':
+  //       setState = setTitle;
+  //       if (value.length > 100) {
+  //         newErrors[field] = 'Skeleton title is required and must be between 1 and 100 characters';
+  //       } else if (value.length < 1){
+  //         newErrors[field] = 'Skeleton title is required and must be between 1 and 100 characters';
+  //       } else {
+  //         delete newErrors[field];
+  //       }
+  //       setErrors(newErrors);
+  //       break;
+  //     case 'prompt':
+  //       setState = setPrompt;
+  //       if (value.length > 150) {
+  //         newErrors[field] = 'Prompt must be less than 150 characters';
+  //       } else {
+  //         delete newErrors[field];
+  //       }
+  //       setErrors(newErrors);
+  //       break;
+  //     case 'maxBones':
+  //       setState = setMaxBones;
+  //       let num = parseInt(value);
+  //       if (num < 5) {
+  //         newErrors[field] = 'Skeleton should have at least 5 bones and no more than 50 bones';
+  //       } else if (num > 50) {
+  //         newErrors[field] = 'Skeleton should have at least 5 bones and no more than 50 bones';
+  //       } else {
+  //         delete newErrors[field];
+  //       }
+  //       setErrors(newErrors);
+  //       break;
+  //     case 'maxCollaborators':
+  //       setState = setMaxCollaborators;
+  //       let numCollab = parseInt(value);
+  //       if (numCollab < 1) {
+  //         newErrors[field] = 'Skeleton should have at least 1 collaborator and no more than 50 collaborators';
+  //       } else if (numCollab > 50) {
+  //         newErrors[field] = 'Skeleton should have at least 1 collaborator and no more than 50 collaborators';
+  //       } else {
+  //         delete newErrors[field];
+  //       }
+  //       setErrors(newErrors);
+  //       break;
+  //     case 'tags':
+  //       setState = setTags;
+  //       break;
+  //     default:
+  //       throw Error('Unknown field in Signup Form');
+  //   }
+
+  //   setState(value);
+  // }
     
     
   const reviewLessonTitle = () => {
@@ -71,7 +132,39 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     }
   }
   
-  
+  const reviewSubmitClick = () => {
+    if (reviewBody) {
+      const reviewData = {
+        lesson_id: lessonID,
+       
+        reviewer_id: currentUser.id,
+        rating,
+        body: reviewBody,
+        location_id: location.id
+      }
+      handleReviewSubmit(reviewData)
+    } else {
+      setErrors("Review body cannot be empty")
+    }
+  }
+
+  const reviewEditSubmitClick = () => {
+    const newErrors = {...errors};
+    if (reviewBody) {
+      const reviewData = {
+        lesson_id: review.lessonId,
+        review_id: review.id,
+        reviewer_id: currentUser.id,
+        rating,
+        body: reviewBody,
+        location_id: location.id
+      }
+      handleReviewEditSubmit(reviewData)
+
+    } else {
+      setErrors("Review body cannot be empty")
+    }
+  }
 
   return (
     <>
@@ -102,34 +195,14 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
             {editReviewBodyTextArea()}
           </Row>
           <Row>
-            {className === "ReviewFormModal" ? <button className='resModalButton' onClick={() => {
-                const reviewData = {
-                  lesson_id: lessonID,
-                 
-                  reviewer_id: currentUser.id,
-                  rating,
-                  body: reviewBody,
-                  location_id: location.id
-                }
-                handleReviewSubmit(reviewData)
-              }}>
+            {className === "ReviewFormModal" ? <button className='resModalButton' onClick={reviewSubmitClick} >
               Submit
             </button> :
-            <button className='resModalButton' onClick={() => {
-              const reviewData = {
-                lesson_id: review.lessonId,
-                review_id: review.id,
-                reviewer_id: currentUser.id,
-                rating,
-                body: reviewBody,
-                location_id: location.id
-              }
-              handleReviewEditSubmit(reviewData)
-            }}>
+            <button className='resModalButton' onClick={reviewEditSubmitClick}>
             Update Review
           </button>}
           </Row>
-          
+          {errors && <Row className='reviewFormErrorRow'>{errors}</Row>}
         </Panel>
       </Panels>
     </>

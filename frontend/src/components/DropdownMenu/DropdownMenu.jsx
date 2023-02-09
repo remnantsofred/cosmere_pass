@@ -93,6 +93,7 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
                 onClick={() => onItemClick(option)} 
                 key={option.value} 
                 className={`dropdown-item ${isSelected(option) && "selected"} ${option.isDisabled}`} 
+                // disabled={option.isDisabled}
                 onMouseEnter={()=>setToolTipIsShown(`${option.value}-${option.isDisabled}`)}
                 // onMouseLeave={()=>setToolTipIsShown(false)}
                 >

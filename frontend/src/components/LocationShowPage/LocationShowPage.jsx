@@ -115,8 +115,12 @@ export const LocationShowPage = () => {
   //   location_id: location.id
   // }
   const handleReviewSubmit = (reviewData) =>{
-    dispatch(createReview(reviewData))
-    setModalStatus(false)
+    if (reviewData.body){
+      dispatch(createReview(reviewData))
+      setModalStatus(false)
+    } else {
+      alert('Please enter a review')
+    }
   }
 
   const handleReviewEditSubmit = (reviewData) =>{
