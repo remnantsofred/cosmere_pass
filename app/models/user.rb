@@ -4,7 +4,7 @@
 #
 #  id              :bigint           not null, primary key
 #  username        :string           not null
-#  email           :string           not null
+#  email           :string           not null 
 #  password_digest :string           not null
 #  session_token   :string           not null
 #  created_at      :datetime         not null
@@ -32,7 +32,7 @@ class User < ApplicationRecord
     through: :reservations,
     source: :lesson_date
   
-  attr_accessor :reservation_datetimes
+  attr_accessor :reservation_datetimes, :lessons_taken, :lessons_reviewed, :upcoming_reservations, :past_reservations, :locations_visited
 
   before_validation :ensure_session_token
   # SPIRE
@@ -71,10 +71,32 @@ class User < ApplicationRecord
 
   def set_user_details
     all_reservation_datetimes = []
+    all_lessons_taken = []
+    lessons_reviewed = []
+    past_reservations = []
+    upcoming_reservations = []
+    locations_visited = []
     self.reservations.each do |reservation|
       all_reservation_datetimes << [reservation.lesson_date.start_time, reservation.lesson_date.end_time]
+      if reservation.lesson_date.end_time.past? 
+        past_reservations << reservation
+        locations_visited << reservation.lesson_date.lesson.location_id
+      elsif reservation.lesson_date.end_time.future? 
+        upcoming_reservations << reservation
+      end 
+      all_lessons_taken << reservation.lesson_date.lesson_id
     end
+
+    self.reviews.each do |review|
+      lessons_reviewed << review.lesson_id
+    end
+    
     self.reservation_datetimes = all_reservation_datetimes
+    self.lessons_taken = all_lessons_taken.uniq
+    self.lessons_reviewed = lessons_reviewed
+    self.past_reservations = past_reservations
+    self.upcoming_reservations = upcoming_reservations
+    self.locations_visited = locations_visited.uniq
   end
 
   private

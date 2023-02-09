@@ -24,6 +24,8 @@ import { CgBrowser } from 'react-icons/cg';
 import { AiFillFacebook } from 'react-icons/ai';
 import { ImTwitter } from 'react-icons/im';
 import { BsInstagram } from 'react-icons/bs'
+import ToolTip from '../ToolTip/ToolTip';
+import { restoreSession } from '../../store/session';
 
 
 export const LocationShowPage = () => {
@@ -40,13 +42,17 @@ export const LocationShowPage = () => {
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalReview, setModalReview ] = useState();
+  const [toolTipIsShown, setToolTipIsShown] = useState(false);
+
+
 
   useEffect(()=>{
     Promise.all([
       dispatch(fetchLocation(locationId)),
       dispatch(fetchLessons()),
       dispatch(fetchLessonDates(locationId)),  
-      dispatch(fetchReviews(locationId))  
+      dispatch(fetchReviews(locationId)),  
+      dispatch(restoreSession())
     ]).then(() =>  setLoaded(true))
   },[locationId])
 
@@ -113,8 +119,12 @@ export const LocationShowPage = () => {
   //   location_id: location.id
   // }
   const handleReviewSubmit = (reviewData) =>{
-    dispatch(createReview(reviewData))
-    setModalStatus(false)
+    if (reviewData.body){
+      dispatch(createReview(reviewData))
+      setModalStatus(false)
+    } else {
+      alert('Please enter a review')
+    }
   }
 
   const handleReviewEditSubmit = (reviewData) =>{
@@ -130,6 +140,55 @@ export const LocationShowPage = () => {
     setModalStatus(5)
     setModalLocation(location)
     setModalReview(review)
+  }
+
+
+  // const availableReviews = (lessons) => {
+  //   let lessonsTakenCanReview = [];
+  //   let lessonsTakenAlreadyReviewed = [];
+  //   let lessonsNotTaken = [];
+
+  //   for (let lesson of lessons) {
+  //     if (currentUser.lessonsTaken.includes(lesson.id) && !currentUser.lessonsReviewed.includes(lesson.id)) {
+  //       lessonsTakenCanReview.push(lesson)
+  //     } else if (currentUser.lessonsTaken.includes(lesson.id) && currentUser.lessonsReviewed.includes(lesson.id)) {
+  //       lessonsTakenAlreadyReviewed.push(lesson)
+  //     } else if(!currentUser.lessonsTaken.includes(lesson.id)) {
+  //       lessonsNotTaken.push(lesson)
+  //     } 
+  //   }
+
+  // }
+  
+
+  const reviewButtonType = () => {
+    if (currentUser && !currentUser.locationsVisited.includes(parseInt(locationId))) {
+      return (
+        <button 
+          className='review-button-no-lessons-taken'
+          onMouseEnter={()=>setToolTipIsShown(true)}
+          onMouseLeave={()=>setToolTipIsShown(false)}          
+          >
+            Leave Review
+        </button>
+      ) 
+    } else if (currentUser && currentUser.locationsVisited.includes(parseInt(locationId))){
+      return (
+        <button 
+          onClick={() => setModalStatus(4)} 
+          className='lessonDateIdxItmReserve'>Leave Review
+        </button>
+      ) 
+    } else if (!currentUser) {
+      return (
+        // <button 
+        //   className='lessonDateIdxItmReserve inactive'>Sign up to Leave Review
+        // </button>
+        <div className='sign-up-review-text'>
+          {/* Sign up and take a lesson to leave a review! */}
+        </div>
+      ) 
+    }
   }
 
   if(!loaded){
@@ -179,11 +238,8 @@ export const LocationShowPage = () => {
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
               <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews 
-              { currentUser && 
-                <button 
-                  onClick={() => setModalStatus(4)} 
-                  className='lessonDateIdxItmReserve'>Leave Review
-                </button>}
+              {toolTipIsShown && <ToolTip text='You must take a lesson at this location to leave a review'/>  }
+              {reviewButtonType()}
               </h3>
               
               <ul className='locShowIdxULLessonDates'>
