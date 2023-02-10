@@ -4,13 +4,13 @@ import GoogleMapReact from 'google-map-react';
 import { convertNeSwToNwSe, convertNwSeToNeSw, fitBounds, getTilesIds, latLng2Tile, meters2ScreenPixels, tile2LatLng } from 'google-map-react';
 import Panel from '../panel/Panel';
 import markerIcon from './Roshar_glyph.png';
-
-
+import markerIcon2 from './Jeseh_glyph.png';
+import markerIcon3 from './marker-glyph.png';
 
 const AnyReactComponent = ({ text, icon, className, lat, lng }) => {
   return (
-    <div style={{height:40, width:40, font: 'red'}} icon={icon}>
-      <img src={icon} alt="marker" style={{height:40, width:40}} className={`${className} map-icon-img`}/>
+    <div  icon={icon} className={`${className} map-icon-div`}>
+      <img src={icon} alt="marker" className={`${className} map-icon-img`}/>
       {text}
     </div>
   )
@@ -19,10 +19,10 @@ const AnyReactComponent = ({ text, icon, className, lat, lng }) => {
 export default function Map({className="map-container"}){
   const defaultProps = {
     center: {
-      lat: 37.78511512985764,
-      lng: -122.40753194602581
+      lat: 37.77184491560768,
+      lng: -122.43681794782202
     },
-    zoom: 14
+    zoom: 12.2
   };
 
 
@@ -38,17 +38,66 @@ export default function Map({className="map-container"}){
       >
         <AnyReactComponent
           className='map-marker'
-          lat={37.98}
-          lng={-122.7}
-          text="Thaylen City"
-          icon={markerIcon}
+          lat={37.7784767805642}
+          lng={-122.390278737015}
+          text="Elendel"
+          icon={markerIcon3}
         />
         <AnyReactComponent
           className='map-marker'
-          lat={37.78511512985764}
-          lng={-122.40753194602581}
-          text="Elendel"
-          icon={markerIcon}
+          lat={37.789363}
+          lng={-122.469686}
+          text="Hallandren"
+          icon={markerIcon3}
+        />
+        <AnyReactComponent
+          className='map-marker'
+          lat={37.80698987}
+          lng={-122.4265062}
+          text="Kharbranth"
+          icon={markerIcon3}
+        />
+        <AnyReactComponent
+          className='map-marker'
+          lat={37.76522852}
+          lng={-122.5087319}
+          text="Kholinar"
+          icon={markerIcon3}
+        />
+        <AnyReactComponent
+          className='map-marker'
+          lat={37.77923826}
+          lng={-122.419274}
+          text="Luthadel"
+          icon={markerIcon3}
+        />
+        <AnyReactComponent
+          className='map-marker'
+          lat={37.768773}
+          lng={-122.475818}
+          text="Homeland"
+          icon={markerIcon3}
+        />
+        <AnyReactComponent
+          className='map-marker'
+          lat={37.82204461}
+          lng={-122.3702211}
+          text="Thaylen City"
+          icon={markerIcon3}
+        />
+        <AnyReactComponent
+          className='map-marker'
+          lat={37.72703}
+          lng={-122.496531}
+          text="Purelake"
+          icon={markerIcon3}
+        />
+        <AnyReactComponent
+          className='map-marker'
+          lat={37.80276415}
+          lng={-122.4058526}
+          text="Urithiru"
+          icon={markerIcon3}
         />
       </GoogleMapReact>
     </div>

@@ -4,11 +4,16 @@
 }
 
 .map-marker {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #f00;
+  width: 23px;
+  height: 31.9336px;
   z-index: 5;
-  border: #f00 2px solid;
   
+}
+
+.map-icon-div {
+  /* background-color: aliceblue; */
+}
+
+.map-icon-img {
+
 }
