@@ -1,9 +1,20 @@
 import './Map.css';
 import React from "react";
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact from 'google-map-react'; 
+import { convertNeSwToNwSe, convertNwSeToNeSw, fitBounds, getTilesIds, latLng2Tile, meters2ScreenPixels, tile2LatLng } from 'google-map-react';
 import Panel from '../panel/Panel';
+import markerIcon from './Roshar_glyph.png';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+
+const AnyReactComponent = ({ text, icon, className, lat, lng }) => {
+  return (
+    <div style={{height:40, width:40, font: 'red'}} icon={icon}>
+      <img src={icon} alt="marker" style={{height:40, width:40}} className={`${className} map-icon-img`}/>
+      {text}
+    </div>
+  )
+};
 
 export default function Map({className="map-container"}){
   const defaultProps = {
@@ -14,6 +25,7 @@ export default function Map({className="map-container"}){
     zoom: 14
   };
 
+
   return (
     // Important! Always set the container height explicitly
     // <div style={{ height: '100vh', width: '100%' }} >
@@ -22,11 +34,21 @@ export default function Map({className="map-container"}){
         bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
+        yesIWantToUseGoogleMapApiInternals
       >
         <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text="My Marker"
+          className='map-marker'
+          lat={37.98}
+          lng={-122.7}
+          text="Thaylen City"
+          icon={markerIcon}
+        />
+        <AnyReactComponent
+          className='map-marker'
+          lat={37.78511512985764}
+          lng={-122.40753194602581}
+          text="Elendel"
+          icon={markerIcon}
         />
       </GoogleMapReact>
     </div>

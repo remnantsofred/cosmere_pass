@@ -258,7 +258,9 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
             </ul>
           </Panel>
           <Panel className='lessonDatesIdxrightPanel'>
-            <Map />
+            <Map> 
+              {/* <Marker position={{ lat: 37.78511512985764, lng: -122.40753194602581 }}  mapContainerClassName='marker' /> */}
+            </Map> 
           </Panel>
         </Panels> 
       </>
