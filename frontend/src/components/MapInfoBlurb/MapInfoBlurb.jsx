@@ -1,9 +1,13 @@
 import './MapInfoBlurb.css';
-
+import Row from '../row/Row';
+import Column from '../column/Column';
+import { NavLink, withRouter } from 'react-router-dom';
+import { StarIcon } from '../icon/Icon';
+import { useHistory } from 'react-router-dom';
 
 
 export const MapInfoBlurb = ({className="", id="", location}) => {
-
+  const history = useHistory();
 
   return (  
     <Row className={`locationIdxItmRow ${className} MapInfoBlurbContainer`} onClick={() => {history.push(`/locations/${location.id}`)}}>

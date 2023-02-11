@@ -6,8 +6,9 @@ import Panel from '../panel/Panel';
 import markerIcon from './Roshar_glyph.png';
 import markerIcon2 from './Jeseh_glyph.png';
 import markerIcon3 from './marker-glyph.png';
+import MapInfoBlurb from '../MapInfoBlurb/MapInfoBlurb';
 
-const AnyReactComponent = ({ text, icon, className, lat, lng }) => {
+export const AnyReactComponent = ({ text, icon, className, lat, lng }) => {
   return (
     <div  icon={icon} className={`${className} map-icon-div`}>
       <img src={icon} alt="marker" className={`${className} map-icon-img`}/>
@@ -16,7 +17,7 @@ const AnyReactComponent = ({ text, icon, className, lat, lng }) => {
   )
 };
 
-export default function Map({className="map-container"}){
+export default function Map({className="map-container", id="", location}){
   const defaultProps = {
     center: {
       lat: 37.77184491560768,
@@ -41,7 +42,10 @@ export default function Map({className="map-container"}){
           lat={37.7784767805642}
           lng={-122.390278737015}
           text="Elendel"
+          title="Elendel"
           icon={markerIcon3}
+          onMouseEnter={() => console.log('mouse enter')}
+          onMouseLeave={() => console.log('mouse leave')}
         />
         <AnyReactComponent
           className='map-marker'

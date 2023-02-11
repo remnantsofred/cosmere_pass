@@ -25,6 +25,8 @@ import { getCurrentUser } from '../../store/session';
 import { SiTruenas } from 'react-icons/si';
 import SearchNav from '../SearchNav';
 import { formatDateWithDayShort } from '../../utils/date_util';
+import { AnyReactComponent } from '../map/Map';
+import markerIcon3 from '../map/marker-glyph.png';
 
 
 
@@ -260,6 +262,72 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
           <Panel className='lessonDatesIdxrightPanel'>
             <Map> 
               {/* <Marker position={{ lat: 37.78511512985764, lng: -122.40753194602581 }}  mapContainerClassName='marker' /> */}
+              {/* <AnyReactComponent
+                className='map-marker'
+                lat={37.7784767805642}
+                lng={-122.390278737015}
+                text="Elendel"
+                title="Elendel"
+                icon={markerIcon3}
+                onMouseEnter={() => console.log('mouse enter')}
+                onMouseLeave={() => console.log('mouse leave')}
+              />
+              <AnyReactComponent
+                className='map-marker'
+                lat={37.789363}
+                lng={-122.469686}
+                text="Hallandren"
+                icon={markerIcon3}
+              />
+              <AnyReactComponent
+                className='map-marker'
+                lat={37.80698987}
+                lng={-122.4265062}
+                text="Kharbranth"
+                icon={markerIcon3}
+              />
+              <AnyReactComponent
+                className='map-marker'
+                lat={37.76522852}
+                lng={-122.5087319}
+                text="Kholinar"
+                icon={markerIcon3}
+              />
+              <AnyReactComponent
+                className='map-marker'
+                lat={37.77923826}
+                lng={-122.419274}
+                text="Luthadel"
+                icon={markerIcon3}
+              />
+              <AnyReactComponent
+                className='map-marker'
+                lat={37.768773}
+                lng={-122.475818}
+                text="Homeland"
+                icon={markerIcon3}
+              />
+              <AnyReactComponent
+                className='map-marker'
+                lat={37.82204461}
+                lng={-122.3702211}
+                text="Thaylen City"
+                icon={markerIcon3}
+              />
+              <AnyReactComponent
+                className='map-marker'
+                lat={37.72703}
+                lng={-122.496531}
+                text="Purelake"
+                icon={markerIcon3}
+              />
+              <AnyReactComponent
+                className='map-marker'
+                lat={37.80276415}
+                lng={-122.4058526}
+                text="Urithiru"
+                icon={markerIcon3}
+              /> */}
             </Map> 
           </Panel>
         </Panels> 
