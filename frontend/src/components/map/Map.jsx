@@ -7,10 +7,21 @@ import markerIcon from './Roshar_glyph.png';
 import markerIcon2 from './Jeseh_glyph.png';
 import markerIcon3 from './marker-glyph.png';
 import MapInfoBlurb from '../MapInfoBlurb/MapInfoBlurb';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLocations, fetchLocations } from '../../store/location';
 
-export const AnyReactComponent = ({ text, icon, className, lat, lng }) => {
+export const AnyReactComponent = ({ text, icon, className, lat, lng, location, setMapBlurbState, mapBlurbState }) => {
+  
+
   return (
-    <div  icon={icon} className={`${className} map-icon-div`}>
+    <div  
+      icon={icon} 
+      className={`${className} map-icon-div`}
+      onClick={() => setMapBlurbState(`${location.locationName}`)}
+      // onMouseEnter={() => setMapBlurbState(`${location.locationName}`)}
+      onMouseLeave={() => setMapBlurbState(false)}
+      >
       <img src={icon} alt="marker" className={`${className} map-icon-img`}/>
       {text}
     </div>
@@ -18,6 +29,22 @@ export const AnyReactComponent = ({ text, icon, className, lat, lng }) => {
 };
 
 export default function Map({className="map-container", id="", location}){
+  const dispatch = useDispatch();
+  const [mapBlurbState, setMapBlurbState] = useState(false);
+  const locations = useSelector(getLocations);
+
+  useEffect(()=>{
+    dispatch(fetchLocations())
+  }, [])
+
+  const getLocationFromID = (locationId, locations) => {
+    for (const location of locations) {
+      if (location.id === locationId) {
+        return location;
+      }
+    }
+  }
+
   const defaultProps = {
     center: {
       lat: 37.77184491560768,
@@ -26,17 +53,22 @@ export default function Map({className="map-container", id="", location}){
     zoom: 12.2
   };
 
+  const onMarkerClick = (props, marker, e) => {
+    setMapBlurbState('Elendel')
+  }
+    
 
   return (
     // Important! Always set the container height explicitly
     // <div style={{ height: '100vh', width: '100%' }} >
-    <div className={className} >
+    <div className={`${className} map-container`} >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals
       >
+       
         <AnyReactComponent
           className='map-marker'
           lat={37.7784767805642}
@@ -44,16 +76,20 @@ export default function Map({className="map-container", id="", location}){
           text="Elendel"
           title="Elendel"
           icon={markerIcon3}
-          onMouseEnter={() => console.log('mouse enter')}
-          onMouseLeave={() => console.log('mouse leave')}
-        />
+          location={getLocationFromID(1, locations)}
+          setMapBlurbState={setMapBlurbState}
+          mapBlurbState={mapBlurbState}
+        > 
+          { mapBlurbState === 'Elendel' && <MapInfoBlurb location={getLocationFromID(1, locations)}/> }
+          
+        </AnyReactComponent>
         <AnyReactComponent
           className='map-marker'
           lat={37.789363}
           lng={-122.469686}
           text="Hallandren"
           icon={markerIcon3}
-        />
+        /> 
         <AnyReactComponent
           className='map-marker'
           lat={37.80698987}
@@ -103,6 +139,8 @@ export default function Map({className="map-container", id="", location}){
           text="Urithiru"
           icon={markerIcon3}
         />
+
+      {/* { mapBlurbState === 'Elendel' && <MapInfoBlurb location={getLocationFromID(1, locations)}/> } */}
       </GoogleMapReact>
     </div>
   );

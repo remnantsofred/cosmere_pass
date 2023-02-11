@@ -1,5 +1,10 @@
 .MapInfoBlurbContainer {
-  
+  z-index: 10;
+  position: absolute;
+  top: 25%vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
 }
 
 .map-info-blurb-info-col {
