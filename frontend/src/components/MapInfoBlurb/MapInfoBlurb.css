@@ -1,12 +1,48 @@
 .MapInfoBlurbContainer {
-  z-index: 10;
-  position: absolute;
-  top: 25%vh;
-  left: 50%;
+  z-index: 100;
   transform: translate(-50%, -50%);
+  position:relative;
+  top: 100px;
+  left: 50%vw;
+  background-color: white;
   box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  border-radius: 8px;
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0;
+  width: 300px;
+  height: 112px;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
 }
 
 .map-info-blurb-info-col {
+  width: 100px;
+  height: 112px;
+  margin-right: 16px;
+  padding: 10px 0px 6px;
+  display: block;
+  font-size: 1em;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-overflow: ellipsis;
+}
 
+.map-info-blurb-img-col {
+  width: 168px;
+  height: 112px;
+  /* margin-right: 16px; */
+}
+
+.map-info-blurb-lesson-type-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.333333;
+  text-transform: uppercase;
+  color: #999;
+  text-overflow: ellipsis;
 }

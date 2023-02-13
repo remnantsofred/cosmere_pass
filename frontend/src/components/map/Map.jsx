@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLocations, fetchLocations } from '../../store/location';
 
-export const AnyReactComponent = ({ text, icon, className, lat, lng, location, setMapBlurbState, mapBlurbState }) => {
+export const Marker = ({ text, icon, className, lat, lng, location, setMapBlurbState, mapBlurbState }) => {
   
   return (
     <div  
@@ -34,6 +34,7 @@ export const defaultProps = {
   },
   zoom: 12.2
 };
+
 
 export const ElendelCenter = {
   lat: 37.7784767805642,
@@ -80,7 +81,19 @@ export const UrithiruCenter = {
   lng: -122.4058526
 }
 
-export default function Map({className="map-container", id="", location, locProps=defaultProps}){
+const locationMap = {
+  1: ElendelCenter,
+  2: HallandrenCenter,
+  3: KharbranthCenter,
+  4: KholinarCenter,
+  5: LuthadelCenter,
+  6: HomelandCenter,
+  7: ThaylenCityCenter,
+  8: PurelakeCenter,
+  9: UrithiruCenter
+}
+
+export default function Map({className="map-container", id="", location, locProps=defaultProps, source}){
   const dispatch = useDispatch();
   const [mapBlurbState, setMapBlurbState] = useState(false);
   const locations = useSelector(getLocations);
@@ -98,8 +111,11 @@ export default function Map({className="map-container", id="", location, locProp
   }
 
 
-  const onMarkerClick = (props, marker, e) => {
-    setMapBlurbState('Elendel')
+
+  const onMarkerClick = (e) => {
+    if (source === 'search') {
+      setMapBlurbState(e)
+    }
   }
     
 
@@ -112,80 +128,32 @@ export default function Map({className="map-container", id="", location, locProp
         defaultCenter={ locProps.center }
         defaultZoom={ locProps.zoom }
         yesIWantToUseGoogleMapApiInternals
+        onChildClick={e => onMarkerClick(e)}
+        onClick={e => setMapBlurbState(false)}
       >
+        { mapBlurbState === '1-map-marker' && <MapInfoBlurb location={getLocationFromID(1, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '2-map-marker' && <MapInfoBlurb location={getLocationFromID(2, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '3-map-marker' && <MapInfoBlurb location={getLocationFromID(3, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '4-map-marker' && <MapInfoBlurb location={getLocationFromID(4, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '5-map-marker' && <MapInfoBlurb location={getLocationFromID(5, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '6-map-marker' && <MapInfoBlurb location={getLocationFromID(6, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '7-map-marker' && <MapInfoBlurb location={getLocationFromID(7, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '8-map-marker' && <MapInfoBlurb location={getLocationFromID(8, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '9-map-marker' && <MapInfoBlurb location={getLocationFromID(9, locations)} className='map-info-blurb'/> }
        
-        <AnyReactComponent
-          className='map-marker'
-          lat={ElendelCenter.lat}
-          lng={ElendelCenter.lng}
-          text="Elendel"
-          title="Elendel"
-          icon={markerIcon3}
-          location={getLocationFromID(1, locations)}
-          setMapBlurbState={setMapBlurbState}
-          mapBlurbState={mapBlurbState}
-        > 
-          { mapBlurbState === 'Elendel' && <MapInfoBlurb location={getLocationFromID(1, locations)}/> }
-          
-        </AnyReactComponent>
-        <AnyReactComponent
-          className='map-marker'
-          lat={HallandrenCenter.lat}
-          lng={HallandrenCenter.lng}
-          text="Hallandren"
-          icon={markerIcon3}
-        /> 
-        <AnyReactComponent
-          className='map-marker'
-          lat={KharbranthCenter.lat}
-          lng={KharbranthCenter.lng}
-          text="Kharbranth"
-          icon={markerIcon3}
-        />
-        <AnyReactComponent
-          className='map-marker'
-          lat={KholinarCenter.lat}
-          lng={KholinarCenter.lng}
-          text="Kholinar"
-          icon={markerIcon3}
-        />
-        <AnyReactComponent
-          className='map-marker'
-          lat={LuthadelCenter.lat}
-          lng={LuthadelCenter.lng}
-          text="Luthadel"
-          icon={markerIcon3}
-        />
-        <AnyReactComponent
-          className='map-marker'
-          lat={HomelandCenter.lat}
-          lng={HomelandCenter.lng}
-          text="Homeland"
-          icon={markerIcon3}
-        />
-        <AnyReactComponent
-          className='map-marker'
-          lat={ThaylenCityCenter.lat}
-          lng={ThaylenCityCenter.lng}
-          text="Thaylen City"
-          icon={markerIcon3}
-        />
-        <AnyReactComponent
-          className='map-marker'
-          lat={PurelakeCenter.lat}
-          lng={PurelakeCenter.lng}
-          text="Purelake"
-          icon={markerIcon3}
-        />
-        <AnyReactComponent
-          className='map-marker'
-          lat={UrithiruCenter.lat}
-          lng={UrithiruCenter.lng}
-          text="Urithiru"
-          icon={markerIcon3}
-        />
-
-      {/* { mapBlurbState === 'Elendel' && <MapInfoBlurb location={getLocationFromID(1, locations)}/> } */}
+        {locations?.map(location => 
+          <Marker 
+            key={`${location.id}-map-marker`}
+            className='map-marker'
+            lat={locationMap[location.id].lat}
+            lng={locationMap[location.id].lng}
+            text={location.locationName}
+            title={location.locationName}
+            icon={markerIcon3}
+            location={location}
+          />)}
+        
+        
       </GoogleMapReact>
     </div>
   );

@@ -10,12 +10,12 @@ export const MapInfoBlurb = ({className="", id="", location}) => {
   const history = useHistory();
 
   return (  
-    <Row className={`locationIdxItmRow ${className} MapInfoBlurbContainer`} onClick={() => {history.push(`/locations/${location.id}`)}}>
-      <Column className='locationIdxItmImgCol'>
+    <Row className={` ${className}-container MapInfoBlurbContainer`} onClick={() => {history.push(`/locations/${location.id}`)}}>
+      <Column className={`${className}-img-col locationIdxItmImgCol`}>
         <img src={location.imageURL} alt="" className='locationIdxImg'/>
       </Column>
-      <Column className={`${className} map-info-blurb-info-col locationIdxItminfoCol`}>
-        <h3 className="locationIdxItmLessonType">{location.lessonTypes.join(", ")}</h3>
+      <Column className={`${className}-info-col`}>
+        <h3 className={`${className}-lesson-type-text`}>{location.lessonTypes.join(", ")}</h3>
         <NavLink to={`/locations/${location.id}`} className="locationIdxItmLink">{location.locationName}</NavLink>
         <h3 className="locationIdxItmLoc">{location.world}</h3>
         <Row className='LocIdxItmratingsRow'>

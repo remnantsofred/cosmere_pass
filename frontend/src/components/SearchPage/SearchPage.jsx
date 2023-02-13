@@ -25,8 +25,6 @@ import { getCurrentUser } from '../../store/session';
 import { SiTruenas } from 'react-icons/si';
 import SearchNav from '../SearchNav';
 import { formatDateWithDayShort } from '../../utils/date_util';
-import { AnyReactComponent } from '../map/Map';
-import markerIcon3 from '../map/marker-glyph.png';
 
 
 
@@ -183,6 +181,8 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     return true;
   })
 
+  
+
   if (!loaded) {
     return (
       <>
@@ -245,7 +245,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
             </ul>
           </Panel>
           <Panel className='lessonDatesIdxrightPanel'>
-            <Map> 
+            <Map source='search'> 
               
             </Map> 
           </Panel>
