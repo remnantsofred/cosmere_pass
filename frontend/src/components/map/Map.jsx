@@ -13,14 +13,13 @@ import { getLocations, fetchLocations } from '../../store/location';
 
 export const AnyReactComponent = ({ text, icon, className, lat, lng, location, setMapBlurbState, mapBlurbState }) => {
   
-
   return (
     <div  
       icon={icon} 
       className={`${className} map-icon-div`}
-      onClick={() => setMapBlurbState(`${location.locationName}`)}
+      // onClick={() => setMapBlurbState(`${location.locationName}`)}
       // onMouseEnter={() => setMapBlurbState(`${location.locationName}`)}
-      onMouseLeave={() => setMapBlurbState(false)}
+      // onMouseLeave={() => setMapBlurbState(false)}
       >
       <img src={icon} alt="marker" className={`${className} map-icon-img`}/>
       {text}
@@ -28,7 +27,60 @@ export const AnyReactComponent = ({ text, icon, className, lat, lng, location, s
   )
 };
 
-export default function Map({className="map-container", id="", location}){
+export const defaultProps = {
+  center: {
+    lat: 37.77184491560768,
+    lng: -122.43681794782202
+  },
+  zoom: 12.2
+};
+
+export const ElendelCenter = {
+  lat: 37.7784767805642,
+  lng: -122.390278737015
+}
+
+export const HallandrenCenter = {
+  lat: 37.789363,
+  lng: -122.469686
+}
+
+export const KharbranthCenter = {
+  lat: 37.81059022922289,
+  lng: -122.42453374617786
+}
+
+export const KholinarCenter = {
+  lat: 37.76522852,
+  lng: -122.5087319
+}
+
+export const LuthadelCenter = {
+  lat: 37.77923826,
+  lng: -122.419274
+}
+
+export const HomelandCenter = {
+  lat: 37.768773,
+  lng: -122.475818
+}
+
+export const ThaylenCityCenter = {
+  lat: 37.82204461,
+  lng: -122.3702211
+}
+
+export const PurelakeCenter = {
+  lat: 37.72703,
+  lng: -122.496531
+}
+
+export const UrithiruCenter = {
+  lat: 37.80276415,
+  lng: -122.4058526
+}
+
+export default function Map({className="map-container", id="", location, locProps=defaultProps}){
   const dispatch = useDispatch();
   const [mapBlurbState, setMapBlurbState] = useState(false);
   const locations = useSelector(getLocations);
@@ -45,13 +97,6 @@ export default function Map({className="map-container", id="", location}){
     }
   }
 
-  const defaultProps = {
-    center: {
-      lat: 37.77184491560768,
-      lng: -122.43681794782202
-    },
-    zoom: 12.2
-  };
 
   const onMarkerClick = (props, marker, e) => {
     setMapBlurbState('Elendel')
@@ -64,15 +109,15 @@ export default function Map({className="map-container", id="", location}){
     <div className={`${className} map-container`} >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        defaultCenter={ locProps.center }
+        defaultZoom={ locProps.zoom }
         yesIWantToUseGoogleMapApiInternals
       >
        
         <AnyReactComponent
           className='map-marker'
-          lat={37.7784767805642}
-          lng={-122.390278737015}
+          lat={ElendelCenter.lat}
+          lng={ElendelCenter.lng}
           text="Elendel"
           title="Elendel"
           icon={markerIcon3}
@@ -85,57 +130,57 @@ export default function Map({className="map-container", id="", location}){
         </AnyReactComponent>
         <AnyReactComponent
           className='map-marker'
-          lat={37.789363}
-          lng={-122.469686}
+          lat={HallandrenCenter.lat}
+          lng={HallandrenCenter.lng}
           text="Hallandren"
           icon={markerIcon3}
         /> 
         <AnyReactComponent
           className='map-marker'
-          lat={37.80698987}
-          lng={-122.4265062}
+          lat={KharbranthCenter.lat}
+          lng={KharbranthCenter.lng}
           text="Kharbranth"
           icon={markerIcon3}
         />
         <AnyReactComponent
           className='map-marker'
-          lat={37.76522852}
-          lng={-122.5087319}
+          lat={KholinarCenter.lat}
+          lng={KholinarCenter.lng}
           text="Kholinar"
           icon={markerIcon3}
         />
         <AnyReactComponent
           className='map-marker'
-          lat={37.77923826}
-          lng={-122.419274}
+          lat={LuthadelCenter.lat}
+          lng={LuthadelCenter.lng}
           text="Luthadel"
           icon={markerIcon3}
         />
         <AnyReactComponent
           className='map-marker'
-          lat={37.768773}
-          lng={-122.475818}
+          lat={HomelandCenter.lat}
+          lng={HomelandCenter.lng}
           text="Homeland"
           icon={markerIcon3}
         />
         <AnyReactComponent
           className='map-marker'
-          lat={37.82204461}
-          lng={-122.3702211}
+          lat={ThaylenCityCenter.lat}
+          lng={ThaylenCityCenter.lng}
           text="Thaylen City"
           icon={markerIcon3}
         />
         <AnyReactComponent
           className='map-marker'
-          lat={37.72703}
-          lng={-122.496531}
+          lat={PurelakeCenter.lat}
+          lng={PurelakeCenter.lng}
           text="Purelake"
           icon={markerIcon3}
         />
         <AnyReactComponent
           className='map-marker'
-          lat={37.80276415}
-          lng={-122.4058526}
+          lat={UrithiruCenter.lat}
+          lng={UrithiruCenter.lng}
           text="Urithiru"
           icon={markerIcon3}
         />
