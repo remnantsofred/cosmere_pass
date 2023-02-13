@@ -20,6 +20,7 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   const [selectedValueLoc, setSelectedValueLoc] = useState(null);
   const [selectedValueType, setSelectedValueType] = useState(null);
   const [selectedValueDate, setSelectedValueDate] = useState(start_time);
+  
 
   const dropdownLocationOptions = locations.map( location => ({value: location.id, label: location.locationName}))
 
@@ -27,11 +28,11 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   useEffect(()=>{
 
     if (selectedValueLoc && !selectedValueType){
-      history.push(`/search/?location_id=${selectedValueLoc.value}&start_time=${selectedValueDate}`)
+      history.push(`/search/?location_id=${selectedValueLoc.value}`)
     } else if (selectedValueLoc && selectedValueType){
-      history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}&start_time=${selectedValueDate}`)
+      history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}`)
     } else if (!selectedValueLoc && selectedValueType){
-      history.push(`/search/?lesson_type=${selectedValueType.value}&start_time=${selectedValueDate}`)
+      history.push(`/search/?lesson_type=${selectedValueType.value}`)
     } 
 
   }, [selectedValueLoc, selectedValueType])
@@ -80,14 +81,14 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
           setValue={setSelectedValueLoc}
           />
         
-        <DateMenu 
+        {/* <DateMenu 
           className="dateMenu" 
           id="navBarDateMenu"
           placeholder={formatDateWithDayShort(today)}
           source='searchNav' 
           value={selectedValueDate}
           setValue={setSelectedValueDate}
-          />
+          /> */}
       </Column>}
       <Column>
         Magic Lessons in Your Area
