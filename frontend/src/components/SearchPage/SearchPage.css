@@ -29,7 +29,8 @@
 
 
 .lessonDatesIdxUL{
-  width: 822px;
+  /* width: 822px; */
+  width: 100%;
   height: 7448px;
   display: flex;
   flex-direction: column;
@@ -38,6 +39,7 @@
   top: 42px;
   overflow-x: hidden;
   overflow-y: scroll;
+  margin-bottom: 75px;
 }
 
 .searchTypeunSelected {
