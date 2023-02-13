@@ -24,6 +24,7 @@ import { FaLessThanEqual } from 'react-icons/fa';
 import { getCurrentUser } from '../../store/session';
 import { SiTruenas } from 'react-icons/si';
 import SearchNav from '../SearchNav';
+import { formatDateWithDayShort } from '../../utils/date_util';
 
 
 
@@ -102,7 +103,6 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
 
   const handleModalClose = () => {
     setModalStatus(false)
-    // setModal3Status(false)
     setModalLessonDate(null)
     setModalLesson(null)
     setModalLocation(null)
@@ -164,6 +164,24 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     }
   }
 
+  const filteredLessonDates = lessonDates.filter((lessonDate)=>{
+    const paramsMap = getParams(history.location.search)
+    if (paramsMap.location_id && paramsMap.lesson_type){
+      return lessonDate.locationId === parseInt(paramsMap.location_id) && lessonDate.lessonType.includes(paramsMap.lesson_type) 
+    }
+    if (paramsMap.lesson_type){
+      return lessonDate.lessonType.includes(paramsMap.lesson_type)
+    }
+    if (paramsMap.location_id){
+      return lessonDate.locationId === parseInt(paramsMap.location_id)
+    }
+    if (paramsMap.start_time){
+      return formatDateWithDayShort(lessonDate.startTime) === (paramsMap.start_time)
+    }
+    return true;
+  })
+
+  
 
   if (!loaded) {
     return (
@@ -180,19 +198,6 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
 
     )
   } else {
-    const filteredLessonDates = lessonDates.filter((lessonDate)=>{
-      const paramsMap = getParams(history.location.search)
-      if (paramsMap.location_id && paramsMap.lesson_type){
-        return lessonDate.locationId === parseInt(paramsMap.location_id) && lessonDate.lessonType.includes(paramsMap.lesson_type) 
-      }
-      if (paramsMap.lesson_type){
-        return lessonDate.lessonType.includes(paramsMap.lesson_type)
-      }
-      if (paramsMap.location_id){
-        return lessonDate.locationId === parseInt(paramsMap.location_id)
-      }
-      return true;
-    })
     return (
       <>
         <SearchNav 
@@ -219,8 +224,6 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
               </Row>
     
             <ul className='lessonDatesIdxUL'>
-              {/* {indexType === 'lessons' ? lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem handleResClick={handleResClick} lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} currrentUser={currentUser} key={idx} handleCancel={handleCancel} />) :
-              locations?.map((location, idx) => <LocationIndexItem location={location} lessonIds={location.lessonIds} key={idx} />)} */}
               {indexType === 'locations' 
                 ? 
               locations?.map((location, idx) => 
@@ -231,18 +234,6 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
                 : 
               currentUser 
                 ? 
-              // filteredLessonDates?.map((lessonDate, idx) => 
-              //   <LessonDatesIndexItem 
-              //     handleResClick={handleResClick} 
-              //     lessonDate={lessonDate} 
-              //     lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
-              //     location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
-              //     currrentUser={currentUser} 
-              //     key={idx} 
-              //     handleCancel={handleCancel} 
-              //     source="search" 
-              //     modalStatus={modalStatus} 
-              //     modal3Status={modal3Status} />) 
                 resultsToDisplay(filteredLessonDates)
                 : 
               lessons?.map((lesson, idx) => 
@@ -254,7 +245,9 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
             </ul>
           </Panel>
           <Panel className='lessonDatesIdxrightPanel'>
-            <Map />
+            <Map source='search'> 
+              
+            </Map> 
           </Panel>
         </Panels> 
       </>

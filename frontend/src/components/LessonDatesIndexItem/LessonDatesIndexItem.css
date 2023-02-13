@@ -2,7 +2,8 @@
   font-size: 1em;
   line-height: 1.5;
   letter-spacing: 0;
-  width: 775px;
+  /* width: 775px; */
+  width: 95%;
   height: 105px;
   padding: 16px;
   display: flex;

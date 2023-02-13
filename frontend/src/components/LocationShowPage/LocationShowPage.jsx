@@ -26,7 +26,7 @@ import { ImTwitter } from 'react-icons/im';
 import { BsInstagram } from 'react-icons/bs'
 import ToolTip from '../ToolTip/ToolTip';
 import { restoreSession } from '../../store/session';
-
+import { ElendelCenter, KharbranthCenter, KholinarCenter, LuthadelCenter, HomelandCenter, ThaylenCityCenter, PurelakeCenter, UrithiruCenter, HallandrenCenter } from '../map/Map';
 
 export const LocationShowPage = () => {
   const { locationId } = useParams();
@@ -159,6 +159,75 @@ export const LocationShowPage = () => {
   //   }
 
   // }
+
+  const mapLocProps = () => {
+    if (parseInt(locationId) === 1) {
+      // elendel
+      return (
+        {
+          center: ElendelCenter,
+        zoom: 14
+        }
+      )
+    } else if (parseInt(locationId) === 2) {
+      return (
+        {
+          center: HallandrenCenter,
+        zoom: 15.5
+        }
+      )
+    } else if (parseInt(locationId) === 3) {
+      return (
+        {
+          center: KharbranthCenter,
+        zoom: 14.5
+        }
+      )
+    } else if (parseInt(locationId) === 4) {
+      return (
+        {
+          center: KholinarCenter,
+        zoom: 14
+        }
+      )
+    } else if (parseInt(locationId) === 5) {
+      return (
+        {
+          center: LuthadelCenter,
+        zoom: 15
+        }
+      )
+    } else if (parseInt(locationId) === 6) {
+      return (
+        {
+          center: HomelandCenter,
+        zoom: 16
+        }
+      )
+    } else if (parseInt(locationId) === 7) {
+      return (
+        {
+          center: ThaylenCityCenter,
+        zoom: 14
+        }
+      )
+    } else if (parseInt(locationId) === 8) {
+      return (
+        {
+          center: PurelakeCenter,
+        zoom: 14
+        }
+      )
+    } else if (parseInt(locationId) === 9) {
+      return (
+        {
+          center: UrithiruCenter,
+        zoom: 16
+
+        }
+      )
+    }
+  }
   
 
   const reviewButtonType = () => {
@@ -238,7 +307,7 @@ export const LocationShowPage = () => {
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
               <h3 className="locShowSubtitle" id="locShowReviewSubtitle">{location.locationName} Reviews 
-              {toolTipIsShown && <ToolTip text='You must take a lesson at this location to leave a review'/>  }
+              {toolTipIsShown && <ToolTip text='You must take a lesson at this location to leave a review' className='cannot-review'/>  }
               {reviewButtonType()}
               </h3>
               
@@ -256,7 +325,7 @@ export const LocationShowPage = () => {
           </Panel>
           <Panel className='LocShowPanelR'>
             <ul className='LocShowMap'>
-              <Map />
+              <Map className='loc-show-map' locProps={mapLocProps()}/>
             </ul>
             {/* website */}
             <Row className='LocShowPanelRRow LocShowFirstRowR'>

@@ -1,33 +1,159 @@
 import './Map.css';
 import React from "react";
-import GoogleMapReact from 'google-map-react';
+import GoogleMapReact from 'google-map-react'; 
+import { convertNeSwToNwSe, convertNwSeToNeSw, fitBounds, getTilesIds, latLng2Tile, meters2ScreenPixels, tile2LatLng } from 'google-map-react';
 import Panel from '../panel/Panel';
+import markerIcon from './Roshar_glyph.png';
+import markerIcon2 from './Jeseh_glyph.png';
+import markerIcon3 from './marker-glyph.png';
+import MapInfoBlurb from '../MapInfoBlurb/MapInfoBlurb';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLocations, fetchLocations } from '../../store/location';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+export const Marker = ({ text, icon, className, lat, lng, location, setMapBlurbState, mapBlurbState }) => {
+  
+  return (
+    <div  
+      icon={icon} 
+      className={`${className} map-icon-div`}
+      // onClick={() => setMapBlurbState(`${location.locationName}`)}
+      // onMouseEnter={() => setMapBlurbState(`${location.locationName}`)}
+      // onMouseLeave={() => setMapBlurbState(false)}
+      >
+      <img src={icon} alt="marker" className={`${className} map-icon-img`}/>
+      {text}
+    </div>
+  )
+};
 
-export default function Map({className="map-container"}){
-  const defaultProps = {
-    center: {
-      lat: 37.78511512985764,
-      lng: -122.40753194602581
-    },
-    zoom: 14
-  };
+export const defaultProps = {
+  center: {
+    lat: 37.77184491560768,
+    lng: -122.43681794782202
+  },
+  zoom: 12.2
+};
+
+
+export const ElendelCenter = {
+  lat: 37.7784767805642,
+  lng: -122.390278737015
+}
+
+export const HallandrenCenter = {
+  lat: 37.789363,
+  lng: -122.469686
+}
+
+export const KharbranthCenter = {
+  lat: 37.81059022922289,
+  lng: -122.42453374617786
+}
+
+export const KholinarCenter = {
+  lat: 37.76522852,
+  lng: -122.5087319
+}
+
+export const LuthadelCenter = {
+  lat: 37.77923826,
+  lng: -122.419274
+}
+
+export const HomelandCenter = {
+  lat: 37.768773,
+  lng: -122.475818
+}
+
+export const ThaylenCityCenter = {
+  lat: 37.82204461,
+  lng: -122.3702211
+}
+
+export const PurelakeCenter = {
+  lat: 37.72703,
+  lng: -122.496531
+}
+
+export const UrithiruCenter = {
+  lat: 37.80276415,
+  lng: -122.4058526
+}
+
+const locationMap = {
+  1: ElendelCenter,
+  2: HallandrenCenter,
+  3: KharbranthCenter,
+  4: KholinarCenter,
+  5: LuthadelCenter,
+  6: HomelandCenter,
+  7: ThaylenCityCenter,
+  8: PurelakeCenter,
+  9: UrithiruCenter
+}
+
+export default function Map({className="map-container", id="", location, locProps=defaultProps, source}){
+  const dispatch = useDispatch();
+  const [mapBlurbState, setMapBlurbState] = useState(false);
+  const locations = useSelector(getLocations);
+
+  useEffect(()=>{
+    dispatch(fetchLocations())
+  }, [])
+
+  const getLocationFromID = (locationId, locations) => {
+    for (const location of locations) {
+      if (location.id === locationId) {
+        return location;
+      }
+    }
+  }
+
+
+
+  const onMarkerClick = (e) => {
+    if (source === 'search') {
+      setMapBlurbState(e)
+    }
+  }
+    
 
   return (
     // Important! Always set the container height explicitly
     // <div style={{ height: '100vh', width: '100%' }} >
-    <div className={className} >
+    <div className={`${className} map-container`} >
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        defaultCenter={ locProps.center }
+        defaultZoom={ locProps.zoom }
+        yesIWantToUseGoogleMapApiInternals
+        onChildClick={e => onMarkerClick(e)}
+        onClick={e => setMapBlurbState(false)}
       >
-        <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text="My Marker"
-        />
+        { mapBlurbState === '1-map-marker' && <MapInfoBlurb location={getLocationFromID(1, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '2-map-marker' && <MapInfoBlurb location={getLocationFromID(2, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '3-map-marker' && <MapInfoBlurb location={getLocationFromID(3, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '4-map-marker' && <MapInfoBlurb location={getLocationFromID(4, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '5-map-marker' && <MapInfoBlurb location={getLocationFromID(5, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '6-map-marker' && <MapInfoBlurb location={getLocationFromID(6, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '7-map-marker' && <MapInfoBlurb location={getLocationFromID(7, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '8-map-marker' && <MapInfoBlurb location={getLocationFromID(8, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '9-map-marker' && <MapInfoBlurb location={getLocationFromID(9, locations)} className='map-info-blurb'/> }
+       
+        {locations?.map(location => 
+          <Marker 
+            key={`${location.id}-map-marker`}
+            className='map-marker'
+            lat={locationMap[location.id].lat}
+            lng={locationMap[location.id].lng}
+            text={location.locationName}
+            title={location.locationName}
+            icon={markerIcon3}
+            location={location}
+          />)}
+        
+        
       </GoogleMapReact>
     </div>
   );

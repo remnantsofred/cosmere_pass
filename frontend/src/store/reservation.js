@@ -1,5 +1,6 @@
 import csrfFetch from "./csrf";
 import { fetchLessonDate } from "./lessonDates";
+import { restoreSession } from "./session";
 
 export const RECEIVE_RESERVATIONS = "reservations/RECEIVE_RESERVATIONS";
 export const RECEIVE_RESERVATION = "reservations/RECEIVE_RESERVATION";
@@ -61,7 +62,8 @@ export const createReservation = (data) => async (dispatch) => {
   if (res.ok) {
     const reservation = await res.json();
     dispatch(receiveReservation(reservation));
-    dispatch(fetchLessonDate(data.lesson_date_id))
+    dispatch(fetchLessonDate(data.lesson_date_id));
+    dispatch(restoreSession());
   }
 };
 // // for createReservation above data looks like this:   
@@ -92,7 +94,8 @@ export const deleteReservation = (id, lessonDateId) => async (dispatch) => {
   });
   if (res.ok) {
     dispatch(removeReservation(id));
-    dispatch(fetchLessonDate(lessonDateId))
+    dispatch(fetchLessonDate(lessonDateId));
+    dispatch(restoreSession());
   }
 };
 
