@@ -1,30 +1,30 @@
 import './SearchPage.css';
-import React, { useState, useEffect } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, NavLink, useParams, withRouter } from 'react-router-dom';
-import Panels from '../panels';
-import Panel from '../panel/Panel';
-import Columns from '../columns/Columns';
-import Column from '../column/Column';
-import Row from '../row/Row';
+import { FaLessThanEqual } from 'react-icons/fa';
+import { formatDateWithDayShort } from '../../utils/date_util';
+import { getCurrentUser } from '../../store/session';
 import { getLessonDates, fetchLessonDates } from '../../store/lessonDates';
 import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
 import { getReservations, createReservation, fetchReservations, deleteReservation, removeReservation } from '../../store/reservation';
-import LocationIndexItem from '../LocationIndexItem/LocationIndexItem';
+import { Redirect, NavLink, useParams, withRouter } from 'react-router-dom';
+import { SiTruenas } from 'react-icons/si';
+import { useDispatch, useSelector } from 'react-redux';
+import * as sessionActions from '../../store/session';
+import Column from '../column/Column';
+import Columns from '../columns/Columns';
+import LessonDatesIndexItem from '../LessonDatesIndexItem';
 import LessonIndexItem from '../LessonIndexItem/LessonIndexItem';
 import Loading from '../loading/Loading';
+import LocationIndexItem from '../LocationIndexItem/LocationIndexItem';
 import Map from '../map';
-import LessonDatesIndexItem from '../LessonDatesIndexItem';
+import Panel from '../panel/Panel';
+import Panels from '../panels';
+import React, { useState, useEffect } from 'react';
+import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
 import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfirmModal';
 import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
-import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
-import { FaLessThanEqual } from 'react-icons/fa';
-import { getCurrentUser } from '../../store/session';
-import { SiTruenas } from 'react-icons/si';
+import Row from '../row/Row';
 import SearchNav from '../SearchNav';
-import { formatDateWithDayShort } from '../../utils/date_util';
 
 
 
@@ -176,7 +176,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
       return lessonDate.locationId === parseInt(paramsMap.location_id)
     }
     if (paramsMap.start_time){
-      return formatDateWithDayShort(lessonDate.startTime) === (paramsMap.start_time)
+      return paramsMap.start_time.includes(lessonDate.startTime)
     }
     return true;
   })
