@@ -124,7 +124,7 @@ export default function Map({className="map-container", id="", location, locProp
     // <div style={{ height: '100vh', width: '100%' }} >
     <div className={`${className} map-container`} >
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_MAPS_API_KEY ? process.env.REACT_APP_MAPS_API_KEY : 'AIzaSyCkBF4PpIZfx2vlFas_pBrsebbFerCCeg0' }}
         defaultCenter={ locProps.center }
         defaultZoom={ locProps.zoom }
         yesIWantToUseGoogleMapApiInternals
