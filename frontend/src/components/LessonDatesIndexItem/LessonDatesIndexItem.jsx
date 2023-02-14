@@ -55,7 +55,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       // if logged in and reservation full
       return (
         <>
-          <button onClick={ () => handleResClick(lessonDate, lesson, location)} className='lessonDateIdxItmReserveFull'>Reserve</button> 
+          <button  className='lessonDateIdxItmReserveFull'>Lesson full</button> 
         </>
       )
     }

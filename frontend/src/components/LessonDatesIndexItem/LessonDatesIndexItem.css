@@ -270,11 +270,11 @@
 
 
 .lessonDateIdxItmReserveFull{
-  width: 92.6px;
-  height: 32px;
+  width: 110.6px;
+  height: 34px;
   padding: 9px 8px 7px 8px;
   border: 1px solid #555;
-  color: #05f;
+  color: #555;
   border-radius: 3px;
   background-color: transparent;
   transition: color .3s,background-color .3s,border-color .3s;
@@ -288,6 +288,8 @@
   font-size: .875rem;
   display: flex;
   justify-content: center;
+  background-color: #e7e7e7;
+  cursor: no-drop;
 }
 
 .remainingSlots {
