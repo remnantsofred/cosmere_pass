@@ -38,6 +38,10 @@ When a user is logged in, there are four possible scenarios:
 * user has not booked this lessondate, and there are remaining slots: the button will show "Reserve" and list the number of availble slots.
 * user has not booked this lessondate, and there are remaining slots BUT user has already reserved another lesson that overlaps with this one: the button appears like the scenario above, but upon hover a tool tip will pop up warning the uesr they will be doubled booked and will have to cancel a reservation in order to not be charged a no-show fee. 
 
+![image](https://user-images.githubusercontent.com/114616864/218896396-3a4fabc5-92f9-475d-abc0-7751a5240030.png)
+![image](https://user-images.githubusercontent.com/114616864/218905111-0b635ca5-5812-4cc7-92f5-4f63b3fc0e46.png)
+
+
 I used the same idea and similar code to dynamically render a Review button, which would be different depending on:
 * user logged out
 * user logged in:
@@ -108,6 +112,7 @@ I really enjoyed creating modals for the first time during this project. In tota
 
 The create review modal includes a dropdown menu with options. The options vary by location and are the lesson types offered at that location. Additionally, the options are made available only if the logged in user has taken that particular lesson. Otherwise, a tooltip text will appear beneath the dropdown option, explaining why the user cannot select that option, either "You have already reviewed this lesson" or "You have not yet taken this lesson." The option will also be disabled, with further context given via changing the cursor to no-drop. 
 
+![image](https://user-images.githubusercontent.com/114616864/218906014-ef31e78c-6e7c-4c4f-8c8b-15aa9e358376.png)
 
 
 #### Review Modal with Dynamic Dropdown Options code snippet:
