@@ -56,6 +56,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       return (
         <>
           <button  className='lessonDateIdxItmReserveFull'>Lesson full</button> 
+          <p className='remainingSlots'>No available slots</p>
         </>
       )
     }

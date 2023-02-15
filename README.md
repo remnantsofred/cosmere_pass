@@ -32,9 +32,11 @@ Cosmerepass also utilizes the Google Maps API.
 One of the most fun and powerful aspects of working with React was dynamically rendering content based on conditions. At first I really enjoyed using ternaries to show one of two possible components. Eventually I had so many different conditions I had to pull out the logic into a helper function rather than rely solely on ternaries.  
 
 Below is an example of dynamically rendered content in my app. When a user is not logged in and is on a Location show page, they will see a "Sign up" button for each lessondate. The signup button takes them to the sign up page. 
-When a user is logged in, they see several options:
-* if the user has made a reservation, the button will show "Cancel" with text under stating "reserved"
-* if the user 
+When a user is logged in, there are four possible scenarios:
+* user has booked this lessondate: the button will show "Cancel" with text under stating "reserved"
+* user has not booked this lessondate, but there are no remaining slots: the button will be grayed out and show "Lesson full" with text below stating "No available slots". The cursor becomes "no-drop" type at hover.
+* user has not booked this lessondate, and there are remaining slots: the button will show "Reserve" and list the number of availble slots.
+* user has not booked this lessondate, and there are remaining slots BUT user has already reserved another lesson that overlaps with this one: the button appears like the scenario above, but upon hover a tool tip will pop up warning the uesr they will be doubled booked and will have to cancel a reservation in order to not be charged a no-show fee. 
 
 
 ```jsx
@@ -75,7 +77,8 @@ const renderLoggedIn = (lessonDate, location, handleResClick, handleCancel, sour
       // if logged in and reservation full
       return (
         <>
-          <button onClick={ () => handleResClick(lessonDate, lesson, location)} className='lessonDateIdxItmReserveFull'>Reserve</button> 
+          <button  className='lessonDateIdxItmReserveFull'>Lesson full</button> 
+          <p className='remainingSlots'>No available slots</p>
         </>
       )
     }
