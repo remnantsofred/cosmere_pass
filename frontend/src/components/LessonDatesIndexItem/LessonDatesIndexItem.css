@@ -31,7 +31,7 @@
 }
 
 .lessonDateIdxItmTimeCol {
-  width: 70px;
+  width: 90px;
   height: 77px;
   margin-right: 12px;
   font-size: .875rem;
@@ -45,7 +45,7 @@
 }
 
 .locShowLessonDateIdxItmTimeCol {
-  width: 70px;
+  width: 90px;
   height: 50px;
   margin-right: 12px;
   font-size: .875rem;
@@ -112,7 +112,7 @@
 
 
 .lessonDateIdxItmRCol {
-  width: 110px;
+  width: 112px;
   height: 77px;
   line-height: 1.4285714286;
   font-size: .875rem;
@@ -122,7 +122,7 @@
 }
 
 .locShowIdxItmRCol {
-  width: 110px;
+  width: 112px;
   height: 65px;
   line-height: 1.4285714286;
   font-size: .875rem;
@@ -270,11 +270,11 @@
 
 
 .lessonDateIdxItmReserveFull{
-  width: 92.6px;
-  height: 32px;
+  width: 110.6px;
+  height: 34px;
   padding: 9px 8px 7px 8px;
   border: 1px solid #555;
-  color: #05f;
+  color: #555;
   border-radius: 3px;
   background-color: transparent;
   transition: color .3s,background-color .3s,border-color .3s;
@@ -288,6 +288,8 @@
   font-size: .875rem;
   display: flex;
   justify-content: center;
+  background-color: #e7e7e7;
+  cursor: no-drop;
 }
 
 .remainingSlots {
