@@ -40,7 +40,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
 
   // const dropdownOptions = lessons.map( lesson => ({value: lesson.id, label: lesson.title}))
 
-  const newDropdownOptions = lessons.map( lesson => {
+  const dropdownOptions = lessons.map( lesson => {
     if (currentUser.lessonsTaken.includes(lesson.id) && !currentUser.lessonsReviewed.includes(lesson.id)) {
       return {value: lesson.id, label: lesson.title, isDisabled: false}
     }
@@ -78,7 +78,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const reviewLessonTitle = () => {
     if (!review) {
       return (
-        <DropdownMenu location={location} placeholder="Select..." options={newDropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown} update={update} source="reviewForm" />
+        <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown} update={update} source="reviewForm" />
       )
     }
     else {

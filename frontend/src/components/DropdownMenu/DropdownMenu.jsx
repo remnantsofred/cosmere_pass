@@ -80,8 +80,6 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
           className={`dropdown-item ${isSelected(option) && "selected"} ${option.isDisabled}`} 
           >
           {option.label}
-
-       
         </div>
       )
     } else {
