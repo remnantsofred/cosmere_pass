@@ -244,3 +244,24 @@ end
 end
 
 ```
+### Screencaptures
+
+#### Login & search page
+![cosmerepass-login-search](https://user-images.githubusercontent.com/114616864/220213028-173c16cb-2e15-4e7f-a01c-1b78b69b8efb.gif)
+
+#### Map marker info blurb
+![cosmerepass-map-info-blurb](https://user-images.githubusercontent.com/114616864/220213001-2de05fd0-1046-45e8-8a1d-513330212ebd.gif)
+
+#### Make & cancel reservation
+![cosmerepass-make-cancel-res](https://user-images.githubusercontent.com/114616864/220212987-8de9f0bf-7182-4e52-9a92-edd6e80ae891.gif)
+
+#### Double-booked tool tip
+![cosmerepass-doublebooked](https://user-images.githubusercontent.com/114616864/220212963-5ced5224-e26f-4c2b-a997-505db043c951.gif)
+
+#### Leave a review
+![cosmerepass-leave-review](https://user-images.githubusercontent.com/114616864/220212915-365fdabd-702d-4907-9637-55744c54dbc7.gif)
+
+#### Edit review
+![cosmerepass-edit-review](https://user-images.githubusercontent.com/114616864/220212936-b94bb3c0-f998-464b-9f40-725d00fec304.gif)
+
+
