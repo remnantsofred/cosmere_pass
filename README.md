@@ -21,7 +21,7 @@ Users will be able to browse lessons, check out locations, and filter by investi
 
 Cosmerepass was developed using:
 * Backend: Ruby on Rails
-* Database: PostgreSQLL
+* Database: PostgreSQL
 * Frontend: React/Redux, CSS3 and HTML5
 
 Cosmerepass also utilizes the Google Maps API. 
