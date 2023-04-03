@@ -184,7 +184,7 @@ const dropDownOptions = options.map( option => {
 
 
 #### Beefing up the Backend
-Something else I learned to do with Cosmerepass was do a lot of the heavy lifting of calcuations on the backend versus the frontend. I learned to add attr_accessors to create fields, then I would write out the logic for the fields in the corresponding controller. Finally, I would make sure to update the corresponding jbuilder file so that you would have acecss to those fields from the frontend.
+Something else I learned to do with Cosmerepass was do a lot of the heavy lifting of calcuations on the backend versus the frontend. I learned to add attr_accessors to create fields, then I would write out the logic for the fields in the corresponding controller. Finally, I would make sure to update the corresponding jbuilder file so that you would have access to those fields from the frontend.
 
 
 ```rb
