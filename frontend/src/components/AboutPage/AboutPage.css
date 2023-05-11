@@ -1,0 +1,25 @@
+.about-page-left-panel, .about-page-right-panel {
+  /* height: 760px;
+  width: 601px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 38px;
+  padding-right: 32px;
+  padding-bottom: 48px;
+  padding-left: 32px; */
+
+  height: 738px;
+  width: 480px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  position: relative;
+  top: 45px;
+}
+
