@@ -1,32 +1,49 @@
 .about-page-container {
   background-color: #f7faff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
 }
 
-.about-page-left-panel, .about-page-right-panel {
-  /* height: 760px;
-  width: 601px;
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 38px;
-  padding-right: 32px;
-  padding-bottom: 48px;
-  padding-left: 32px; */
-
-  height: 738px;
-  width: 480px;
-  background-color: #fff;
+.about-page-left-panel {
+  /* height: 738px; */
+  width: 654px; 
+  /* background-color: #fff; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 24%);
+  /* box-shadow: 0 4px 12px rgb(0 0 0 / 24%); */
   position: relative;
-  top: 45px;
+  /* top: 45px; */
+  /* padding: 24px; */
+  margin: 0 8px;
+  height: 100%;
+  /* background-color: #fff; */
+  text-align: left;
+  /* border-radius: 18px; */
+  /* box-shadow: 0 5px 16px rgba(1,85,254,.1); */
 }
 
-.about-page-left-panel-p {
+.about-page-header {
+  font-size: 2.625rem;
+  line-height: 1.0476190476;
+  margin-bottom: 12px;
+}
 
+.about-page-header-2 {
+  font-style: italic;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: -.3px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+
+.about-page-left-panel-p {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-top: 12px;
 }
