@@ -63,7 +63,7 @@ function SignupFormPage() {
   }
 
   return (
-    <Panel id='SignupLargePanel'>
+    <Panel className='SignupLargePanel'>
       <Panels className="signupleftPanel">
           <h3 className="signupH3">Start your free trial</h3>
           <p id="signupP">

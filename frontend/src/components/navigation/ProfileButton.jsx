@@ -41,7 +41,7 @@ const ProfileButton = withRouter(({ user, history }) => {
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          {/* <NavLink to={`/account`} className="AccountLink" >Account</NavLink> */}
+          <NavLink to={`/account`} className="AccountLink" >Account</NavLink>
           <li>
             <button onClick={logout} className="logoutButton">Log Out</button>
             

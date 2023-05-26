@@ -1,0 +1,41 @@
+.about-page-container {
+  background-color: #f7faff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100vh;
+}
+
+.about-page-left-panel {
+  width: 654px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 24px;
+  margin: 64px 8px;
+  height: 100%;
+  text-align: left;
+}
+
+.about-page-header {
+  font-size: 2.625rem;
+  line-height: 1.0476190476;
+  margin-bottom: 12px;
+}
+
+.about-page-header-2 {
+  font-style: italic;
+  font-size: 24px;
+  line-height: 120%;
+  letter-spacing: -.3px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+
+.about-page-left-panel-p {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-top: 12px;
+}

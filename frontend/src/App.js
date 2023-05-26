@@ -14,6 +14,7 @@ import AccountPage from "./components/AccountPage";
 import SearchPage from "./components/SearchPage";
 import { useSelector } from "react-redux";
 import ReviewForm from "./components/ReviewForm/ReviewForm";
+import AboutPage from "./components/AboutPage";
  
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
           <Route path="/login">
             <Navigation />
             <LoginFormPage />
+          </Route>
+          <Route path="/about">
+            <Navigation />
+            <AboutPage className="SignupLargePanel"/>
           </Route>
           <Route path="/signup">
             <Navigation />
