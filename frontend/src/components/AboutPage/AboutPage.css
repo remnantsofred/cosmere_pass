@@ -1,3 +1,7 @@
+.about-page-container {
+  background-color: #f7faff;
+}
+
 .about-page-left-panel, .about-page-right-panel {
   /* height: 760px;
   width: 601px;
@@ -23,3 +27,6 @@
   top: 45px;
 }
 
+.about-page-left-panel-p {
+
+}
