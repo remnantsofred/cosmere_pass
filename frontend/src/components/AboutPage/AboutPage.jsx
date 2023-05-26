@@ -12,7 +12,7 @@ export const AboutPage = ({id='', className="about-page"}) => {
       <Panels className='about-page-left-panel'>
         <h4 className='about-page-header'>About the developer & project</h4>
         <br />
-        <img src="../../assets/daphne_photo.png" alt="" />
+        
         <p className='about-page-header-2'>
           Hi! My name is Daphne and I am a software engineer with an HR background, and I am passionate about movement. 
         </p>
@@ -37,9 +37,9 @@ export const AboutPage = ({id='', className="about-page"}) => {
         <br />
         <br />
         <Row>
-          <a href="https://www.linkedin.com/in/lamdaphne/" target="_blank" className="navNavLink" >LinkedIn</a>
-          <a href="https://remnantsofred.github.io/" target="_blank" className="navNavLink">Portfolio</a>
-          <a href="https://github.com/remnantsofred/cosmere_pass" target="_blank" className="navNavLink">Github</a>
+          <a href="https://www.linkedin.com/in/lamdaphne/" target="_blank" className="navNavLink" id='signupNav'>LinkedIn  </a>
+          <a href="https://remnantsofred.github.io/" target="_blank" className="navNavLink" id='signupNav'>Portfolio</a>
+          <a href="https://github.com/remnantsofred/cosmere_pass" target="_blank" className="navNavLink" id='signupNav'>Github</a>
         </Row>
       </Panels>
     
