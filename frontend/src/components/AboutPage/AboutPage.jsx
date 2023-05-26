@@ -30,9 +30,9 @@ export const AboutPage = ({id='', className="about-page"}) => {
           Cosmerepass was developed using a Ruby on Rails backend, PostgreSQL for the database, and a React/Redux frontend. It also utilizes
           the Google Maps API. Read more about Cosmerepass' features and development at the project's Github link below.
         </p>
-        <p className='about-page-mini-header'>Tell me more</p> 
+        <p className='about-page-mini-header'>Tell me more!</p> 
         <p className='about-page-left-panel-p'>
-          If you'd like to connect, check out my LinkedIn below or email me at <a className='about-page-a' href="mailto:d.huff.lam@gmail.com?subject=Hi! I found you through your project Cosmerepass">d.huff.lam@gmail.com</a>.
+           Connect with me via LinkedIn, visit my portolfio site, or email me at <a className='about-page-a' href="mailto:d.huff.lam@gmail.com?subject=Hi! I found you through your project Cosmerepass">d.huff.lam@gmail.com</a>. 😊
         </p>
 
         <br />
