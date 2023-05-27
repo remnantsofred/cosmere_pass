@@ -24,7 +24,8 @@ export const AccountPage = () => {
     if (content === 'upcoming-reservations'){
       return (
         <>
-          {userReservations?.map(()=> <LessonDatesIndexItem></LessonDatesIndexItem>)}  
+          {/* {userReservations?.map((reservation)=> <LessonDatesIndexItem lessonDate={reservation.lessonDate}></LessonDatesIndexItem>)}   */}
+          {content}
         </>
       )
     } else if (content === 'past-reservations'){
