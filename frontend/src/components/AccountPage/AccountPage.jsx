@@ -5,23 +5,26 @@ import Row from '../row/Row';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { fetchReservations, getReservationsForUser } from '../../store/reservation';
+import LessonDatesIndexItem from '../LessonDatesIndexItem';
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const [content, setContent] = useState('');
-  const userReservations = useSelector(getReservationsForUser)
+  const userReservations = useSelector(getReservationsForUser(currentUser.id))
   
   useEffect(() => {
     dispatch(fetchReservations())
     
   }, [])
 
+  console.log(userReservations, "userReservations")
+
   const renderContent = () => {
     if (content === 'upcoming-reservations'){
       return (
         <>
-          {content}  
+          {userReservations?.map(()=> <LessonDatesIndexItem></LessonDatesIndexItem>)}  
         </>
       )
     } else if (content === 'past-reservations'){

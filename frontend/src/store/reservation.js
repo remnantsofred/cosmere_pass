@@ -28,9 +28,8 @@ export const getReservations = (store) => {
 
 export const getReservationsForUser = (userId) => (store) => {
   if (store.reservations) {
-    const userReservations = Object.values(store.reservations).filter(reservation => {
-      return reservation.student_id === userId
-    })
+    const userReservations = Object.values(store.reservations).filter(reservation => reservation.studentId === userId)
+    return userReservations
   }
   return [];
 }
