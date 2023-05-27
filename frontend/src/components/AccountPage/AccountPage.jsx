@@ -3,19 +3,53 @@ import Panel from '../panel/Panel';
 import Panels from '../panels';
 import Row from '../row/Row';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { fetchReservations, getReservationsForUser } from '../../store/reservation';
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const [content, setContent] = useState('');
+  const userReservations = useSelector(getReservationsForUser)
   
+  useEffect(() => {
+    dispatch(fetchReservations())
+    
+  }, [])
+
   const renderContent = () => {
-    return (
-      <>
-        {content}  
-      </>
-    )
+    if (content === 'upcoming-reservations'){
+      return (
+        <>
+          {content}  
+        </>
+      )
+    } else if (content === 'past-reservations'){
+      return (
+        <>
+          {content}  
+        </>
+      )
+    } else if (content === 'favorites'){
+      return (
+        <>
+          {content}  
+        </>
+      )
+    } else if (content === 'reviews'){
+      return (
+        <>
+          {content}  
+        </>
+      )
+    } else {
+      return (
+        <>
+          :D 
+        </>
+      )
+    }
+
   }
 
   return(
@@ -39,7 +73,7 @@ export const AccountPage = () => {
       </Panels>
       <Panels className='acct-page-panel-R'>
         <div className='acct-page-main-content-container'>
-          {content}
+          {renderContent()}
 
         </div>
 
