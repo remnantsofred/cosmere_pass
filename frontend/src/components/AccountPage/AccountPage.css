@@ -1,0 +1,53 @@
+.acct-page-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 64px;
+}
+
+.acct-page-panel-L {
+  border: solid red 2px;
+  width: 280px;
+  height: 400px;
+}
+
+.acct-page-panel-R {
+  border: solid blue 2px;
+  width: 654px;
+  height: auto;
+}
+
+
+.acct-page-title-li, .acct-page-title-row-welcome-banner {
+  display: flex;
+  flex-direction: row;
+  /* margin: 8px; */
+  /* padding: 8px; */
+  height: 32px;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 1);
+  margin-bottom: 10px;
+  padding: 10px;
+  transition: all 0s ease 0s;
+  font-size: 15px;
+  align-items: center;
+  text-align: left;
+}
+
+.acct-page-title-ul > li:hover {
+  background-color: rgba(0, 85, 255, 1);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.acct-page-title-row-welcome-banner {
+  font-size: 18px;;
+}
+
+.username-header {
+  margin-left: 4px;
+}
+
+.username-header:hover {
+  font-size: larger;
+}
