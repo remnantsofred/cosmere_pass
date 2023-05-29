@@ -42,8 +42,10 @@ export const getReservation = (reservationId) => (store) => {
 // THUNK ACTION CREATORS
 export const fetchReservations = () => async (dispatch) => {
   const res = await fetch(`/api/reservations`);
+  // console.log("why?")
   if (res.ok) {
     const reservations = await res.json();
+    console.log(reservations, 'reserations')
     dispatch(receiveReservations(reservations));
   }
   return Promise.resolve();

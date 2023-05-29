@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { fetchReservations, getReservationsForUser } from '../../store/reservation';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
+import { fetchLocations } from '../../store/location';
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export const AccountPage = () => {
   
   useEffect(() => {
     dispatch(fetchReservations())
-    
+    dispatch(fetchLocations())
   }, [])
 
   // user has:   
@@ -31,7 +32,6 @@ export const AccountPage = () => {
       return (
         <>
           <ReservationIndex user={currentUser} type='upcoming' ></ReservationIndex>
-          {content}
         </>
       )
     } else if (content === 'past-reservations'){

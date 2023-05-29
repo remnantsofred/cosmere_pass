@@ -11,9 +11,12 @@ export const ReservationIndex = ({user, type}) =>{
  
   return (
     <>
-      {type == 'upcoming' && <div className='reservation-index-header'>You have {user.upcomingReservations.length} upcoming {user.upcomingReservations.length == 1 && 'reservation'}{user.upcomingReservations.length !== 1 && 'reservations'}</div>}
-      {type == 'past' && <div className='reservation-index-header'>You have taken {user.pastReservations.length} {user.pastReservations.length == 1 && 'class'}{user.pastReservations.length !== 1 && 'classes'}</div>}
-      {user.reservations.map((reservation, idx)=> <ReservationIndexItem key={idx} reservation={reservation} type={type}> </ReservationIndexItem> )}
+      {type == 'upcoming' && <div className='reservation-index-header'>You have {user.upcomingReservations.length} upcoming {user.upcomingReservations.length == 1 ? 'reservation' : 'reservations'}</div>}
+      {type == 'upcoming' && user.upcomingReservations.length == 0 && <div>Browse classes</div> }
+      {type == 'past' && <div className='reservation-index-header'>You have taken {user.pastReservations.length} {user.pastReservations.length == 1 ? 'class' : 'classes'}</div>}
+      
+      {type == 'upcoming' && user.upcomingReservations.length && user.upcomingReservations.map((reservation, idx)=> <ReservationIndexItem key={idx} reservation={reservation} type={type}> </ReservationIndexItem> )}
+      {type == 'past' && user.pastReservations.length && user.pastReservations.map((reservation, idx)=> <ReservationIndexItem key={idx} reservation={reservation} type={type}> </ReservationIndexItem> )}
     </>
   )
   

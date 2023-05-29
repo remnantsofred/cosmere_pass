@@ -12,6 +12,12 @@ class Api::ReservationsController < ApplicationController
       end
       reservation
     end
+
+    @reservations = @reservations.map do |reservation|
+      set_reservation_details(reservation)
+    end
+
+    return @reservations
   end 
 
   def show
@@ -22,11 +28,13 @@ class Api::ReservationsController < ApplicationController
     else 
       @reservation.user_reserved = false
     end
+
+    @reservation = set_reservation_details(reservation)
   end 
   
   def create
     @reservation = Reservation.new(reservation_params)
-
+    @reservation = set_reservation_details(@reservation)
     if @reservation.save 
       @reservation.user_reserved = true
       render :show
@@ -53,6 +61,22 @@ class Api::ReservationsController < ApplicationController
     else
       return false
     end
+  end
+
+  def set_reservation_details(reservation)
+    
+    reservation.start_time = reservation.lesson_date.start_time
+    reservation.end_time = reservation.lesson_date.end_time
+
+    if reservation.lesson_date.end_time.past? 
+      reservation.status = 'past'
+    elsif reservation.lesson_date.end_time.future? 
+      reservation.status = 'upcoming'
+    end  
+    
+    reservation.location_id = reservation.lesson_date.lesson.location_id
+
+    return reservation
   end
 
 end
