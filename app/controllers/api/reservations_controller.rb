@@ -29,7 +29,9 @@ class Api::ReservationsController < ApplicationController
       @reservation.user_reserved = false
     end
 
-    @reservation = set_reservation_details(reservation)
+    @reservation = set_reservation_details(@reservation)
+    print(@reservation, "reservation from show ------------")
+    return @reservation
   end 
   
   def create
@@ -75,6 +77,16 @@ class Api::ReservationsController < ApplicationController
     end  
     
     reservation.location_id = reservation.lesson_date.lesson.location_id
+
+    # new below:
+    reservation.lesson_title = reservation.lesson_date.lesson.title
+    reservation.lesson_type = reservation.lesson_date.lesson.lesson_type
+    reservation.lesson_description = reservation.lesson_date.lesson.description
+    reservation.location_name = reservation.lesson_date.lesson.location.location_name
+    reservation.location_description = reservation.lesson_date.lesson.location.description
+    reservation.lesson_image_url = reservation.lesson_date.lesson.photo.url
+    reservation.location_image_url = reservation.lesson_date.lesson.location.photo.url
+
 
     return reservation
   end

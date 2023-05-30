@@ -5,22 +5,21 @@ import Row from '../row/Row';
 import ReservationIndex from '../ReservationIndex/ReservationIndex';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { fetchReservations, getReservationsForUser } from '../../store/reservation';
-import LessonDatesIndexItem from '../LessonDatesIndexItem';
-import { fetchLocations } from '../../store/location';
+import { fetchReservations, getReservationsForUser} from '../../store/reservation';
+import { fetchLocations, getLocations } from '../../store/location';
+
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const [content, setContent] = useState('');
-  const userReservations = useSelector(getReservationsForUser(currentUser.id))
-  const upcomingReservations = currentUser.upcoming_reservations;
-  const pastReservations = currentUser.past_reservations;
-  const lessonsReviewed = currentUser.reviews;
+  const locations = useSelector(getLocations);
+  const reservations = useSelector(getReservationsForUser(currentUser.id))
   
   useEffect(() => {
     dispatch(fetchReservations())
     dispatch(fetchLocations())
+    // dispatch(fetchLessonDates())
   }, [])
 
   // user has:   
@@ -31,13 +30,13 @@ export const AccountPage = () => {
     if (content === 'upcoming-reservations'){
       return (
         <>
-          <ReservationIndex user={currentUser} type='upcoming' ></ReservationIndex>
+          <ReservationIndex user={currentUser} type='upcoming' locations={locations} reservations={reservations} ></ReservationIndex>
         </>
       )
     } else if (content === 'past-reservations'){
       return (
         <>
-          <ReservationIndex user={currentUser} type='past' ></ReservationIndex>
+          <ReservationIndex user={currentUser} type='past' locations={locations} reservations={reservations}></ReservationIndex>
           {content}  
         </>
       )
@@ -68,16 +67,16 @@ export const AccountPage = () => {
       <Panels className='acct-page-panel-L'>
         <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
         <ul className='acct-page-title-ul'>
-          <li className='acct-page-title-li' onClick={() => setContent('upcoming-reservations')}>
+          <li className={ content === 'upcoming-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('upcoming-reservations')}>
             <p className='acct-page-selection'>{`Upcoming (${currentUser.upcomingReservations.length})`}</p>
           </li>
-          <li className='acct-page-title-li' onClick={() => setContent('past-reservations')}>
+          <li className={ content === 'past-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('past-reservations')}>
             <p className='acct-page-selection'>{`Attended (${currentUser.pastReservations.length})`}</p>
           </li>
           {/* <li className='acct-page-title-li' onClick={() => setContent('favorites')}>
             <p className='acct-page-selection'>Favorites</p>
           </li> */}
-          <li className='acct-page-title-li' onClick={() => setContent('reviews')}>
+          <li className={ content === 'reviews' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('reviews')}>
             {/* <p className='acct-page-selection'>{`Reviews (${currentUser.reviews?.length})`}</p> */}
             <p className='acct-page-selection'>Reviews</p>
           </li>

@@ -47,8 +47,10 @@
   text-decoration: none;
 }
 
-.acct-page-title-li:focus {
-  color: #05f
+.acct-page-title-li-selected {
+  color: #05f;
+  background-color: white;
+
 }
 
 .acct-page-title-row-welcome-banner {
