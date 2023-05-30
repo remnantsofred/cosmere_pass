@@ -88,10 +88,12 @@ class User < ApplicationRecord
       all_lessons_taken << reservation.lesson_date.lesson_id
     end
 
-    self.reviews.each do |review|
-      lessons_reviewed << review.lesson_id
-    end
-    
+    if self.reviews 
+      self.reviews.each do |review|
+        lessons_reviewed << review.lesson_id
+      end
+    end 
+
     self.reservation_datetimes = all_reservation_datetimes
     self.lessons_taken = all_lessons_taken.uniq
     self.lessons_reviewed = lessons_reviewed

@@ -13,13 +13,10 @@ export const AccountPage = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
   const [content, setContent] = useState('');
-  const locations = useSelector(getLocations);
   const reservations = useSelector(getReservationsForUser(currentUser.id))
   
   useEffect(() => {
     dispatch(fetchReservations())
-    dispatch(fetchLocations())
-    // dispatch(fetchLessonDates())
   }, [])
 
   // user has:   
@@ -30,13 +27,13 @@ export const AccountPage = () => {
     if (content === 'upcoming-reservations'){
       return (
         <>
-          <ReservationIndex user={currentUser} type='upcoming' locations={locations} reservations={reservations} ></ReservationIndex>
+          <ReservationIndex user={currentUser} type='upcoming' reservations={reservations} ></ReservationIndex>
         </>
       )
     } else if (content === 'past-reservations'){
       return (
         <>
-          <ReservationIndex user={currentUser} type='past' locations={locations} reservations={reservations}></ReservationIndex>
+          <ReservationIndex user={currentUser} type='past' reservations={reservations}></ReservationIndex>
           {content}  
         </>
       )

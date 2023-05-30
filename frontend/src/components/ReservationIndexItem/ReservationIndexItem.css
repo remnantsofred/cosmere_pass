@@ -3,6 +3,7 @@
   padding: 4px;
   display: flex;
   flex-direction: row;
+  margin: 4px 0px 12px;
 }
 .reservation-index-button{
  margin-bottom: 4px;

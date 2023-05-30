@@ -4,7 +4,7 @@ import Panel from '../panel/Panel';
 import { useSelector } from 'react-redux';
 import { getLocation } from '../../store/location';
 
-export const ReservationIndexItem = ({reservation, type, locations}) =>{
+export const ReservationIndexItem = ({reservation, type}) =>{
   // const location = useSelector(getLocation(reservation.locationId));
 
   // attr_accessor :user_reserved, :start_time, :end_time, :status, :location_id, 
@@ -13,10 +13,11 @@ export const ReservationIndexItem = ({reservation, type, locations}) =>{
 
   return (
     <Row className='reservation-index-item-container'>
-      <img src={reservation.location_image_url} alt={reservation.locationName} className='LocShowImg' />
+      <img src={reservation.lesson_image_url} alt={reservation.locationName} className='LocShowImg' />
       <Panel className='reservation-index-item-info-panel'>
-        {reservation.lessonType}
-        hello, this is the {reservation.locationName}
+        {reservation.lessonTitle}
+        {reservation.locationName}
+        {reservation.startTime} - {reservation.endTime}
       </Panel>
       {type == 'upcoming' && <Panel className='reservation-index-item-button-panel'>
         <button className='lessonDateIdxItmReserve reservation-index-button'> Bring a friend </button>
