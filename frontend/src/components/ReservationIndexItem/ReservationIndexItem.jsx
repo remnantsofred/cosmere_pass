@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { getLocation } from '../../store/location';
 
 export const ReservationIndexItem = ({reservation, type}) =>{
-  // const location = useSelector(getLocation(reservation.locationId));
+  // const location = useSelector(getLocation(reservation.lessonDate.lesson.locationId));
 
   // attr_accessor :user_reserved, :start_time, :end_time, :status, :location_id 
  

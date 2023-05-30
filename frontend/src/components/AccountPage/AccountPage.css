@@ -39,10 +39,16 @@
   cursor: pointer;
 }
 
+
+
 .acct-page-title-ul > li:hover {
   background-color: rgba(0, 85, 255, 1);
   color: #ffffff;
   text-decoration: none;
+}
+
+.acct-page-title-li:focus {
+  color: #05f
 }
 
 .acct-page-title-row-welcome-banner {

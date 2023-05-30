@@ -69,15 +69,16 @@ export const AccountPage = () => {
         <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
         <ul className='acct-page-title-ul'>
           <li className='acct-page-title-li' onClick={() => setContent('upcoming-reservations')}>
-            <p className='acct-page-selection'>Upcoming reservations</p>
+            <p className='acct-page-selection'>{`Upcoming (${currentUser.upcomingReservations.length})`}</p>
           </li>
           <li className='acct-page-title-li' onClick={() => setContent('past-reservations')}>
-            <p className='acct-page-selection'>Past reservations</p>
+            <p className='acct-page-selection'>{`Attended (${currentUser.pastReservations.length})`}</p>
           </li>
           {/* <li className='acct-page-title-li' onClick={() => setContent('favorites')}>
             <p className='acct-page-selection'>Favorites</p>
           </li> */}
           <li className='acct-page-title-li' onClick={() => setContent('reviews')}>
+            {/* <p className='acct-page-selection'>{`Reviews (${currentUser.reviews?.length})`}</p> */}
             <p className='acct-page-selection'>Reviews</p>
           </li>
         </ul>
