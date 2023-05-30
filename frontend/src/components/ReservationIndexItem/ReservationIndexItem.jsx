@@ -19,8 +19,8 @@ export const ReservationIndexItem = ({reservation, type}) =>{
 
       </Panel>
       {type == 'upcoming' && <Panel className='reservation-index-item-button-panel'>
-        <button className={'lessonDateIdxItmReserve'}> Bring a friend </button>
-        <button className={'lessonDateIdxItmReserve'}> Cancel Reservation </button>
+        <button className='lessonDateIdxItmReserve reservation-index-button'> Bring a friend </button>
+        <button className='lessonDateIdxItmReserve reservation-index-button-cancel'> Cancel Reservation </button>
       </Panel >}
     </Row>
   )

@@ -1,0 +1,18 @@
+.reservation-index-item-container {
+  border: solid red 1px;
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+}
+.reservation-index-button{
+ margin-bottom: 4px;
+ background-color: #05f;
+ color: white;
+}
+
+.reservation-index-button-cancel {
+  height: 50px;
+  border: solid red 1px;
+  color: red;
+
+}
