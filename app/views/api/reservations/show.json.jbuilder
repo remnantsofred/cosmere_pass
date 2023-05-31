@@ -4,6 +4,7 @@ json.start_time @reservation.start_time
 json.end_time @reservation.end_time
 json.status @reservation.status
 json.location_id @reservation.location_id
+json.lesson_id @reservation.lesson_id
 json.lesson_title @reservation.lesson_title
 json.lesson_type @reservation.lesson_type
 json.lesson_description @reservation.lesson_description

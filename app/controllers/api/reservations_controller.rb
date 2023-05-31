@@ -30,7 +30,6 @@ class Api::ReservationsController < ApplicationController
     end
 
     @reservation = set_reservation_details(@reservation)
-    print(@reservation, "reservation from show ------------")
     return @reservation
   end 
   
@@ -79,6 +78,7 @@ class Api::ReservationsController < ApplicationController
     reservation.location_id = reservation.lesson_date.lesson.location_id
 
     # new below:
+    reservation.lesson_id = reservation.lesson_date.lesson_id
     reservation.lesson_title = reservation.lesson_date.lesson.title
     reservation.lesson_type = reservation.lesson_date.lesson.lesson_type
     reservation.lesson_description = reservation.lesson_date.lesson.description

@@ -37,8 +37,8 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   const [loaded, setLoaded] = useState(false);
   const [indexType, setIndexType] = useState('lessons');
   const [ modalStatus, setModalStatus ] = useState(false);
-  const [ modal2Status, setModal2Status ] = useState(false);
-  const [ modal3Status, setModal3Status ] = useState(false);
+  // const [ modal2Status, setModal2Status ] = useState(false);
+  // const [ modal3Status, setModal3Status ] = useState(false);
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
@@ -146,7 +146,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
                   handleCancel={handleCancel} 
                   source="search" 
                   modalStatus={modalStatus} 
-                  modal3Status={modal3Status} />) }
+                   />) }
         </>
       )
     } else {

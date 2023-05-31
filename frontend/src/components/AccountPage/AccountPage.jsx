@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { fetchReservations, getReservationsForUser} from '../../store/reservation';
 import { fetchLocations, getLocations } from '../../store/location';
+import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
+import { deleteReservation } from '../../store/reservation';
+import lessonDatesReducer, { fetchLessonDates, getLessonDates } from '../../store/lessonDates';
 
 
 export const AccountPage = () => {
@@ -14,20 +17,74 @@ export const AccountPage = () => {
   const currentUser = useSelector(state => state.session.user);
   const [content, setContent] = useState('');
   const reservations = useSelector(getReservationsForUser(currentUser.id))
+  const lessonDates = useSelector(getLessonDates)
+  const locations = useSelector(getLocations)
+  const [ modalStatus, setModalStatus ] = useState(false);
+  const [ modalLessonDate, setModalLessonDate ] = useState();
+  const [ modalLesson, setModalLesson ] = useState();
+  const [ modalLocation, setModalLocation ] = useState();
+
   
   useEffect(() => {
     dispatch(fetchReservations())
+    dispatch(fetchLocations())
+    dispatch(fetchLessonDates())
   }, [])
-
+  
   // user has:   
   // attr_accessor :reservation_datetimes, :lessons_taken, :lessons_reviewed, :upcoming_reservations, :past_reservations, :locations_visited
+  
+  const handleCancel = (lessonDate, lesson, location) => {
+    setModalStatus(true)
+    console.log(lessonDate, lesson, location)
+    setModalLessonDate(lessonDate)
+    setModalLesson(lesson)
+    setModalLocation(location)
+  }
 
+  const handleCancelModalConfirm = (lessonDate) => {
+    dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
+    setModalStatus(false)
+  }
+
+  const handleModalClose = () => {
+    setModalStatus(false)
+    setModalLessonDate(null)
+    setModalLesson(null)
+    setModalLocation(null)
+  }
+
+  const getLocationForLesson = (locationId, locations) => {
+    for (const location of locations) {
+      if (location.id === locationId) {
+        return location;
+      }
+    }
+  }
+
+  const getSpecificLesson = (lessonId, lessons) => {
+    for (const lesson of lessons) {
+      if (lesson.id === lessonId) {
+        return lesson;
+      }
+    }
+  }
+
+  
 
   const renderContent = () => {
     if (content === 'upcoming-reservations'){
       return (
         <>
-          <ReservationIndex user={currentUser} type='upcoming' reservations={reservations} ></ReservationIndex>
+          <ReservationIndex  
+            user={currentUser} 
+            type='upcoming' 
+            reservations={reservations} 
+            handleCancel={handleCancel} 
+            modalStatus={modalStatus} 
+            lessonDates={lessonDates}
+            locations={locations}
+            ></ReservationIndex>
         </>
       )
     } else if (content === 'past-reservations'){
@@ -61,6 +118,7 @@ export const AccountPage = () => {
 
   return(
     <Panel className='acct-page-page'>
+      { modalStatus === true && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} /> }
       <Panels className='acct-page-panel-L'>
         <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
         <ul className='acct-page-title-ul'>
