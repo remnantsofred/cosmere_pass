@@ -34,8 +34,8 @@ export const ReservationIndexItem = ({reservation, type, handleCancel}) =>{
         <p className="lessonDateIdxItmTime duration">{formatTime(reservation.startTime)}-{formatTime(reservation.endTime)}</p>
       </Panel>
       {type == 'upcoming' && <Panel className='reservation-index-item-button-panel'>
-        <button className='reservation-index-button'> Bring a friend </button>
-        <button className='reservation-index-button-cancel' onClick={ () => handleCancel(reservation)}> Cancel Reservation </button>
+        <button className='reservation-index-button' onClick={ () => handleCancel(reservation, 'invite')}> Bring a friend </button>
+        <button className='reservation-index-button-cancel' onClick={ () => handleCancel(reservation, 'cancel')}> Cancel Reservation </button>
       </Panel >}
     </Row>
   )
