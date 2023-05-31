@@ -1,25 +1,25 @@
 .acct-page-page {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   background-color: #f2f0f0;
   width: 100vw;
 }
 
 .acct-page-panel-L {
-  width: 25vw;
+  width: 22vw;
   height: 100vh;
-  padding: 4px;
+  padding: 4px 0px 0px 200px;
   background-color: #f2f0f0;
   padding-top: 64px;
 }
 
 .acct-page-panel-R {
-  width: 654px;
+  width: 76vw;
   height: auto;
-  padding: 4px;
+  padding: 64px 64px 64px 4px;
   background: #ffffff;
-  padding-top: 64px;
+ 
 }
 
 
