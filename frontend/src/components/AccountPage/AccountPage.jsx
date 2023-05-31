@@ -3,6 +3,7 @@ import Panel from '../panel/Panel';
 import Panels from '../panels';
 import Row from '../row/Row';
 import ReservationIndex from '../ReservationIndex/ReservationIndex';
+import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { fetchReservations, getReservationsForUser} from '../../store/reservation';
@@ -31,7 +32,7 @@ export const AccountPage = () => {
     dispatch(fetchLocations())
     dispatch(fetchLessonDates())
     dispatch(fetchLessons())
-  }, [])
+  }, [dispatch])
   
 
   const getLocation = (locationId, locations) => {
@@ -58,11 +59,15 @@ export const AccountPage = () => {
     }
   }
 
-  const handleCancel = (reservation) => {
+  const handleCancel = (reservation, mode) => {
     setModalLessonDate(getLessonDate(reservation.lessonDateId, lessonDates))
     setModalLesson(getLesson(reservation.lessonId, lessons))
     setModalLocation(getLocation(reservation.locationId, locations))
-    setModalStatus(true)
+    if (mode === 'cancel'){
+      setModalStatus(1)
+    } else {
+      setModalStatus(2)
+    }   
   }
 
   const handleCancelModalConfirm = (lessonDate) => {
@@ -132,7 +137,8 @@ export const AccountPage = () => {
     
       <Row className='test'></Row>
       <Panel className='acct-page-page'>
-        { modalStatus === true && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} /> }
+        { modalStatus === 1 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} /> }
+        { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} /> }
         <Panels className='acct-page-panel-L'>
           <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
           <ul className='acct-page-title-ul'>
