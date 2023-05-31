@@ -42,7 +42,7 @@ export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
           Browse lessons
         </NavLink> }
       
-      {type === 'upcoming' && user.upcomingReservations.length > 0 &&  
+      {(type === 'upcoming' && user.upcomingReservations.length > 0) &&  
         selectReservations(reservations, 'upcoming').map((reservation, idx)=> 
           <ReservationIndexItem 
             key={idx} 
