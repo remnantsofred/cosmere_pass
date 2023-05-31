@@ -1,22 +1,41 @@
-.acct-page-container {
+#account-nav {
+  z-index: 500;
+  position: absolute;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 8%);
+}
+
+.test {
+  box-shadow: 10px 5px 5px red;
+  box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+  height: 2px;
+  position: relative;
+  /* top: 62px; */
+  /* border: red solid 1px; */
+  
+}
+
+.acct-page-page {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding-top: 64px;
-  background-color: #ffffff;
+  /* justify-content: center; */
+  background-color: #f2f0f0;
+  width: 100vw;
 }
 
 .acct-page-panel-L {
-  width: 280px;
-  height: 400px;
-  padding: 4px;
+  width: 22vw;
+  height: 100vh;
+  padding: 4px 0px 0px 200px;
+  background-color: #f2f0f0;
+  padding-top: 64px;
 }
 
 .acct-page-panel-R {
-  border: solid blue 2px;
-  width: 654px;
+  width: 76vw;
   height: auto;
-  padding: 4px;
+  padding: 64px 64px 64px 4px;
+  background: #ffffff;
+ 
 }
 
 
@@ -32,6 +51,7 @@
   font-size: 15px;
   align-items: center;
   text-align: left;
+  background-color: #f2f0f0;
   
 }
 
@@ -39,17 +59,22 @@
   cursor: pointer;
 }
 
+.acct-page-title-ul {
+  background-color: #f2f0f0
+}
 
 
 .acct-page-title-ul > li:hover {
-  background-color: rgba(0, 85, 255, 1);
-  color: #ffffff;
+  /* background-color: rgba(0, 85, 255, 1); */
+  /* color: #ffffff; */
   text-decoration: none;
+  color: #05f;
+  /* font-weight: bold; */
 }
 
 .acct-page-title-li-selected {
   color: #05f;
-  background-color: white;
+  /* background-color: white; */
 
 }
 
@@ -61,6 +86,7 @@
 
 .username-header {
   margin-left: 4px;
+  
 }
 
 .username-header:hover {
@@ -69,4 +95,5 @@
 
 .acct-page-selection {
   cursor: pointer;
+  /* font-weight: 400; */
 }

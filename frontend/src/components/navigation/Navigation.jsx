@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 
 
-function Navigation() {
+function Navigation({id}) {
   const sessionUser = useSelector(state => state.session.user);
   let location = useLocation();
 
@@ -19,7 +19,6 @@ function Navigation() {
     <>
         <NavLink className="navNavLink" id="findClasses" to="/search">Find lessons</NavLink>
         <NavLink className="navNavLink" id="aboutPage" to="/about">About</NavLink>
-        {/* <a href="https://www.linkedin.com/in/lamdaphne/" target="_blank" className="navNavLink" id="aboutMe" to="/search">About me</a> */}
         <NavLink className="navNavLink" id="loginNav" to="/login">Log in</NavLink>
         <NavLink className="navNavLink" id="signupNav" to="/signup">Get 1 month free</NavLink>
     </>
@@ -50,7 +49,7 @@ function Navigation() {
 
 
   return (
-    <Columns id="NavColumns">
+    <Columns className="NavColumns" >
       
           {/* <Column><NavLink id="NavLink" exact to="/">Home</NavLink></Column> */}
           <Column>

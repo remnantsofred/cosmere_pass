@@ -2,30 +2,24 @@ import './ReservationIndexItem.css';
 import Row from '../row/Row';
 import Panel from '../panel/Panel';
 import Column from '../column/Column';
-import { useSelector } from 'react-redux';
-import { getLocation } from '../../store/location';
-import { formatDate, formatTime, timeBetween, formatDateWithDay, formatDateWithDayShortAlt } from '../../utils/date_util';
+import { formatTime, formatDateWithDayShortAlt } from '../../utils/date_util'
 
-export const ReservationIndexItem = ({reservation, type}) =>{
-  // const reservationLocation = useSelector(getLocation(reservation.locationId));
 
-  // attr_accessor :user_reserved, :start_time, :end_time, :status, :location_id, 
-  // :lesson_title, :lesson_type, :lesson_description, :location_name, :location_description, :lesson, :location
- 
+export const ReservationIndexItem = ({reservation, type, handleCancel}) =>{
+
+
+  
   const getWorld = (locationName) => {
-    if (locationName == "Hallandren"){
+    if (locationName === "Hallandren"){
       return "Nalthis" 
-    } else if (locationName == "Elendel" || locationName == "Luthadel" || locationName == "Homeland"){
+    } else if (locationName === "Elendel" || locationName === "Luthadel" || locationName === "Homeland"){
       return"Scadrial"
     } else {
       return "Roshar"
     }
   }
-
-  // const getLocationForImage = (locationId) => {
-  //   const reservationLocation = useSelector(getLocation(reservation.locationId))
-  //   return reservationLocation
-  // }
+  
+  
 
   return (
     <Row className='reservation-index-item-container'>
@@ -40,8 +34,8 @@ export const ReservationIndexItem = ({reservation, type}) =>{
         <p className="lessonDateIdxItmTime duration">{formatTime(reservation.startTime)}-{formatTime(reservation.endTime)}</p>
       </Panel>
       {type == 'upcoming' && <Panel className='reservation-index-item-button-panel'>
-        <button className='lessonDateIdxItmReserve reservation-index-button'> Bring a friend </button>
-        <button className='lessonDateIdxItmReserve reservation-index-button-cancel'> Cancel Reservation </button>
+        <button className='reservation-index-button'> Bring a friend </button>
+        <button className='reservation-index-button-cancel' onClick={ () => handleCancel(reservation)}> Cancel Reservation </button>
       </Panel >}
     </Row>
   )
