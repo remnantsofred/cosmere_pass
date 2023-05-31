@@ -7,7 +7,7 @@ import { getLocation } from '../../store/location';
 import { formatDate, formatTime, timeBetween, formatDateWithDay, formatDateWithDayShortAlt } from '../../utils/date_util';
 
 export const ReservationIndexItem = ({reservation, type}) =>{
-  // const location = useSelector(getLocation(reservation.locationId));
+  // const reservationLocation = useSelector(getLocation(reservation.locationId));
 
   // attr_accessor :user_reserved, :start_time, :end_time, :status, :location_id, 
   // :lesson_title, :lesson_type, :lesson_description, :location_name, :location_description, :lesson, :location
@@ -20,13 +20,17 @@ export const ReservationIndexItem = ({reservation, type}) =>{
     } else {
       return "Roshar"
     }
-    
   }
+
+  // const getLocationForImage = (locationId) => {
+  //   const reservationLocation = useSelector(getLocation(reservation.locationId))
+  //   return reservationLocation
+  // }
 
   return (
     <Row className='reservation-index-item-container'>
       <Column className='reservation-index-item-img-col'>
-        <img src={reservation.location_image_url} alt={reservation.locationName}  />
+        <img src={reservation.lessonImageUrl} alt={reservation.locationName} className='reservation-lesson-img' />
       </Column>
       <Panel className='reservation-index-item-info-panel'>
         <p className='lessonDateIdxItmTime startTimeLoc'>{reservation.lessonTitle}</p>
