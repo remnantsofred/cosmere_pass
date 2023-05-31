@@ -26,8 +26,8 @@ export const ReservationIndex = ({user, type, locations, reservations}) =>{
       {type === 'upcoming' && user.upcomingReservations.length === 0 && <NavLink className="splashNavLink" to="/search">Browse lessons</NavLink> }
       {type === 'past' && <div className='reservation-index-header'>You have taken {user.pastReservations.length} {user.pastReservations.length === 1 ? 'lesson' : 'lessons'}</div>}
       
-      {type === 'upcoming' && user.upcomingReservations.length && reservations.map((reservation, idx)=> <ReservationIndexItem key={idx} reservation={reservation} type={type} locations={locations}> </ReservationIndexItem> )}
-      {type === 'past' && user.pastReservations.length && user.pastReservations.map((reservation, idx)=> <ReservationIndexItem key={idx} reservation={reservation} type={type} locations={locations}> </ReservationIndexItem> )}
+      {type === 'upcoming' && user.upcomingReservations.length && selectReservations(reservations, 'upcoming').map((reservation, idx)=> <ReservationIndexItem key={idx} reservation={reservation} type={'upcoming'} locations={locations}> </ReservationIndexItem> )}
+      {type === 'past' && user.pastReservations.length && selectReservations(reservations, 'past').map((reservation, idx)=> <ReservationIndexItem key={idx} reservation={reservation} type={'past'} locations={locations}> </ReservationIndexItem> )}
     </>
   )
   

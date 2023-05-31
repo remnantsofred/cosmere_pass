@@ -12,3 +12,4 @@ json.location_description @reservation.location_description
 json.lesson_image_url @reservation.lesson_image_url
 json.location_image_url @reservation.location_image_url
 
+
