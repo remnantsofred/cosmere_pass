@@ -3,7 +3,7 @@ class Api::LessonDatesController < ApplicationController
 
     @lesson_dates = []
     if params[:location_id] 
-      @lessons = Lesson.where("location_id = ?", params[:location_id]).limit(30)
+      @lessons = Lesson.where("location_id = ?", params[:location_id])
       lesson_ids = @lessons.map { |lesson| lesson.id }
       @lesson_dates = LessonDate.where("lesson_id in (?)", lesson_ids)
     end
@@ -24,10 +24,9 @@ class Api::LessonDatesController < ApplicationController
       
     end   
       
-    
-
+   
     if @lesson_dates.length == 0
-      @lesson_dates = LessonDate.all.limit(30)
+      @lesson_dates = LessonDate.all
     end
     
     @lesson_dates = @lesson_dates.map do |lesson_date|

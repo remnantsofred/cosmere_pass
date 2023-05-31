@@ -61,6 +61,7 @@ export const fetchLessonDates = (locationId, lessonType, startTime) => async (di
     url = url + "?" + queryParams.join("&")
   }
 
+
   const res = await fetch(url);
     if (res.ok) {
       const lessonDates = await res.json();
