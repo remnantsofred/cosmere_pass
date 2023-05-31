@@ -127,34 +127,38 @@ export const AccountPage = () => {
   }
 
   return(
-    <Panel className='acct-page-page'>
-      { modalStatus === true && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} /> }
-      <Panels className='acct-page-panel-L'>
-        <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
-        <ul className='acct-page-title-ul'>
-          <li className={ content === 'upcoming-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('upcoming-reservations')}>
-            <p className='acct-page-selection'>{`Upcoming (${currentUser.upcomingReservations.length})`}</p>
-          </li>
-          <li className={ content === 'past-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('past-reservations')}>
-            <p className='acct-page-selection'>{`Attended (${currentUser.pastReservations.length})`}</p>
-          </li>
-          {/* <li className='acct-page-title-li' onClick={() => setContent('favorites')}>
-            <p className='acct-page-selection'>Favorites</p>
-          </li> */}
-          <li className={ content === 'reviews' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('reviews')}>
-            {/* <p className='acct-page-selection'>{`Reviews (${currentUser.reviews?.length})`}</p> */}
-            <p className='acct-page-selection'>Reviews</p>
-          </li>
-        </ul>
-      </Panels>
-      <Panels className='acct-page-panel-R'>
-        <div className='acct-page-main-content-container'>
-          {renderContent()}
+    <>  
+    
+      <Row className='test'></Row>
+      <Panel className='acct-page-page'>
+        { modalStatus === true && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} /> }
+        <Panels className='acct-page-panel-L'>
+          <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
+          <ul className='acct-page-title-ul'>
+            <li className={ content === 'upcoming-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('upcoming-reservations')}>
+              <p className='acct-page-selection'>{`Upcoming (${currentUser.upcomingReservations.length})`}</p>
+            </li>
+            <li className={ content === 'past-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('past-reservations')}>
+              <p className='acct-page-selection'>{`Attended (${currentUser.pastReservations.length})`}</p>
+            </li>
+            {/* <li className='acct-page-title-li' onClick={() => setContent('favorites')}>
+              <p className='acct-page-selection'>Favorites</p>
+            </li> */}
+            <li className={ content === 'reviews' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('reviews')}>
+              {/* <p className='acct-page-selection'>{`Reviews (${currentUser.reviews?.length})`}</p> */}
+              <p className='acct-page-selection'>Reviews</p>
+            </li>
+          </ul>
+        </Panels>
+        <Panels className='acct-page-panel-R'>
+          <div className='acct-page-main-content-container'>
+            {renderContent()}
 
-        </div>
+          </div>
 
-      </Panels>
-    </Panel>
+        </Panels>
+      </Panel>
+    </>
   )
 }
 
