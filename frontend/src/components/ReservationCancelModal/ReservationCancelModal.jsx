@@ -7,6 +7,8 @@ import modalCloseButton from '../ReservationConfirmModal/modalCloseButton.png';
 
 export const ReservationCancelModal = ({children, id='', className="ReservationCancelModal", lessonDate, lesson, location, handleModalClose, handleCancelModalConfirm, source}) => {
 
+
+
   return (
     <>
       <div className='resModalBackground'></div>
@@ -58,6 +60,8 @@ export const ReservationCancelModal = ({children, id='', className="ReservationC
       </Panels>
     </>
   )
+
+
 }
 
 export default ReservationCancelModal;
