@@ -40,8 +40,8 @@ export const ReservationIndexItem = ({reservation, type}) =>{
         <p className="lessonDateIdxItmTime duration">{formatTime(reservation.startTime)}-{formatTime(reservation.endTime)}</p>
       </Panel>
       {type == 'upcoming' && <Panel className='reservation-index-item-button-panel'>
-        <button className='lessonDateIdxItmReserve reservation-index-button'> Bring a friend </button>
-        <button className='lessonDateIdxItmReserve reservation-index-button-cancel'> Cancel Reservation </button>
+        <button className='reservation-index-button'> Bring a friend </button>
+        <button className='reservation-index-button-cancel'> Cancel Reservation </button>
       </Panel >}
     </Row>
   )

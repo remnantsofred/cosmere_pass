@@ -1,5 +1,4 @@
 .reservation-index-item-container {
-  border: solid red 1px;
   padding: 4px;
   display: flex;
   flex-direction: row;
@@ -8,27 +7,75 @@
   height: 150px;
 }
 .reservation-index-button{
- margin-bottom: 4px;
- background-color: #05f;
- color: white;
+  margin-bottom: 6px;
+  background-color: #05f;
+  color: white;
+  width: 110.6px;
+  height: 34px;
+  padding: 16px, 16px, 14px;
+  border: 1px solid #05f;
+  text-shadow: none;
+  border: 1px solid #d6d6d6;
+  border-radius: 3px;
+  transition: color .3s,background-color .3s,border-color .3s;
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  border-color: #05f;
+  background-color: #05f;
 }
+
+.reservation-index-button:hover {
+  background-color: #004de6;
+  border-color: #004de6;
+  border-top-color: rgb(0, 77, 230);
+  border-right-color: rgb(0, 77, 230);
+  border-bottom-color: rgb(0, 77, 230);
+  border-left-color: rgb(0, 77, 230);
+}
+
 
 .reservation-index-button-cancel {
   height: 50px;
-  border: solid red 1px;
-  color: red;
+  width: 110.6px;
+  border: solid #cb2323 1px;
+  color: #cb2323;
+  padding: 9px 8px 7px 8px;
+  border-radius: 3px;
+  background-color: transparent;
+  transition: color .3s,background-color .3s,border-color .3s;
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  overflow: visible;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+}
 
+.reservation-index-button-cancel:hover {
+  /* background-color: #b31e1e;
+  border-color: #b31e1e; */
+  border: solid #b31e1e 1px;
+  color: #b31e1e;
+  /* color: white; */
 }
 
 .reservation-index-item-info-panel {
   display: flex;
   flex-direction: column;
-  /* justify-content: left; */
   align-items: flex-start;
   border: pink solid 1px;
   width: 280px;
   margin-right: 6px;
-  /* justify-content: space-between; */
+  padding-left: 10px;
 }
 
 .reservation-index-item-info-panel > p {

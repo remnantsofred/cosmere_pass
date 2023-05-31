@@ -60,7 +60,7 @@ export const AccountPage = () => {
   }
 
   return(
-    <Panel className='acct-page-container'>
+    <Panel className='acct-page-page'>
       <Panels className='acct-page-panel-L'>
         <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
         <ul className='acct-page-title-ul'>

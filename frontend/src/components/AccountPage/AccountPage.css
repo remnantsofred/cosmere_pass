@@ -1,22 +1,25 @@
-.acct-page-container {
+.acct-page-page {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 64px;
-  background-color: #ffffff;
+  background-color: #f2f0f0;
+  width: 100vw;
 }
 
 .acct-page-panel-L {
-  width: 280px;
-  height: 400px;
+  width: 25vw;
+  height: 100vh;
   padding: 4px;
+  background-color: #f2f0f0;
+  padding-top: 64px;
 }
 
 .acct-page-panel-R {
-  border: solid blue 2px;
   width: 654px;
   height: auto;
   padding: 4px;
+  background: #ffffff;
+  padding-top: 64px;
 }
 
 
@@ -32,6 +35,7 @@
   font-size: 15px;
   align-items: center;
   text-align: left;
+  background-color: #f2f0f0;
   
 }
 
@@ -39,17 +43,22 @@
   cursor: pointer;
 }
 
+.acct-page-title-ul {
+  background-color: #f2f0f0
+}
 
 
 .acct-page-title-ul > li:hover {
-  background-color: rgba(0, 85, 255, 1);
-  color: #ffffff;
+  /* background-color: rgba(0, 85, 255, 1); */
+  /* color: #ffffff; */
   text-decoration: none;
+  color: #05f;
+  /* font-weight: bold; */
 }
 
 .acct-page-title-li-selected {
   color: #05f;
-  background-color: white;
+  /* background-color: white; */
 
 }
 
@@ -61,6 +70,7 @@
 
 .username-header {
   margin-left: 4px;
+  
 }
 
 .username-header:hover {
@@ -69,4 +79,5 @@
 
 .acct-page-selection {
   cursor: pointer;
+  /* font-weight: 400; */
 }
