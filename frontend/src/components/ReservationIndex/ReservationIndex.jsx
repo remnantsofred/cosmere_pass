@@ -6,14 +6,34 @@ export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
   
   // user has:   
   // attr_accessor :reservation_datetimes, :lessons_taken, :lessons_reviewed, :upcoming_reservations, :past_reservations, :locations_visited
-  
+
+
   const selectReservations = (reservations, type) => {
+
+
+    let filtered = []
+
     if (type === 'upcoming'){
-      return reservations.filter(reservation => reservation.status === 'upcoming')
+      filtered = reservations.filter(reservation => reservation.status === 'upcoming')
     } else {
-      return reservations.filter(reservation => reservation.status === 'past')
+      filtered = reservations.filter(reservation => reservation.status === 'past')
     }
+
+    const sortedReservations = filtered.sort((reservation1, reservation2) => {
+      if (reservation1.startTime > reservation2.startTime) {
+        return 1
+      } else if (reservation1.startTime < reservation2.startTime) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+
+    return sortedReservations;
+    
   }
+
+
 
  
   return (
