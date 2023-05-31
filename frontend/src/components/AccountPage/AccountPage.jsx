@@ -32,7 +32,7 @@ export const AccountPage = () => {
     dispatch(fetchLocations())
     dispatch(fetchLessonDates())
     dispatch(fetchLessons())
-  }, [])
+  }, [dispatch])
   
 
   const getLocation = (locationId, locations) => {

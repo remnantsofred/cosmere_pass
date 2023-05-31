@@ -1,9 +1,5 @@
 import './ReservationIndex.css';
-import Panel from '../panel/Panel';
-import Panels from '../panels';
-import { useState } from 'react';
 import ReservationIndexItem from '../ReservationIndexItem/ReservationIndexItem';
-import { getReservations, getReservationsForUser } from '../../store/reservation';
 import { NavLink } from 'react-router-dom';
 
 export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
