@@ -110,19 +110,20 @@ export const AccountPage = () => {
     //       {content}  
     //     </>
     //   )
-    } else if (content === 'reviews'){
-      return (
-        <>
-          {content}  
-        </>
-      )
-    } else {
-      return (
-        <>
-          {/* Use the menu on the left to make your selection  */}
-        </>
-      )
-    }
+    } 
+    // else if (content === 'reviews'){
+    //   return (
+    //     <>
+    //       {content}  
+    //     </>
+    //   )
+    // } else {
+    //   return (
+    //     <>
+    //       {/* Use the menu on the left to make your selection  */}
+    //     </>
+    //   )
+    // }
 
   }
 
@@ -146,7 +147,7 @@ export const AccountPage = () => {
             </li> */}
             <li className={ content === 'reviews' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('reviews')}>
               {/* <p className='acct-page-selection'>{`Reviews (${currentUser.reviews?.length})`}</p> */}
-              <p className='acct-page-selection'>Reviews</p>
+              {/* <p className='acct-page-selection'>Reviews</p> */}
             </li>
           </ul>
         </Panels>
