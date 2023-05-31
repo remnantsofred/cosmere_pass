@@ -20,6 +20,8 @@ class Reservation < ApplicationRecord
     foreign_key: :lesson_date_id,
     class_name: :LessonDate
 
-  attr_accessor :user_reserved 
+  attr_accessor :user_reserved, :start_time, :end_time, :status, :location_id, 
+  :lesson_title, :lesson_type, :lesson_description, :location_name, :location_description, :lesson, :location, :lesson_image_url, :location_image_url
+
 
 end

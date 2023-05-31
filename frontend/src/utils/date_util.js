@@ -158,6 +158,38 @@ export const formatDateWithDayShort = date => {
   return `${dayOfWeek}, ${month} ${day}`;
 };
 
+export const formatDateWithDayShortAlt = date => {
+  const months = {
+    0: 'Jan',
+    1: 'Feb',
+    2: 'Mar',
+    3: 'Apr',
+    4: 'May',
+    5: 'Jun',
+    6: 'Jul',
+    7: 'Aug',
+    8: 'Sep',
+    9: 'Oct',
+    10: 'Nov',
+    11: 'Dec',
+  };
+  const daysOfWeek = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+  };
+  const obj = new Date(date);
+  const month = obj.getMonth() + 1;
+  const day = obj.getDate();
+  const year = obj.getFullYear();
+  const dayOfWeek = daysOfWeek[obj.getDay()];
+  return `${dayOfWeek}, ${month}/${day}`;
+};
+
 export const formatDateWithMonth = date => {
   const months = {
     0: 'January',

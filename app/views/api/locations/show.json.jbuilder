@@ -1,5 +1,4 @@
 json.extract! @location, :id, :location_name, :description
-# json.imageURL url_for(@location.photo)
 json.imageURL @location.photo.url
 json.lesson_types @location.lesson_types
 json.average_rating @location.average_rating
@@ -9,7 +8,6 @@ json.lesson_date_ids @location.lesson_date_ids
 json.review_ids @location.review_ids
 json.lesson_titles @location.lesson_titles
 
-# json.imageURL location.photo.url
 
 # json.lesson_types do
 #   @location.lessons.each do |lesson|

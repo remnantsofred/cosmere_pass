@@ -1,0 +1,48 @@
+.reservation-index-item-container {
+  border: solid red 1px;
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+  margin: 4px 0px 12px;
+  justify-content: space-between;
+  height: 150px;
+}
+.reservation-index-button{
+ margin-bottom: 4px;
+ background-color: #05f;
+ color: white;
+}
+
+.reservation-index-button-cancel {
+  height: 50px;
+  border: solid red 1px;
+  color: red;
+
+}
+
+.reservation-index-item-info-panel {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: left; */
+  align-items: flex-start;
+  border: pink solid 1px;
+  width: 280px;
+  margin-right: 6px;
+  /* justify-content: space-between; */
+}
+
+.reservation-index-item-info-panel > p {
+  margin-bottom: 6px;
+}
+
+.reservation-index-item-img-col {
+  width: 250px;
+  border: pink solid 1px;
+  margin-right: 6px;
+}
+
+.reservation-lesson-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

@@ -32,7 +32,7 @@ class User < ApplicationRecord
     through: :reservations,
     source: :lesson_date
   
-  attr_accessor :reservation_datetimes, :lessons_taken, :lessons_reviewed, :upcoming_reservations, :past_reservations, :locations_visited
+  attr_accessor :reservation_datetimes, :lessons_taken, :lessons_reviewed, :upcoming_reservations, :past_reservations, :locations_visited, :reviews
 
   before_validation :ensure_session_token
   # SPIRE
@@ -76,6 +76,7 @@ class User < ApplicationRecord
     past_reservations = []
     upcoming_reservations = []
     locations_visited = []
+
     self.reservations.each do |reservation|
       all_reservation_datetimes << [reservation.lesson_date.start_time, reservation.lesson_date.end_time]
       if reservation.lesson_date.end_time.past? 
@@ -87,10 +88,12 @@ class User < ApplicationRecord
       all_lessons_taken << reservation.lesson_date.lesson_id
     end
 
-    self.reviews.each do |review|
-      lessons_reviewed << review.lesson_id
-    end
-    
+    if self.reviews 
+      self.reviews.each do |review|
+        lessons_reviewed << review.lesson_id
+      end
+    end 
+
     self.reservation_datetimes = all_reservation_datetimes
     self.lessons_taken = all_lessons_taken.uniq
     self.lessons_reviewed = lessons_reviewed
