@@ -9,7 +9,7 @@ import { fetchReservations, getReservationsForUser} from '../../store/reservatio
 import { fetchLocations, getLocations } from '../../store/location';
 import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
 import { deleteReservation } from '../../store/reservation';
-import lessonDatesReducer, { fetchLessonDates, getLessonDates } from '../../store/lessonDates';
+import { fetchLessonDates, getLessonDates } from '../../store/lessonDates';
 import { fetchLessons, getLessons } from '../../store/lesson';
 
 export const AccountPage = () => {
@@ -33,8 +33,7 @@ export const AccountPage = () => {
     dispatch(fetchLessons())
   }, [])
   
-  // user has:   
-  // attr_accessor :reservation_datetimes, :lessons_taken, :lessons_reviewed, :upcoming_reservations, :past_reservations, :locations_visited
+
   const getLocation = (locationId, locations) => {
     for (const location of locations) {
       if (location.id === locationId) {
@@ -63,9 +62,6 @@ export const AccountPage = () => {
     setModalLessonDate(getLessonDate(reservation.lessonDateId, lessonDates))
     setModalLesson(getLesson(reservation.lessonId, lessons))
     setModalLocation(getLocation(reservation.locationId, locations))
-    console.log(modalLessonDate, "lessonDate receive")
-    console.log(modalLesson, "lesson receice")
-    console.log(modalLocation, "location receive")
     setModalStatus(true)
   }
 
@@ -81,22 +77,6 @@ export const AccountPage = () => {
     setModalLocation(null)
   }
 
-  const getLocationForLesson = (locationId, locations) => {
-    for (const location of locations) {
-      if (location.id === locationId) {
-        return location;
-      }
-    }
-  }
-
-  const getSpecificLesson = (lessonId, lessons) => {
-    for (const lesson of lessons) {
-      if (lesson.id === lessonId) {
-        return lesson;
-      }
-    }
-  }
-
   
 
   const renderContent = () => {
@@ -108,18 +88,20 @@ export const AccountPage = () => {
             type='upcoming' 
             reservations={reservations} 
             handleCancel={handleCancel} 
-            modalStatus={modalStatus} 
-            lessonDates={lessonDates}
-            locations={locations}
-            lessons={lessons}
+            
             ></ReservationIndex>
         </>
       )
     } else if (content === 'past-reservations'){
       return (
         <>
-          <ReservationIndex user={currentUser} type='past' reservations={reservations}></ReservationIndex>
-          {content}  
+          <ReservationIndex 
+            user={currentUser} 
+            type='past' 
+            reservations={reservations}
+            >
+
+            </ReservationIndex> 
         </>
       )
     // } else if (content === 'favorites'){
@@ -137,7 +119,7 @@ export const AccountPage = () => {
     } else {
       return (
         <>
-          :D 
+          {/* Use the menu on the left to make your selection  */}
         </>
       )
     }
