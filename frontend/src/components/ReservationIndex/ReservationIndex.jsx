@@ -6,7 +6,7 @@ import ReservationIndexItem from '../ReservationIndexItem/ReservationIndexItem';
 import { getReservations, getReservationsForUser } from '../../store/reservation';
 import { NavLink } from 'react-router-dom';
 
-export const ReservationIndex = ({user, type, locations, reservations, handleCancel, modalStatus, lessonDates}) =>{
+export const ReservationIndex = ({user, type, locations, reservations, handleCancel, modalStatus, lessonDates, lessons}) =>{
   
   // user has:   
   // attr_accessor :reservation_datetimes, :lessons_taken, :lessons_reviewed, :upcoming_reservations, :past_reservations, :locations_visited
@@ -37,6 +37,7 @@ export const ReservationIndex = ({user, type, locations, reservations, handleCan
           handleCancel={handleCancel} 
           modalStatus={modalStatus} 
           lessonDates={lessonDates}
+          lessons={lessons}
             > </ReservationIndexItem> )}
       {type === 'past' && user.pastReservations.length && selectReservations(reservations, 'past').map((reservation, idx)=> <ReservationIndexItem key={idx} reservation={reservation} type={'past'} locations={locations}> </ReservationIndexItem> )}
     </>

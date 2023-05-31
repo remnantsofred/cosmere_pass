@@ -10,12 +10,13 @@ import { getLessonDate } from '../../store/lessonDates';
 import { getLesson } from '../../store/lesson';
 
 
-export const ReservationIndexItem = ({reservation, type, handleCancel, lessonDates, locations}) =>{
+export const ReservationIndexItem = ({reservation, type, handleCancel, lessonDates, locations, lessons}) =>{
   // const reservationLocation = useSelector(getLocation(reservation.locationId));
 
   // attr_accessor :user_reserved, :start_time, :end_time, :status, :location_id, 
   // :lesson_title, :lesson_type, :lesson_description, :location_name, :location_description, 
- 
+
+  
   const getWorld = (locationName) => {
     if (locationName === "Hallandren"){
       return "Nalthis" 
@@ -25,7 +26,45 @@ export const ReservationIndexItem = ({reservation, type, handleCancel, lessonDat
       return "Roshar"
     }
   }
+  
+  // const getLocation = (locationId, locations) => {
+  //   for (const location of locations) {
+  //     if (location.id === locationId) {
+  //       return location;
+  //     }
+  //   }
+  // }
+  
+  // const getLesson = (lessonId, lessons) => {
+  //   for (const lesson of lessons) {
+  //     if (lesson.id === lessonId) {
+  //       return lesson;
+  //     }
+  //   }
+  // }
 
+  // const getLessonDate = (lessonDateId, lessonDates) => {
+  //   for (const lessonDate of lessonDates) {
+  //     if (lessonDate.id === lessonDateId) {
+  //       return lessonDate;
+  //     }
+  //   }
+  // }
+
+  // const lessonDate = useSelector(state => state.reservations.reservation.id.lessonDate);
+  // const lesson = useSelector(getLesson(reservation.lessonId));
+  // const location = useSelector((reservation.locationId));
+  
+
+  // const callHandleCancel = (reservation) => {
+    //   const lessonDate = getLessonDate(reservation.lessonDateId);
+  //   const lesson = getLesson(reservation.lessonId);
+  //   const location = getLocation(reservation.locationId);
+    // console.log(lessonDate, "lessonDate from call")
+    // console.log(lesson, "lesson from call")
+    // console.log(location, "location from call")
+  //   handleCancel(lessonDate, lesson, location)
+  // }
 
   
 
@@ -43,7 +82,7 @@ export const ReservationIndexItem = ({reservation, type, handleCancel, lessonDat
       </Panel>
       {type == 'upcoming' && <Panel className='reservation-index-item-button-panel'>
         <button className='reservation-index-button'> Bring a friend </button>
-        <button className='reservation-index-button-cancel' onClick={ () => handleCancel(getLessonDate(reservation.lessonDateId), getLesson(reservation.lessonId), getLocation(reservation.locationId))}> Cancel Reservation </button>
+        <button className='reservation-index-button-cancel' onClick={ () => handleCancel(reservation)}> Cancel Reservation </button>
       </Panel >}
     </Row>
   )

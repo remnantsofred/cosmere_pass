@@ -10,7 +10,7 @@ import { fetchLocations, getLocations } from '../../store/location';
 import ReservationCancelModal from '../ReservationCancelModal/ReservationCancelModal';
 import { deleteReservation } from '../../store/reservation';
 import lessonDatesReducer, { fetchLessonDates, getLessonDates } from '../../store/lessonDates';
-
+import { fetchLessons, getLessons } from '../../store/lesson';
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,7 @@ export const AccountPage = () => {
   const reservations = useSelector(getReservationsForUser(currentUser.id))
   const lessonDates = useSelector(getLessonDates)
   const locations = useSelector(getLocations)
+  const lessons = useSelector(getLessons)
   const [ modalStatus, setModalStatus ] = useState(false);
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
@@ -29,17 +30,43 @@ export const AccountPage = () => {
     dispatch(fetchReservations())
     dispatch(fetchLocations())
     dispatch(fetchLessonDates())
+    dispatch(fetchLessons())
   }, [])
   
   // user has:   
   // attr_accessor :reservation_datetimes, :lessons_taken, :lessons_reviewed, :upcoming_reservations, :past_reservations, :locations_visited
+  const getLocation = (locationId, locations) => {
+    for (const location of locations) {
+      if (location.id === locationId) {
+        return location;
+      }
+    }
+  }
   
-  const handleCancel = (lessonDate, lesson, location) => {
+  const getLesson = (lessonId, lessons) => {
+    for (const lesson of lessons) {
+      if (lesson.id === lessonId) {
+        return lesson;
+      }
+    }
+  }
+
+  const getLessonDate = (lessonDateId, lessonDates) => {
+    for (const lessonDate of lessonDates) {
+      if (lessonDate.id === lessonDateId) {
+        return lessonDate;
+      }
+    }
+  }
+
+  const handleCancel = (reservation) => {
+    setModalLessonDate(getLessonDate(reservation.lessonDateId, lessonDates))
+    setModalLesson(getLesson(reservation.lessonId, lessons))
+    setModalLocation(getLocation(reservation.locationId, locations))
+    console.log(modalLessonDate, "lessonDate receive")
+    console.log(modalLesson, "lesson receice")
+    console.log(modalLocation, "location receive")
     setModalStatus(true)
-    console.log(lessonDate, lesson, location)
-    setModalLessonDate(lessonDate)
-    setModalLesson(lesson)
-    setModalLocation(location)
   }
 
   const handleCancelModalConfirm = (lessonDate) => {
@@ -84,6 +111,7 @@ export const AccountPage = () => {
             modalStatus={modalStatus} 
             lessonDates={lessonDates}
             locations={locations}
+            lessons={lessons}
             ></ReservationIndex>
         </>
       )
