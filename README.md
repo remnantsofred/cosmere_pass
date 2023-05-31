@@ -21,7 +21,7 @@ Users will be able to browse lessons, check out locations, and filter by investi
 
 Cosmerepass was developed using:
 * Backend: Ruby on Rails
-* Database: PostgreSQLL
+* Database: PostgreSQL
 * Frontend: React/Redux, CSS3 and HTML5
 
 Cosmerepass also utilizes the Google Maps API. 
@@ -37,6 +37,10 @@ When a user is logged in, there are four possible scenarios:
 * user has not booked this lessondate, but there are no remaining slots: the button will be grayed out and show "Lesson full" with text below stating "No available slots". The cursor becomes "no-drop" type at hover.
 * user has not booked this lessondate, and there are remaining slots: the button will show "Reserve" and list the number of availble slots.
 * user has not booked this lessondate, and there are remaining slots BUT user has already reserved another lesson that overlaps with this one: the button appears like the scenario above, but upon hover a tool tip will pop up warning the uesr they will be doubled booked and will have to cancel a reservation in order to not be charged a no-show fee. 
+
+![image](https://user-images.githubusercontent.com/114616864/218896396-3a4fabc5-92f9-475d-abc0-7751a5240030.png)
+![image](https://user-images.githubusercontent.com/114616864/218905111-0b635ca5-5812-4cc7-92f5-4f63b3fc0e46.png)
+
 
 I used the same idea and similar code to dynamically render a Review button, which would be different depending on:
 * user logged out
@@ -108,6 +112,7 @@ I really enjoyed creating modals for the first time during this project. In tota
 
 The create review modal includes a dropdown menu with options. The options vary by location and are the lesson types offered at that location. Additionally, the options are made available only if the logged in user has taken that particular lesson. Otherwise, a tooltip text will appear beneath the dropdown option, explaining why the user cannot select that option, either "You have already reviewed this lesson" or "You have not yet taken this lesson." The option will also be disabled, with further context given via changing the cursor to no-drop. 
 
+![image](https://user-images.githubusercontent.com/114616864/218906014-ef31e78c-6e7c-4c4f-8c8b-15aa9e358376.png)
 
 
 #### Review Modal with Dynamic Dropdown Options code snippet:
@@ -179,7 +184,7 @@ const dropDownOptions = options.map( option => {
 
 
 #### Beefing up the Backend
-Something else I learned to do with Cosmerepass was do a lot of the heavy lifting of calcuations on the backend versus the frontend. I learned to add attr_accessors to create fields, then I would write out the logic for the fields in the corresponding controller. Finally, I would make sure to update the corresponding jbuilder file so that you would have acecss to those fields from the frontend.
+Something else I learned to do with Cosmerepass was do a lot of the heavy lifting of calcuations on the backend versus the frontend. I learned to add attr_accessors to create fields, then I would write out the logic for the fields in the corresponding controller. Finally, I would make sure to update the corresponding jbuilder file so that you would have access to those fields from the frontend.
 
 
 ```rb
@@ -239,3 +244,24 @@ end
 end
 
 ```
+### Screencaptures
+
+#### Login & search page
+![cosmerepass-login-search](https://user-images.githubusercontent.com/114616864/220213028-173c16cb-2e15-4e7f-a01c-1b78b69b8efb.gif)
+
+#### Map marker info blurb
+![cosmerepass-map-info-blurb](https://user-images.githubusercontent.com/114616864/220213001-2de05fd0-1046-45e8-8a1d-513330212ebd.gif)
+
+#### Make & cancel reservation
+![cosmerepass-make-cancel-res](https://user-images.githubusercontent.com/114616864/220212987-8de9f0bf-7182-4e52-9a92-edd6e80ae891.gif)
+
+#### Double-booked tool tip
+![cosmerepass-doublebooked](https://user-images.githubusercontent.com/114616864/220212963-5ced5224-e26f-4c2b-a997-505db043c951.gif)
+
+#### Leave a review
+![cosmerepass-leave-review](https://user-images.githubusercontent.com/114616864/220212915-365fdabd-702d-4907-9637-55744c54dbc7.gif)
+
+#### Edit review
+![cosmerepass-edit-review](https://user-images.githubusercontent.com/114616864/220212936-b94bb3c0-f998-464b-9f40-725d00fec304.gif)
+
+
