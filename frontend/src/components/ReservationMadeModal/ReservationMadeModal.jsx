@@ -57,13 +57,13 @@ export const ReservationMadeModal = ({children, id='', className="ReservationMad
               For a limited time, invite your friends to join CosmerePass & earn 40 marks for every one who becomes a paying 
               member. Get 3 friends to join & we'll top it up to 10 broam. Limited time only. 
             </p>
-            <form action="" className='resModal-email-form'>
-              <input type="text" placeholder='Enter email below' onChange={(e) => setEmail(e.target.value) } className='resModal-email-form-email-field'/>
-            </form>
           </Row>
             
             
-          <Row>
+          <Row className='email-form-and-invite-button-row'>
+            <form action="" className='resModal-email-form'>
+              <input type="text" placeholder='Enter email below' onChange={(e) => setEmail(e.target.value) } className='resModal-email-form-email-field'/>
+            </form>
             {renderButton()}
           </Row>
 
