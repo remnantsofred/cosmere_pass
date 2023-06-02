@@ -4,6 +4,7 @@ import Panels from '../panels';
 import Row from '../row/Row';
 import ReservationIndex from '../ReservationIndex/ReservationIndex';
 import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
+import ReviewFormModal from '../ReviewFormModal/ReviewFormModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { fetchReservations, getReservationsForUser} from '../../store/reservation';
@@ -13,6 +14,7 @@ import { deleteReservation } from '../../store/reservation';
 import { fetchLessonDates, getLessonDates } from '../../store/lessonDates';
 import { fetchLessons, getLessons } from '../../store/lesson';
 import Loading from '../loading/Loading';
+
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
@@ -27,7 +29,6 @@ export const AccountPage = () => {
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
   const [loaded, setLoaded] = useState(false);
-
   
   useEffect(() => {
     Promise.all([
@@ -86,7 +87,7 @@ export const AccountPage = () => {
     setModalLocation(null)
   }
 
-  
+
 
   const renderContent = () => {
     if (content === 'upcoming-reservations'){
@@ -97,7 +98,6 @@ export const AccountPage = () => {
             type='upcoming' 
             reservations={reservations} 
             handleCancel={handleCancel} 
-            
             ></ReservationIndex>
         </>
       )
@@ -108,6 +108,7 @@ export const AccountPage = () => {
             user={currentUser} 
             type='past' 
             reservations={reservations}
+            
             >
 
             </ReservationIndex> 
@@ -146,8 +147,24 @@ export const AccountPage = () => {
       
         <Row className='test'></Row>
         <Panel className='acct-page-page'>
-          { modalStatus === 1 && <ReservationCancelModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} /> }
-          { modalStatus === 2 && <ReservationMadeModal lessonDate={modalLessonDate} lesson={modalLesson} location={modalLocation} handleModalClose={handleModalClose} handleCancelModalConfirm={handleCancelModalConfirm} /> }
+          { modalStatus === 1 && 
+            <ReservationCancelModal
+              lessonDate={modalLessonDate} 
+              lesson={modalLesson} 
+              location={modalLocation}
+              handleModalClose={handleModalClose} 
+              handleCancelModalConfirm={handleCancelModalConfirm} /> }
+          { modalStatus === 2 && 
+            <ReservationMadeModal 
+              lessonDate={modalLessonDate} 
+              lesson={modalLesson} 
+              location={modalLocation} 
+              handleModalClose={handleModalClose} 
+              handleCancelModalConfirm={handleCancelModalConfirm} 
+              source="account-page" 
+              /> }
+          {/* { modalStatus === 3 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location" lessons={lessons} /> }
+          { modalStatus === 4 && <ReviewFormModal currentUser={currentUser} location={location} review={modalReview} handleModalClose={handleModalClose} handleReviewEditSubmit={handleReviewEditSubmit} source="location" lessons={lessons} className="ReviewEditModal"/> } */}
           <Panels className='acct-page-panel-L'>
             <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
             <ul className='acct-page-title-ul'>
