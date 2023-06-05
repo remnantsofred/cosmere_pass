@@ -60,6 +60,10 @@ class Api::ReviewsController < ApplicationController
     if review.updated_at != nil
       date_to_check = review.updated_at
     end
+
+    if current_user 
+      current_user.set_user_details
+    end
     
     if now.year - date_to_check.year > 0
       review.years_ago = now.year - date_to_check.year
@@ -74,6 +78,8 @@ class Api::ReviewsController < ApplicationController
     end
 
     review.reviewer_username = review.reviewer.username
+
+
 
     return review
   end

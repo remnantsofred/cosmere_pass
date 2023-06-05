@@ -87,6 +87,30 @@ export const AccountPage = () => {
     setModalLocation(null)
   }
 
+  const selectReservations = (reservations, type) => {
+
+    let filtered = []
+
+    if (type === 'upcoming'){
+      filtered = reservations.filter(reservation => reservation.status === 'upcoming')
+    } else {
+      filtered = reservations.filter(reservation => reservation.status === 'past')
+    }
+
+    const sortedReservations = filtered.sort((reservation1, reservation2) => {
+      if (reservation1.startTime > reservation2.startTime) {
+        return 1
+      } else if (reservation1.startTime < reservation2.startTime) {
+        return -1
+      } else {
+        return 0
+      }
+    })
+    
+
+    return sortedReservations;
+    
+  }
 
 
   const renderContent = () => {
@@ -121,19 +145,19 @@ export const AccountPage = () => {
     //     </>
     //   )
     } 
-    // else if (content === 'reviews'){
-    //   return (
-    //     <>
-    //       {content}  
-    //     </>
-    //   )
-    // } else {
-    //   return (
-    //     <>
-    //       {/* Use the menu on the left to make your selection  */}
-    //     </>
-    //   )
-    // }
+    else if (content === 'reviews'){
+      return (
+        <>
+          {content}  
+        </>
+      )
+    } else {
+      return (
+        <>
+          {/* Use the menu on the left to make your selection  */}
+        </>
+      )
+    }
 
   }
 
@@ -169,10 +193,10 @@ export const AccountPage = () => {
             <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
             <ul className='acct-page-title-ul'>
               <li className={ content === 'upcoming-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('upcoming-reservations')}>
-                <p className='acct-page-selection'>{`Upcoming (${currentUser.upcomingReservations.length})`}</p>
+                <p className='acct-page-selection'>{`Upcoming (${selectReservations(reservations, 'upcoming').length})`}</p>
               </li>
               <li className={ content === 'past-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('past-reservations')}>
-                <p className='acct-page-selection'>{`Attended (${currentUser.pastReservations.length})`}</p>
+                <p className='acct-page-selection'>{`Attended (${selectReservations(reservations, 'past').length})`}</p>
               </li>
               {/* <li className='acct-page-title-li' onClick={() => setContent('favorites')}>
                 <p className='acct-page-selection'>Favorites</p>

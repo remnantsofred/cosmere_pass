@@ -37,6 +37,10 @@ export const ReservationIndexItem = ({reservation, type, handleCancel}) =>{
         <button className='reservation-index-button' onClick={ () => handleCancel(reservation, 'invite')}> Bring a friend </button>
         <button className='reservation-index-button-cancel' onClick={ () => handleCancel(reservation, 'cancel')}> Cancel Reservation </button>
       </Panel >}
+      {type === 'past' && <Panel className='reservation-index-item-button-panel'>
+        {/* <button className='reservation-index-review-button' onClick={ () => handleCancel(reservation, 'invite')}> Leave review </button> */}
+        {/* <button className='reservation-index-edit-review-button' onClick={ () => handleCancel(reservation, 'cancel')}> Edit your review </button> */}
+      </Panel >}
     </Row>
   )
 }
