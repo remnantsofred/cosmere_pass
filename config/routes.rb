@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
 
     resources :lessons, only: [:index, :show]
+    resources :reviews, only: [:index, :show]
+    
     resource :session, only: [:show, :create, :destroy]
 
   end

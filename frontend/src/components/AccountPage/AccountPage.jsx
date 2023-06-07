@@ -14,6 +14,8 @@ import { deleteReservation } from '../../store/reservation';
 import { fetchLessonDates, getLessonDates } from '../../store/lessonDates';
 import { fetchLessons, getLessons } from '../../store/lesson';
 import Loading from '../loading/Loading';
+import { fetchReviews, getReviews, deleteReview, getReviewsForUser } from '../../store/review';
+import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem';
 
 
 export const AccountPage = () => {
@@ -24,18 +26,21 @@ export const AccountPage = () => {
   const lessonDates = useSelector(getLessonDates)
   const locations = useSelector(getLocations)
   const lessons = useSelector(getLessons)
+  const reviews = useSelector(getReviewsForUser(currentUser.id))
   const [ modalStatus, setModalStatus ] = useState(false);
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
   const [loaded, setLoaded] = useState(false);
+  const [ modalReview, setModalReview ] = useState();
   
   useEffect(() => {
     Promise.all([
       dispatch(fetchReservations()),
       dispatch(fetchLocations()),
       dispatch(fetchLessonDates()),
-      dispatch(fetchLessons())
+      dispatch(fetchLessons()),
+      dispatch(fetchReviews(''))
     ]).then(() => setLoaded(true))
   }, [])
   
@@ -112,6 +117,20 @@ export const AccountPage = () => {
     
   }
 
+  // const userReviews = (reviews) => {
+  //   return reviews.filter(review => review.currentUserReviewed == true)
+  // }
+
+
+  const handleDeleteReview = (reviewId) => {
+    dispatch(deleteReview(reviewId))
+  }
+
+  const handleEditReviewClick = (review) => {
+    setModalStatus(5)
+    setModalLocation(review.location)
+    setModalReview(review)
+  }
 
   const renderContent = () => {
     if (content === 'upcoming-reservations'){
@@ -147,9 +166,18 @@ export const AccountPage = () => {
     } 
     else if (content === 'reviews'){
       return (
-        <>
-          {content}  
-        </>
+        // <>
+          <ul className='locShowIdxULLessonDates'>
+                {reviews?.reverse().map((review, idx) => 
+                  <ReviewIndexItem 
+                    key={idx} 
+                    review={review} 
+                    currentUser={currentUser} 
+                    setModalStatus={setModalStatus} 
+                    handleDeleteReview={handleDeleteReview} 
+                    handleEditReviewClick={handleEditReviewClick}/>)}
+          </ul> 
+        // </>
       )
     } else {
       return (
@@ -202,7 +230,7 @@ export const AccountPage = () => {
                 <p className='acct-page-selection'>Favorites</p>
               </li> */}
               <li className={ content === 'reviews' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('reviews')}>
-                {/* <p className='acct-page-selection'>{`Reviews (${currentUser.reviews?.length})`}</p> */}
+                <p className='acct-page-selection'>{`Reviews (${reviews?.length})`}</p>
                 {/* <p className='acct-page-selection'>Reviews</p> */}
               </li>
             </ul>

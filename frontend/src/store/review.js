@@ -33,6 +33,14 @@ export const getReviewsForLocation = (locationId) => (store) => {
   return [];
 };
 
+export const getReviewsForUser = (userId) => (store) => {
+  if (store.reviews) {
+    const reviews = Object.values(store.reviews).filter(review => review.reviewerId === userId);
+    return reviews;
+  }
+  return [];
+};
+
 
 export const getReview = (reviewId) => (store) => {
   if (store.reviews && store.reviews[reviewId]) return store.reviews[reviewId];
@@ -41,7 +49,13 @@ export const getReview = (reviewId) => (store) => {
 
 // THUNK ACTION CREATORS
 export const fetchReviews = (locationId) => async (dispatch) => {
-  const res = await fetch(`/api/locations/${locationId}/reviews`);
+  let res = '';
+  
+  if (locationId === '') {
+    res = await fetch(`/api/reviews`);
+  } else {
+    res = await fetch(`/api/locations/${locationId}/reviews`);
+  }
 
   if (res.ok) {
     const reviews = await res.json();

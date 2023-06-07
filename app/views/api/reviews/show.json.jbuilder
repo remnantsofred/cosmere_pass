@@ -5,6 +5,7 @@ json.days_ago @review.days_ago
 json.hours_ago @review.hours_ago
 json.minutes_ago  @review.minutes_ago
 json.reviewer_username @review.reviewer_username
+json.current_user_reviewed @review.current_user_reviewed
 
 
 
