@@ -166,8 +166,10 @@ export const AccountPage = () => {
     } 
     else if (content === 'reviews'){
       return (
-        // <>
-          <ul className='locShowIdxULLessonDates'>
+        <>
+          <div className='reservation-index-header'>You have reviewed {reviews?.length} {reviews.length === 1 ? 'lesson' : 'lessons'}
+        </div>
+          <ul className='acct-page-review-ul'>
                 {reviews?.reverse().map((review, idx) => 
                   <ReviewIndexItem 
                     key={idx} 
@@ -177,7 +179,7 @@ export const AccountPage = () => {
                     handleDeleteReview={handleDeleteReview} 
                     handleEditReviewClick={handleEditReviewClick}/>)}
           </ul> 
-        // </>
+        </>
       )
     } else {
       return (
