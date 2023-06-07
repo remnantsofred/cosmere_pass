@@ -5,7 +5,7 @@
   margin: 4px 0px 12px;
   height: 150px;
 }
-.reservation-index-button{
+.reservation-index-button, .reservation-index-review-button {
   margin-bottom: 6px;
   background-color: #05f;
   color: white;
@@ -29,7 +29,7 @@
   background-color: #05f;
 }
 
-.reservation-index-button:hover {
+.reservation-index-button:hover, .reservation-index-review-button:hover {
   background-color: #004de6;
   border-color: #004de6;
   border-top-color: rgb(0, 77, 230);
@@ -39,7 +39,7 @@
 }
 
 
-.reservation-index-button-cancel {
+.reservation-index-button-cancel, .reservation-index-edit-review-button {
   height: 50px;
   width: 110.6px;
   border: solid #cb2323 1px;
@@ -59,7 +59,7 @@
   justify-content: center;
 }
 
-.reservation-index-button-cancel:hover {
+.reservation-index-button-cancel:hover, .reservation-index-edit-review-button:hover {
   /* background-color: #b31e1e;
   border-color: #b31e1e; */
   border: solid #b31e1e 1px;

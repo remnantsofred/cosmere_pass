@@ -3,20 +3,38 @@ import './ReservationMadeModal.css';
 import Panels from '../panels';
 import Panel from '../panel/Panel';
 import Row from '../row/Row';
-import { formatTime, formatDate, formatDateShort } from '../../utils/date_util';
+import { formatTime, formatDateShort } from '../../utils/date_util';
 import modalCloseButton from '../ReservationConfirmModal/modalCloseButton.png';
 import reservationMadeImg from './ReservationMade.jpeg';
 import { CalendarIcon } from '../icon/Icon'
+import { useState } from 'react';
 
 
-export const ReservationMadeModal = ({children, id='', className="ReservationMadeModal", lessonDate, lesson, location, handleModalClose, source}) => {
+export const ReservationMadeModal = ({children, id='', className="ReservationMadeModal", lessonDate, lesson, location, handleModalClose, source, handleEmailInvite}) => {
+  const [email, setEmail] = useState('');
+
+  
+  const renderButton = ()=>{
+    if (source !== 'account-page'){
+      return (
+        <a className='resModalButtonEmail' href={`mailto:${email}?cc=d.huff.lam@gmail.com&subject=Hey! Check out this cool lesson I'm taking via Cosmerepass by Daphne Lam&body=Here%20is%20the%20link:%20https://cosmere-pass.onrender.com/`}>
+          Email invite
+        </a>
+      )
+    } else {
+      return (
+        <a className='resModalButtonEmail' href={`mailto:${email}?cc=d.huff.lam@gmail.com&subject=Hey! Check out this cool project Cosmerepass by Daphne Lam&body=Here%20is%20the%20link:%20https://cosmere-pass.onrender.com/`}>
+          Email invite
+        </a>
+      )
+    }
+  }
+
+
   return (
     <>
       <div className='resModalBackground'></div>
       <Panels id={id} className={className}>
-        {/* <button className='resModalCloseBtn' onClick={handleModalClose} backgroundImage={modalCloseButton} >
-          X
-        </button> */}
         <img src={modalCloseButton} className='resModalCloseBtn' onClick={handleModalClose} /> 
         <div className='resModalImgDiv'>
           <img src={reservationMadeImg} alt="" className='resModalImg'/>
@@ -31,7 +49,7 @@ export const ReservationMadeModal = ({children, id='', className="ReservationMad
           </Row> */}
           <Row className='resModalResConf'>
             <p>
-              Reservation Confirmed
+              {source === 'account-page' ? 'Invite a friend!' : 'Reservation Confirmed'}
             </p>
           </Row>
           <Row className='resModalCredits'>
@@ -40,10 +58,13 @@ export const ReservationMadeModal = ({children, id='', className="ReservationMad
               member. Get 3 friends to join & we'll top it up to 10 broam. Limited time only. 
             </p>
           </Row>
-          <Row>
-            <button className='resModalButtonEmail' onClick={handleModalClose} >
-              Email invite
-            </button>
+            
+            
+          <Row className='email-form-and-invite-button-row'>
+            <form action="" className='resModal-email-form'>
+              <input type="text" placeholder='Enter email below' onChange={(e) => setEmail(e.target.value) } className='resModal-email-form-email-field'/>
+            </form>
+            {renderButton()}
           </Row>
 
           <Row>

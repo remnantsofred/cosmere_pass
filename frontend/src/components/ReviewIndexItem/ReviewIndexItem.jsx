@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import StarRating from '../StarRating/StarRating';
 
 
-export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, currentUser, setModalStatus, handleDeleteReview, handleEditReviewClick}) => {
+export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, currentUser, setModalStatus, handleDeleteReview, handleEditReviewClick, source}) => {
   
   const getTimeAgo = (review) => {
     if (review.minutesAgo < 0){
@@ -37,12 +37,14 @@ export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, cur
 
 
   return (
-    <Rows id={id} className={className} >
-      <Row className='reviewTitleRow'>
+    <Rows id={id} className={`${className} ${source}-review-index-item`} >
+      <Row className={`reviewTitleRow ${source}-review-title-row`}>
         { review.lessonTitle } 
-        <div className='editDeleteReview'>
-          {(currentUser && review.reviewerId === currentUser.id) && <FiEdit onClick={() => handleEditReviewClick(review)} className='reviewEditIcon'/>}
-          {(currentUser && review.reviewerId === currentUser.id) && <FiTrash onClick={()=>handleDeleteReview(review.id)} className='reviewDeleteIcon'/>  }
+        <div className={`editDeleteReview ${source}-review-edit-delete-row`}>
+          {/* {(currentUser && review.reviewerId === currentUser.id) && <FiEdit onClick={() => handleEditReviewClick(review)} className='reviewEditIcon'/>} */}
+          {(review.currentUserReviewed) && <FiEdit onClick={() => handleEditReviewClick(review)} className='reviewEditIcon'/>}
+          {/* {(currentUser && review.reviewerId === currentUser.id) && <FiTrash onClick={()=>handleDeleteReview(review.id)} className='reviewDeleteIcon'/>  } */}
+          {(review.currentUserReviewed) && <FiTrash onClick={()=>handleDeleteReview(review.id)} className='reviewDeleteIcon'/>  }
         </div>
 
       </Row>

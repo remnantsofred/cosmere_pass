@@ -4,7 +4,11 @@ class Api::ReviewsController < ApplicationController
   
   def index
     helpers.time_ago_in_words(Time.now)
-    @reviews = Review.where("location_id = ?", params[:location_id]).order(created_at: :desc).order(updated_at: :desc)
+    if params[:location_id]
+      @reviews = Review.where("location_id = ?", params[:location_id]).order(created_at: :desc).order(updated_at: :desc)      
+    else
+      @reviews = Review.all
+    end
     
     @reviews = @reviews.map do |review|
       set_review_details(review)
@@ -60,6 +64,15 @@ class Api::ReviewsController < ApplicationController
     if review.updated_at != nil
       date_to_check = review.updated_at
     end
+
+    if current_user 
+      current_user.set_user_details
+      if current_user.id == review.reviewer_id
+        review.current_user_reviewed = true
+      else 
+        review.current_user_reviewed = false
+      end 
+    end
     
     if now.year - date_to_check.year > 0
       review.years_ago = now.year - date_to_check.year
@@ -74,6 +87,8 @@ class Api::ReviewsController < ApplicationController
     end
 
     review.reviewer_username = review.reviewer.username
+
+
 
     return review
   end

@@ -39,9 +39,9 @@ export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
   return (
     <>
       {type === 'upcoming' && 
-        <div className='reservation-index-header'>You have {user.upcomingReservations.length} upcoming {user.upcomingReservations.length === 1 ? 'reservation' : 'reservations'}
+        <div className='reservation-index-header'>You have {selectReservations(reservations, 'upcoming').length} upcoming {selectReservations(reservations, 'upcoming').length === 1 ? 'reservation' : 'reservations'}
         </div>}
-      {(type === 'upcoming' && user.upcomingReservations.length === 0) && 
+      {(type === 'upcoming' && selectReservations(reservations, 'upcoming').length === 0) && 
           <NavLink 
             className="splashNavLink reservation-index-navlink" 
             to="/search">
@@ -49,16 +49,16 @@ export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
           </NavLink> }
       {type === 'past' && 
         <div className='reservation-index-header reservation-index'>
-          You have taken {user.pastReservations.length} {user.pastReservations.length === 1 ? 'lesson' : 'lessons'}
+          You have taken {selectReservations(reservations, 'past').length} {selectReservations(reservations, 'past').length === 1 ? 'lesson' : 'lessons'}
         </div>}
-      {(type === 'past' && user.pastReservations.length === 0) && 
+      {(type === 'past' && selectReservations(reservations, 'past').length === 0) && 
         <NavLink 
           className="splashNavLink reservation-index-navlink" 
           to="/search">
           Browse lessons
         </NavLink> }
       
-      {(type === 'upcoming' && user.upcomingReservations.length > 0) &&  
+      {(type === 'upcoming' && selectReservations(reservations, 'upcoming').length > 0) &&  
         selectReservations(reservations, 'upcoming').map((reservation, idx)=> 
           <ReservationIndexItem 
             key={idx} 
@@ -67,7 +67,7 @@ export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
             handleCancel={handleCancel} 
               > 
             </ReservationIndexItem>   )}
-      {(type === 'past' && user.pastReservations.length > 0) && 
+      {(type === 'past' && selectReservations(reservations, 'past').length > 0) && 
         selectReservations(reservations, 'past').map((reservation, idx)=> 
           <ReservationIndexItem 
             key={idx} 
