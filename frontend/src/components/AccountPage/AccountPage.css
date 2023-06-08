@@ -97,3 +97,13 @@
   cursor: pointer;
   /* font-weight: 400; */
 }
+
+.acct-page-review-ul {
+  width: 624px;
+  height: 532px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 42px;
+  padding: 8px;
+}

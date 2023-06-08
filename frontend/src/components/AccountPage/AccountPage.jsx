@@ -14,7 +14,7 @@ import { deleteReservation } from '../../store/reservation';
 import { fetchLessonDates, getLessonDates } from '../../store/lessonDates';
 import { fetchLessons, getLessons } from '../../store/lesson';
 import Loading from '../loading/Loading';
-import { fetchReviews, getReviews, deleteReview, getReviewsForUser } from '../../store/review';
+import { fetchReviews, getReviews, deleteReview, getReviewsForUser, createReview, updateReview } from '../../store/review';
 import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem';
 
 
@@ -121,14 +121,28 @@ export const AccountPage = () => {
   //   return reviews.filter(review => review.currentUserReviewed == true)
   // }
 
+  const handleReviewSubmit = (reviewData) =>{
+    if (reviewData.body){
+      dispatch(createReview(reviewData))
+      setModalStatus(false)
+    } else {
+      alert('Please enter a review')
+    }
+  }
+
+  const handleReviewEditSubmit = (reviewData) =>{
+    dispatch(updateReview(reviewData))
+    setModalStatus(false)
+  }
+
 
   const handleDeleteReview = (reviewId) => {
     dispatch(deleteReview(reviewId))
   }
 
   const handleEditReviewClick = (review) => {
-    setModalStatus(5)
-    setModalLocation(review.location)
+    setModalLocation(getLocation(review.locationId, locations))
+    setModalStatus(4)
     setModalReview(review)
   }
 
@@ -166,8 +180,12 @@ export const AccountPage = () => {
     } 
     else if (content === 'reviews'){
       return (
-        // <>
-          <ul className='locShowIdxULLessonDates'>
+        <>
+          <div 
+            className='reservation-index-header'>
+            You have reviewed {reviews?.length} {reviews.length === 1 ? 'lesson' : 'lessons'}
+          </div>
+          <ul className='acct-page-review-ul'>
                 {reviews?.reverse().map((review, idx) => 
                   <ReviewIndexItem 
                     key={idx} 
@@ -177,7 +195,7 @@ export const AccountPage = () => {
                     handleDeleteReview={handleDeleteReview} 
                     handleEditReviewClick={handleEditReviewClick}/>)}
           </ul> 
-        // </>
+        </>
       )
     } else {
       return (
@@ -215,8 +233,24 @@ export const AccountPage = () => {
               handleCancelModalConfirm={handleCancelModalConfirm} 
               source="account-page" 
               /> }
-          {/* { modalStatus === 3 && <ReviewFormModal currentUser={currentUser} location={location} handleModalClose={handleModalClose} handleReviewSubmit={handleReviewSubmit} source="location" lessons={lessons} /> }
-          { modalStatus === 4 && <ReviewFormModal currentUser={currentUser} location={location} review={modalReview} handleModalClose={handleModalClose} handleReviewEditSubmit={handleReviewEditSubmit} source="location" lessons={lessons} className="ReviewEditModal"/> } */}
+          {/* { modalStatus === 3 && 
+            <ReviewFormModal 
+              currentUser={currentUser} 
+              location={location} 
+              handleModalClose={handleModalClose} 
+              handleReviewSubmit={handleReviewSubmit} 
+              source="location" 
+              lessons={lessons} /> } */}
+          { modalStatus === 4 && 
+            <ReviewFormModal 
+              currentUser={currentUser} 
+              location={modalLocation} 
+              review={modalReview} 
+              handleModalClose={handleModalClose} 
+              handleReviewEditSubmit={handleReviewEditSubmit} 
+              source="location" 
+              lessons={lessons} 
+              className="ReviewEditModal"/> } 
           <Panels className='acct-page-panel-L'>
             <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
             <ul className='acct-page-title-ul'>
