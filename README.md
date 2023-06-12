@@ -36,7 +36,7 @@ When a user is logged in, there are four possible scenarios:
 * user has booked this lessondate: the button will show "Cancel" with text under stating "reserved"
 * user has not booked this lessondate, but there are no remaining slots: the button will be grayed out and show "Lesson full" with text below stating "No available slots". The cursor becomes "no-drop" type at hover.
 * user has not booked this lessondate, and there are remaining slots: the button will show "Reserve" and list the number of availble slots.
-* user has not booked this lessondate, and there are remaining slots BUT user has already reserved another lesson that overlaps with this one: the button appears like the scenario above, but upon hover a tool tip will pop up warning the uesr they will be doubled booked and will have to cancel a reservation in order to not be charged a no-show fee. 
+* user has not booked this lessondate, and there are remaining slots BUT user has already reserved another lesson that overlaps with this one: the button appears like the scenario above, but upon hover a tool tip will pop up warning the user they will be doubled booked and will have to cancel a reservation in order to not be charged a no-show fee. 
 
 ![image](https://user-images.githubusercontent.com/114616864/218896396-3a4fabc5-92f9-475d-abc0-7751a5240030.png)
 ![image](https://user-images.githubusercontent.com/114616864/218905111-0b635ca5-5812-4cc7-92f5-4f63b3fc0e46.png)
