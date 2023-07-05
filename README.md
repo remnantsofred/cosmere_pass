@@ -10,12 +10,12 @@
 ![Cosmerepass Splash](./frontend/src/assets/cosmerepass_readme_splash.png)
 
 ## Cosmerepass
-Cosmerepass is a clone of the fitness app Classpass. Instead of finding and booking fitness classes, users will search for and book magic lessons in Brandon Sanderson's Cosemere universe (a fictional fantasy universe where the common thread is the unit of energy called investiture which allows for different expressions of magic-like powers).
+Cosmerepass is a clone of the fitness app Classpass. Instead of finding and booking fitness classes, users will search for and book magic lessons in Brandon Sanderson's Cosmere universe (a fictional fantasy universe where the common thread is the unit of energy called investiture which allows for different expressions of magic-like powers).
 
 ***
 [Cosmerepass Live Link](https://cosmere-pass.onrender.com/ "Cosmerepass")
 
-Users will be able to browse lessons, check out locations, and filter by investiture type and location. Users can make lessondate reservations from the search page or reserve lessondates from the Location show page. Users can also read, write, edit, and delete their own reviews for Locations.
+Users will be able to browse lessons, check out locations, and filter by investiture type and location. Users can make lessondate reservations from the search page or reserve lessondates from the Location show page. Users can also read, write, edit, and delete their own reviews for Locations. A logged in user can navigate to the account page to view all their upcoming reservations (with the option to cancel or invite a friend along), view attended reservations, and view, edit, or delete their reviews. 
 
 ### Technologies Used
 
