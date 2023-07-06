@@ -6,7 +6,13 @@ class Api::ReviewsController < ApplicationController
     helpers.time_ago_in_words(Time.now)
     if params[:location_id]
       @reviews = Review.where("location_id = ?", params[:location_id]).order(created_at: :desc).order(updated_at: :desc)      
-    else
+    end
+
+    if params[:user_id]
+      @reviews = Review.where("reviewer_id = ?", params[:user_id]).order(created_at: :desc).order(updated_at: :desc)  
+    end
+
+    if @reviews.length == 0
       @reviews = Review.all
     end
     

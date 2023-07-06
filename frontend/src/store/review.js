@@ -48,14 +48,19 @@ export const getReview = (reviewId) => (store) => {
 };
 
 // THUNK ACTION CREATORS
-export const fetchReviews = (locationId) => async (dispatch) => {
+export const fetchReviews = (locationId, userId) => async (dispatch) => {
   let res = '';
+  // let url = `api/reviews`
+  // let queryParams = [];
   
-  if (locationId === '') {
+  if (locationId === '' && userId === '') {
     res = await fetch(`/api/reviews`);
-  } else {
+  } else if (locationId !== '' && userId === '') {
     res = await fetch(`/api/locations/${locationId}/reviews`);
+  } else {
+    res = await fetch(`/api/reviews?user_id=${userId}`)
   }
+
 
   if (res.ok) {
     const reviews = await res.json();

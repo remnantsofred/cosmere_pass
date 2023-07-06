@@ -2,13 +2,16 @@ class Api::ReservationsController < ApplicationController
   before_action :require_logged_in, only: [:create, :destroy]
 
   def index
-    @reservations = Reservation.all
     
     if params[:user_id]
       @reservations = Reservation.where("student_id = ?", params[:user_id])
     end
 
-    
+    if @reservations.length == 0
+      @reservations = Reservation.all
+    end
+
+
     @reservations = @reservations.map do |reservation|
       if current_user && reservation.student_id == current_user.id
         reservation.user_reserved = true

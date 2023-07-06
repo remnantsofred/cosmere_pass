@@ -44,7 +44,7 @@ export const AccountPage = withRouter(({history}) => {
       dispatch(fetchLocations()),
       dispatch(fetchLessonDates("", "", "", currentUser.id)),
       dispatch(fetchLessons()),
-      dispatch(fetchReviews(''))
+      dispatch(fetchReviews('', currentUser.id))
     ]).then(() => setLoaded(true))
   }, [])
   
