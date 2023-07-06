@@ -24,6 +24,13 @@ class Api::LessonDatesController < ApplicationController
       
     end   
       
+    if params[:user_id]
+      user_reservations = Reservation.where("student_id = ?", params[:user_id])
+
+      user_reservations_lessondate_ids = user_reservations.map {|reservation| reservation.lesson_date_id}
+       
+      @lesson_dates = LessonDate.find(user_reservations_lessondate_ids)
+    end
    
     if @lesson_dates.length == 0
       @lesson_dates = LessonDate.all

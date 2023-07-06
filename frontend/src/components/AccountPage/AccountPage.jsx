@@ -16,10 +16,12 @@ import { fetchLessons, getLessons } from '../../store/lesson';
 import Loading from '../loading/Loading';
 import { fetchReviews, getReviews, deleteReview, getReviewsForUser, createReview, updateReview } from '../../store/review';
 import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem';
+import { withRouter } from 'react-router-dom';
 
 
-export const AccountPage = () => {
+export const AccountPage = withRouter(({history}) => {
   const dispatch = useDispatch();
+  // const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
   const [content, setContent] = useState('');
   const reservations = useSelector(getReservationsForUser(currentUser.id))
@@ -35,10 +37,12 @@ export const AccountPage = () => {
   const [ modalReview, setModalReview ] = useState();
   
   useEffect(() => {
+    // history.push(`/lessonDates/${currentUser.id}`)
+    // const paramsMap = getParams(history.lessonDate.search)
     Promise.all([
       dispatch(fetchReservations()),
       dispatch(fetchLocations()),
-      dispatch(fetchLessonDates()),
+      dispatch(fetchLessonDates(currentUser.id)),
       dispatch(fetchLessons()),
       dispatch(fetchReviews(''))
     ]).then(() => setLoaded(true))
@@ -103,9 +107,9 @@ export const AccountPage = () => {
     }
 
     const sortedReservations = filtered.sort((reservation1, reservation2) => {
-      if (reservation1.startTime > reservation2.startTime) {
+      if ((type === 'upcoming' && reservation1.startTime > reservation2.startTime) || (type === 'past' && reservation1.startTime < reservation2.startTime)) {
         return 1
-      } else if (reservation1.startTime < reservation2.startTime) {
+      } else if ((type === 'upcoming' && reservation1.startTime < reservation2.startTime) || (type === 'past' && reservation1.startTime > reservation2.startTime)) {
         return -1
       } else {
         return 0
@@ -281,6 +285,6 @@ export const AccountPage = () => {
     )
 
   }
-}
+})
 
 export default AccountPage;
