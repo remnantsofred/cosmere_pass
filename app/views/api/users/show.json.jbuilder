@@ -7,3 +7,5 @@ json.past_reservations @user.past_reservations
 json.upcoming_reservations @user.upcoming_reservations
 json.locations_visited @user.locations_visited
 json.reviews @user.reviews
+json.lessondates_taken @user.lessondates_taken
+json.lessondates_upcoming @user.lessondates_upcoming

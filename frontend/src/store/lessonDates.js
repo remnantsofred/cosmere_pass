@@ -44,7 +44,7 @@ export const getLessonDate = (lessonDateId) => (store) => {
 };
 
 // THUNK ACTION CREATORS
-export const fetchLessonDates = (locationId, lessonType, startTime) => async (dispatch) => {
+export const fetchLessonDates = (locationId, lessonType, startTime, userId) => async (dispatch) => {
   let url = `/api/lesson_dates`
   let queryParams = [];
   if (locationId !== "" && locationId !== undefined) {
@@ -56,6 +56,9 @@ export const fetchLessonDates = (locationId, lessonType, startTime) => async (di
   if (startTime !== "" && startTime !== undefined) {
     
     queryParams.push(`lesson_type=${startTime.toString()}`)
+  }
+  if (userId !== "" && userId !== undefined){
+    queryParams.push(`user_id=${userId}`)
   }
   if (queryParams.length){
     url = url + "?" + queryParams.join("&")
