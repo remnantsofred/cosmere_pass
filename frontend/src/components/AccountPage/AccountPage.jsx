@@ -40,9 +40,9 @@ export const AccountPage = withRouter(({history}) => {
     // history.push(`/lessonDates/${currentUser.id}`)
     // const paramsMap = getParams(history.lessonDate.search)
     Promise.all([
-      dispatch(fetchReservations()),
+      dispatch(fetchReservations(currentUser.id)),
       dispatch(fetchLocations()),
-      dispatch(fetchLessonDates(currentUser.id)),
+      dispatch(fetchLessonDates("", "", "", currentUser.id)),
       dispatch(fetchLessons()),
       dispatch(fetchReviews(''))
     ]).then(() => setLoaded(true))

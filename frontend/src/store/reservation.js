@@ -40,8 +40,19 @@ export const getReservation = (reservationId) => (store) => {
 };
 
 // THUNK ACTION CREATORS
-export const fetchReservations = () => async (dispatch) => {
-  const res = await fetch(`/api/reservations`);
+export const fetchReservations = (userId) => async (dispatch) => {
+  let url = `/api/reservations`
+  let queryParams = [];
+
+  if (userId !== "" && userId !== undefined){
+    queryParams.push(`user_id=${userId}`)
+  }
+
+  if (queryParams.length){
+    url = url + "?" + queryParams.join("&")
+  }
+
+  const res = await fetch(url);
   if (res.ok) {
     const reservations = await res.json();
     dispatch(receiveReservations(reservations));

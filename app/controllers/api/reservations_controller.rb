@@ -3,7 +3,12 @@ class Api::ReservationsController < ApplicationController
 
   def index
     @reservations = Reservation.all
+    
+    if params[:user_id]
+      @reservations = Reservation.where("student_id = ?", params[:user_id])
+    end
 
+    
     @reservations = @reservations.map do |reservation|
       if current_user && reservation.student_id == current_user.id
         reservation.user_reserved = true
@@ -12,6 +17,7 @@ class Api::ReservationsController < ApplicationController
       end
       reservation
     end
+
 
     @reservations = @reservations.map do |reservation|
       set_reservation_details(reservation)
