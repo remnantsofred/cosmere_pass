@@ -18,6 +18,7 @@ import { fetchReviews, getReviews, deleteReview, getReviewsForUser, createReview
 import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem';
 import { withRouter } from 'react-router-dom';
 import { sortByMostRecentlyUpdated } from '../../utils/sorting_util' 
+import { getItemByID } from '../../utils/general_util'
 
 
 export const AccountPage = withRouter(({history}) => {
@@ -47,34 +48,10 @@ export const AccountPage = withRouter(({history}) => {
   }, [])
   
 
-  const getLocation = (locationId, locations) => {
-    for (const location of locations) {
-      if (location.id === locationId) {
-        return location;
-      }
-    }
-  }
-  
-  const getLesson = (lessonId, lessons) => {
-    for (const lesson of lessons) {
-      if (lesson.id === lessonId) {
-        return lesson;
-      }
-    }
-  }
-
-  const getLessonDate = (lessonDateId, lessonDates) => {
-    for (const lessonDate of lessonDates) {
-      if (lessonDate.id === lessonDateId) {
-        return lessonDate;
-      }
-    }
-  }
-
   const handleCancel = (reservation, mode) => {
-    setModalLessonDate(getLessonDate(reservation.lessonDateId, lessonDates))
-    setModalLesson(getLesson(reservation.lessonId, lessons))
-    setModalLocation(getLocation(reservation.locationId, locations))
+    setModalLessonDate(getItemByID(reservation.lessonDateId, lessonDates))
+    setModalLesson(getItemByID(reservation.lessonId, lessons))
+    setModalLocation(getItemByID(reservation.locationId, locations))
     if (mode === 'cancel'){
       setModalStatus(1)
     } else {
@@ -127,7 +104,7 @@ export const AccountPage = withRouter(({history}) => {
   }
 
   const handleEditReviewClick = (review) => {
-    setModalLocation(getLocation(review.locationId, locations))
+    setModalLocation(getItemByID(review.locationId, locations))
     setModalStatus(4)
     setModalReview(review)
   }

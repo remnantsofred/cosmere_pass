@@ -25,6 +25,7 @@ import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfi
 import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import Row from '../row/Row';
 import SearchNav from '../SearchNav';
+import { getItemByID } from '../../utils/general_util';
 
 
 
@@ -77,23 +78,6 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   }
 
 
-
-  const getLocationForLesson = (locationId, locations) => {
-    for (const location of locations) {
-      if (location.id === locationId) {
-        return location;
-      }
-    }
-  }
-
-  const getSpecificLesson = (lessonId, lessons) => {
-    for (const lesson of lessons) {
-      if (lesson.id === lessonId) {
-        return lesson;
-      }
-    }
-  }
-
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)
     setModalLessonDate(lessonDate)
@@ -139,8 +123,8 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
                 <LessonDatesIndexItem 
                   handleResClick={handleResClick} 
                   lessonDate={lessonDate} 
-                  lesson={getSpecificLesson(lessonDate.lessonId, lessons)} 
-                  location={getLocationForLesson(getSpecificLesson(lessonDate.lessonId, lessons).locationId, locations)} 
+                  lesson={getItemByID(lessonDate.lessonId, lessons)} 
+                  location={getItemByID(getItemByID(lessonDate.lessonId, lessons).locationId, locations)} 
                   currrentUser={currentUser} 
                   key={idx} 
                   handleCancel={handleCancel} 
@@ -240,7 +224,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
                 <LessonIndexItem 
                   lesson={lesson} 
                   key={idx} 
-                  location={getLocationForLesson(lesson.locationId, locations)}/>) 
+                  location={getItemByID(lesson.locationId, locations)}/>) 
               }
             </ul>
           </Panel>
