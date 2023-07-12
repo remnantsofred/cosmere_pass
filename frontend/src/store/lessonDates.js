@@ -54,7 +54,7 @@ export const fetchLessonDates = (locationId, lessonType, startTime, userId) => a
     queryParams.push(`lesson_type=${lessonType.toString()}`)
   }
   if (startTime !== "" && startTime !== undefined) {
-    queryParams.push(`lesson_type=${startTime.toString()}`)
+    queryParams.push(`start_time=${startTime.toString()}`)
   }
   if (userId !== "" && userId !== undefined){
     queryParams.push(`user_id=${userId}`)
@@ -62,7 +62,7 @@ export const fetchLessonDates = (locationId, lessonType, startTime, userId) => a
   if (queryParams.length){
     url = url + "?" + queryParams.join("&")
   }
-
+  console.log(url, 'url')
 
   const res = await fetch(url);
     if (res.ok) {

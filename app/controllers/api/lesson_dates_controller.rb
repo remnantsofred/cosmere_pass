@@ -11,7 +11,10 @@ class Api::LessonDatesController < ApplicationController
     end   
 
     if params[:start_time]
-      @lesson_dates = @lesson_dates.where(start_time: params[:start_time].beginning_of_day..params[:start_time].end_of_day).order("start_time ASC")
+      # print(params[:start_time])
+      # num_days = params[:start_time].to_i
+      # formatted_start_time = Date.new(date_sections[0],date_sections[1],date_sections[2])
+      @lesson_dates = @lesson_dates.where(start_time: Date.today.advance(days: params[:start_time].to_i).beginning_of_day..Date.today.advance(days: params[:start_time].to_i).end_of_day).order("start_time ASC")
       # @lesson_dates = LessonDate.where()
     end   
       

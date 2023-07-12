@@ -1,6 +1,6 @@
 import './SearchPage.css';
 import { FaLessThanEqual } from 'react-icons/fa';
-import { formatDateWithDayShort } from '../../utils/date_util';
+import { formatDateWithDayShort, formatDateInput } from '../../utils/date_util';
 import { getCurrentUser } from '../../store/session';
 import { getLessonDates, fetchLessonDates } from '../../store/lessonDates';
 import { getLessons, fetchLessons } from '../../store/lesson';
@@ -26,7 +26,7 @@ import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import Row from '../row/Row';
 import SearchNav from '../SearchNav';
 import { getItemByID } from '../../utils/general_util';
-
+import { sortByEarliestToLatestStartTime } from '../../utils/sorting_util'
 
 
 export const SearchPage = withRouter(({children, id='', className="SearchPage", history}) => {
@@ -51,7 +51,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     Promise.all([
       dispatch(fetchLocations()),
       dispatch(fetchLessons()),
-      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type)),
+      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time)),
     ]).then(()=> {
       setLoaded(true)
     })
@@ -61,7 +61,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     if (loaded) {
       setLoaded(false)
       const paramsMap = getParams(history.location.search)
-      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type)).then(()=>setLoaded(true))
+      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time)).then(()=>setLoaded(true))
     }
   },[history.location.search])
 
@@ -73,7 +73,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     for (const param of paramsArray){
       const [key, value] = param.split('=')
       paramsMap[key] = value
-    }
+    } 
     return paramsMap;
   }
 
@@ -115,11 +115,11 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     setModalStatus(false)
   }
 
-  const resultsToDisplay = (filteredLessonDates) => {
-    if (filteredLessonDates.length){
+  const resultsToDisplay = (lessonDates) => {
+    if (lessonDates.length){
       return (
         <>
-        {filteredLessonDates?.map((lessonDate, idx) => 
+        {sortByEarliestToLatestStartTime(lessonDates)?.map((lessonDate, idx) => 
                 <LessonDatesIndexItem 
                   handleResClick={handleResClick} 
                   lessonDate={lessonDate} 
@@ -160,7 +160,15 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
       return lessonDate.locationId === parseInt(paramsMap.location_id)
     }
     if (paramsMap.start_time){
-      return paramsMap.start_time.includes(lessonDate.startTime)
+      const numDays = parseInt(paramsMap.start_time)
+      const nextDay = new Date();
+      nextDay.setDate(nextDay.getDate() + numDays)
+      console.log(numDays, "numDays")
+      console.log(nextDay, "nextDay")
+  
+      const formattedNewDate = formatDateInput(nextDay)
+
+      return lessonDate.startTime.includes(formattedNewDate)
     }
     return true;
   })
@@ -168,18 +176,8 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   
 
   if (!loaded) {
-    return (
-      <>
-       {/* <SearchNav 
-          locations={[]} 
-          lessons={[]} 
-          lessonDates={[]}
-          currentUser={undefined}
-          indexType={"search"}
-           /> */}
-                 <Loading />
-      </>
-
+    return (        
+      <Loading />
     )
   } else {
     return (
