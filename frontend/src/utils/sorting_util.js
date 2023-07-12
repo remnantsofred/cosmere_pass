@@ -1,12 +1,8 @@
 export const sortByMostRecentlyUpdated = (items)=>{
   let sortedItems = items.sort((item1, item2) => {
-    if (item1.updated_at < item2.updated_at) {
+    if (item1.updatedAt < item2.updatedAt) {
       return 1
-    } else if (item1.updated_at > item2.updated_at) {
-      return -1
-    } else if (item1.created_at < item2.created_at){
-      return 1
-    } else if (item1.created_at > item2.created_at) {
+    } else if (item1.updatedAt > item2.updatedAt) {
       return -1
     } else {
       return 0

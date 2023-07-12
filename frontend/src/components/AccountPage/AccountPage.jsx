@@ -172,7 +172,7 @@ export const AccountPage = withRouter(({history}) => {
             You have reviewed {reviews?.length} {reviews.length === 1 ? 'lesson' : 'lessons'}
           </div>
           <ul className='acct-page-review-ul'>
-                {reviews?.reverse().map((review, idx) => 
+                {sortByMostRecentlyUpdated(reviews)?.map((review, idx) => 
                   <ReviewIndexItem 
                     key={idx} 
                     review={review} 
