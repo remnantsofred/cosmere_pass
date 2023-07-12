@@ -50,7 +50,7 @@ export const LocationShowPage = () => {
       dispatch(fetchLocation(locationId)),
       dispatch(fetchLessons()),
       dispatch(fetchLessonDates(locationId)),  
-      dispatch(fetchReviews(locationId)),  
+      dispatch(fetchReviews(locationId, '')),  
       dispatch(restoreSession())
     ]).then(() =>  setLoaded(true))
   },[locationId])
@@ -72,7 +72,19 @@ export const LocationShowPage = () => {
     return sortedReviews;
   }
 
+  const sortedLessonDates = (lessonDates) => {
+    let sortedLessonDates = lessonDates.sort((reservation1, reservation2) => {
+      if (reservation1.startTime > reservation2.startTime) {
+        return 1
+      } else if (reservation1.startTime < reservation2.startTime){
+        return -1
+      } else {
+        return 0
+      }
+    })
 
+    return sortedLessonDates;
+  }
 
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)
@@ -294,7 +306,7 @@ export const LocationShowPage = () => {
             <Row className='LocShowPanelLRow LocSchedule'>
               <h3 className="locShowSubtitle">Schedule</h3>
               <ul className='locShowIdxULLessonDates'>
-                {lessonDates?.map((lessonDate, idx) => 
+                {sortedLessonDates(lessonDates)?.map((lessonDate, idx) => 
                   <LessonDatesIndexItem 
                     key={idx} 
                     lessonDate={lessonDate} 

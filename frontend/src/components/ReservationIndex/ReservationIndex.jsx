@@ -20,9 +20,9 @@ export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
     }
 
     const sortedReservations = filtered.sort((reservation1, reservation2) => {
-      if (reservation1.startTime > reservation2.startTime) {
+      if ((type === 'upcoming' && reservation1.startTime > reservation2.startTime) || (type === 'past' && reservation1.startTime < reservation2.startTime)) {
         return 1
-      } else if (reservation1.startTime < reservation2.startTime) {
+      } else if ((type === 'upcoming' && reservation1.startTime < reservation2.startTime) || (type === 'past' && reservation1.startTime > reservation2.startTime)) {
         return -1
       } else {
         return 0

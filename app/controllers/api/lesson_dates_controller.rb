@@ -23,10 +23,6 @@ class Api::LessonDatesController < ApplicationController
       @lesson_dates = LessonDate.find(user_reservations_lessondate_ids)
     end
    
-    # if @lesson_dates.length == 0
-    #   @lesson_dates = LessonDate.all.order("start_time ASC")
-    # end
-
 
     @lesson_dates = @lesson_dates.map do |lesson_date|
       set_lesson_date_details(lesson_date)
@@ -52,7 +48,6 @@ class Api::LessonDatesController < ApplicationController
   end
 
   def update
-   #set lesson date details for update?
     if @lesson_date.update(lesson_date_params)
       @lesson_date = set_lesson_date_details(@lesson_date)
       render :show
