@@ -1,29 +1,17 @@
 class Api::LessonDatesController < ApplicationController
   def index 
 
-    @lesson_dates = LessonDate.joins(:lesson).where("DATE(start_time) < ?", Date.today)
+    @lesson_dates = LessonDate.joins(:lesson).where(start_time: Date.today..).order("start_time ASC")
     if params[:location_id] 
-      # @lessons = Lesson.where("location_id = ?", params[:location_id])
-      # lesson_ids = @lessons.map { |lesson| lesson.id }
-      # @lesson_dates = LessonDate.where("lesson_id in (?)", lesson_ids)
-      
       @lesson_dates = @lesson_dates.where("location_id = ?", params[:location_id])
     end
 
     if params[:lesson_type]
-      # if @lesson_dates.length == 0
-      #   @lesson_dates = LessonDate.all
-      # end
-      # @lesson_dates = @lesson_dates.select { |lesson_date|  lesson_date.lesson.lesson_type.include?(params[:lesson_type]) } 
-      
       @lesson_dates = @lesson_dates.where("lesson_type = ?", params[:lesson_type])
     end   
 
     if params[:start_time]
-      if @lesson_dates.length == 0
-        @lesson_dates = LessonDate.all
-      end
-      @lesson_dates = @lesson_dates.select { |lesson_date| lesson_date.start_time.include?(params[:start_time]) } 
+      @lesson_dates = @lesson_dates.where("DATE(start_time) < ?", params[:start_time])  
       # @lesson_dates = LessonDate.where()
     end   
       
@@ -37,7 +25,6 @@ class Api::LessonDatesController < ApplicationController
    
     # if @lesson_dates.length == 0
     #   @lesson_dates = LessonDate.all.order("start_time ASC")
-    #   print(@lesson_dates.length, "-----------!!!!  ----------!!!! ----------------!!!!!!! -------- LESSON DATE LENGTH HERE -----------!!!!  ----------!!!! ----------------!!!!!!!")
     # end
 
 

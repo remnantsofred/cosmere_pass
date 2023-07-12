@@ -487,8 +487,8 @@ require "open-uri"
       })
       
       start_time_fixed = start_time_fixed + 5.day
-      # end_time_fixed = end_time_fixed + 5.day
-
+      end_time_fixed = end_time_fixed + 5.day
+      
     end
 
     10.times do
@@ -500,7 +500,7 @@ require "open-uri"
       })
       
       start_time = start_time + 4.day
-      # end_time = end_time + 4.day
+      end_time = end_time + 4.day
 
     end
 
@@ -519,7 +519,7 @@ require "open-uri"
 
   end
   
-  print(LessonDate.all)
+  
 
   sample_lesson_dates = LessonDate.all.sample(30)
   student_id_range_max = User.all.length
