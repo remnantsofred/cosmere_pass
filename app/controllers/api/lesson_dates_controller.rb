@@ -40,7 +40,6 @@ class Api::LessonDatesController < ApplicationController
     #   print(@lesson_dates.length, "-----------!!!!  ----------!!!! ----------------!!!!!!! -------- LESSON DATE LENGTH HERE -----------!!!!  ----------!!!! ----------------!!!!!!!")
     # end
 
-    @lesson_dates = @lesson_dates
 
     @lesson_dates = @lesson_dates.map do |lesson_date|
       set_lesson_date_details(lesson_date)
