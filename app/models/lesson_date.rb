@@ -21,6 +21,9 @@ class LessonDate < ApplicationRecord
     class_name: :Reservation,
     dependent: :destroy
 
+  # has_one :location, through: :lesson
+
+
   attr_accessor :max_capacity, :reserved_slots, :remaining_slots, :credits, :user_has_reservation, :current_user_reservation_id, :location_id, :lesson_type, :current_user_would_be_doublebooked
 
 end

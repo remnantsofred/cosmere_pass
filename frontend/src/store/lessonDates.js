@@ -69,6 +69,7 @@ export const fetchLessonDates = (locationId, lessonType, startTime, userId) => a
     if (res.ok) {
       const lessonDates = await res.json();
       dispatch(receiveLessonDates(lessonDates));
+      console.log(lessonDates, 'lessondates')
       return Promise.resolve();
     }   
   
