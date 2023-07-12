@@ -504,19 +504,6 @@ require "open-uri"
 
     end
 
-    # 10.times do
-    #   num = rand(1..3)
-    #   LessonDate.create!({
-    #     lesson_id: lesson.id,
-    #     start_time: start_time_fixed + num.day,
-    #     end_time: end_time_fixed + num.day
-    #   })
-      
-    #   start_time_fixed = start_time_fixed + 3.day
-    #   end_time_fixed = end_time_fixed + 3.day
-
-    # end
-
   end
   
   

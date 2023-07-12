@@ -11,7 +11,7 @@ class Api::LessonDatesController < ApplicationController
     end   
 
     if params[:start_time]
-      @lesson_dates = @lesson_dates.where("DATE(start_time) < ?", params[:start_time])  
+      @lesson_dates = @lesson_dates.where(start_time: params[:start_time].beginning_of_day..params[:start_time].end_of_day).order("start_time ASC")
       # @lesson_dates = LessonDate.where()
     end   
       
