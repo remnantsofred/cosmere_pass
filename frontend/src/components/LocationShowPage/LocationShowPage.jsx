@@ -26,11 +26,13 @@ import { BsInstagram } from 'react-icons/bs'
 import ToolTip from '../ToolTip/ToolTip';
 import { restoreSession } from '../../store/session';
 import { ElendelCenter, KharbranthCenter, KholinarCenter, LuthadelCenter, HomelandCenter, ThaylenCityCenter, PurelakeCenter, UrithiruCenter, HallandrenCenter } from '../map/Map';
+import { sortByEarliestToLatestStartTime, sortByMostRecentlyUpdated } from '../../utils/sorting_util'
 
 export const LocationShowPage = () => {
   const { locationId } = useParams();
   const location = useSelector(getLocation(locationId));
   const reviews = useSelector(getReviewsForLocation(locationId));
+  let sortedReviews;
   const lessonDates = useSelector(getLessonDatesForLocation(locationId))
   const lessons = useSelector(getLessonsForLocation(locationId));
   const dispatch = useDispatch();
@@ -56,35 +58,9 @@ export const LocationShowPage = () => {
   },[locationId])
 
   useEffect(()=>{
-    let sortedReviews = sortReviews(reviews)
+    sortedReviews = sortByMostRecentlyUpdated(reviews)
   }, [reviews])
 
-  const sortReviews = (reviews)=>{
-    let sortedReviews = reviews.sort((review1, review2) => {
-      if (review1.updated_at < review2.updated_at) {
-        return 1
-      } else if (review1.updated_at > review2.updated_at) {
-        return -1
-      } else {
-        return 0
-      }
-    })
-    return sortedReviews;
-  }
-
-  const sortedLessonDates = (lessonDates) => {
-    let sortedLessonDates = lessonDates.sort((reservation1, reservation2) => {
-      if (reservation1.startTime > reservation2.startTime) {
-        return 1
-      } else if (reservation1.startTime < reservation2.startTime){
-        return -1
-      } else {
-        return 0
-      }
-    })
-
-    return sortedLessonDates;
-  }
 
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)
@@ -306,7 +282,7 @@ export const LocationShowPage = () => {
             <Row className='LocShowPanelLRow LocSchedule'>
               <h3 className="locShowSubtitle">Schedule</h3>
               <ul className='locShowIdxULLessonDates'>
-                {sortedLessonDates(lessonDates)?.map((lessonDate, idx) => 
+                {sortByEarliestToLatestStartTime(lessonDates)?.map((lessonDate, idx) => 
                   <LessonDatesIndexItem 
                     key={idx} 
                     lessonDate={lessonDate} 
@@ -323,7 +299,7 @@ export const LocationShowPage = () => {
               </h3>
               
               <ul className='locShowIdxULLessonDates'>
-                {reviews?.reverse().map((review, idx) => 
+                {sortByMostRecentlyUpdated(reviews)?.map((review, idx) => 
                   <ReviewIndexItem 
                     key={idx} 
                     review={review} 

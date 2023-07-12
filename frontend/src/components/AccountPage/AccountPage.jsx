@@ -17,11 +17,11 @@ import Loading from '../loading/Loading';
 import { fetchReviews, getReviews, deleteReview, getReviewsForUser, createReview, updateReview } from '../../store/review';
 import ReviewIndexItem from '../ReviewIndexItem/ReviewIndexItem';
 import { withRouter } from 'react-router-dom';
+import { sortByMostRecentlyUpdated } from '../../utils/sorting_util' 
 
 
 export const AccountPage = withRouter(({history}) => {
   const dispatch = useDispatch();
-  // const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
   const [content, setContent] = useState('');
   const reservations = useSelector(getReservationsForUser(currentUser.id))
@@ -37,8 +37,6 @@ export const AccountPage = withRouter(({history}) => {
   const [ modalReview, setModalReview ] = useState();
   
   useEffect(() => {
-    // history.push(`/lessonDates/${currentUser.id}`)
-    // const paramsMap = getParams(history.lessonDate.search)
     Promise.all([
       dispatch(fetchReservations(currentUser.id)),
       dispatch(fetchLocations()),
@@ -105,25 +103,9 @@ export const AccountPage = withRouter(({history}) => {
     } else {
       filtered = reservations.filter(reservation => reservation.status === 'past')
     }
-
-    const sortedReservations = filtered.sort((reservation1, reservation2) => {
-      if ((type === 'upcoming' && reservation1.startTime > reservation2.startTime) || (type === 'past' && reservation1.startTime < reservation2.startTime)) {
-        return 1
-      } else if ((type === 'upcoming' && reservation1.startTime < reservation2.startTime) || (type === 'past' && reservation1.startTime > reservation2.startTime)) {
-        return -1
-      } else {
-        return 0
-      }
-    })
     
-
-    return sortedReservations;
-    
+    return filtered
   }
-
-  // const userReviews = (reviews) => {
-  //   return reviews.filter(review => review.currentUserReviewed == true)
-  // }
 
   const handleReviewSubmit = (reviewData) =>{
     if (reviewData.body){
@@ -157,7 +139,7 @@ export const AccountPage = withRouter(({history}) => {
           <ReservationIndex  
             user={currentUser} 
             type='upcoming' 
-            reservations={reservations} 
+            reservations={selectReservations(reservations, 'upcoming')} 
             handleCancel={handleCancel} 
             ></ReservationIndex>
         </>
@@ -168,7 +150,7 @@ export const AccountPage = withRouter(({history}) => {
           <ReservationIndex 
             user={currentUser} 
             type='past' 
-            reservations={reservations}
+            reservations={selectReservations(reservations, 'past')}
             
             >
 
