@@ -2,7 +2,7 @@ import './SearchPage.css';
 import { FaLessThanEqual } from 'react-icons/fa';
 import { formatDateWithDayShort, formatDateInput } from '../../utils/date_util';
 import { getCurrentUser } from '../../store/session';
-import { getLessonDates, fetchLessonDates } from '../../store/lessonDates';
+import lessonDatesReducer, { getLessonDates, fetchLessonDates } from '../../store/lessonDates';
 import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
 import { getReservations, createReservation, fetchReservations, deleteReservation, removeReservation } from '../../store/reservation';
@@ -32,14 +32,11 @@ import { sortByEarliestToLatestStartTime } from '../../utils/sorting_util'
 export const SearchPage = withRouter(({children, id='', className="SearchPage", history}) => {
   const lessonDates = useSelector(getLessonDates);
   const locations = useSelector(getLocations);
-  // const reservations = useSelector(getReservations);
   const lessons = useSelector(getLessons);
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const [indexType, setIndexType] = useState('lessons');
   const [ modalStatus, setModalStatus ] = useState(false);
-  // const [ modal2Status, setModal2Status ] = useState(false);
-  // const [ modal3Status, setModal3Status ] = useState(false);
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
@@ -116,6 +113,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   }
 
   const resultsToDisplay = (lessonDates) => {
+    // const filteredResults = getfilteredLessonDates(lessonDates)
     if (lessonDates.length){
       return (
         <>
@@ -148,30 +146,30 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
     }
   }
 
-  const filteredLessonDates = lessonDates.filter((lessonDate)=>{
+  const getfilteredLessonDates = (lessonDates) => {
     const paramsMap = getParams(history.location.search)
-    if (paramsMap.location_id && paramsMap.lesson_type){
-      return lessonDate.locationId === parseInt(paramsMap.location_id) && lessonDate.lessonType.includes(paramsMap.lesson_type) 
+    let filteredResults = lessonDates
+
+    if (paramsMap.location_id){
+      filteredResults = filteredResults.filter(lessonDate => lessonDate.locationId === parseInt(paramsMap.location_id))
     }
     if (paramsMap.lesson_type){
-      return lessonDate.lessonType.includes(paramsMap.lesson_type)
-    }
-    if (paramsMap.location_id){
-      return lessonDate.locationId === parseInt(paramsMap.location_id)
+      filteredResults = filteredResults.filter(lessonDate => lessonDate.lessonType.includes(paramsMap.lesson_type)) 
     }
     if (paramsMap.start_time){
       const numDays = parseInt(paramsMap.start_time)
       const nextDay = new Date();
       nextDay.setDate(nextDay.getDate() + numDays)
-      console.log(numDays, "numDays")
-      console.log(nextDay, "nextDay")
   
       const formattedNewDate = formatDateInput(nextDay)
 
-      return lessonDate.startTime.includes(formattedNewDate)
+      filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formattedNewDate))
     }
-    return true;
-  })
+
+    return filteredResults;
+  }
+
+  
 
   
 
@@ -216,7 +214,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
                 : 
               currentUser 
                 ? 
-                resultsToDisplay(filteredLessonDates)
+                resultsToDisplay(getfilteredLessonDates(lessonDates))
                 : 
               lessons?.map((lesson, idx) => 
                 <LessonIndexItem 
