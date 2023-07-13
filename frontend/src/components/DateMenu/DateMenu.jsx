@@ -36,21 +36,13 @@ export const DateMenu = withRouter(({className="dateMenu", id="", options, place
     )
   }
   const handleBackDate = () => {
-    // let today = new Date();
-    // let newDate = value - 1;
     if (value > 0){
       setValue(value - 1);
     } 
-    console.log(value, "value back")
-    console.log("clicked back")
   }
   
   const handleForwardDate = () => {
     setValue(value + 1)
-    // let newDate = value + 1;
-    // setValue(newDate);  
-    console.log(value, "value forward")
-    console.log("clicked forward")
   }
 
   const getDisplay = () => {

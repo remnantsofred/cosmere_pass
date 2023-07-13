@@ -16,7 +16,6 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
     {value: "Surgebinding", label: "Surgebinding"}
   ]
   let today = new Date();
-  let start_time = formatDateWithDayShort(today);
 
   const [selectedValueLoc, setSelectedValueLoc] = useState(null);
   const [selectedValueType, setSelectedValueType] = useState(null);
@@ -25,22 +24,26 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
 
   const dropdownLocationOptions = locations.map( location => ({value: location.id, label: location.locationName}))
 
-
   useEffect(()=>{
-    // console.log(history.location)
-    if (selectedValueLoc && !selectedValueType){
-      history.push(`/search/?location_id=${selectedValueLoc.value}`)
-    } else if (selectedValueLoc && selectedValueType){
+
+    if (selectedValueLoc && selectedValueType && selectedValueDate){
+      history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}&start_time=${selectedValueDate}`)
+    } else if (selectedValueLoc && !selectedValueType && selectedValueDate){
+      history.push(`/search/?location_id=${selectedValueLoc.value}&start_time=${selectedValueDate}`)
+    } else if (selectedValueLoc && selectedValueType && !selectedValueDate){
       history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}`)
-    } else if (!selectedValueLoc && selectedValueType){
+    } else if (!selectedValueLoc && selectedValueType && selectedValueDate){
+      history.push(`/search/?&lesson_type=${selectedValueType.value}&start_time=${selectedValueDate}`)
+    } else if (!selectedValueLoc && !selectedValueType && selectedValueDate){
+      history.push(`/search/?start_time=${selectedValueDate}`)
+    } else if (!selectedValueLoc && selectedValueType && !selectedValueDate){
       history.push(`/search/?lesson_type=${selectedValueType.value}`)
-    } 
+    } else if (selectedValueLoc && !selectedValueType && !selectedValueDate){
+      history.push(`/search/?location_id=${selectedValueLoc.value}`)
+    }
 
-  }, [selectedValueLoc, selectedValueType])
+  }, [selectedValueLoc, selectedValueType, selectedValueDate])
 
-  useEffect(()=>{
-    console.log(selectedValueDate)
-  }, [selectedValueDate])
 
   useEffect(()=>{
     if (history.location.search === ''){
