@@ -3,9 +3,11 @@ import Row from '../row/Row';
 import Column from '../column/Column';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import { formatDateWithDayShort, dateFromString } from '../../utils/date_util';
+import { getParams } from '../../utils/general_util';
 import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import { DateMenu } from '../DateMenu/DateMenu';
+
 
 export const SearchNav = withRouter(({children, id='', className="SearchNav", locations, lessons, lessonDates, currentUser, indexType, history }) => {
   const dropdownTypeOptions = [
@@ -23,17 +25,6 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   
 
   const dropdownLocationOptions = locations.map( location => ({value: location.id, label: location.locationName}))
-
-  const getParams = (params) => {
-    const paramsString = params.slice(1)
-    const paramsArray = paramsString.split('&')
-    const paramsMap = {};
-    for (const param of paramsArray){
-      const [key, value] = param.split('=')
-      paramsMap[key] = value
-    } 
-    return paramsMap;
-  }
 
   const getOptionfromValue = (value, type) => {
     if (type === 'location'){
@@ -94,87 +85,6 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
     setSelectedValueDate(searchParams.start_time ? parseInt(searchParams.start_time) : 0)
 
     
-    // if (history.location.search === ''){
-    //   setSelectedValueLoc(null);
-    //   setSelectedValueType(null);
-    //   setSelectedValueDate(0)
-
-    //   // none - confirmed
-    // } else if (history.location.search.includes("location_id") && !history.location.search.includes("lesson_type") && !history.location.search.includes("start_time")){
-    //   setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[1])))
-    //   setSelectedValueType(null);
-    //   setSelectedValueDate(0)
-
-    //   // only location - confirmed 
-
-    // } else if (history.location.search.includes("location_id") && !history.location.search.includes("lesson_type") && history.location.search.includes("start_time")){
-    //   setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[1])))
-    //   setSelectedValueType(null);
-    //   setSelectedValueDate(parseInt(history.location.search.split("=")[2]))
-    //   // location and date - confirmed
-
-    // } else if (history.location.search.includes("location_id") && history.location.search.includes("lesson_type") && !history.location.search.includes("start_time")){
-    //   setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[1])))
-    //   setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[2]));
-    //   setSelectedValueDate(0)
-    //   // location and type - maybe???
-
-    // } else if (!history.location.search.includes("location_id") && history.location.search.includes("lesson_type") && !history.location.search.includes("start_time")){
-    //   setSelectedValueLoc(null)
-    //   setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[1]));
-    //   setSelectedValueDate(0)
-    //   // type and date - ??? --- 
-
-    // } else if (!history.location.search.includes("location_id") && !history.location.search.includes("lesson_type") && history.location.search.includes("start_time")){
-    //   setSelectedValueLoc(null)
-    //   setSelectedValueType(null);
-    //   setSelectedValueDate(parseInt(history.location.search.split("=")[1]))
-    //   // type and date - ???  ---- 
-
-    // } else if (!history.location.search.includes("location_id") && history.location.search.includes("lesson_type") && history.location.search.includes("start_time")){
-    //   setSelectedValueLoc(null)
-    //   setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[1]));
-    //   setSelectedValueDate(parseInt(history.location.search.split("=")[2]))
-    //   // type and date - ??? 
-
-    // } else if (history.location.search.includes("location_id") && history.location.search.includes("lesson_type") && history.location.search.includes("start_time")){
-    //   setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[1])))
-    //   setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[2]));
-    //   console.log(history.location.search, "history search")
-    //   setSelectedValueDate(parseInt(history.location.search.split("=")[3]))
-    //   console.log('7other')
-
-
-      // location, type, and date 
-
-    // } else if (history.location.search.includes("lesson_type") && !history.location.search.includes("location_id")){
-    //   setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[1]))
-    //   setSelectedValueLoc(null);
-
-
-    // } else if (history.location.search.includes("lesson_type") && history.location.search.includes("location_id")){ 
-    //   const locationIndex = history.location.search.indexOf("location_id")
-    //   const typeIndex = history.location.search.indexOf("lesson_type")
-
-
-    //   if (locationIndex < typeIndex){
-    //     setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[2]))
-    //     setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[1])))
-    //   } else {
-    //     setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[1]))
-    //     setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[2])))
-    //   }
-
-
-
-    //   if (locationIndex < typeIndex){
-    //     setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[2]))
-    //     setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[1])))
-    //   } else {
-    //     setSelectedValueType(dropdownTypeOptions.find( option => option.value === history.location.search.split("=")[1]))
-    //     setSelectedValueLoc(dropdownLocationOptions.find( option => option.value === parseInt(history.location.search.split("=")[2])))
-    //   }
-    // }
   }, [history.location.search])
   
   return (
