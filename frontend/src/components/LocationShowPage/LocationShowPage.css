@@ -203,3 +203,9 @@
   transition: color .3s,background-color .3s,border-color .3s;
   cursor: no-drop;
 }
+
+.loc-show-pg-no-res-div {
+  display: flex;
+  flex-direction: column;
+
+}
