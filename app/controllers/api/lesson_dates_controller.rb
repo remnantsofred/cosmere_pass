@@ -1,27 +1,21 @@
 class Api::LessonDatesController < ApplicationController
   def index 
 
-    @lesson_dates = []
+    @lesson_dates = LessonDate.joins(:lesson).where(start_time: Date.today..).order("start_time ASC")
     if params[:location_id] 
-      @lessons = Lesson.where("location_id = ?", params[:location_id])
-      lesson_ids = @lessons.map { |lesson| lesson.id }
-      @lesson_dates = LessonDate.where("lesson_id in (?)", lesson_ids)
+      @lesson_dates = @lesson_dates.where("location_id = ?", params[:location_id])
     end
 
     if params[:lesson_type]
-      if @lesson_dates.length == 0
-        @lesson_dates = LessonDate.all
-      end
-      @lesson_dates = @lesson_dates.select { |lesson_date|  lesson_date.lesson.lesson_type.include?(params[:lesson_type]) } 
-      
+      @lesson_dates = @lesson_dates.where("lesson_type = ?", params[:lesson_type])
     end   
 
     if params[:start_time]
-      if @lesson_dates.length == 0
-        @lesson_dates = LessonDate.all
-      end
-      @lesson_dates = @lesson_dates.select { |lesson_date| lesson_date.start_time.include?(params[:start_time]) } 
-      
+      # print(params[:start_time])
+      # num_days = params[:start_time].to_i
+      # formatted_start_time = Date.new(date_sections[0],date_sections[1],date_sections[2])
+      @lesson_dates = @lesson_dates.where(start_time: Date.today.advance(days: params[:start_time].to_i).beginning_of_day..Date.today.advance(days: params[:start_time].to_i).end_of_day).order("start_time ASC")
+      # @lesson_dates = LessonDate.where()
     end   
       
     if params[:user_id]
@@ -32,10 +26,7 @@ class Api::LessonDatesController < ApplicationController
       @lesson_dates = LessonDate.find(user_reservations_lessondate_ids)
     end
    
-    if @lesson_dates.length == 0
-      @lesson_dates = LessonDate.all
-    end
-    
+
     @lesson_dates = @lesson_dates.map do |lesson_date|
       set_lesson_date_details(lesson_date)
     end
@@ -60,7 +51,6 @@ class Api::LessonDatesController < ApplicationController
   end
 
   def update
-   #set lesson date details for update?
     if @lesson_date.update(lesson_date_params)
       @lesson_date = set_lesson_date_details(@lesson_date)
       render :show

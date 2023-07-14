@@ -13,6 +13,7 @@ import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
 import Loading from '../loading/Loading';
 import Map from '../map';
+import { getItemByID } from '../../utils/general_util'
 // import  GoogleApiWrapper  from '../map';
 
 
@@ -32,14 +33,6 @@ export const LessonsIndexPage = ({children, id='', className="LessonsIndexPage"}
       setLoaded(true)
     }
   },[dispatch, locations, lessons])
-
-  const getLocation = (locationId) => {
-    for (const location of locations) {
-      if (location.id === locationId) {
-        return location;
-      }
-    }
-  }
   
 
   if (!loaded) {
@@ -51,7 +44,7 @@ export const LessonsIndexPage = ({children, id='', className="LessonsIndexPage"}
       <Panels id={id} className={className}>
         <Panel className='lessonsIdxleftPanel'>
           <ul className='lessonsIdxUL'>
-            {lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getLocation(lesson.locationId)}/>)}
+            {lessons?.map((lesson, idx) => <LessonIndexItem lesson={lesson} key={idx} location={getItemByID(lesson.locationId, locations)}/>)}
             {children}
           </ul>
         </Panel>

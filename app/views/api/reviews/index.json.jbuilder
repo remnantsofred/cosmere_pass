@@ -1,7 +1,7 @@
 
 @reviews.each do |review|
   json.set! review.id do
-    json.extract! review, :id, :lesson_id, :reviewer_id, :rating, :body, :location_id
+    json.extract! review, :id, :lesson_id, :reviewer_id, :rating, :body, :location_id, :created_at, :updated_at
     json.lesson_title review.lesson_title
     json.months_ago review.months_ago
     json.days_ago review.days_ago

@@ -33,14 +33,6 @@ export const LocationsIndexPage = ({children, id='', className="LocationsIndexPa
     }
   },[dispatch, locations, lessons])
 
-  // const getLocation = (locationId) => {
-  //   for (const location of locations) {
-  //     if (location.id === locationId) {
-  //       return location;
-  //     }
-  //   }
-  // }
-
 
 
   if (!loaded) {

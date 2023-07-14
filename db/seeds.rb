@@ -472,41 +472,42 @@ require "open-uri"
   now = DateTime.now
   Lesson.all.each do |lesson|
     
-    start_time_fixed = DateTime.new(2023, 5, 1, rand(6..20), 0, 0)
+    start_time_fixed = DateTime.new(2023, 7, 1, rand(6..20), 0, 0)
     start_time = DateTime.new(now.year, now.month, now.day, rand(6..20), 0, 0)
     length = [1, 1.5, 2].sample
     end_time = start_time + length.hour
     end_time_fixed = start_time_fixed + length.hour
     
-
     10.times do
-      num = rand(1..3)
-      LessonDate.create!({
-        lesson_id: lesson.id,
-        start_time: start_time + num.day,
-        end_time: end_time + num.day
-      })
-      
-      start_time = start_time + 2.day
-      end_time = end_time + 2.day
-
-    end
-
-    10.times do
-      num = rand(1..3)
+      num = rand(1..5)
       LessonDate.create!({
         lesson_id: lesson.id,
         start_time: start_time_fixed + num.day,
         end_time: end_time_fixed + num.day
       })
       
-      start_time_fixed = start_time_fixed + 3.day
-      end_time_fixed = end_time_fixed + 3.day
+      start_time_fixed = start_time_fixed + 5.day
+      end_time_fixed = end_time_fixed + 5.day
+      
+    end
+
+    10.times do
+      num = rand(1..10)
+      LessonDate.create!({
+        lesson_id: lesson.id,
+        start_time: start_time + num.day,
+        end_time: end_time + num.day
+      })
+      
+      start_time = start_time + 4.day
+      end_time = end_time + 4.day
 
     end
 
   end
   
+  
+
   sample_lesson_dates = LessonDate.all.sample(30)
   student_id_range_max = User.all.length
   sample_lesson_dates.each do |lesson_date|

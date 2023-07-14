@@ -260,3 +260,9 @@ export const timeBetweenShort = (date1, date2) => {
   let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
   return diffDays * 60;
 }
+
+export const dateFromString = (stringDate) => {
+  const [year, month, day] = stringDate.split("-")
+  const date = new Date(parseInt(year), parseInt(month), parseInt(day))
+  return date
+}

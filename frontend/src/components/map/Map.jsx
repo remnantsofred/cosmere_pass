@@ -10,6 +10,7 @@ import MapInfoBlurb from '../MapInfoBlurb/MapInfoBlurb';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLocations, fetchLocations } from '../../store/location';
+import { getItemByID } from '../../utils/general_util';
 
 export const Marker = ({ text, icon, className, lat, lng, location, setMapBlurbState, mapBlurbState }) => {
   
@@ -102,15 +103,6 @@ export default function Map({className="map-container", id="", location, locProp
     dispatch(fetchLocations())
   }, [])
 
-  const getLocationFromID = (locationId, locations) => {
-    for (const location of locations) {
-      if (location.id === locationId) {
-        return location;
-      }
-    }
-  }
-
-
 
   const onMarkerClick = (e) => {
     if (source === 'search') {
@@ -131,15 +123,15 @@ export default function Map({className="map-container", id="", location, locProp
         onChildClick={e => onMarkerClick(e)}
         onClick={e => setMapBlurbState(false)}
       >
-        { mapBlurbState === '1-map-marker' && <MapInfoBlurb location={getLocationFromID(1, locations)} className='map-info-blurb'/> }
-        { mapBlurbState === '2-map-marker' && <MapInfoBlurb location={getLocationFromID(2, locations)} className='map-info-blurb'/> }
-        { mapBlurbState === '3-map-marker' && <MapInfoBlurb location={getLocationFromID(3, locations)} className='map-info-blurb'/> }
-        { mapBlurbState === '4-map-marker' && <MapInfoBlurb location={getLocationFromID(4, locations)} className='map-info-blurb'/> }
-        { mapBlurbState === '5-map-marker' && <MapInfoBlurb location={getLocationFromID(5, locations)} className='map-info-blurb'/> }
-        { mapBlurbState === '6-map-marker' && <MapInfoBlurb location={getLocationFromID(6, locations)} className='map-info-blurb'/> }
-        { mapBlurbState === '7-map-marker' && <MapInfoBlurb location={getLocationFromID(7, locations)} className='map-info-blurb'/> }
-        { mapBlurbState === '8-map-marker' && <MapInfoBlurb location={getLocationFromID(8, locations)} className='map-info-blurb'/> }
-        { mapBlurbState === '9-map-marker' && <MapInfoBlurb location={getLocationFromID(9, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '1-map-marker' && <MapInfoBlurb location={getItemByID(1, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '2-map-marker' && <MapInfoBlurb location={getItemByID(2, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '3-map-marker' && <MapInfoBlurb location={getItemByID(3, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '4-map-marker' && <MapInfoBlurb location={getItemByID(4, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '5-map-marker' && <MapInfoBlurb location={getItemByID(5, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '6-map-marker' && <MapInfoBlurb location={getItemByID(6, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '7-map-marker' && <MapInfoBlurb location={getItemByID(7, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '8-map-marker' && <MapInfoBlurb location={getItemByID(8, locations)} className='map-info-blurb'/> }
+        { mapBlurbState === '9-map-marker' && <MapInfoBlurb location={getItemByID(9, locations)} className='map-info-blurb'/> }
        
         {locations?.map(location => 
           <Marker 

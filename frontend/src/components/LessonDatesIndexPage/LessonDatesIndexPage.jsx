@@ -14,6 +14,7 @@ import { getLocations, fetchLocations } from '../../store/location';
 import Loading from '../loading/Loading';
 import Map from '../map';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
+import { getItemByID } from '../../utils/general_util'
 
 
 export const LessonDatesIndexPage = ({children, id='', className="LessonDatesIndexPage"}) => {
@@ -35,22 +36,6 @@ export const LessonDatesIndexPage = ({children, id='', className="LessonDatesInd
     }
   },[dispatch, locations, lessons, lessonDates])
 
-  const getLocation = (locationId) => {
-    for (const location of locations) {
-      if (location.id === locationId) {
-        return location;
-      }
-    }
-  }
-
-  const getLesson = (lessonId) => {
-    for (const lesson of lessons) {
-      if (lesson.id === lessonId) {
-        return lesson;
-      }
-    }
-  }
-
 
   if (!loaded) {
     return (
@@ -61,7 +46,7 @@ export const LessonDatesIndexPage = ({children, id='', className="LessonDatesInd
       <Panels id={id} className={className}>
         <Panel className='lessonDatesIdxleftPanel'>
           <ul className='lessonDatesIdxUL'>
-            {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem lessonDate={lessonDate} lesson={getLesson(lessonDate.lessonId)} location={getLocation(getLesson(lessonDate.lessonId).locationId)} key={idx} />)}
+            {lessonDates?.map((lessonDate, idx) => <LessonDatesIndexItem lessonDate={lessonDate} lesson={getItemByID(lessonDate.lessonId)} location={getItemByID(getItemByID(lessonDate.lessonId).locationId)} key={idx} />)}
             {children}
           </ul>
         </Panel>
