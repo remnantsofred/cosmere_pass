@@ -1,17 +1,11 @@
 import './SearchPage.css';
-import { FaLessThanEqual } from 'react-icons/fa';
-import { formatDateWithDayShort, formatDateInput } from '../../utils/date_util';
-import { getCurrentUser } from '../../store/session';
-import lessonDatesReducer, { getLessonDates, fetchLessonDates } from '../../store/lessonDates';
+import { formatDateInput } from '../../utils/date_util';
+import { getLessonDates, fetchLessonDates } from '../../store/lessonDates';
 import { getLessons, fetchLessons } from '../../store/lesson';
 import { getLocations, fetchLocations } from '../../store/location';
-import { getReservations, createReservation, fetchReservations, deleteReservation, removeReservation } from '../../store/reservation';
-import { Redirect, NavLink, useParams, withRouter } from 'react-router-dom';
-import { SiTruenas } from 'react-icons/si';
+import { createReservation, deleteReservation } from '../../store/reservation';
+import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import * as sessionActions from '../../store/session';
-import Column from '../column/Column';
-import Columns from '../columns/Columns';
 import LessonDatesIndexItem from '../LessonDatesIndexItem';
 import LessonIndexItem from '../LessonIndexItem/LessonIndexItem';
 import Loading from '../loading/Loading';
@@ -27,7 +21,7 @@ import Row from '../row/Row';
 import SearchNav from '../SearchNav';
 import { getItemByID } from '../../utils/general_util';
 import { sortByEarliestToLatestStartTime } from '../../utils/sorting_util'
-
+import { getParams } from '../../utils/general_util';
 
 export const SearchPage = withRouter(({children, id='', className="SearchPage", history}) => {
   const lessonDates = useSelector(getLessonDates);
@@ -61,18 +55,6 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
       dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time)).then(()=>setLoaded(true))
     }
   },[history.location.search])
-
-
-  const getParams = (params) => {
-    const paramsString = params.slice(1)
-    const paramsArray = paramsString.split('&')
-    const paramsMap = {};
-    for (const param of paramsArray){
-      const [key, value] = param.split('=')
-      paramsMap[key] = value
-    } 
-    return paramsMap;
-  }
 
 
   const handleResClick = (lessonDate, lesson, location) => {
@@ -113,7 +95,6 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   }
 
   const resultsToDisplay = (lessonDates) => {
-    // const filteredResults = getfilteredLessonDates(lessonDates)
     if (lessonDates.length){
       return (
         <>
@@ -164,6 +145,11 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
       const formattedNewDate = formatDateInput(nextDay)
 
       filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formattedNewDate))
+      
+    } else if (!paramsMap.start_time){
+      const today = new Date();
+
+      filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formatDateInput(today)))
     }
 
     return filteredResults;
