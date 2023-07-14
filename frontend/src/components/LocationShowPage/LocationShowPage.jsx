@@ -13,7 +13,7 @@ import Loading from '../loading/Loading';
 import LessonDatesIndexItem from '../LessonDatesIndexItem'; 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, withRouter } from 'react-router-dom';
 import { createReservation, deleteReservation } from '../../store/reservation';
 import { getLocation, fetchLocation } from '../../store/location';
 import { fetchLessons, getLessonsForLocation } from '../../store/lesson';
@@ -28,9 +28,10 @@ import { restoreSession } from '../../store/session';
 import { ElendelCenter, KharbranthCenter, KholinarCenter, LuthadelCenter, HomelandCenter, ThaylenCityCenter, PurelakeCenter, UrithiruCenter, HallandrenCenter } from '../map/Map';
 import { sortByEarliestToLatestStartTime, sortByMostRecentlyUpdated } from '../../utils/sorting_util'
 import DateMenu from '../DateMenu/DateMenu';
-import { formatDateWithDayShort } from '../../utils/date_util';
+import { formatDateWithDayShort, formatDateInput } from '../../utils/date_util';
+import { getParams } from '../../utils/general_util';
 
-export const LocationShowPage = () => {
+export const LocationShowPage = withRouter(({history}) => {
   const { locationId } = useParams();
   const location = useSelector(getLocation(locationId));
   const reviews = useSelector(getReviewsForLocation(locationId));
@@ -54,16 +55,55 @@ export const LocationShowPage = () => {
     Promise.all([
       dispatch(fetchLocation(locationId)),
       dispatch(fetchLessons()),
-      dispatch(fetchLessonDates(locationId)),  
+      dispatch(fetchLessonDates(locationId, '', '')),  
       dispatch(fetchReviews(locationId, '')),  
       dispatch(restoreSession())
     ]).then(() =>  setLoaded(true))
   },[locationId])
 
+  useEffect(() => {
+    if (loaded) {
+      // setLoaded(false)
+      const paramsMap = getParams(history.location.search)
+      dispatch(fetchLessonDates(locationId, '', paramsMap.start_time)).then(()=>setLoaded(true))
+    }
+  },[history.location.search])
+
+
   useEffect(()=>{
     sortedReviews = sortByMostRecentlyUpdated(reviews)
   }, [reviews])
 
+  useEffect(()=>{
+    history.push(`/locations/${locationId}/?start_time=${date}`)
+  }, [date])
+
+  useEffect(()=>{
+    const searchParams = getParams(history.location.search)
+    setDate(searchParams.start_time ? parseInt(searchParams.start_time) : 0)
+  }, [history.location.search])
+
+  const getfilteredLessonDates = (lessonDates) => {
+    const paramsMap = getParams(history.location.search)
+    let filteredResults = lessonDates
+
+    if (paramsMap.start_time){
+      const numDays = parseInt(paramsMap.start_time)
+      const nextDay = new Date();
+      nextDay.setDate(nextDay.getDate() + numDays)
+  
+      const formattedNewDate = formatDateInput(nextDay)
+
+      filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formattedNewDate))
+      
+    } else if (!paramsMap.start_time){
+      const today = new Date();
+
+      filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formatDateInput(today)))
+    }
+
+    return filteredResults;
+  }
 
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)
@@ -274,7 +314,7 @@ export const LocationShowPage = () => {
 
               </DateMenu>
               <ul className='locShowIdxULLessonDates'>
-                {sortByEarliestToLatestStartTime(lessonDates)?.map((lessonDate, idx) => 
+                {sortByEarliestToLatestStartTime(getfilteredLessonDates(lessonDates))?.map((lessonDate, idx) => 
                   <LessonDatesIndexItem 
                     key={idx} 
                     lessonDate={lessonDate} 
@@ -342,6 +382,6 @@ export const LocationShowPage = () => {
       </>
     )
   }
-}
+})
 
 export default LocationShowPage;

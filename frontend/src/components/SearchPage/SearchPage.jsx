@@ -50,7 +50,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   
   useEffect(() => {
     if (loaded) {
-      setLoaded(false)
+      // setLoaded(false)
       const paramsMap = getParams(history.location.search)
       dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time)).then(()=>setLoaded(true))
     }
@@ -145,7 +145,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
       const formattedNewDate = formatDateInput(nextDay)
 
       filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formattedNewDate))
-      
+
     } else if (!paramsMap.start_time){
       const today = new Date();
 
