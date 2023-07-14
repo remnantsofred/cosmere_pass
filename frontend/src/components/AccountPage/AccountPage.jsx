@@ -24,7 +24,7 @@ import { getItemByID } from '../../utils/general_util'
 export const AccountPage = withRouter(({history}) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.session.user);
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState('upcoming-reservations');
   const reservations = useSelector(getReservationsForUser(currentUser.id))
   const lessonDates = useSelector(getLessonDates)
   const locations = useSelector(getLocations)

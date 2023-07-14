@@ -13,7 +13,7 @@ import Loading from '../loading/Loading';
 import LessonDatesIndexItem from '../LessonDatesIndexItem'; 
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, withRouter } from 'react-router-dom';
 import { createReservation, deleteReservation } from '../../store/reservation';
 import { getLocation, fetchLocation } from '../../store/location';
 import { fetchLessons, getLessonsForLocation } from '../../store/lesson';
@@ -27,8 +27,11 @@ import ToolTip from '../ToolTip/ToolTip';
 import { restoreSession } from '../../store/session';
 import { ElendelCenter, KharbranthCenter, KholinarCenter, LuthadelCenter, HomelandCenter, ThaylenCityCenter, PurelakeCenter, UrithiruCenter, HallandrenCenter } from '../map/Map';
 import { sortByEarliestToLatestStartTime, sortByMostRecentlyUpdated } from '../../utils/sorting_util'
+import DateMenu from '../DateMenu/DateMenu';
+import { formatDateWithDayShort, formatDateInput } from '../../utils/date_util';
+import { getParams } from '../../utils/general_util';
 
-export const LocationShowPage = () => {
+export const LocationShowPage = withRouter(({history}) => {
   const { locationId } = useParams();
   const location = useSelector(getLocation(locationId));
   const reviews = useSelector(getReviewsForLocation(locationId));
@@ -45,22 +48,62 @@ export const LocationShowPage = () => {
   const [ modalReview, setModalReview ] = useState();
   const [toolTipIsShown, setToolTipIsShown] = useState(false);
 
-
+  let today = new Date();
+  const [date, setDate] = useState(0);
 
   useEffect(()=>{
     Promise.all([
       dispatch(fetchLocation(locationId)),
       dispatch(fetchLessons()),
-      dispatch(fetchLessonDates(locationId)),  
+      dispatch(fetchLessonDates(locationId, '', '')),  
       dispatch(fetchReviews(locationId, '')),  
       dispatch(restoreSession())
     ]).then(() =>  setLoaded(true))
   },[locationId])
 
+  useEffect(() => {
+    if (loaded) {
+      // setLoaded(false)
+      const paramsMap = getParams(history.location.search)
+      dispatch(fetchLessonDates(locationId, '', paramsMap.start_time)).then(()=>setLoaded(true))
+    }
+  },[history.location.search])
+
+
   useEffect(()=>{
     sortedReviews = sortByMostRecentlyUpdated(reviews)
   }, [reviews])
 
+  useEffect(()=>{
+    history.push(`/locations/${locationId}/?start_time=${date}`)
+  }, [date])
+
+  useEffect(()=>{
+    const searchParams = getParams(history.location.search)
+    setDate(searchParams.start_time ? parseInt(searchParams.start_time) : 0)
+  }, [history.location.search])
+
+  const getfilteredLessonDates = (lessonDates) => {
+    const paramsMap = getParams(history.location.search)
+    let filteredResults = lessonDates
+
+    if (paramsMap.start_time){
+      const numDays = parseInt(paramsMap.start_time)
+      const nextDay = new Date();
+      nextDay.setDate(nextDay.getDate() + numDays)
+  
+      const formattedNewDate = formatDateInput(nextDay)
+
+      filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formattedNewDate))
+      
+    } else if (!paramsMap.start_time){
+      const today = new Date();
+
+      filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formatDateInput(today)))
+    }
+
+    return filteredResults;
+  }
 
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)
@@ -130,26 +173,8 @@ export const LocationShowPage = () => {
   }
 
 
-  // const availableReviews = (lessons) => {
-  //   let lessonsTakenCanReview = [];
-  //   let lessonsTakenAlreadyReviewed = [];
-  //   let lessonsNotTaken = [];
-
-  //   for (let lesson of lessons) {
-  //     if (currentUser.lessonsTaken.includes(lesson.id) && !currentUser.lessonsReviewed.includes(lesson.id)) {
-  //       lessonsTakenCanReview.push(lesson)
-  //     } else if (currentUser.lessonsTaken.includes(lesson.id) && currentUser.lessonsReviewed.includes(lesson.id)) {
-  //       lessonsTakenAlreadyReviewed.push(lesson)
-  //     } else if(!currentUser.lessonsTaken.includes(lesson.id)) {
-  //       lessonsNotTaken.push(lesson)
-  //     } 
-  //   }
-
-  // }
-
   const mapLocProps = () => {
     if (parseInt(locationId) === 1) {
-      // elendel
       return (
         {
           center: ElendelCenter,
@@ -237,11 +262,8 @@ export const LocationShowPage = () => {
       ) 
     } else if (!currentUser) {
       return (
-        // <button 
-        //   className='lessonDateIdxItmReserve inactive'>Sign up to Leave Review
-        // </button>
         <div className='sign-up-review-text'>
-          {/* Sign up and take a lesson to leave a review! */}
+         
         </div>
       ) 
     }
@@ -281,8 +303,18 @@ export const LocationShowPage = () => {
             
             <Row className='LocShowPanelLRow LocSchedule'>
               <h3 className="locShowSubtitle">Schedule</h3>
+              <DateMenu 
+                className='dateMenu loc-show-pg-date-menu'
+                id='loc-show-pg-date-menu'
+                placeholder={formatDateWithDayShort(today)}
+                source='loc-show-pg'
+                value={date}
+                setValue={setDate}
+                >
+
+              </DateMenu>
               <ul className='locShowIdxULLessonDates'>
-                {sortByEarliestToLatestStartTime(lessonDates)?.map((lessonDate, idx) => 
+                {sortByEarliestToLatestStartTime(getfilteredLessonDates(lessonDates))?.map((lessonDate, idx) => 
                   <LessonDatesIndexItem 
                     key={idx} 
                     lessonDate={lessonDate} 
@@ -350,6 +382,6 @@ export const LocationShowPage = () => {
       </>
     )
   }
-}
+})
 
 export default LocationShowPage;

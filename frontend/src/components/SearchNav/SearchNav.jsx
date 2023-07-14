@@ -2,7 +2,7 @@ import './SearchNav.css';
 import Row from '../row/Row';
 import Column from '../column/Column';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
-import { formatDateWithDayShort, dateFromString } from '../../utils/date_util';
+import { formatDateWithDayShort } from '../../utils/date_util';
 import { getParams } from '../../utils/general_util';
 import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
@@ -46,33 +46,25 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
 
     if (selectedValueLoc && selectedValueType && selectedValueDate !== 0){
       history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}&start_time=${selectedValueDate}`)
-      console.log(1)
 
     } else if (selectedValueLoc && !selectedValueType && selectedValueDate !== 0){
       history.push(`/search/?location_id=${selectedValueLoc.value}&start_time=${selectedValueDate}`)
-      console.log(2)
-      // GOOD
+      
     } else if (selectedValueLoc && selectedValueType && selectedValueDate === 0){
-      history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}`)
-      console.log(3) 
-      // GOOD
+      history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}`) 
 
     } else if (!selectedValueLoc && selectedValueType && selectedValueDate !== 0){
       history.push(`/search/?&lesson_type=${selectedValueType.value}&start_time=${selectedValueDate}`)
-      console.log(4)
 
     } else if (!selectedValueLoc && !selectedValueType && selectedValueDate !== 0){
       history.push(`/search/?start_time=${selectedValueDate}`)
-      console.log(5)
 
     } else if (!selectedValueLoc && selectedValueType && selectedValueDate === 0){
       history.push(`/search/?lesson_type=${selectedValueType.value}`)
-      console.log(6)
-      // GOOD
+   
     } else if (selectedValueLoc && !selectedValueType && selectedValueDate === 0){
       history.push(`/search/?location_id=${selectedValueLoc.value}`)
-      console.log(7)
-      //GOOD
+
     }
 
   }, [selectedValueLoc, selectedValueType, selectedValueDate])
