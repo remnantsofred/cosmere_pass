@@ -314,14 +314,24 @@ export const LocationShowPage = withRouter(({history}) => {
 
               </DateMenu>
               <ul className='locShowIdxULLessonDates'>
-                {sortByEarliestToLatestStartTime(getfilteredLessonDates(lessonDates))?.map((lessonDate, idx) => 
+                {getfilteredLessonDates(lessonDates).length ? 
+                  sortByEarliestToLatestStartTime(getfilteredLessonDates(lessonDates))?.map((lessonDate, idx) => 
                   <LessonDatesIndexItem 
                     key={idx} 
                     lessonDate={lessonDate} 
                     location={location} 
                     handleResClick={handleResClick} 
                     handleCancel={handleCancel} 
-                    source="locationShow" />)}
+                    source="locationShow" />) 
+                  :
+                    <div className='loc-show-pg-no-res-div'> 
+                      <div className="noResHeader">
+                        No results found
+                      </div>
+                      <div className="noResText">
+                        Try a new date.
+                      </div>
+                    </div> }
               </ul>
             </Row>
             <Row className='LocShowPanelLRow LocReviews'>
