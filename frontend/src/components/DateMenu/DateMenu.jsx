@@ -59,7 +59,7 @@ export const DateMenu = withRouter(({className="dateMenu", id="", options, place
   return (
     <div className={className} id={id}>
         <div className="dateMenuLabel">{getDisplay()}</div>
-        <BackArrow />
+        {(value > 0) && <BackArrow />}
         <ForwardArrow />
     </div>
     
