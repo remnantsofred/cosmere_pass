@@ -28,6 +28,7 @@ import { restoreSession } from '../../store/session';
 import { ElendelCenter, KharbranthCenter, KholinarCenter, LuthadelCenter, HomelandCenter, ThaylenCityCenter, PurelakeCenter, UrithiruCenter, HallandrenCenter } from '../map/Map';
 import { sortByEarliestToLatestStartTime, sortByMostRecentlyUpdated } from '../../utils/sorting_util'
 import DateMenu from '../DateMenu/DateMenu';
+import { formatDateWithDayShort } from '../../utils/date_util';
 
 export const LocationShowPage = () => {
   const { locationId } = useParams();
@@ -46,7 +47,8 @@ export const LocationShowPage = () => {
   const [ modalReview, setModalReview ] = useState();
   const [toolTipIsShown, setToolTipIsShown] = useState(false);
 
-
+  let today = new Date();
+  const [date, setDate] = useState(0);
 
   useEffect(()=>{
     Promise.all([
@@ -131,26 +133,8 @@ export const LocationShowPage = () => {
   }
 
 
-  // const availableReviews = (lessons) => {
-  //   let lessonsTakenCanReview = [];
-  //   let lessonsTakenAlreadyReviewed = [];
-  //   let lessonsNotTaken = [];
-
-  //   for (let lesson of lessons) {
-  //     if (currentUser.lessonsTaken.includes(lesson.id) && !currentUser.lessonsReviewed.includes(lesson.id)) {
-  //       lessonsTakenCanReview.push(lesson)
-  //     } else if (currentUser.lessonsTaken.includes(lesson.id) && currentUser.lessonsReviewed.includes(lesson.id)) {
-  //       lessonsTakenAlreadyReviewed.push(lesson)
-  //     } else if(!currentUser.lessonsTaken.includes(lesson.id)) {
-  //       lessonsNotTaken.push(lesson)
-  //     } 
-  //   }
-
-  // }
-
   const mapLocProps = () => {
     if (parseInt(locationId) === 1) {
-      // elendel
       return (
         {
           center: ElendelCenter,
@@ -238,11 +222,8 @@ export const LocationShowPage = () => {
       ) 
     } else if (!currentUser) {
       return (
-        // <button 
-        //   className='lessonDateIdxItmReserve inactive'>Sign up to Leave Review
-        // </button>
         <div className='sign-up-review-text'>
-          {/* Sign up and take a lesson to leave a review! */}
+         
         </div>
       ) 
     }
@@ -282,6 +263,16 @@ export const LocationShowPage = () => {
             
             <Row className='LocShowPanelLRow LocSchedule'>
               <h3 className="locShowSubtitle">Schedule</h3>
+              <DateMenu 
+                className='dateMenu loc-show-pg-date-menu'
+                id='loc-show-pg-date-menu'
+                placeholder={formatDateWithDayShort(today)}
+                source='loc-show-pg'
+                value={date}
+                setValue={setDate}
+                >
+
+              </DateMenu>
               <ul className='locShowIdxULLessonDates'>
                 {sortByEarliestToLatestStartTime(lessonDates)?.map((lessonDate, idx) => 
                   <LessonDatesIndexItem 

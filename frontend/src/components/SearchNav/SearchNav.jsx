@@ -2,7 +2,7 @@ import './SearchNav.css';
 import Row from '../row/Row';
 import Column from '../column/Column';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
-import { formatDateWithDayShort, dateFromString } from '../../utils/date_util';
+import { formatDateWithDayShort } from '../../utils/date_util';
 import { getParams } from '../../utils/general_util';
 import { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
