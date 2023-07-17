@@ -28,8 +28,8 @@ class Api::ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review = set_review_details(@review)
     if @review.save
+      @review = set_review_details(@review)
       render :show
     else
       render json: @review.errors.full_messages, status: 422
@@ -38,8 +38,8 @@ class Api::ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @review = set_review_details(@review)
     if @review.update(review_params)
+      @review = set_review_details(@review)
       render :show
     else
       render json: @review.errors.full_messages, status: 422
