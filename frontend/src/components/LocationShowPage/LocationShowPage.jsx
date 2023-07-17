@@ -18,7 +18,7 @@ import { createReservation, deleteReservation } from '../../store/reservation';
 import { getLocation, fetchLocation } from '../../store/location';
 import { fetchLessons, getLessonsForLocation } from '../../store/lesson';
 import { fetchLessonDates, getLessonDatesForLocation } from '../../store/lessonDates';
-import { fetchReviews, getReviewsForLocation, createReview, deleteReview, updateReview } from '../../store/review';
+import { fetchReviews, getReviewsForLocation, createReview, deleteReview, updateReview, getReviews } from '../../store/review';
 import { CgBrowser } from 'react-icons/cg';
 import { AiFillFacebook } from 'react-icons/ai';
 import { ImTwitter } from 'react-icons/im';
@@ -35,6 +35,7 @@ export const LocationShowPage = withRouter(({history}) => {
   const { locationId } = useParams();
   const location = useSelector(getLocation(locationId));
   const reviews = useSelector(getReviewsForLocation(locationId));
+  // const reviews = useSelector(getReviews)
   let sortedReviews;
   const lessonDates = useSelector(getLessonDatesForLocation(locationId))
   const lessons = useSelector(getLessonsForLocation(locationId));
