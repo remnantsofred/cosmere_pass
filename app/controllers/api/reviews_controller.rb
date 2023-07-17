@@ -5,11 +5,11 @@ class Api::ReviewsController < ApplicationController
   def index
     helpers.time_ago_in_words(Time.now)
     if params[:location_id]
-      @reviews = Review.where("location_id = ?", params[:location_id]).order(created_at: :desc).order(updated_at: :desc)      
+      @reviews = Review.where("location_id = ?", params[:location_id].to_i).order(created_at: :desc).order(updated_at: :desc)      
     end
 
     if params[:user_id]
-      @reviews = Review.where("reviewer_id = ?", params[:user_id]).order(created_at: :desc).order(updated_at: :desc)  
+      @reviews = Review.where("reviewer_id = ?", params[:user_id].to_i).order(created_at: :desc).order(updated_at: :desc)  
     end
 
     if @reviews.length == 0
@@ -28,8 +28,8 @@ class Api::ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review = set_review_details(@review)
     if @review.save
+      @review = set_review_details(@review)
       render :show
     else
       render json: @review.errors.full_messages, status: 422
@@ -38,8 +38,8 @@ class Api::ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    @review = set_review_details(@review)
     if @review.update(review_params)
+      @review = set_review_details(@review)
       render :show
     else
       render json: @review.errors.full_messages, status: 422

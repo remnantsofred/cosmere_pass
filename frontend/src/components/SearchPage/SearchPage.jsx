@@ -50,12 +50,16 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   
   useEffect(() => {
     if (loaded) {
-      // setLoaded(false)
       const paramsMap = getParams(history.location.search)
       dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time)).then(()=>setLoaded(true))
     }
   },[history.location.search])
 
+
+  useEffect(()=>{
+    const paramsMap = getParams(history.location.search)
+    dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time))
+  }, [modalStatus])
 
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)
