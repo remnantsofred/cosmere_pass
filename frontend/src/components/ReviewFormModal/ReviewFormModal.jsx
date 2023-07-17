@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 // lessons being passed in are already lessons just for that location
-export const ReviewFormModal = ({children, id='', className="ReviewFormModal", currentUser, location, handleModalClose, handleReviewSubmit, source, lessons, handleReviewEditSubmit, review}) => {
+export const ReviewFormModal = ({children, id='', className="ReviewFormModal", currentUser, location, handleModalClose, handleReviewSubmit, source, lessons, handleReviewEditSubmit, review, reviews}) => {
   const [lessonID, setLessonID] = useState("");
   const [rating, setRating] = useState(5);
   const [reviewBody, setReviewBody] = useState("");
@@ -38,13 +38,25 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     }
   }
 
+  const checkUserReviewed = (reviews, user) => {
+    const userReviewedLessons = []
+    for (let review of reviews){
+      if (review.reviewerId === user.id){
+        console.log(review.reviewerId, "review.reviewerId")
+        console.log(user.id, "user.id", review.lessonId, "review.lessonId")
+        userReviewedLessons.push(review.lessonId)
+      }
+    }
+    return userReviewedLessons
+  }
+
   // const dropdownOptions = lessons.map( lesson => ({value: lesson.id, label: lesson.title}))
 
   const dropdownOptions = lessons.map( lesson => {
     if (currentUser.lessonsTaken.includes(lesson.id) && !currentUser.lessonsReviewed.includes(lesson.id)) {
       return {value: lesson.id, label: lesson.title, isDisabled: false}
     }
-    else if(currentUser.lessonsTaken.includes(lesson.id) && currentUser.lessonsReviewed.includes(lesson.id)) {
+    else if(currentUser.lessonsTaken.includes(lesson.id) && checkUserReviewed(reviews, currentUser).includes(lesson.id)) {
       return {value: lesson.id, label: lesson.title, isDisabled: "alreadyReviewed"}
     }
     else if (!currentUser.lessonsTaken.includes(lesson.id)) {
