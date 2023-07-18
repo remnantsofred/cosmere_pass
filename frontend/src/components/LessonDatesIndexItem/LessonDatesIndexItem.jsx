@@ -1,19 +1,17 @@
 import './LessonDatesIndexItem.css';
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Row from '../row/Row';
 import Column from '../column/Column';
-import { Link, NavLink, useParams } from 'react-router-dom';
-import { getLocation, fetchLocation } from '../../store/location';
-import { formatDate, formatTime, timeBetween, formatDateWithDayShort } from '../../utils/date_util';
+import { NavLink } from 'react-router-dom';
+import { formatTime, timeBetween, formatDateWithDayShort } from '../../utils/date_util';
 import { StarIcon } from '../icon/Icon';
-import { getReservations, getReservation, fetchReservations, fetchReservation } from '../../store/reservation';
-import { getLesson, fetchLesson } from '../../store/lesson';
+import { getLesson } from '../../store/lesson';
 import ToolTip from '../ToolTip/ToolTip';
 
 // reservations passed from SearchPage component are just reservations for this specific lessonDate
 export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, handleCancel, source}) => {
-  const dispatch = useDispatch();
+
   const lesson = useSelector(getLesson(lessonDate.lessonId));
   const currentUser = useSelector(state => state.session.user);
   const [toolTipIsShown, setToolTipIsShown] = useState(false);
@@ -29,7 +27,6 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       )
     } else if (lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation && lessonDate.currentUserWouldBeDoublebooked) {
       // if logged in and reservation available and user has not reserved it BUT WOULD BE double booked
-      console.log("tool tip should show")
       return (
         <>
           <button 

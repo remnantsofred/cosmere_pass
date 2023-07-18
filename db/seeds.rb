@@ -472,8 +472,8 @@ require "open-uri"
   now = DateTime.now
   Lesson.all.each do |lesson|
     
-    start_time_fixed = DateTime.new(2023, 7, 1, rand(9..16), 0, 0)
-    start_time = DateTime.new(now.year, now.month, now.day, rand(9..16), 0, 0)
+    start_time_fixed = DateTime.new(2023, 7, 15, rand(9..16), 0, 0).in_time_zone('America/Los_Angeles')
+    start_time = DateTime.new(now.year, now.month, now.day, rand(9..16), 0, 0).in_time_zone('America/Los_Angeles')
     length = [1, 1.5, 2].sample
     end_time = start_time + length.hour
     end_time_fixed = start_time_fixed + length.hour

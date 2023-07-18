@@ -36,9 +36,9 @@ export const DateMenu = withRouter(({className="dateMenu", id="", placeholder, s
     )
   }
   const handleBackDate = () => {
-    if (value > 0){
+    // if (value > 0){
       setValue(value - 1);
-    } 
+    // } 
   }
   
   const handleForwardDate = () => {
@@ -46,14 +46,14 @@ export const DateMenu = withRouter(({className="dateMenu", id="", placeholder, s
   }
 
   const getDisplay = () => {
-    if (value) {
+    // if (value) {
       let today = new Date();
       // let original = formatDateWithDayShort(today);
       today.setDate(today.getDate() + value)
       const formatted = formatDateWithDayShort(today)
       return formatted;
-    };
-    return placeholder;
+    // };
+    // return placeholder;
   };
 
   

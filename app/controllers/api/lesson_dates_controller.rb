@@ -15,16 +15,17 @@ class Api::LessonDatesController < ApplicationController
         .where("lesson_type = ?", params[:lesson_type])
     end   
 
-    if params[:start_time]
+    if params[:start_time] == '0'
       # print(params[:start_time])
       # num_days = params[:start_time].to_i
       # formatted_start_time = Date.new(date_sections[0],date_sections[1],date_sections[2])
       @lesson_dates = @lesson_dates
-        .where(start_time: Date.today.advance(days: params[:start_time].to_i).beginning_of_day..Date.today.advance(days: params[:start_time].to_i).end_of_day)
+        .where(start_time: DateTime.now().in_time_zone('America/Los_Angeles')..Date.today.end_of_day.in_time_zone('America/Los_Angeles'))
+    else 
+      @lesson_dates = @lesson_dates
+        .where(start_time: Date.today.advance(days: params[:start_time].to_i).beginning_of_day.in_time_zone('America/Los_Angeles')..Date.today.advance(days: params[:start_time].to_i).end_of_day.in_time_zone('America/Los_Angeles'))
         .order("start_time ASC")
       # @lesson_dates = LessonDate.where()
-    else 
-      @lesson_dates = @lesson_dates.where(start_time: Date.today.beginning_of_day..Date.today.end_of_day)
     end   
       
     if params[:user_id]

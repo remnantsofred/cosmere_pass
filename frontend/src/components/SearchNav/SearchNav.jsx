@@ -44,27 +44,18 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
 
   useEffect(()=>{
 
-    if (selectedValueLoc && selectedValueType && selectedValueDate !== 0){
+    if (selectedValueLoc && selectedValueType){
       history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}&start_time=${selectedValueDate}`)
 
-    } else if (selectedValueLoc && !selectedValueType && selectedValueDate !== 0){
+    } else if (selectedValueLoc && !selectedValueType ){
       history.push(`/search/?location_id=${selectedValueLoc.value}&start_time=${selectedValueDate}`)
-      
-    } else if (selectedValueLoc && selectedValueType && selectedValueDate === 0){
-      history.push(`/search/?location_id=${selectedValueLoc.value}&lesson_type=${selectedValueType.value}`) 
-
-    } else if (!selectedValueLoc && selectedValueType && selectedValueDate !== 0){
+    
+    } else if (!selectedValueLoc && selectedValueType ){
       history.push(`/search/?&lesson_type=${selectedValueType.value}&start_time=${selectedValueDate}`)
 
-    } else if (!selectedValueLoc && !selectedValueType && selectedValueDate !== 0){
+    } else if (!selectedValueLoc && !selectedValueType){
       history.push(`/search/?start_time=${selectedValueDate}`)
-
-    } else if (!selectedValueLoc && selectedValueType && selectedValueDate === 0){
-      history.push(`/search/?lesson_type=${selectedValueType.value}`)
-   
-    } else if (selectedValueLoc && !selectedValueType && selectedValueDate === 0){
-      history.push(`/search/?location_id=${selectedValueLoc.value}`)
-
+      
     }
 
   }, [selectedValueLoc, selectedValueType, selectedValueDate])
