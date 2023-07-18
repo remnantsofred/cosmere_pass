@@ -19,7 +19,7 @@ const LoginFormPage = () => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return <Redirect to="/search" />;
+  if (sessionUser) return <Redirect to="/search?start_time=0" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
