@@ -7,10 +7,6 @@ import ReviewFormModalImg from './Vin.jpeg';
 import Panels from '../panels';
 import Panel from '../panel/Panel';
 import modalCloseButton from '../ReservationConfirmModal/modalCloseButton.png';
-import { formatTime, formatDate, formatDateShort, formatDateWithDay } from '../../utils/date_util';
-import { FiEdit } from 'react-icons/fi'
-import { CalendarIcon } from '../icon/Icon'
-import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 
 // lessons being passed in are already lessons just for that location

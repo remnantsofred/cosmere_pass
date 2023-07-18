@@ -2,7 +2,7 @@ import './ReservationCancelModal.css';
 import Panels from '../panels';
 import Panel from '../panel/Panel';
 import Row from '../row/Row';
-import { formatTime, formatDate, formatDateWithDay } from '../../utils/date_util';
+import { formatTime, formatDateWithDay } from '../../utils/date_util';
 import modalCloseButton from '../ReservationConfirmModal/modalCloseButton.png';
 
 export const ReservationCancelModal = ({children, id='', className="ReservationCancelModal", lessonDate, lesson, location, handleModalClose, handleCancelModalConfirm, source}) => {

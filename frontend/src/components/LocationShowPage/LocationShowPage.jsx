@@ -76,7 +76,7 @@ export const LocationShowPage = withRouter(({history}) => {
   }, [reviews])
 
   useEffect(()=>{
-    history.push(`/locations/${locationId}/?start_time=${date}`)
+    history.push(`/locations/${locationId}?start_time=${date}`)
   }, [date])
 
   useEffect(()=>{

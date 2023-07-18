@@ -2,7 +2,7 @@ import './ReservationConfirmModal.css';
 import Panels from '../panels';
 import Panel from '../panel/Panel';
 import Row from '../row/Row';
-import { formatTime, formatDate, formatDateWithDay } from '../../utils/date_util';
+import { formatTime, formatDateWithDay } from '../../utils/date_util';
 import modalCloseButton from './modalCloseButton.png';
 
 export const ReservationConfirmModal = ({children, id='', className="ReservationConfirmModal", lessonDate, lesson, location, handleModalClose, handleResSubmit}) => {

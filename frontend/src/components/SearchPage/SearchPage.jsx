@@ -19,7 +19,7 @@ import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfi
 import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import Row from '../row/Row';
 import SearchNav from '../SearchNav';
-import { wrapWithPromise, getItemByID } from '../../utils/general_util';
+import { getItemByID } from '../../utils/general_util';
 import { sortByEarliestToLatestStartTime } from '../../utils/sorting_util'
 import { getParams } from '../../utils/general_util';
 
