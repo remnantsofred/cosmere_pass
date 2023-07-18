@@ -48,7 +48,6 @@ export const DateMenu = withRouter(({className="dateMenu", id="", placeholder, s
   const getDisplay = () => {
     // if (value) {
       let today = new Date();
-      // let original = formatDateWithDayShort(today);
       today.setDate(today.getDate() + value)
       const formatted = formatDateWithDayShort(today)
       return formatted;

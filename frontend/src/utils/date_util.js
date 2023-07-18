@@ -23,9 +23,9 @@ export const formatDate = date => {
     6: 'Saturday',
   };
   const obj = new Date(date);
-  const month = months[obj.getMonth()];
-  const day = obj.getDate();
-  const year = obj.getFullYear();
+  const month = months[obj.getUTCMonth()];
+  const day = obj.getUTCDate();
+  const year = obj.getUTCFullYear();
   return `${month} ${day}, ${year}`;
 };
 
@@ -54,10 +54,10 @@ export const formatDateShort = date => {
     6: 'Saturday',
   };
   const obj = new Date(date);
-  const month = months[obj.getMonth()];
-  const day = obj.getDate();
-  const year = obj.getFullYear();
-  return `${obj.getMonth() + 1}/${day}/${year}`;
+  const month = months[obj.getUTCMonth()];
+  const day = obj.getUTCDate();
+  const year = obj.getUTCFullYear();
+  return `${obj.getUTCMonth() + 1}/${day}/${year}`;
 };
 
 export const formatDateInput = date => {
@@ -88,9 +88,9 @@ const days = {
   0: '00'
 };
   const obj = new Date(date);
-  const month = months[obj.getMonth()];
-  const day = obj.getDate() < 10 ? days[obj.getDate()] : obj.getDate()
-  const year = obj.getFullYear();
+  const month = months[obj.getUTCMonth()];
+  const day = obj.getUTCDate() < 10 ? days[obj.getUTCDate()] : obj.getUTCDate()
+  const year = obj.getUTCFullYear();
   return `${year}-${month}-${day}`;
 };
 
@@ -119,10 +119,10 @@ export const formatDateWithDay = date => {
     6: 'Saturday',
   };
   const obj = new Date(date);
-  const month = months[obj.getMonth()];
-  const day = obj.getDate();
-  const year = obj.getFullYear();
-  const dayOfWeek = daysOfWeek[obj.getDay()];
+  const month = months[obj.getUTCMonth()];
+  const day = obj.getUTCDate();
+  const year = obj.getUTCFullYear();
+  const dayOfWeek = daysOfWeek[obj.getUTCDay()];
   return `${dayOfWeek}, ${month} ${day}`;
 };
 
@@ -151,10 +151,11 @@ export const formatDateWithDayShort = date => {
     6: 'Sat',
   };
   const obj = new Date(date);
-  const month = months[obj.getMonth()];
-  const day = obj.getDate();
-  const year = obj.getFullYear();
-  const dayOfWeek = daysOfWeek[obj.getDay()];
+
+  const month = months[obj.getUTCMonth()];
+  const day = obj.getUTCDate();
+  const year = obj.getUTCFullYear();
+  const dayOfWeek = daysOfWeek[obj.getUTCDay()];
   return `${dayOfWeek}, ${month} ${day}`;
 };
 
@@ -183,10 +184,10 @@ export const formatDateWithDayShortAlt = date => {
     6: 'Saturday',
   };
   const obj = new Date(date);
-  const month = obj.getMonth() + 1;
-  const day = obj.getDate();
-  const year = obj.getFullYear();
-  const dayOfWeek = daysOfWeek[obj.getDay()];
+  const month = obj.getUTCMonth() + 1;
+  const day = obj.getUTCDate();
+  const year = obj.getUTCFullYear();
+  const dayOfWeek = daysOfWeek[obj.getUTCDay()];
   return `${dayOfWeek}, ${month}/${day}`;
 };
 
@@ -206,17 +207,17 @@ export const formatDateWithMonth = date => {
     11: 'December',
   };
   const obj = new Date(date);
-  const month = months[obj.getMonth()];
+  const month = months[obj.getUTCMonth()];
   return `${month}`;
 };
 
 
 export const formatTime = date => {
   const obj = new Date(date);
-  const fullHours = obj.getHours();
+  const fullHours = obj.getUTCHours();
   let hours = fullHours % 12;
   if (hours === 0) hours = 12;
-  const minutes = obj.getMinutes();
+  const minutes = obj.getUTCMinutes();
   const tmp = `0${minutes}`;
   const paddedMinutes = tmp.slice(tmp.length - 2);
   const ampm = fullHours < 12 || fullHours === 0 ? 'AM' : 'PM';

@@ -14,7 +14,7 @@ export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
       {(type === 'upcoming' && reservations.length === 0) && 
           <NavLink 
             className="splashNavLink reservation-index-navlink" 
-            to="/search">
+            to="/search?start_time=0">
             Browse lessons
           </NavLink> }
       {type === 'past' && 
@@ -24,7 +24,7 @@ export const ReservationIndex = ({user, type, reservations, handleCancel}) =>{
       {(type === 'past' && reservations.length === 0) && 
         <NavLink 
           className="splashNavLink reservation-index-navlink" 
-          to="/search">
+          to="/search?start_time=0">
           Browse lessons
         </NavLink> }
       

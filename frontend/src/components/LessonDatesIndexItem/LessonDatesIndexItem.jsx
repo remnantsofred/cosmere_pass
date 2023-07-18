@@ -72,6 +72,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
     <Row className={source === "search" ? "lessonDateIdxItmRow" : "locShowLessonDateIdxItmRow"}>
       <Column className={source === "search" ? 'lessonDateIdxItmTimeCol' : 'locShowLessonDateIdxItmTimeCol'}>
         <p className={source === "search" ? "lessonDateIdxItmTime startTime" : "lessonDateIdxItmTime startTimeLoc"}>{formatTime(lessonDate.startTime)}</p>
+        {/* <p className={source === "search" ? "lessonDateIdxItmTime startTime" : "lessonDateIdxItmTime startTimeLoc"}>{'testing'}</p> */}
         <p className="lessonDateIdxItmTime duration">{timeBetween(lessonDate.startTime, lessonDate.endTime)} min</p>
         <p className="lessonDateIdxItmTime duration">{formatDateWithDayShort(lessonDate.startTime)}</p>
       </Column>

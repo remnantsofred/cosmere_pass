@@ -469,11 +469,11 @@ require "open-uri"
     max_capacity: 20
   })
 
-  now = DateTime.now
+  now = DateTime.now()
   Lesson.all.each do |lesson|
     
-    start_time_fixed = DateTime.new(2023, 7, 15, rand(9..16), 0, 0).in_time_zone('America/Los_Angeles')
-    start_time = DateTime.new(now.year, now.month, now.day, rand(9..16), 0, 0).in_time_zone('America/Los_Angeles')
+    start_time_fixed = DateTime.new(2023, 7, 15, rand(6..18), 0, 0, '-8')
+    start_time = DateTime.new(now.year, now.month, now.day, rand(6..18), 0, 0, '-8')
     length = [1, 1.5, 2].sample
     end_time = start_time + length.hour
     end_time_fixed = start_time_fixed + length.hour
@@ -498,7 +498,7 @@ require "open-uri"
         start_time: start_time + num.day,
         end_time: end_time + num.day
       })
-      
+
       start_time = start_time + 4.day
       end_time = end_time + 4.day
 
