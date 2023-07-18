@@ -16,3 +16,5 @@ export const getParams = (params) => {
   } 
   return paramsMap;
 }
+
+
