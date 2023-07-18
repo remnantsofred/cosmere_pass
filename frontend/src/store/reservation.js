@@ -118,6 +118,7 @@ export const deleteReservation = (id, lessonDateId) => async (dispatch) => {
   }
 };
 
+
 // REDUCER
 const reservationsReducer = (state = {}, action) => {
   let newState = { ...state };

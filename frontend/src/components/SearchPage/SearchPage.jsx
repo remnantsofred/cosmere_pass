@@ -19,7 +19,7 @@ import ReservationConfirmModal from '../ReservationConfirmModal/ReservationConfi
 import ReservationMadeModal from '../ReservationMadeModal/ReservationMadeModal';
 import Row from '../row/Row';
 import SearchNav from '../SearchNav';
-import { getItemByID } from '../../utils/general_util';
+import { wrapWithPromise, getItemByID } from '../../utils/general_util';
 import { sortByEarliestToLatestStartTime } from '../../utils/sorting_util'
 import { getParams } from '../../utils/general_util';
 
@@ -34,6 +34,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   const [ modalLessonDate, setModalLessonDate ] = useState();
   const [ modalLesson, setModalLesson ] = useState();
   const [ modalLocation, setModalLocation ] = useState();
+  const [ numChangedReservation, setNumChangedReservation ] = useState(0);
   const currentUser = useSelector(state => state.session.user);
 
   
@@ -51,15 +52,18 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   useEffect(() => {
     if (loaded) {
       const paramsMap = getParams(history.location.search)
-      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time)).then(()=>setLoaded(true))
+      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time))
+        .then(()=>setLoaded(true))
     }
   },[history.location.search])
 
 
   useEffect(()=>{
-    const paramsMap = getParams(history.location.search)
-    dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time))
-  }, [modalStatus])
+    if (loaded) {
+      const paramsMap = getParams(history.location.search)
+      dispatch(fetchLessonDates(paramsMap.location_id, paramsMap.lesson_type, paramsMap.start_time))
+    }
+  }, [numChangedReservation])
 
   const handleResClick = (lessonDate, lesson, location) => {
     setModalStatus(1)
@@ -81,7 +85,9 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
       student_id: currentUser.id,
       lesson_date_id: lessonDate.id
     }
+    const prev = numChangedReservation
     dispatch(createReservation(data))
+      .then(()=> setNumChangedReservation(prev+1))
     setModalStatus(2)
   }
 
@@ -94,7 +100,9 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
   }
 
   const handleCancelModalConfirm = (lessonDate) => {
+    const prev = numChangedReservation
     dispatch(deleteReservation(lessonDate.currentUserReservationId, lessonDate.id))
+      .then(()=> setNumChangedReservation(prev-1))
     setModalStatus(false)
   }
 

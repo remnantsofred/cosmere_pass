@@ -29,6 +29,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       )
     } else if (lessonDate.remainingSlots > 0 && !lessonDate.userHasReservation && lessonDate.currentUserWouldBeDoublebooked) {
       // if logged in and reservation available and user has not reserved it BUT WOULD BE double booked
+      console.log("tool tip should show")
       return (
         <>
           <button 
@@ -69,7 +70,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
       </>
     )
   }
-
+  
   return (
     <Row className={source === "search" ? "lessonDateIdxItmRow" : "locShowLessonDateIdxItmRow"}>
       <Column className={source === "search" ? 'lessonDateIdxItmTimeCol' : 'locShowLessonDateIdxItmTimeCol'}>
@@ -85,6 +86,7 @@ export const LessonDatesIndexItem = ({lessonDate, location, handleResClick, hand
           <p className='locRevCt'>({location.reviewCount})</p>
         </Row>}
       </Column>
+      {/* note: need to fix tooltip or lessondateindexitem styling so it fits on the location show page */}
       {source === "search" && <Column className='lessonDateIdxItmCol3'>
         <NavLink to={`/locations/${location.id}`} className="lessonDateIdxItmLocLink">{location.locationName}</NavLink>
         <h3 className="lessonDateIdxItmLessonType">{lesson.lessonType}</h3>
