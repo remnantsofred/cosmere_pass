@@ -16,16 +16,12 @@ class Api::LessonDatesController < ApplicationController
     end   
 
     if params[:start_time] == '0'
-      # print(params[:start_time])
-      # num_days = params[:start_time].to_i
-      # formatted_start_time = Date.new(date_sections[0],date_sections[1],date_sections[2])
       @lesson_dates = @lesson_dates
         .where(start_time: DateTime.now().in_time_zone('America/Los_Angeles')..Date.today.in_time_zone('America/Los_Angeles').end_of_day)
     else 
       @lesson_dates = @lesson_dates
         .where(start_time: Date.today.advance(days: params[:start_time].to_i).in_time_zone('America/Los_Angeles').beginning_of_day..Date.today.advance(days: params[:start_time].to_i).in_time_zone('America/Los_Angeles').end_of_day)
         .order("start_time ASC")
-      # @lesson_dates = LessonDate.where()
     end   
       
     if params[:user_id]
@@ -98,7 +94,7 @@ class Api::LessonDatesController < ApplicationController
 
       # each reservation_datetime is an array of a start and end time
       current_user.reservation_datetimes.each do |reservation_datetime| 
-        if lesson_date.start_time.between?(reservation_datetime[0], reservation_datetime[1]) || lesson_date.end_time.between?(reservation_datetime[0], reservation_datetime[1])
+        if lesson_date.start_time == reservation_datetime[0] 
           lesson_date.current_user_would_be_doublebooked = true
         end
       end
