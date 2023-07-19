@@ -158,10 +158,10 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
 
       filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formattedNewDate))
 
-    } else if (!paramsMap.start_time){
-      const today = new Date();
+    // } else if (!paramsMap.start_time){
+    //   const today = new Date();
 
-      filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formatDateInput(today)))
+    //   filteredResults = filteredResults.filter(lessonDate => lessonDate.startTime.includes(formatDateInput(today)))
     }
 
     return filteredResults;
@@ -184,6 +184,7 @@ export const SearchPage = withRouter(({children, id='', className="SearchPage", 
           lessonDates={lessonDates}
           currentUser={currentUser}
           indexType={indexType}
+          passedSearchParams={getParams(history.location.search)}
            />
         <Panels id={id} className={className}>
           { children }

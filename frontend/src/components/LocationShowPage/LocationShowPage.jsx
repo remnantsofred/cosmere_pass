@@ -81,7 +81,7 @@ export const LocationShowPage = withRouter(({history}) => {
 
   useEffect(()=>{
     const searchParams = getParams(history.location.search)
-    setDate(searchParams.start_time ? parseInt(searchParams.start_time) : 0)
+    setDate(searchParams.start_time !== '0' ? parseInt(searchParams.start_time) : 0)
   }, [history.location.search])
 
   const getfilteredLessonDates = (lessonDates) => {
