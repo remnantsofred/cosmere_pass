@@ -53,9 +53,9 @@ export const fetchLessonDates = (locationId, lessonType, startTime, userId) => a
   if (lessonType !== "" && lessonType !== undefined) {
     queryParams.push(`lesson_type=${lessonType.toString()}`)
   }
-  // if (startTime !== "" && startTime !== undefined) {
+  if (startTime !== "" && startTime !== undefined) {
     queryParams.push(`start_time=${startTime.toString()}`)
-  // }
+  }
   if (userId !== "" && userId !== undefined){
     queryParams.push(`user_id=${userId}`)
   }
