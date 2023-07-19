@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 import { DateMenu } from '../DateMenu/DateMenu';
 
 
-export const SearchNav = withRouter(({children, id='', className="SearchNav", locations, lessons, lessonDates, currentUser, indexType, history }) => {
+export const SearchNav = withRouter(({children, id='', className="SearchNav", locations, lessons, lessonDates, currentUser, indexType, history, passedSearchParams }) => {
   const dropdownTypeOptions = [
     {value: "Allomancy",label: "Allomancy"},
     {value: "Awakening", label: "Awakening"},
@@ -19,28 +19,35 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   ]
   let today = new Date();
 
-  const [selectedValueLoc, setSelectedValueLoc] = useState(null);
-  const [selectedValueType, setSelectedValueType] = useState(null);
-  const [selectedValueDate, setSelectedValueDate] = useState(0);
-  
-
   const dropdownLocationOptions = locations.map( location => ({value: location.id, label: location.locationName}))
 
   const getOptionfromValue = (value, type) => {
     if (type === 'location'){
       for (let locationOption of dropdownLocationOptions){
-       if (locationOption.value === value){
-         return locationOption
-       }
+        if (locationOption.value === value){
+          return locationOption
+        }
       }
     } else if (type === 'type'){
       for (let typeOption of dropdownTypeOptions){
         if (typeOption.value === value){
           return typeOption
         }
-       }
+      }
     }
   }
+
+  const [selectedValueLoc, setSelectedValueLoc] = useState(getOptionfromValue(parseInt(passedSearchParams.location_id), 'location'));
+  const [selectedValueType, setSelectedValueType] = useState(getOptionfromValue(passedSearchParams.lesson_type, 'type'));
+  const [selectedValueDate, setSelectedValueDate] = useState(passedSearchParams.start_time);
+
+  useEffect(()=>{
+    const searchParams = getParams(history.location.search)
+    setSelectedValueLoc(getOptionfromValue(parseInt(searchParams.location_id), 'location'));
+    setSelectedValueType(getOptionfromValue(searchParams.lesson_type, 'type'));
+    setSelectedValueDate(parseInt(searchParams.start_time))
+
+  }, [])
 
   useEffect(()=>{
 
@@ -65,8 +72,7 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
     const searchParams = getParams(history.location.search)
     setSelectedValueLoc(getOptionfromValue(parseInt(searchParams.location_id), 'location'));
     setSelectedValueType(getOptionfromValue(searchParams.lesson_type, 'type'));
-    setSelectedValueDate(searchParams.start_time ? parseInt(searchParams.start_time) : 0)
-
+    setSelectedValueDate(parseInt(searchParams.start_time))
     
   }, [history.location.search])
   
