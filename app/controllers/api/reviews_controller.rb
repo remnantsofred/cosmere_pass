@@ -12,9 +12,9 @@ class Api::ReviewsController < ApplicationController
       @reviews = Review.where("reviewer_id = ?", params[:user_id].to_i).order(created_at: :desc).order(updated_at: :desc)  
     end
 
-    if @reviews.length == 0
-      @reviews = Review.all
-    end
+    # if @reviews.length == 0
+    #   @reviews = Review.all
+    # end
     
     @reviews = @reviews.map do |review|
       set_review_details(review)
