@@ -10,6 +10,9 @@ export const SplashPage = ({children, id='', className="splashPage"}) => {
 
   return (
     <Panels className='splashPanels'>
+      <div className="navNavLinkLogoName mobile-name" >
+        cosmerepass
+      </div>
       <img src={homeImage} className="homeImage" />
       <Panel className='splashMid'>
         <h1 className='splashTitle'>One app for all things magic, tactics, & investiture</h1>

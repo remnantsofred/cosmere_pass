@@ -49,25 +49,24 @@ function Navigation({id}) {
 
 
   return (
-    <Columns className="NavColumns" >
-          <div className="navNavLinkLogoName mobile-name" >
-              {/* <img className="img-responsive" src={logo} alt="logo"/> */}
-              cosmerepass
-            </div>
-          {/* <Column><NavLink id="NavLink" exact to="/">Home</NavLink></Column> */}
-          
-          
-          <Column className='first-nav-col'>
-            <NavLink className="navNavLinkLogoName" exact to="/">
-              {/* <img className="img-responsive" src={logo} alt="logo"/> */}
-              cosmerepass
-            </NavLink>
-          </Column>
-          <Column className='second-nav-col'>
-            {sessionLinks}
-          </Column>
-     
-    </Columns>
+    <>
+      <Columns className="NavColumns" >
+            {/* <Column><NavLink id="NavLink" exact to="/">Home</NavLink></Column> */}
+
+            <Column className='first-nav-col'>
+              <NavLink className="navNavLinkLogoName" exact to="/">
+                {/* <img className="img-responsive" src={logo} alt="logo"/> */}
+                cosmerepass
+              </NavLink>
+            </Column>
+            <Column className='second-nav-col'>
+              {sessionLinks}
+            </Column>
+      
+      </Columns>
+      <Columns className='mobile-nav'>
+      </Columns>
+    </>
   );
 }
 
