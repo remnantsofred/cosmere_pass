@@ -123,20 +123,14 @@
     justify-content: center;
   }
 
-  .second-nav-col {
+  .second-nav-col, .first-nav-col {
     display: none;
     width: 0px;
-  }
-
-  .first-nav-col {
-    display: none;
   }
 
   .mobile-name {
     justify-content: center;
   }
 
-  .navNavLinkLogoName {
-    /* font-size: 2rem; */
-  }
+ 
 }

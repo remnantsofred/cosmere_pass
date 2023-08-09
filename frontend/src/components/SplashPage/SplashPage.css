@@ -132,4 +132,8 @@
     width: 75%;
   }
 
+  #demologinButton {
+    background-color: transparent;
+  }
+
 }

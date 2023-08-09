@@ -197,3 +197,75 @@
   flex-direction: column;
   align-items: center;
 }
+
+.mobile-only-sign-up-title, .mobile-only-signup-button {
+  display: none;
+}
+
+@media only screen and (320px <= width <= 480px){
+  .signupleftPanel, .trialCard, #dollars, #dollarsSubtitle, .signUplineBelow, #signUpSubmit, .signupCol, .iconCol, .signupIcon, .signupH3, #heroSignUp {
+    display: none;
+    width: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .signupRow {
+    /* font-size: 0.75rem; */
+    background-color: transparent;
+  }
+
+  .mobile-only-sign-up-title {
+    display: grid;
+    width: 100vw;
+    font-size: 1.5rem;
+    padding: 3vh 0px 0px 6vw;
+    height: 0
+  }
+
+  .signuprightPanel {
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0;
+    width: 75vw;
+    height: 100vh;
+
+  }
+  
+  .signupForm, .signupInput, .signupErrors, .signupRow {
+    width: 90vw;
+  }
+
+  .mobile-only-signup-button {
+    display: flex;
+    width: 279px;
+    width: 90vw;
+    height: 48px;
+    padding-top: 16px;
+    padding-bottom: 32px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 1px solid #d6d6d6;
+    border-radius: 8px;
+    transition: color .3s,background-color .3s,border-color .3s;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    color: #fff;
+    border-color: #05f;
+    background-color: #05f;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1;
+    justify-content: center;
+  }
+  
+  .mobile-only-signup-button:hover {
+    background-color: #004de6;
+    border-color: #004de6;
+    border-top-color: rgb(0, 77, 230);
+    border-right-color: rgb(0, 77, 230);
+    border-bottom-color: rgb(0, 77, 230);
+    border-left-color: rgb(0, 77, 230);
+  }
+
+}
