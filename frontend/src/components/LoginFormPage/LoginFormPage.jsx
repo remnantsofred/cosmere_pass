@@ -66,10 +66,11 @@ const LoginFormPage = () => {
       <Panel className="loginForm">
         <Panel className="loginNarrow">
           <form onSubmit={handleSubmit} >
-            <Row className="loginRow">
+            <h2 className='mobile-only-login-title'>Log in</h2>
+            <Row className="loginRow login-header-row">
               <h2 id="welcomeBack">Welcome back</h2>
             </Row>
-            <Row className="loginRow">
+            <Row className="loginRow login-error-row">
               <ul id="errorMessage" className='level1'>
               {errors.map(error => <li key={error}>{error}</li>)}
               </ul>
