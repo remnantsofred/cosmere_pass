@@ -91,19 +91,21 @@
   display: none;
 }
 
-@media only screen and (min-width: 414px){
+@media only screen and (320px <= width <= 480px){
   .splashTitle {
     display: none;
   }
 
   .splashPanels {
-    height: 400px;
+    height: 60vh;
+    width: 100vw;
+    margin-left: 1vw;
   }
 
   .splashMid {
-    height: 0px;
-    margin-top: 400px;
-
+    height: 20vh;
+    margin-top: 40vh;
+    width: 100vw;
   }
 
   .homeImage {
@@ -113,6 +115,7 @@
 
   .splashSpan {
     font-size: 1rem;
+    width: 75%;
   }
 
   .splashNavLink {
@@ -123,6 +126,10 @@
     display: flex;
     text-decoration: none;
 
+  }
+
+  #splashSignUp {
+    width: 75%;
   }
 
 }
