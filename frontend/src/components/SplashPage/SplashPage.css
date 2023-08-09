@@ -87,6 +87,10 @@
   border-left-color: rgb(0, 77, 230);
 }
 
+.mobile-splash-login {
+  display: none;
+}
+
 @media only screen and (min-width: 414px){
   .splashTitle {
     display: none;
@@ -98,10 +102,27 @@
 
   .splashMid {
     height: 0px;
+    margin-top: 400px;
+
   }
 
   .homeImage {
     object-fit: cover;
     
   }
+
+  .splashSpan {
+    font-size: 1rem;
+  }
+
+  .splashNavLink {
+    display: none;
+  }
+  
+  .mobile-splash-login {
+    display: flex;
+    text-decoration: none;
+
+  }
+
 }

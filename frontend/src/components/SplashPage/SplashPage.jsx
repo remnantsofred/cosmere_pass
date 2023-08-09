@@ -19,6 +19,7 @@ export const SplashPage = ({children, id='', className="splashPage"}) => {
         </span>
         {!currentUser && <NavLink className="splashNavLink" id="splashSignUp" to="/signup">Get 1 month free</NavLink>}
         <NavLink className="splashNavLink" to="/search?start_time=0">Browse lessons</NavLink>
+        <NavLink className="mobile-splash-login" to="/login">Log in with account</NavLink>
 
       </Panel>
     </Panels>
