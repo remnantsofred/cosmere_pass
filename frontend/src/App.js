@@ -15,6 +15,7 @@ import SearchPage from "./components/SearchPage";
 import { useSelector } from "react-redux";
 import ReviewForm from "./components/ReviewForm/ReviewForm";
 import AboutPage from "./components/AboutPage";
+import MobileNav from "./components/MobileNav";
  
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/about">
             <Navigation />
             <AboutPage className="SignupLargePanel"/>
+            <MobileNav />
           </Route>
           <Route path="/signup">
             <Navigation />
@@ -43,10 +45,12 @@ function App() {
           <Route exact path="/search">
             <Navigation />
             <SearchPage />
+            <MobileNav />
           </Route>
           <Route path="/locations/:locationId">
             <Navigation />
             <LocationShowPage />
+            
           </Route>
 
           {/* <Route exact path="/locations">
