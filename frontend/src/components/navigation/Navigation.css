@@ -113,3 +113,32 @@
   line-height: 1.4285714286;
 
 }
+
+.mobile-name {
+  display: hidden;
+}
+
+@media only screen and (min-width: 414px){
+  .NavColumns {
+    /* align-items: center; */
+    justify-content: center;
+  }
+
+  .second-nav-col {
+    display: none;
+    width: 0px;
+  }
+
+  .first-nav-col {
+    display: none;
+    width: 414px;
+  }
+
+  .mobile-name {
+    justify-content: center;
+  }
+
+  .navNavLinkLogoName {
+    /* font-size: 2rem; */
+  }
+}

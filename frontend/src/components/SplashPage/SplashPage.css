@@ -86,3 +86,22 @@
   border-bottom-color: rgb(0, 77, 230);
   border-left-color: rgb(0, 77, 230);
 }
+
+@media only screen and (min-width: 414px){
+  .splashTitle {
+    display: none;
+  }
+
+  .splashPanels {
+    height: 400px;
+  }
+
+  .splashMid {
+    height: 0px;
+  }
+
+  .homeImage {
+    object-fit: cover;
+    
+  }
+}
