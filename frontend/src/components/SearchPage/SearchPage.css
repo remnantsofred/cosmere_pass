@@ -120,3 +120,7 @@
   border-bottom-color: rgb(0, 77, 230);
   border-left-color: rgb(0, 77, 230);
 }
+
+@media only screen and ( 320px <= width <= 480px) {
+  
+}

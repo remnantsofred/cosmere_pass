@@ -80,11 +80,6 @@
     width: 90%;
   }
 
-  .about-page-connect-row {
-    width: 100%;
-
-  }
-
   .about-page-connect-row-mobile {
     display: flex;
     justify-content: space-evenly;

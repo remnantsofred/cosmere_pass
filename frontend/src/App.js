@@ -41,6 +41,7 @@ function App() {
           <Route path="/account">
             <Navigation />
             <AccountPage />
+            <MobileNav />
           </Route>
           <Route exact path="/search">
             <Navigation />
