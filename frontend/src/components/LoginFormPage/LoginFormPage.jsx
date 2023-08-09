@@ -105,9 +105,9 @@ const LoginFormPage = () => {
                 <button type="submit" id="loginButton" className='button-square'>Log in</button >
             </Row>
             
-            <Row className="loginRow" id="lineBelow">
+            {/* <Row className="loginRow" id="lineBelow">
               <NavLink className="NavLink" id="resetPassword" to="/reset-password">Forgot your password?</NavLink>
-            </Row>
+            </Row> */}
             <Row className="loginRow">
                 <button onClick={handleDemoLogin} id="demologinButton" className='level1'>Demo Log In</button >
             </Row>

@@ -99,7 +99,7 @@
   .splashPanels {
     height: 60vh;
     width: 100vw;
-    margin-left: 1vw;
+    /* margin-left: 1vw; */
   }
 
   .splashMid {

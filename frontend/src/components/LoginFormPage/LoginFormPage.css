@@ -235,3 +235,9 @@ label {
 	100%{transform: rotate(360deg);}
 
 }
+
+@media only screen and (320px <= width <= 480px) {
+  .loginrightBlurb {
+    display: none;
+  }
+}
