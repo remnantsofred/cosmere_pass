@@ -125,8 +125,9 @@
     padding: 0;
   }
 
-  .duration-mobile {
+  .duration-mobile, .location-mobile {
     font-size: 0.75rem;
+    
   }
 
   .reservation-index-item-button-panel {

@@ -87,7 +87,7 @@
   border-left-color: rgb(0, 77, 230);
 }
 
-.mobile-splash-login {
+.mobile-splash-login, .mobile-name {
   display: none;
 }
 
