@@ -265,6 +265,12 @@
   .locShowLessonDateIdxItmRow {
     width: 100%;
   }
+  .locShowSubtitle {
+    margin: 2vh 0 1.5vh 0;
+  }
+  .loc-show-pg-date-menu {
+    margin: 0 0 1.5vh 0;
+  }
   .loc-show-pg-no-res-div {
     width: 100%;
   }
