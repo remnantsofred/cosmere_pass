@@ -180,6 +180,7 @@ export const AccountPage = withRouter(({history}) => {
       
         <Row className='test'></Row>
         <Panel className='acct-page-page'>
+          
           { modalStatus === 1 && 
             <ReservationCancelModal
               lessonDate={modalLessonDate} 
@@ -233,6 +234,7 @@ export const AccountPage = withRouter(({history}) => {
             </ul>
           </Panels>
           <Panels className='acct-page-panel-R'>
+            <h2 className='mobile-only-sign-up-title acct-pg-upcoming'>Upcoming</h2>
             <div className='acct-page-main-content-container'>
               {renderContent()}
 

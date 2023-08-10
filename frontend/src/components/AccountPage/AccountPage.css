@@ -107,3 +107,40 @@
   top: 42px;
   padding: 8px;
 }
+
+@media only screen and ( 320px <= width <= 480px){
+  .acct-page-page {
+    width: 100vw;
+    height: 100vh;
+    /* overflow: scroll; */
+    flex-direction: column;
+  }
+
+  .acct-page-title-row-welcome-banner, .acct-page-panel-L, .reservation-index-header {
+    display: none;
+  }
+
+  .acct-page-panel-R {
+    width: 100vw;
+    height: 92vh;
+    padding: 0vh 0 0 0;
+    /* overflow: scroll; */
+  }
+  .acct-pg-upcoming {
+    height: 3vh;
+    margin: 4vh 0 0 3.5vw; 
+    padding: 0 0 0 0;
+  }
+
+  .acct-page-title-ul {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .acct-page-main-content-container {
+    padding: 2.5vw 3.5vw 2.5vw 3.5vw;
+    overflow: scroll;
+    height: 100%;
+  }
+
+}

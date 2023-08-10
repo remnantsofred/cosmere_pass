@@ -8,3 +8,7 @@
 .reservation-index-navlink {
   padding: 4px;
 }
+
+@media only screen and ( 320px <= width <= 480px){
+  
+}
