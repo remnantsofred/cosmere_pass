@@ -285,7 +285,7 @@ export const LocationShowPage = withRouter(({history}) => {
       <Panels className="LocShowPage">
 
           <Panel className='LocShowPanelL'>
-            <Row className='LocShowPanelLRow'>
+            <Row className='LocShowPanelLRow loc-show-img-row'>
               <img src={location.imageURL} alt={location.locationName} className='LocShowImg' />
             </Row>
             <Row className='locNameRow'>
@@ -299,7 +299,7 @@ export const LocationShowPage = withRouter(({history}) => {
               This location offers {location.lessonTypes.join("and ")} lessons.
             </Row>
             <Row className='LocShowPanelLRow'>
-              <div>{location.description}</div>
+              <div className='loc-show-description-text'>{location.description}</div>
             </Row>
             
             <Row className='LocShowPanelLRow LocSchedule'>

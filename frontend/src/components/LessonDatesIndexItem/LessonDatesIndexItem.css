@@ -323,3 +323,28 @@
   font-weight: 700;
   padding-top: 4px;
 }
+
+@media only screen and (320px <= width <= 480px) {
+  .locShowIdxULLessonDates {
+    margin: 0;
+
+  }
+  .locShowLessonDateIdxItmRow {
+    width: 100%;
+    
+  }
+
+  .locShowLessonDateIdxItmTimeCol {
+    width: 25%;
+    font-size: 0.8rem;
+  }
+  .locShowIdxItmCol2 {
+    width: 25%;
+    font-size: 0.8rem;
+  }
+
+  .locShowIdxItmRCol {
+    width: 25%;
+    font-size: 0.8rem;
+  }
+}
