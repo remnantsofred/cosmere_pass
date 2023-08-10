@@ -72,6 +72,7 @@ function SignupFormPage() {
           </p>
           <img src={hero} id="heroSignUp" />
       </Panels>
+      <h2 className='mobile-only-sign-up-title'>Sign up</h2>
       <Panels className="signuprightPanel">
         <div className='trialCard'>
           YOUR TRIAL INCLUDES
@@ -157,6 +158,7 @@ function SignupFormPage() {
           </Row>
           <Row>
             <button type="submit" id="signUpSubmit">Try for free</button>
+            <button type="submit" className='mobile-only-signup-button'>Sign up</button>
           </Row>
           <Row className="signupRow signUplineBelow" >
           </Row>

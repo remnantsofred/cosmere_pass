@@ -54,3 +54,46 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
+
+.about-page-connect-row-mobile {
+  display: none;
+}
+
+@media only screen and ( 320px <= width <= 480px){
+  .about-page-connect-row {
+    display: none;
+  }
+
+  .about-page-container {
+    height: 95vh;
+    width: 100vw;
+  }
+
+  .about-page-left-panel {
+    height: 80%;
+    width: 100%;
+    overflow: scroll;
+  }
+
+  p {
+    /* display: flex; */
+    width: 90%;
+  }
+
+  .about-page-connect-row-mobile {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .about-page-connect-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-nav-connect-link {
+    text-decoration: none;
+    color: rgba(0, 85, 255, 1);
+  }
+}

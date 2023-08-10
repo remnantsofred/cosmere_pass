@@ -1,8 +1,9 @@
 import Panels from '../panels';
 import Panel from '../panel/Panel';
+import Column from '../column/Column';
 import './AboutPage.css';
 import Row from '../row/Row';
-
+import { BsLinkedin, BsGithub, BsFillBriefcaseFill } from 'react-icons/bs'
 
 
 export const AboutPage = ({id='', className="about-page"}) => {
@@ -37,10 +38,24 @@ export const AboutPage = ({id='', className="about-page"}) => {
 
         <br />
         <br />
-        <Row>
+        <Row className='about-page-connect-row'>
           <a href="https://www.linkedin.com/in/lamdaphne/" target="_blank" className="navNavLink" id='signupNav'>LinkedIn  </a>
           <a href="https://remnantsofred.github.io/" target="_blank" className="navNavLink" id='signupNav'>Portfolio</a>
           <a href="https://github.com/remnantsofred/cosmere_pass" target="_blank" className="navNavLink" id='signupNav'>Github</a>
+        </Row>
+        <Row className='about-page-connect-row-mobile'>
+          <Column className='about-page-connect-col'>
+            <BsLinkedin className='mobile-nav-icon'/>
+            <a href="https://www.linkedin.com/in/lamdaphne/" target="_blank" className="mobile-nav-connect-link" id=''>LinkedIn</a>
+          </Column> 
+          <Column className='about-page-connect-col'>
+            <BsFillBriefcaseFill className='mobile-nav-icon'/>
+            <a href="https://remnantsofred.github.io/" target="_blank" className="mobile-nav-connect-link" id=''>Portfolio</a>
+          </Column> 
+          <Column className='about-page-connect-col'>
+            <BsGithub className='mobile-nav-icon'/>
+            <a href="https://github.com/remnantsofred/cosmere_pass" target="_blank" className="mobile-nav-connect-link" id=''>Github</a>
+          </Column> 
         </Row>
       </Panels>
     

@@ -86,3 +86,61 @@
   border-bottom-color: rgb(0, 77, 230);
   border-left-color: rgb(0, 77, 230);
 }
+
+.mobile-splash-login {
+  display: none;
+}
+
+@media only screen and (320px <= width <= 480px){
+  .splashTitle {
+    display: none;
+  }
+
+  .splashPanels {
+    height: 60vh;
+    width: 100vw;
+    /* margin-left: 1vw; */
+  }
+
+  .splashMid {
+    height: 20vh;
+    margin-top: 40vh;
+    width: 100vw;
+  }
+
+  .homeImage {
+    object-fit: cover;
+    
+  }
+
+  .splashSpan {
+    font-size: 1rem;
+    width: 75%;
+  }
+
+  .splashNavLink {
+    display: none;
+  }
+  
+  .mobile-splash-login {
+    display: flex;
+    text-decoration: none;
+
+  }
+
+  .mobile-name {
+    justify-content: center;
+    margin: 1vh 0 1vh 0;
+  }
+
+  #splashSignUp {
+    width: 75%;
+  }
+
+  #demologinButton {
+    background-color: transparent;
+  }
+
+
+
+}

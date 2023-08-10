@@ -113,3 +113,25 @@
   line-height: 1.4285714286;
 
 }
+
+.mobile-name, .mobile-nav {
+  display: hidden;
+}
+
+.nav-parent-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media only screen and ( 320px <= width <= 480px){
+  .NavColumns {
+    justify-content: center;
+  }
+
+  .second-nav-col, .first-nav-col, .NavColumns {
+    display: none;
+    width: 0px;
+  }
+ 
+}

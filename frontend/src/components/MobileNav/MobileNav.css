@@ -1,0 +1,40 @@
+.mobile-nav {
+  display: none;
+}
+
+@media only screen and ( 320px <= width <= 480px){
+  .mobile-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 100vw;
+    height: 8vh;
+    padding-top: 0.8vh;
+    /* position: sticky; */
+    /* bottom: 0; */
+  }
+
+  .mobile-nav-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .mobile-nav-icon {
+    margin-bottom: 0.3rem;
+  }
+
+  .mobile-nav-navlink {
+    text-decoration: none;
+    font-size: 0.7rem;
+  }
+
+  .mobile-nav-navlink:active {
+    font-weight: 200;
+  }
+
+
+}
