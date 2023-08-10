@@ -75,9 +75,9 @@
     overflow: scroll;
   }
 
-  p {
+  .about-page-left-panel p {
     /* display: flex; */
-    width: 90%;
+    width: 100%;
   }
 
   .about-page-connect-row-mobile {

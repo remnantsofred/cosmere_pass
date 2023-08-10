@@ -29,10 +29,10 @@ export const ReservationCancelModal = ({children, id='', className="ReservationC
             <p>{location.locationName}</p>
           </Row>
           <Row className='resCancelModalLessonTime'>
-            <p>
+            <p className='resCancelModalLessonTimeText'>
               {formatDateWithDay(lessonDate.startTime)}
             </p>
-            <p>
+            <p className='resCancelModalLessonTimeText'>
               {formatTime(lessonDate.startTime)} - {formatTime(lessonDate.endTime)}
             </p>
           </Row>

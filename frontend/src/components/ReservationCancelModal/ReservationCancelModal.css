@@ -166,6 +166,7 @@
   .ReservationCancelModal{
     width: 85vw;
     height: 80vh;
+    text-align: center;
   }
 
   .resModalImgDiv{
@@ -193,8 +194,8 @@
     height: 50%;
     font-size: 1rem;
   }
-  
-  .resCancelModalCredits {
+
+  .resCancelModalCredits, .resCancelModalLessonTimeText, .resModalInfoPanel p {
     width: 100%
   }
 
