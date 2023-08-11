@@ -128,15 +128,15 @@ export const DropdownMenu = withRouter(({children, id='', className="DropdownMen
   } else if (source === "searchNav") {
 
     return (
-      <div onClick={handleInputClick} className="dropdown-container searchNavDropCont">
-        <div className="dropdown-tools"> 
+      <div onClick={handleInputClick} className="dropdown-container " id='searchNavDropCont'>
+        <div className="dropdown-tools" id='nav-bar-dropdown-tools'> 
           <div className="dropdown-selected-value" style={{color : value ? "#05f" : ""}} id="search-nav-dropdown-selected-value">{ value ? value.label : placeholder}</div>
           {/* {TypePlaceholder && <div className="dropdown-selected-value" id="search-nav-dropdown-selected-value">{getTypeDisplay()}</div>} */}
-            <div className="dropdown-tool">
+            <div className="dropdown-tool nav-bar-dropdown-tool">
               <Icon />
             </div>
         </div> 
-        <div className="dropdown-input">
+        <div className="dropdown-input" id='nav-bar-dropdown-input'>
           {showMenu && <div className="dropdown-menu searchNavDropMenu" >
             {options.map( option => (
               <div onClick={() => onNavItemClick(option)} key={option.value} className={`dropdown-item ${isSelected(option) && "selected"}`}>

@@ -122,5 +122,31 @@
 }
 
 @media only screen and ( 320px <= width <= 480px) {
+  .SearchPage {
+    flex-direction: column-reverse;
+
+  }
+
+  .lessonDatesIdxleftPanel {
+    height: 80vh;
+    width: 100vw;
+    padding: 0;
+  }
+
+  .lessonDatesIdxrightPanel {
+    height: 20vh;
+    width: 100vw;
+  }
+
+  .lessonDatesIdxUL {
+    height: 90vh;
+    position: static;
+
+  }
+
+  .IndexToggleBar {
+    position: static;
+    margin: 7px 0 3px 0;
+  }
   
 }

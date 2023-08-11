@@ -4,6 +4,7 @@
 
 .dropdown-container {
   width: 420px;
+  /* width: 100%; */
   white-space: nowrap;
   text-align: left;
   margin: 16px;
@@ -142,3 +143,8 @@
   align-items: center;
 }
 
+@media only screen and (320px <= width <= 480px) {
+  .searchNavDropCont {
+    width: 30px;
+  }
+}

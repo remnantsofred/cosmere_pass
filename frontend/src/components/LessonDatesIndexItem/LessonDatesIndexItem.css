@@ -341,17 +341,28 @@
     margin: 0;
   }
 
-  .locShowIdxItmCol2 {
+  .lessonDateIdxItmTimeCol{
+    width: 9%;
+    font-size: 0.7rem;
+  }
+
+  .locShowIdxItmCol2, .lessonDateIdxItmCol2 {
     width: 30%;
     font-size: 0.8rem;
     padding: 0;
     margin: 0;
   }
+
+  .lessonDateIdxItmCol2 {
+    font-size: 0.75rem;
+  }
+
+
   .lessonDateIdxItmLink {
     font-size: 0.8rem;
   }
 
-  .locShowIdxItmRCol {
+  .locShowIdxItmRCol, .lessonDateIdxItmRCol {
     width: 30%;
     font-size: 0.8rem;
     padding: 0;
@@ -362,5 +373,17 @@
     font-size: 0.7rem;
     width: 100%;
     text-align: center;
+  }
+
+  .lessonDateIdxItmCol3 {
+    display: none;
+  }
+
+  .lessonDateIdxItmRow {
+    gap: 1.5rem;
+    height: 150px;
+    margin-top: 2px;
+    padding-top: 12px;
+    width: 85%;
   }
 }
