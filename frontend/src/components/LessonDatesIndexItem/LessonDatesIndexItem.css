@@ -361,6 +361,6 @@
   .remainingSlots {
     font-size: 0.7rem;
     width: 100%;
-    /* padding: 0; */
+    text-align: center;
   }
 }
