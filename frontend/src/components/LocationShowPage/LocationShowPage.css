@@ -209,3 +209,86 @@
   flex-direction: column;
 
 }
+
+@media only screen and (320px <= width <= 480px){
+  .LocShowPage {
+    width: 100vw;
+    height: 100vh;
+    /* padding-bottom: 32px; */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .LocShowPanelR {
+    display: none;
+
+  }
+
+  .LocShowPanelL {
+    width: 100%;
+    height: 100%;
+    padding: 0 0 0 0;
+    margin: 0;
+    /* border: solid red 1px; */
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .locShowLessonDateIdxItmRow {
+    width: 100%;
+    /* padding: 0 2.5vw; */
+    /* margin: 0 3vw; */
+  }
+
+  .locNameRow {
+    width: 94vw;
+    padding: 3vw;
+    
+  }
+  .locShowIdxULLessonDates {
+    width: 100%;
+    
+  }
+  .locShowLessonDateIdxItmRow {
+    width: 100%;
+    
+  }
+  .loc-show-img-row {
+    width: 100%;
+  }
+  .LocShowPanelLRow {
+    width: 94vw;
+    padding: 0 3vw 1.5vh 3vw;
+    font-size: 0.8rem;
+  }
+  .locShowLessonDateIdxItmRow {
+    width: 100%;
+  }
+  .locShowSubtitle {
+    margin: 2vh 0 1.5vh 0;
+  }
+  .loc-show-pg-date-menu {
+    margin: 0 0 1.5vh 0;
+  }
+  .loc-show-pg-no-res-div {
+    width: 100%;
+  }
+
+  .loc-show-img-row {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    height: 25vh;
+  }
+
+  .loc-show-description-text {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+
+  #locShowReviewSubtitle {
+    padding: 0;
+  }
+
+}

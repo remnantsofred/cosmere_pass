@@ -51,7 +51,7 @@ function App() {
           <Route path="/locations/:locationId">
             <Navigation />
             <LocationShowPage />
-            
+            <MobileNav />
           </Route>
 
           {/* <Route exact path="/locations">

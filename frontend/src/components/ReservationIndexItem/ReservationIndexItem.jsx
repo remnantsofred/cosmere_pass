@@ -27,8 +27,8 @@ export const ReservationIndexItem = ({reservation, type, handleCancel}) =>{
         <img src={reservation.lessonImageUrl} alt={reservation.locationName} className='reservation-lesson-img' />
       </Column>
       <Panel className='reservation-index-item-info-panel'>
-        <p className='lessonDateIdxItmTime startTimeLoc'>{reservation.lessonTitle}</p>
-        <p className='lessonDateIdxItmTime startTime'>{reservation.locationName} - {getWorld(reservation.locationName)}</p>
+        <p className='lessonDateIdxItmTime startTimeLoc '>{reservation.lessonTitle}</p>
+        <p className='lessonDateIdxItmTime startTime location-mobile'>{reservation.locationName} - {getWorld(reservation.locationName)}</p>
         <p className="lessonDateIdxItmTime duration-mobile">{formatDateWithDayShortAlt(reservation.startTime)}  ·  {formatTime(reservation.startTime)} - {formatTime(reservation.endTime)}</p>
         <br />
         <p className="lessonDateIdxItmTime duration">{formatDateWithDayShortAlt(reservation.startTime)}</p>

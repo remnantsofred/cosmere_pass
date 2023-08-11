@@ -61,8 +61,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 3px;
-
+  border-radius: 3px 3px 0 0;
 }
 
 .resModalInfoPanel {
@@ -162,6 +161,42 @@
 }
 
 
+@media only screen and ( 320px <= width <= 480px) {
+  .ReservationCancelModal{
+    width: 85vw;
+    height: 80vh;
+    text-align: center;
+  }
+
+  .resModalImgDiv{
+    width: 100%;
+
+  }
+
+  .resModalInfoPanel{
+    width: 100%;
+    height: 50%;
+    font-size: 0.85rem;
+    line-height: 0.5;
+  }
+
+  .resModalLessonName{
+    width: 100%
+  }
+
+  .resModalLessonLoc {
+    width: 100%;
+  }
+
+  .resCancelModalLessonTime {
+    width: 100%;
+    height: 50%;
+    font-size: 1rem;
+  }
+
+  .resCancelModalCredits, .resCancelModalLessonTimeText, .resModalInfoPanel p {
+    width: 100%
+  }
 
 
-
+}

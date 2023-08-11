@@ -95,3 +95,29 @@
   font-size: .875rem;
   color: rgb(255, 214, 1);
 }
+
+@media only screen and (320px <= width <= 480px) {
+  .ReviewIndexItem {
+    width: 100%;
+  }
+
+  .reviewTitleRow{
+    width: 100%
+  }
+
+  .reviewStarsRow {
+    width: 100%;
+  }
+
+  .reviewBodyRow {
+    width: 100%;
+  }
+
+  .reviewBody{
+    width: 100%;
+  }
+  
+  /* -review-index-item {
+
+  } */
+}
