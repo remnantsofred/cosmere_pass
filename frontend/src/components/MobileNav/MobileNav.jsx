@@ -12,19 +12,19 @@ const MobileNav = () => {
   return (
     <Columns className="mobile-nav" >
       <Column className='mobile-nav-col'>
-        <BiSearch className='mobile-nav-icon'></BiSearch>
+        <BiSearch className='mobile-nav-icon'> <NavLink className="mobile-nav-navlink" exact to="/search" /></BiSearch>
         <NavLink className="mobile-nav-navlink" exact to="/search">
           Search
         </NavLink>
       </Column>
       <Column className='mobile-nav-col'>
-        <GoCalendar className='mobile-nav-icon'></GoCalendar>
+        <GoCalendar className='mobile-nav-icon'><NavLink className="mobile-nav-navlink" exact to="/account" /></GoCalendar>
         <NavLink className="mobile-nav-navlink" exact to="/account">
           Upcoming
         </NavLink>
       </Column>
       <Column className='mobile-nav-col'>
-        <BiInfoCircle className='mobile-nav-icon'></BiInfoCircle>
+        <BiInfoCircle className='mobile-nav-icon'><NavLink className="mobile-nav-navlink" exact to="/about" /></BiInfoCircle>
         <NavLink className="mobile-nav-navlink" exact to="/about">
           About
         </NavLink>
