@@ -140,8 +140,13 @@
 
   .lessonDatesIdxUL {
     height: 90vh;
+    position: static;
 
   }
 
+  .IndexToggleBar {
+    position: static;
+    margin: 7px 0 3px 0;
+  }
   
 }

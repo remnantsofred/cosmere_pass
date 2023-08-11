@@ -162,7 +162,7 @@
 
 
 @media only screen and ( 320px <= width <= 480px) {
-  .ReservationCancelModal, .LocReservationConfirmModal, .ReservationMadeModal {
+  .ReservationCancelModal, .LocReservationConfirmModal, .ReservationMadeModal, .ReservationConfirmModal {
     width: 85vw;
     height: 90vh;
     text-align: center;

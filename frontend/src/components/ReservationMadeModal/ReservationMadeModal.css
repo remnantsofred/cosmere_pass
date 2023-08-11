@@ -176,3 +176,6 @@
   width: 428px;
 }
 
+@media only screen and ( 320px <= width <= 480px) {
+  
+}
