@@ -79,7 +79,7 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
   return (
     <Row className={className} id={id}>
       { (currentUser && indexType === 'lessons') && 
-        <Column>
+        <Column className='search-nav-left-col'>
           <DropdownMenu 
             className="dropdown navDropdown" 
             options={dropdownTypeOptions} 
@@ -107,7 +107,7 @@ export const SearchNav = withRouter(({children, id='', className="SearchNav", lo
             setValue={setSelectedValueDate}
             />
         </Column>}
-      <Column>
+      <Column className='search-nav-right-col'>
         Magic Lessons in Your Area
       </Column>
       {children}
