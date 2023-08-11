@@ -99,10 +99,16 @@
 @media only screen and (320px <= width <= 480px) {
   .ReviewIndexItem {
     width: 100%;
+    height: auto;
+    /* border: red solid 1px; */
+    margin: 0px 0 20px 0;
+    padding: 0;
   }
 
   .reviewTitleRow{
-    width: 100%
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0;
   }
 
   .reviewStarsRow {
@@ -111,13 +117,24 @@
 
   .reviewBodyRow {
     width: 100%;
+    height: auto;
   }
 
   .reviewBody{
     width: 100%;
+    font-size: 0.8rem;
+    /* white-space: nowrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .editDeleteReview {
+
   }
   
-  /* -review-index-item {
-
-  } */
+  .reviewRatingNum {
+    /* padding-left: 1vw; */
+    margin-left: -1vw;
+  }
+  
 }

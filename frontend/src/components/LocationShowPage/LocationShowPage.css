@@ -213,7 +213,7 @@
 @media only screen and (320px <= width <= 480px){
   .LocShowPage {
     width: 100vw;
-    height: 100vh;
+    height: 95vh;
     /* padding-bottom: 32px; */
     display: flex;
     flex-direction: column;

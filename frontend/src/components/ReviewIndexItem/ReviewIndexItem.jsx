@@ -38,9 +38,9 @@ export const ReviewIndexItem = ({id="", className="ReviewIndexItem", review, cur
 
   return (
     <Rows id={id} className='ReviewIndexItem' >
-      <Row className={`reviewTitleRow`}>
+      <Row className='reviewTitleRow'>
         { review.lessonTitle } 
-        <div className={`editDeleteReview`}>
+        <div className='editDeleteReview'>
           {/* {(currentUser && review.reviewerId === currentUser.id) && <FiEdit onClick={() => handleEditReviewClick(review)} className='reviewEditIcon'/>} */}
           {(review.currentUserReviewed) && <FiEdit onClick={() => handleEditReviewClick(review)} className='reviewEditIcon'/>}
           {/* {(currentUser && review.reviewerId === currentUser.id) && <FiTrash onClick={()=>handleDeleteReview(review.id)} className='reviewDeleteIcon'/>  } */}
