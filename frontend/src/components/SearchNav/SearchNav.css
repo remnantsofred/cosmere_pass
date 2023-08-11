@@ -39,6 +39,15 @@
   
 }
 
+.search-nav-left-col {
+  display: flex;
+
+}
+
+#searchNavDropCont {
+  width: 30%;
+}
+
 @media only screen and (320px <= width <= 480px) {
   .SearchNav {
     flex-direction: column;
@@ -63,7 +72,6 @@
     gap: 0.7rem;
   }
 
- 
 
   #searchNavDropCont {
     width: 8rem;
