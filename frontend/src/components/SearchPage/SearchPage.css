@@ -137,4 +137,11 @@
     height: 20vh;
     width: 100vw;
   }
+
+  .lessonDatesIdxUL {
+    height: 90vh;
+
+  }
+
+  
 }
