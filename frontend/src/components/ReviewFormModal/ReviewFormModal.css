@@ -361,7 +361,7 @@
     font-size: 0.85rem;
     line-height: 0.5;
   } */
-  .ReviewFormModal {
+  .ReviewFormModal , .ReviewEditModal{
     width: 85vw;
     height: 90vh;
     text-align: center;
