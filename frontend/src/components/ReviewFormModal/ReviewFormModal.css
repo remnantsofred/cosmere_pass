@@ -347,3 +347,63 @@
   font-size: 0.75rem;
   font-style: italic;
 }
+
+@media only screen and (320px <= width <= 480px) {
+ /* .ReviewFormModal {
+    width: 85vw;
+    height: 80vh;
+    text-align: center;
+  } */
+
+  /* .reviewModalInfoPanel {
+    width: 100%;
+    height: 50%;
+    font-size: 0.85rem;
+    line-height: 0.5;
+  } */
+  .ReviewFormModal {
+    width: 85vw;
+    height: 90vh;
+    text-align: center;
+  }
+
+  .reviewFormInputRow {
+    width: 90%;
+    /* height: 40vh; */
+  }
+
+  .reviewFormTextBox {
+    height: 18vh;
+    font-size: 0.8rem;
+  }
+
+  .reviewFormDropCont {
+    width: 90%;
+  }
+
+  .dropdown-container, .dropdown-input {
+    width: 76vw;
+
+  }
+
+
+  .reviewModalInfoPanel {
+    width: 100%;
+    height: 50%;
+    font-size: 0.85rem;
+    line-height: 0.5;
+  }
+
+  .reviewModalStarRow {
+    width: 100%;
+    height: 3vh;
+    margin-top: 4vh;
+  }
+
+  #reviewModalStarRating {
+
+  }
+
+
+
+}

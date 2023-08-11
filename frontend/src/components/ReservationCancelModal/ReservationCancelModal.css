@@ -162,7 +162,7 @@
 
 
 @media only screen and ( 320px <= width <= 480px) {
-  .ReservationCancelModal{
+  .ReservationCancelModal {
     width: 85vw;
     height: 80vh;
     text-align: center;
@@ -173,7 +173,7 @@
 
   }
 
-  .resModalInfoPanel{
+  .resModalInfoPanel {
     width: 100%;
     height: 50%;
     font-size: 0.85rem;
@@ -197,6 +197,11 @@
   .resCancelModalCredits, .resCancelModalLessonTimeText, .resModalInfoPanel p {
     width: 100%
   }
+
+  .review-modal-img-div {
+    height: 22vh;
+  }
+
 
 
 }

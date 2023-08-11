@@ -152,7 +152,7 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
       </div>
       <Panels id={id} className={className} >
         <img src={modalCloseButton} className='resModalCloseBtn' onClick={handleModalClose} />
-        <div className='resModalImgDiv'>
+        <div className='resModalImgDiv review-modal-img-div'>
           <img src={ReviewFormModalImg} alt="" className='resModalImg'/>
         </div>
         <Panel className="reviewModalInfoPanel">
