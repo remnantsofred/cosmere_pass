@@ -129,6 +129,11 @@
   flex-direction: row;
 } */
 
+.second-nav-col {
+  display: flex;
+  flex-direction: row;
+}
+
 @media only screen and ( 320px <= width <= 480px){
   .NavColumns {
     justify-content: center;
