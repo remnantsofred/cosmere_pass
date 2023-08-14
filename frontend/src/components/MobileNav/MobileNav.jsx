@@ -24,7 +24,7 @@ const MobileNav = () => {
         </NavLink>
       </Column>
       <Column className='mobile-nav-col'>
-        <BiInfoCircle className='mobile-nav-icon'><NavLink className="mobile-nav-navlink" exact to="/about" /></BiInfoCircle>
+        <BiInfoCircle className='mobile-nav-icon'><NavLink className="mobile-nav-navlink" exact to="/about"git  /></BiInfoCircle>
         <NavLink className="mobile-nav-navlink" exact to="/about">
           About
         </NavLink>
