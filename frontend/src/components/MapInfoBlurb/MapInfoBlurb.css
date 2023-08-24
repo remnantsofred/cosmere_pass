@@ -18,6 +18,7 @@
   justify-content: space-evenly;
   justify-content: center;
   align-items: center;
+  gap: 1em;
 }
 
 .map-info-blurb-info-col {
