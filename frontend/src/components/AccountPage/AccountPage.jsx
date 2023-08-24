@@ -216,7 +216,7 @@ export const AccountPage = withRouter(({history}) => {
               lessons={lessons} 
               className="ReviewEditModal"/> } 
           <Panels className='acct-page-panel-L'>
-            <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row>
+            {/* <Row className='acct-page-title-row-welcome-banner'>Welcome back, <h6 className='username-header'>{currentUser.username}</h6></Row> */}
             <ul className='acct-page-title-ul'>
               <li className={ content === 'upcoming-reservations' ? 'acct-page-title-li acct-page-title-li-selected ' : 'acct-page-title-li'} onClick={() => setContent('upcoming-reservations')}>
                 <p className='acct-page-selection'>{`Upcoming (${selectReservations(reservations, 'upcoming').length})`}</p>
