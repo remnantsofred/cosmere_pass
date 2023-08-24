@@ -48,6 +48,10 @@
   width: 30%;
 }
 
+.search-nav-right-col {
+  display: none;
+}
+
 @media only screen and (320px <= width <= 480px) {
   .SearchNav {
     flex-direction: column;

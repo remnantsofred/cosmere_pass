@@ -121,6 +121,28 @@
   border-left-color: rgb(0, 77, 230);
 }
 
+@media only screen and (481px <= width <= 851px) {
+  .SearchPage {
+    flex-direction: column-reverse;
+
+  }
+  .lessonDatesIdxleftPanel {
+    height: 80vh;
+    width: 100vw;
+    padding: 0;
+  }
+
+  .lessonDatesIdxrightPanel {
+    height: 20vh;
+    width: 100vw;
+  }
+
+  .IndexToggleBar {
+    position: static;
+    margin: 7px 0 3px 0;
+  }
+}
+
 @media only screen and ( 320px <= width <= 480px) {
   .SearchPage {
     flex-direction: column-reverse;
