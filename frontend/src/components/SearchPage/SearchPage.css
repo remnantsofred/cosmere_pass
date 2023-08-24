@@ -171,4 +171,13 @@
     margin: 7px 0 3px 0;
   }
   
+  .locationIdxitmrightCol{
+    display: none;
+  }
+
+  .locationIdxItmImgCol {
+    width: 130px;
+    height: 86.6px;
+  }
+
 }

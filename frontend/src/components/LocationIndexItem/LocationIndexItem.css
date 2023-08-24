@@ -2,12 +2,12 @@
   font-size: 1em;
   line-height: 1.5;
   letter-spacing: 0;
-  width: 775px;
-  height: 112px;
+  width: 95%;
   padding: 16px;
   display: flex;
   flex-direction: row;
   --vh: 8.87px;
+  gap: 1em;
 }
 
 .locationIdxItmRow:not(:first-child) {
@@ -17,13 +17,11 @@
 .locationIdxItmImgCol {
   width: 168px;
   height: 112px;
-  margin-right: 16px;
 }
 
 .locationIdxItminfoCol {
-  width: 240px;
-  height: 112px;
-  margin-right: 16px;
+  /* width: 240px;
+  height: 112px; */
   padding: 10px 0px 6px;
   flex: 1;
     flex-grow: 1;
@@ -38,8 +36,8 @@
 }
 
 .locationIdxitmrightCol {
-  width: 333px;
-  height: 100px;
+  /* width: 333px; */
+  /* height: 100px; */
   padding-top: 12px;
   padding-left: 16px;
   border-left: 1px solid #e7e7e7;
@@ -52,8 +50,6 @@
 }
 
 .locationIdxItmLessonType {
-  width: 240px;
-  height: 16px;
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.333333;
@@ -67,8 +63,7 @@
   font-size: .875rem;
   line-height: 1;
   font-weight: 400;
-  width: 240px;
-  height: 14px;
+
 }
 
 .locationIdxItmLink {
@@ -79,8 +74,6 @@
   line-height: 1.5;
   --vh: 4.4px;
   font-weight: 500;
-  width: 240px;
-  height: 16px;
   text-overflow: ellipsis;
 }
 
@@ -95,8 +88,6 @@
 }
 
 .locationIdxItmRating{
-  width: 20px;
-  height: 14px;
   font-size: .875rem;
   line-height: 1.4285714286;
   font-weight: 500;
@@ -106,8 +97,6 @@
 
 .locRevCt{
   display: inline-block;
-  width: 51px;
-  height: 20px;
   color: #555;
   font-size: .875rem;
   line-height: 1.4285714286;
@@ -122,8 +111,8 @@
 
 .locationIdxItmDesc {
   display: block;
-  width: 333px;
-  height: 80px;
+  /* width: 333px; */
+  /* height: 80px; */
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
