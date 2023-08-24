@@ -134,7 +134,7 @@
   flex-direction: row;
 }
 
-@media only screen and ( 320px <= width <= 480px){
+@media only screen and ( 0px <= width <= 480px){
   .NavColumns {
     justify-content: center;
   }

@@ -202,7 +202,7 @@
   display: none;
 }
 
-@media only screen and (320px <= width <= 480px){
+@media only screen and (0px <= width <= 480px){
   .signupleftPanel, .trialCard, #dollars, #dollarsSubtitle, .signUplineBelow, #signUpSubmit, .signupCol, .iconCol, .signupIcon, .signupH3, #heroSignUp {
     display: none;
     width: 0;
