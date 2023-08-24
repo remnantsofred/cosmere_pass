@@ -4,6 +4,7 @@
   flex-direction: row;
   margin: 4px 0px 12px;
   height: 150px;
+  gap: 1em;
 }
 .reservation-index-button, .reservation-index-review-button {
   margin-bottom: 6px;
@@ -71,9 +72,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 340px;
-  margin-right: 6px;
-  padding-left: 10px;
+  width: 30%;
 }
 
 .reservation-index-item-info-panel > p {
@@ -82,7 +81,6 @@
 
 .reservation-index-item-img-col {
   width: 250px;
-  margin-right: 6px;
 }
 
 .reservation-lesson-img {
@@ -95,7 +93,7 @@
   display: none;
 }
 
-@media only screen and ( 320px <= width <= 480px){
+@media only screen and ( 0px <= width <= 480px){
   .reservation-index-button, .reservation-index-button-cancel, .duration {
     display: none;
   }

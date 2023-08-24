@@ -1,8 +1,4 @@
 .LocShowPage {
-  /* position: relative; */
-  /* left: 50%;
-  top: 0;
-  transform: translateX(-50%); */
   width: 100%;
   padding-bottom: 32px;
   display: flex;
@@ -15,15 +11,12 @@
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
-  /* border: 1px solid red; */
 }
 
 .LocShowPanelL {
   width: 624px;
-  padding: 16px, 8px, 0px;
-  
-  /* border: 1px solid #e7e7e7; */
-}
+ 
+  }
 
 .LocShowratingRow {
   display: flex;
@@ -37,13 +30,11 @@
 
 .LocShowPanelLRow{
   width: 100%;
-  /* border: 1px solrgb(127, 103, 103)7e7; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding-bottom: 24px;
   margin-right: 24px;
-  /* align-items: center; */
 }
 
 #noTopBorder {
@@ -59,7 +50,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* border: 1px solid #e7e7e7; */
 }
 
 .locNamRow{
@@ -82,11 +72,6 @@
   margin: 16px 0px;
 
 }
-
-/* 
-.locationIdxItmRating {
-
-} */
 
 
 .locShowRevCt {
@@ -210,7 +195,13 @@
 
 }
 
-@media only screen and (320px <= width <= 480px){
+@media only screen and (481px <= width <= 1020px) {
+  .LocShowPanelR {
+    display: none;
+  }
+}
+
+@media only screen and (0px <= width <= 480px){
   .LocShowPage {
     width: 100vw;
     height: 95vh;

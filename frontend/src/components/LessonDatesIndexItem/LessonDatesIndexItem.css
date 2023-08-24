@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: row;
   --vh: 8.87px; 
+  gap: 1em;
 }
 
 .locShowLessonDateIdxItmRow{
@@ -31,9 +32,9 @@
 }
 
 .lessonDateIdxItmTimeCol {
-  width: 90px;
-  height: 77px;
-  margin-right: 12px;
+  /* width: 90px; */
+  /* height: 77px; */
+  /* margin-right: 12px; */
   font-size: .875rem;
   line-height: 1.4285714286;
   color: #555;
@@ -47,17 +48,17 @@
 .locShowLessonDateIdxItmTimeCol {
   width: 90px;
   height: 50px;
-  margin-right: 12px;
+  /* margin-right: 12px; */
   font-size: .875rem;
   line-height: 1.4285714286;
   color: #555;
 }
 
 .lessonDateIdxItmCol2 {
-  width: 289px;
-  height: 69px;
+  /* width: 289px; */
+  /* height: 69px; */
   margin-bottom: 8px;
-  padding-right: 8px;
+  /* padding-right: 8px; */
   flex: 1;
     flex-grow: 1;
     flex-shrink: 1;
@@ -74,7 +75,7 @@
   width: 425px;
   height: 50px;
   margin-bottom: 8px;
-  padding-right: 8px;
+  /* padding-right: 8px; */
   /* flex: 1;
     flex-grow: 1;
     flex-shrink: 1;
@@ -88,9 +89,9 @@
 }
 
 .lessonDateIdxItmCol3 {
-  width: 289px;
-  height: 77px;
-  padding-right: 12px;
+  /* width: 289px; */
+  /* height: 77px; */
+  /* padding-right: 12px; */
   flex: 1;
     flex-grow: 1;
     flex-shrink: 1;
@@ -112,8 +113,8 @@
 
 
 .lessonDateIdxItmRCol {
-  width: 112px;
-  height: 77px;
+  /* width: 112px; */
+  /* height: 77px; */
   line-height: 1.4285714286;
   font-size: .875rem;
   display: flex;
@@ -147,7 +148,7 @@
 }
 
 .lessonDateIdxItmLessonType {
-  width: 289px;
+  /* width: 289px; */
   height: 20px;
   font-size: .875rem;
   line-height: 1.4285714286;
@@ -324,7 +325,21 @@
   padding-top: 4px;
 }
 
-@media only screen and (320px <= width <= 480px) {
+/* @media only screen and (481px <= width <= 850px) {
+  .lessonDateIdxItmCol3 {
+    display: none;
+  }
+  
+} */
+
+/* @media only screen and (851px <= width <= 940px) {
+  .lessonDatesIdxrightPanel {
+    display: none;
+  }
+  
+} */
+
+@media only screen and (0px <= width <= 480px) {
   .locShowIdxULLessonDates {
     margin: 0;
 

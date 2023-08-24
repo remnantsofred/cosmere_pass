@@ -60,7 +60,7 @@
     margin-right: 112.5;
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    /* position: fixed; */
 }
 
 .loginForm {
@@ -245,7 +245,7 @@ label {
   display: none;
 }
 
-@media only screen and (320px <= width <= 480px) {
+@media only screen and (0px <= width <= 480px) {
   .loginrightBlurb, #welcomeBack, .login-header-row {
     display: none;
   }

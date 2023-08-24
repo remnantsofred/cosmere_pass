@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media only screen and ( 320px <= width <= 480px){
+@media only screen and ( 0px <= width <= 480px){
   .mobile-nav {
     display: flex;
     flex-direction: row;
