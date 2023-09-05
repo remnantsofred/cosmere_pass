@@ -15,7 +15,7 @@ Cosmerepass is a clone of the fitness app Classpass. Instead of finding and book
 ***
 [Cosmerepass Live Link](https://cosmere-pass.onrender.com/ "Cosmerepass")
 
-Users will be able to browse lessons, check out locations, and filter by investiture type and location. Users can make lessondate reservations from the search page or reserve lessondates from the Location show page. Users can also read, write, edit, and delete their own reviews for Locations. A logged in user can navigate to the account page to view all their upcoming reservations (with the option to cancel or invite a friend along), view attended reservations, and view, edit, or delete their reviews. 
+Users will be able to browse lessons, check out locations, and filter by date, investiture type and location. Users can make lessondate reservations from the search page or reserve lessondates from the Location show page. Users can also read, write, edit, and delete their own reviews for lessons. Lessons become available to review only after a user has taken that lesson. A logged in user can navigate to the account page to view all their upcoming reservations (with the option to cancel or invite a friend along), view attended reservations, and view, edit, or delete their reviews.
 
 ### Technologies Used
 
