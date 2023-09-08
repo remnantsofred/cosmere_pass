@@ -1,7 +1,6 @@
 import './ReviewFormModal.css';
 import StarRatingResponsive from '../StarRatingResponsive';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
-
 import Row from '../row/Row';
 import ReviewFormModalImg from './Vin.jpeg';
 import Panels from '../panels';
@@ -34,7 +33,6 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
     }
   }
 
-  // const dropdownOptions = lessons.map( lesson => ({value: lesson.id, label: lesson.title}))
 
   const dropdownOptions = lessons.map( lesson => {
     if (currentUser.lessonsTaken.includes(lesson.id) && !currentUser.lessonsReviewed.includes(lesson.id)) {
@@ -93,12 +91,23 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
   const editReviewBodyTextArea = () => {
     if (!review) {
       return (
-        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => update(e, 'reviewBody')} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea>
+        <textarea 
+          className='reviewFormTextBox' 
+          value={reviewBody} 
+          onChange={e => update(e, 'reviewBody')} 
+          placeholder="What did you like about the lesson? How was the instructor? What was the space like?" >
+
+        </textarea>
       )
     }
     else {
       return (
-        <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => update(e, 'reviewBody')}  ></textarea>
+        <textarea 
+          className='reviewFormTextBox' 
+          value={reviewBody} 
+          onChange={e => update(e, 'reviewBody')}  >
+
+        </textarea>
       )
     }
   }
@@ -161,17 +170,13 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
             <p>{location.locationName}</p>
           </Row>
           <Row className='reviewModalStarRow'>
-            {/* <label className='reviewModalLabel'>Rating: */}
             <StarRatingResponsive setStarReviewRating={setStarReviewRating} id='reviewModalStarRating' assignedRating={review ? review.rating : 5} />
-            {/* </label> */}
 
           </Row>
           <Row className='reviewModalLessonLoc'>
-            {/* <DropdownMenu location={location} placeholder="Select..." options={dropdownOptions} setReviewLessonFromDropdown={setReviewLessonFromDropdown}/> */}
             {reviewLessonTitle()}
           </Row>
           <Row className='reviewFormInputRow'>
-            {/* <textarea className='reviewFormTextBox' value={reviewBody} onChange={e => setReviewBody(e.target.value)} placeholder="What did you like about the lesson? How was the instructor? What was the space like?" ></textarea> */}
             {editReviewBodyTextArea()}
           </Row>
           <Row>
@@ -182,7 +187,6 @@ export const ReviewFormModal = ({children, id='', className="ReviewFormModal", c
             Update Review
           </button>}
           </Row>
-          {/* {errors && errors.map(error=> <Row className='reviewFormErrorRow'>{error}</Row>)} */}
           <div className='review-form-errors'>{errors?.reviewBody}</div>
           <div className='review-form-errors'>{errors?.lessonID}</div>
           
