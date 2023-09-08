@@ -128,8 +128,6 @@ const lessonDatesReducer = (state = {}, action) => {
     case RECEIVE_LESSONDATES:
       return { ...newState, ...action.lessonDates };
     case RECEIVE_LESSONDATE:
-      // {238: lessondateob} 
-      // [Object.keys(action.lessonDate)[0]: Object.Values
       return { ...newState, [action.lessonDate.id]: action.lessonDate };
     case REMOVE_LESSONDATE:
       delete newState[action.lessonDateId];
