@@ -9,7 +9,7 @@ import modalCloseButton from '../ReservationConfirmModal/modalCloseButton.png';
 import { useState, useEffect } from 'react';
 
 // lessons being passed in are already lessons just for that location
-export const ReviewFormModal = ({children, id='', className="ReviewFormModal", currentUser, location, handleModalClose, handleReviewSubmit, source, lessons, handleReviewEditSubmit, review, reviews}) => {
+export const ReviewFormModal = ({id='', className="ReviewFormModal", currentUser, location, handleModalClose, handleReviewSubmit, lessons, handleReviewEditSubmit, review}) => {
   const [lessonID, setLessonID] = useState("");
   const [rating, setRating] = useState(5);
   const [reviewBody, setReviewBody] = useState("");

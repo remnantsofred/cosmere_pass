@@ -472,7 +472,7 @@ require "open-uri"
   now = DateTime.now()
   Lesson.all.each do |lesson|
     
-    start_time_fixed = DateTime.new(2023, 8, 1, rand(1..12), 0, 0, '-8')
+    start_time_fixed = DateTime.new(2023, 9, 1, rand(1..12), 0, 0, '-8')
     start_time = DateTime.new(now.year, now.month, now.day, rand(1..12), 0, 0, '-8')
     # length = [1, 1.5, 2].sample
     length = 1
